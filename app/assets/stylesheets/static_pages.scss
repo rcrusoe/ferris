@@ -1,3 +1,52 @@
-// Place all the styles related to the StaticPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+body{
+	text-align: center;
+	background-color: #fcfcfc;
+	font-family: 'Avenir', 'Helvetica', sans-serif;
+	color: #424242;
+	max-width: 60%;
+	margin: auto;
+}
+
+h1 {
+	font-size: 4em;
+	margin-top: 2em;
+	font-family: 'Volkhov', serif;
+	font-weight: 400;
+}
+
+h2 {
+	font-size: 1.5em;
+	font-family: 'Volkhov', serif;
+	margin-bottom: 0em;
+}
+
+a{
+	color: #a9a9a9;
+}
+
+.number{
+	background-color: #f1f1f1;
+	padding: 1em;
+}
+
+h3{
+	margin-top: 0.25em;
+	font-size: 4em;
+	color: #2ecc71;
+	font-weight: bold;
+	margin-bottom: 0;
+}
+
+.disclaimer{
+	font-size: 0.75em;
+	font-style: italic;
+}
+
+.section{
+	margin-bottom: 50px;
+	img{
+		max-width: 40%;
+		margin: 30px 10px 0;
+		border: 1px solid #c9c9c9;
+	}
+}
