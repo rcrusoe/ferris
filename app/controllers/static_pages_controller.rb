@@ -1,4 +1,7 @@
 class StaticPagesController < ApplicationController
-  def homoe
+  def home
+  end
+
+  def terms
   end
 end
