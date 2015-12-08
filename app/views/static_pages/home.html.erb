@@ -3,61 +3,51 @@
   <head>
     <title>Ferris | Your personal guide to your city.</title>
     <link href='https://fonts.googleapis.com/css?family=Volkhov:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <%= favicon_link_tag 'favicon.jpg' %>
+    <%= favicon_link_tag 'favicon.ico' %>
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
-for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
-mixpanel.init("102cf58192ef1e319bf6cb10a6c281f8");</script><!-- end Mixpanel -->
-<script type="text/javascript">
-	mixpanel.track('page viewed', {
-    'page name' : document.title,
-    'url' : window.location.pathname
-});
-</script>
+    <!-- start Mixpanel -->
+    <script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+		for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
+		mixpanel.init("102cf58192ef1e319bf6cb10a6c281f8");
+	</script>
+	<!-- end Mixpanel -->
+	<!-- Mixpanel Page View Event -->
+	<script type="text/javascript">
+		mixpanel.track('page viewed', {
+	    'page name' : document.title,
+	    'url' : window.location.pathname
+	});
+	</script>
   </head>
   <body>
-  	<div class="section">
-  		<h1>Ferris</h1>
-  		<div class="number">
-  			<h2>Text this phone number to find something to do in Boston.</h2>
-	    	<h3>(857) 600-1195</h3>
-	    	<p>Include details such as time, neighborhood, or type of activity to improve the recommendation.</p>
-	    	<p class="disclaimer">Message and data rates may apply.</p>
-  		</div>
-  		<p>
-  			<a target="_blank" href="https://twitter.com/home?status=Send%20a%20text%20message%20to%20find%20something%20to%20do%20in%20Boston%3A%20http%3A//www.joinferris.com/">Share on Twitter</a>
-  			<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.joinferris.com/">Share on Facebook</a>
-  		</p>
-  	</div>
-  	<div class="section">
-  		<h2>
-  			How It Works
-  		</h2>
-  		<p>
-  			We have curated the best activities and events in and around Boston. Send us a text message and we'll help you plan your night, weekend, or just an hour of free time. It's the easiest way to discover more in Boston.
-  		</p>
-  	</div>
-  	<div class="section examples">
-  		<h2>
-  			Examples
-  		</h2>
-  		<%= image_tag("example1.jpeg", :alt => "Example 1") %>
-  		<%= image_tag("example2.jpeg", :alt => "Example 2") %>
-  		<%= image_tag("example3.jpeg", :alt => "Example 3") %>
-  		<%= image_tag("example4.jpeg", :alt => "Example 4") %>
-  	</div>
-  	<div class="section">
-  		<div class="number">
-  			<h2>Text this phone number to find something to do in Boston.</h2>
-	    	<h3>(857) 600-1195</h3>
-	    	<p>Include details such as time, neighborhood, or type of activity to improve the recommendation.</p>
-	    	<p class="disclaimer">Message and data rates may apply.</p>
-  		</div>
-  	</div>
-  	<div class="section">
-  		<p>
-  			<a href="mailto:robinson@greig.io">Contact</a>
-  		</p>
-  	</div>
+	<div class="ui grid stackable">
+		<div class="two wide column">
+			
+		</div>
+		<div class="six wide column example small computer only tablet only">
+			<img class="ui centered medium image" src="/assets/example-in-phone.png">
+		</div>
+		<div class="six wide column description">
+			<img class="ui centered tiny image" src="/assets/face.png">
+		  	<h1>
+		  		Hello, I'm Ferris.
+		  	</h1>
+		  	<h3>
+		  		Text me to find something to do in Boston.
+		  	</h3>
+		  	<h2>
+		  		<a href="tel:1-857-600-1195">(857) 600-1195</a>
+		  	</h2>
+		  	<p>
+		  		Personalized search powered by local humans, available 24/7.
+		  	</p>
+		</div>
+		<div class="six wide column example mobile only">
+			<img class="ui centered medium image" src="/assets/example-in-phone.png">
+		</div>
+		<div class="two wide column">
+		  	
+		</div>
+	</div>
   </body>
 </html>
