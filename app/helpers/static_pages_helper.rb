@@ -1,10 +1,6 @@
 module StaticPagesHelper
 end
 
-class ApplicationController
-  semantic_breadcrumb :index, :root_path
-end
-
 class ExamplesController < ApplicationController
   semantic_breadcrumb :index, :examples_path
 
