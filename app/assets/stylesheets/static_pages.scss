@@ -46,7 +46,6 @@ p{
 }
 
 .event-card{
-	margin-top: 5vh;
 	margin-bottom: 5vh;
 	font-size: 16px;
 }
@@ -61,7 +60,7 @@ p{
 }
 
 .ui.card .meta :last-child, .ui.cards>.card .meta :last-child{
-	margin-top: 0.25em;
+	margin-top: 0.75em;
 }
 
 .ui.card>.content>.header+.description, .ui.card>.content>.meta+.description, .ui.cards>.card>.content>.header+.description, .ui.cards>.card>.content>.meta+.description{
