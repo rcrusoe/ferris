@@ -55,6 +55,10 @@ p{
 	width: 380px;
 }
 
+.ui.cards > .card > .image > img, .ui.card > .image > img{
+	border-radius: 0;
+}
+
 .ui.card>.content>.header:not(.ui), .ui.cards>.card>.content>.header:not(.ui){
 	margin-top: 0.5em;
 }
@@ -73,6 +77,8 @@ p{
 	padding: 1.25em 1em 1em 1em;
 }
 
-.ui.card>.button, .ui.card>.buttons, .ui.cards>.card>.button, .ui.cards>.card>.buttons{
+.ui.blue.button{
 	padding: 1.25em;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
