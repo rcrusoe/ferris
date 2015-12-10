@@ -17,6 +17,7 @@ group :development, :test do
   gem 'spring',      '1.1.3'
   gem 'rspec-rails',      ">= 2.0.0.beta"
   gem 'capybara'
+  gem 'factory_girl_rails', '4.2.0'
 end
 
 group :production do
