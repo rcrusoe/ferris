@@ -1,3 +1,17 @@
 <% provide(:title, 'Event') %>
-<h1>Event</h1>
-<p>Event</p>
+<div>
+  <div class="ui form">
+    <%= form_for(@event) do |f| %>
+    	<%= render 'shared/error_messages' %>
+      	<div class="field">
+      		<%= f.label :title %>
+      		<%= f.text_field :title, class: "ui input" %>
+      	</div>
+      	<div class="field">
+      		<%= f.label :description %>
+      		<%= f.text_field :description, class: "ui input" %>
+      	</div>
+      	<%= f.submit "Create new event", class: "ui blue fluid button" %>
+    <% end %>
+  </div>
+</div>
