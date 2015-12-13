@@ -6,7 +6,7 @@
     <div class="content">
       <p class="header"><%= @event.title %></p>
       <div class="meta">
-        <span class="date"><i class="calendar icon"></i><%= @event.date %></span>
+        <span class="date"><i class="calendar icon"></i><%= @event.date.strftime("%A, %B %d") %></span>
       </div>
       <div class="meta">
         <span class="date"><i class="wait icon"></i><%= @event.start_time.strftime("%I:%M %p") %> - <%= @event.end_time.strftime("%I:%M %p") %></span>
