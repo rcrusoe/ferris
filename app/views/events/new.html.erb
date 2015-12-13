@@ -11,7 +11,55 @@
       		<%= f.label :description %>
       		<%= f.text_field :description, class: "ui input" %>
       	</div>
+        <div class="field">
+          <%= f.label :date %>
+          <%= f.text_field :date, class: "ui input", :placeholder => "2015-01-31" %>
+        </div>
+        <div class="field">
+          <%= f.label :start_time %>
+          <%= f.select(:start_time, ['12:00am', '12:30am', '1:00am', '1:30am', '2:00am', '2:30am', '3:00am', '3:30am', '4:00am', '4:30am', '5:00am', '5:30am', '6:00am', '6:30am', '7:00am', '7:30am', '8:00am', '8:30am', '9:00am', '9:30am', '10:00am', '10:30am', '11:00am', '11:30am', '12:00pm', '12:30pm', '1:00pm', '1:30pm', '2:00pm', '2:30pm', '3:00pm', '3:30pm', '4:00pm', '4:30pm', '5:00pm', '5:30pm', '6:00pm', '6:30pm', '7:00pm', '7:30pm', '8:00pm', '8:30pm', '9:00pm', '9:30pm', '10:00pm', '10:30pm', '11:00pm', '11:30pm'], {}, { :class => 'ui dropdown' }) %>
+        </div>
+        <div class="field">
+          <%= f.label :end_time %>
+          <%= f.select(:end_time, ['12:00am', '12:30am', '1:00am', '1:30am', '2:00am', '2:30am', '3:00am', '3:30am', '4:00am', '4:30am', '5:00am', '5:30am', '6:00am', '6:30am', '7:00am', '7:30am', '8:00am', '8:30am', '9:00am', '9:30am', '10:00am', '10:30am', '11:00am', '11:30am', '12:00pm', '12:30pm', '1:00pm', '1:30pm', '2:00pm', '2:30pm', '3:00pm', '3:30pm', '4:00pm', '4:30pm', '5:00pm', '5:30pm', '6:00pm', '6:30pm', '7:00pm', '7:30pm', '8:00pm', '8:30pm', '9:00pm', '9:30pm', '10:00pm', '10:30pm', '11:00pm', '11:30pm'], {}, { :class => 'ui dropdown' }) %>
+        </div>
+        <div class="field">
+          <%= f.label :address %>
+          <%= f.text_field :address, class: "ui labeled input", :placeholder => "795 Massachusetts Ave, Cambridge, MA 02139" %>
+        </div>
+        <div class="field">
+          <%= f.label :website %>
+          <div class="ui labeled input">
+            <div class="ui label">
+              http://
+            </div>
+            <%= f.text_field :website, :placeholder => "mywebsite.com" %>
+          </div>
+        </div>
+        <div class="field">
+          <%= f.label :price %>
+          <div class="ui right labeled input">
+            <div class="ui label">$</div>
+            <%= f.text_field :price %>
+            <div class="ui basic label">.00</div>
+          </div>
+        </div>
+        <div class="field">
+          <%= f.label :ticket_purchase_link %>
+          <div class="ui labeled input">
+            <div class="ui label">
+              http://
+            </div>
+            <%= f.text_field :purchase_url, :placeholder => "(optional)" %>
+          </div>
+        </div>
       	<%= f.submit "Create new event", class: "ui blue fluid button" %>
     <% end %>
   </div>
 </div>
+
+<script>
+  $('select.dropdown')
+    .dropdown()
+  ;
+</script>

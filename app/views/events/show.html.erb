@@ -6,40 +6,34 @@
     <div class="content">
       <p class="header"><%= @event.title %></p>
       <div class="meta">
-        <span class="date"><i class="calendar icon"></i>Friday, December 4th</span>
+        <span class="date"><i class="calendar icon"></i><%= @event.date %></span>
       </div>
       <div class="meta">
-        <span class="date"><i class="wait icon"></i>5:30pm - 10:00pm</span>
+        <span class="date"><i class="wait icon"></i><%= @event.start_time.strftime("%I:%M %p") %> - <%= @event.end_time.strftime("%I:%M %p") %></span>
       </div>
       <div class="description">
         <%= @event.description %>
       </div>
     </div>
     <div class="extra content">
-      <a href="http://maps.google.com/?q=25 Evans Way, Boston MA, 02115" target="_blank">
+      <a href="http://maps.google.com/?q=<%= @event.address %>" target="_blank">
         <i class="location arrow icon"></i>
-        Seaport
+        <%= @event.address %>
       </a>
     </div>
     <div class="extra content">
-      <a href="tel:617-278-5156">
-        <i class="call icon"></i>
-        617-278-5156
-      </a>
-    </div>
-    <div class="extra content">
-      <a href="http://www.gardnermuseum.org/calendar/events/6711" target="_blank">
+      <a href="http://<%= @event.website %>" target="_blank">
         <i class="linkify icon"></i>
-        Gardner Museum Website
+        <%= @event.website %>
       </a>
     </div>
     <div class="extra content">
-      <a href="http://www.gardnermuseum.org/calendar/events/6711" target="_blank">
+      <a href="http://<%= @event.purchase_url %>" target="_blank">
         <i class="dollar icon"></i>
-        $15 per person
+        $<%= @event.price %> per person
       </a>
     </div>
-    <form action="http://www.gardnermuseum.org/calendar/events/6711">
+    <form action="http://<%= @event.purchase_url %>">
       <button class="ui blue fluid button" type="submit">
         Buy Tickets
       </button>
