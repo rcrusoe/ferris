@@ -36,11 +36,11 @@
     </div>
     <div class="field">
       <%= f.label :start_time %><br>
-      <%= f.time_select :start_time, {:ampm => true} %>
+      <%= f.time_select :start_time, {:minute_step => 15, :ampm => true} %>
     </div>
     <div class="field">
       <%= f.label :end_time %><br>
-      <%= f.time_select :end_time, {:ampm => true} %>
+      <%= f.time_select :end_time, {:minute_step => 15, :ampm => true} %>
     </div>
     <div class="field">
       <%= f.label :address %>
