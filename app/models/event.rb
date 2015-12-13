@@ -1,10 +1,9 @@
 class Event < ActiveRecord::Base
-	validates :title, presence: true
-	validates :description, presence: true
-	validates :date, presence: true
-	validates :start_time, presence: true
-	validates :end_time, presence: true
-	validates :address, presence: true
-	validates :website, presence: true
-	validates :price, presence: true
+	has_attached_file :image, styles: {
+		medium: '300x300>',
+		small: '150x150>',
+		tiny: '80x80!'
+	}
+	validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
 end

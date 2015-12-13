@@ -1,7 +1,7 @@
 <div class="event-card">
   <div class="ui card">
     <div class="image">
-      <%= image_tag("ica.jpg") %>
+      <%= image_tag @event.image.url(:medium) %>
     </div>
     <div class="content">
       <p class="header"><%= @event.title %></p>
