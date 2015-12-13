@@ -8,10 +8,4 @@ class StaticPagesControllerTest < ActionController::TestCase
     assert_select "title", "Ferris | Your Personal Guide to the City"
   end
 
-  test "should get event" do
-    get :event
-    assert_response :success
-    assert_select "title", "Ferris | Your Personal Guide to the City"
-  end
-
 end
