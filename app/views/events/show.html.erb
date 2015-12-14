@@ -5,7 +5,7 @@
       <div class="ui green ribbon label">
         Share: &nbsp
         <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.joinferris.com/events/<%= @event.id %>"><i class="facebook icon"></i></a>
-        <a target="_blank" href="https://twitter.com/home?status=%3C%25=%20%40event.title%20%25%3E%3A%20http%3A//www.joinferris.com/events/%3C%25=%20%40event.id%20%25%3E%20via%20%40joinferris%22"><i class="twitter icon"></i></a>
+        <a target="_blank" href="https://twitter.com/home?status=<%= @event.title %>: http://www.joinferris.com/events/<%= @event.id %> via @joinferris"><i class="twitter icon"></i></a>
       </div>
       <%= image_tag @event.image.url(:medium) %>
     </div>
