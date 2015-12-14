@@ -6,6 +6,7 @@ RSpec.describe "events/show", type: :view do
       :title => "Title",
       :description => "MyText",
       :address => "Address",
+      :neighborhood => "Neighborhood",
       :website => "Website",
       :price => 1,
       :purchase_url => "Purchase Url"
@@ -17,6 +18,7 @@ RSpec.describe "events/show", type: :view do
     expect(rendered).to match(/Title/)
     expect(rendered).to match(/MyText/)
     expect(rendered).to match(/Address/)
+    expect(rendered).to match(/Neighborhood/)
     expect(rendered).to match(/Website/)
     expect(rendered).to match(/1/)
     expect(rendered).to match(/Purchase Url/)

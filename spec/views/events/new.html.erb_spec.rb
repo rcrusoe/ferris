@@ -6,6 +6,7 @@ RSpec.describe "events/new", type: :view do
       :title => "MyString",
       :description => "MyText",
       :address => "MyString",
+      :neighborhood => "MyString",
       :website => "MyString",
       :price => 1,
       :purchase_url => "MyString"
@@ -22,6 +23,8 @@ RSpec.describe "events/new", type: :view do
       assert_select "textarea#event_description[name=?]", "event[description]"
 
       assert_select "input#event_address[name=?]", "event[address]"
+
+      assert_select "input#event_neighborhood[name=?]", "event[neighborhood]"
 
       assert_select "input#event_website[name=?]", "event[website]"
 

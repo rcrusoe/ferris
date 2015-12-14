@@ -1,43 +1,54 @@
-<%= render 'event_header' %>
-<div class="event-card">
-  <div class="ui card">
-    <div class="image">
-      <%= image_tag @event.image.url(:medium) %>
-    </div>
-    <div class="content">
-      <p class="header"><%= @event.title %></p>
-      <div class="meta">
-        <span class="date"><i class="calendar icon"></i><%= @event.date.strftime("%A, %B %d") %></span>
-      </div>
-      <div class="meta">
-        <span class="date"><i class="wait icon"></i><%= @event.start_time.strftime("%I:%M %p") %> - <%= @event.end_time.strftime("%I:%M %p") %></span>
-      </div>
-      <div class="description">
-        <%= @event.description %>
-      </div>
-    </div>
-    <div class="extra content">
-      <a href="http://maps.google.com/?q=<%= @event.address %>" target="_blank">
-        <i class="location arrow icon"></i>
-        <%= @event.neighborhood %>
-      </a>
-    </div>
-    <div class="extra content">
-      <a href="http://<%= @event.website %>" target="_blank">
-        <i class="linkify icon"></i>
-        <%= @event.website %>
-      </a>
-    </div>
-    <div class="extra content">
-      <a href="http://<%= @event.purchase_url %>" target="_blank">
-        <i class="dollar icon"></i>
-        $<%= @event.price %> entry fee
-      </a>
-    </div>
-    <form action="http://<%= @event.purchase_url %>">
-      <button class="ui blue fluid button" type="submit">
-        Let's Go!
-      </button>
-    </form>
-  </div>
-</div>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @event.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @event.date %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @event.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @event.end_time %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @event.address %>
+</p>
+
+<p>
+  <strong>Neighborhood:</strong>
+  <%= @event.neighborhood %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @event.website %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @event.price %>
+</p>
+
+<p>
+  <strong>Purchase url:</strong>
+  <%= @event.purchase_url %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
