@@ -1,7 +1,12 @@
 <%= render 'event_header' %>
 <div class="event-card">
   <div class="ui card">
-    <div class="image">
+    <div class="ui fluid image">
+      <div class="ui green ribbon label">
+        Share: &nbsp
+        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.joinferris.com/events/<%= @event.id %>"><i class="facebook icon"></i></a>
+        <a target="_blank" href="https://twitter.com/home?status=<%= @event.title %>: http://www.joinferris.com/events/<%= @event.id %> via @joinferris"><i class="twitter icon"></i></a>
+      </div>
       <%= image_tag @event.image.url(:medium) %>
     </div>
     <div class="content">
@@ -14,11 +19,9 @@
       </div>
       <div class="description">
         <%= @event.description %>
+
       </div>
     </div>
-    <h4 class="ui horizontal divider header">
-      Share This Event
-    </h4>
     <div class="extra content">
       <a href="http://maps.google.com/?q=<%= @event.address %>" target="_blank">
         <i class="location arrow icon"></i>
