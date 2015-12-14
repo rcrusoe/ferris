@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20151214143918) do
     t.string   "website"
     t.integer  "price"
     t.string   "purchase_url"
+    t.string   "neighborhood"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "image_file_name"

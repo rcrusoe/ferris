@@ -47,6 +47,10 @@
       <%= f.text_field :address, class: "ui labeled input", :placeholder => "795 Massachusetts Ave, Cambridge, MA 02139" %>
     </div>
     <div class="field">
+      <%= f.label :neighborhood %>
+      <%= f.select(:neighborhood, ['Alewife', 'Allston', 'Assembly Square', 'Back Bay', 'Beacon Hill', 'Brighton', 'Brookline', 'Central Square', 'Charlestown', 'Chinatown/Leather District', 'Davis Square', 'Dorchester', 'East Boston', 'East Cambridge', 'Fenway/Kenmore', 'Fort Point', 'Financial District', 'Harvard Square', 'Kendall Square', 'Jamaica Plain', 'Mission Hill', 'North End', 'Porter Square', 'Prospect Hill', 'Roxbury', 'Seaport', 'South End', 'South Boston', 'West End', 'Boston Metro - Car Required'], {}, { :class => 'ui fluid dropdown' }) %>
+    </div>
+    <div class="field">
       <%= f.label :website %>
       <div class="ui labeled input">
         <div class="ui label">
