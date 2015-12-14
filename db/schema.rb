@@ -11,26 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214143918) do
-
-  create_table "events", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.date     "date"
-    t.time     "start_time"
-    t.time     "end_time"
-    t.string   "address"
-    t.string   "website"
-    t.integer  "price"
-    t.string   "purchase_url"
-    t.string   "neighborhood"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.string   "neighborhood"
-  end
+ActiveRecord::Schema.define(version: 0) do
 
 end
