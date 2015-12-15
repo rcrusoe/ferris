@@ -38,4 +38,8 @@
   </tbody>
 </table>
 
-<br>
+<% if @events.present? %>
+
+<% else %>
+  <p class = "search-error">There are no events containing the term(s) <%= params[:search] %>.</p>
+<% end %>

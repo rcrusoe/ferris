@@ -6,14 +6,15 @@
     Events
   </a>
   <div class="right menu">
-    <!--
     <div class="item">
       <div class="ui icon input">
-        <input type="text" placeholder="Search...">
+        <%= form_tag(events_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Events" %>
+        <%= submit_tag "Search" %>
+        <% end %>
         <i class="search link icon"></i>
       </div>
     </div>
-    -->
     <a class="ui item" href="/events/new">
       New Event
     </a>

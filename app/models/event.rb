@@ -5,4 +5,8 @@ class Event < ActiveRecord::Base
 		mini: '80x80!'
 	}
 	validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+
+	def self.search(search)
+	  where("title || description || neighborhood LIKE ?", "%#{search}%")
+	end
 end

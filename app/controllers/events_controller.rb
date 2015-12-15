@@ -4,7 +4,12 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    #@events = Event.all
+    if params[:search]
+      @events = Event.search(params[:search]).order("created_at DESC")
+    else
+      @events = Event.all.order('created_at DESC')
+    end
   end
 
   # GET /events/1
@@ -67,8 +72,9 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.require(:event).permit(:title, :description, :date, :start_time, :end_time, :address, :neighborhood, :website, :price, :purchase_url, :image)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def event_params
+    params.require(:event).permit(:title, :description, :date, :start_time, :end_time, :address, :neighborhood, :website, :price, :purchase_url, :image)
+  end
+
 end
