@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
 	has_attached_file :image, styles: {
-		medium: '300x300>',
+		medium: '400x400>',
 		tiny: '140x140>',
 		mini: '80x80!'
 	}

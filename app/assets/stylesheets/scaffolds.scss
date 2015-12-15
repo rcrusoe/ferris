@@ -58,3 +58,7 @@ div {
     list-style: square;
   }
 }
+
+.ui.items > .item > .content > .header:not(.ui){
+  font-size: 2em;
+}
