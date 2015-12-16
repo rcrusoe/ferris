@@ -1,57 +1,50 @@
-<% @events.each do |event| %>
-  <% if event.date.today? || event.date.future? %>
-    <div class="event-preview">
-      <div class="ui card">
-        
-      </div>
-    </div>
-  <% end %>
-<% end %>
-
-
-<div class="event-card">
-  <div class="ui card">
-    <div class="ui fluid image">
-      <div class="ui green ribbon label">
-        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.joinferris.com/events/<%= @event.id %>"><i class="facebook icon"></i>Share</a>
-      </div>
-      <%= image_tag @event.image.url(:medium) %>
-    </div>
-    <div class="content">
-      <p class="header"><%= @event.title %></p>
-      <div class="meta">
-        <span class="date"><i class="calendar icon"></i><%= @event.date.strftime("%A, %B %d") %></span>
-      </div>
-      <div class="meta">
-        <span class="date"><i class="wait icon"></i><%= @event.start_time.strftime("%I:%M %p") %> - <%= @event.end_time.strftime("%I:%M %p") %></span>
-      </div>
-      <div class="description">
-        <%= @event.description %>
-
-      </div>
-    </div>
-    <div class="extra content">
-      <a href="http://maps.google.com/?q=<%= @event.address %>" target="_blank">
-        <i class="location arrow icon"></i>
-        <%= @event.neighborhood %>
-      </a>
-    </div>
-    <div class="extra content">
-      <a href="http://<%= @event.website %>" target="_blank">
-        <i class="linkify icon"></i>
-        <%= @event.website %>
-      </a>
-    </div>
-    <div class="extra content">
-      <a href="http://<%= @event.purchase_url %>" target="_blank">
-        <i class="dollar icon"></i>
-        $<%= @event.price %> entry fee
-      </a>
-    </div>
-    <form action="http://<%= @event.purchase_url %>">
-      <button class="ui blue fluid button" type="submit">
-        Let's Go!
-      </button>
-    </form>
+<p id="notice"><%= notice %></p>
+<div class="ui grid stackable">
+  <div class="two wide column">
+    
+  </div>
+  <div class="twelve wide column">
+      <%= render 'header' %>
+      <table class="ui celled table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Start time</th>
+            <th>End time</th>
+            <th>Address</th>
+            <th>Neighborhood</th>
+            <th>Price</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @events.each do |event| %>
+            <% if event.date.today? || event.date.future? %>
+              <tr>
+                <td><%= event.title %></td>
+                <td><%= event.description %></td>
+                <td><%= event.date.strftime("%A, %B %d") %></td>
+                <td><%= event.start_time.strftime("%I:%M %p") %></td>
+                <td><%= event.end_time.strftime("%I:%M %p") %></td>
+                <td><%= event.address %></td>
+                <td><%= event.neighborhood %></td>
+                <td><%= event.price %></td>
+                <td><%= link_to 'Show', event %></td>
+                <td><%= link_to 'Edit', edit_event_path(event) %></td>
+                <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+      <% if @events.present? %>
+      <% else %>
+        <p class = "search-error">There are no events containing the term(s) <%= params[:search] %>.</p>
+      <% end %>
+  </div>
+  <div class="two wide column">
+    
   </div>
 </div>
