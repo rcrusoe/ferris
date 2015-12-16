@@ -15,3 +15,19 @@
 //= require turbolinks
 //= require_tree .
 //= require semantic-ui
+
+$(document).ready(function(){
+    $("#search-icon").click(function(){
+        $("#search-icon").addClass("hidden");
+        $("#remove-icon").removeClass("hidden");
+        $('#search-form').transition('fade down');
+        return false;
+    });
+
+    $("#remove-icon").click(function(){
+        $("#search-icon").removeClass("hidden");
+        $("#remove-icon").addClass("hidden");
+        $("#search-form").transition("fade down");
+        return false;
+    });
+});
