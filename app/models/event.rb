@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
 	has_attached_file :image, styles: {
 		medium: '400x400>',
-		banner: '285x100#',
+		banner: '338x100#',
 		tiny: '140x140>',
 		mini: '80x80!'
 	}
