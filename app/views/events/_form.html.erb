@@ -1,17 +1,6 @@
 <div class="ui form">
   <%= form_for @event, html: { multipart: true } do |f| %>
-    <% if @event.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-        <ul>
-        <% @event.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
+    <%= render 'shared/error_messages' %>
     <div class="field">
       <%= f.label :image %><br>
       <%= f.file_field :image, html: { class: 'form-control' } %>
@@ -21,7 +10,6 @@
           <em>Currently Uploaded Image</em>
       <% end %>
     </div>
-
     <div class="field">
       <%= f.label :title %><br>
       <%= f.text_field :title, class: "ui input" %>
@@ -52,7 +40,7 @@
     </div>
     <div class="field">
       <%= f.label :neighborhood %>
-      <%= f.select(:neighborhood, ['Alewife', 'Allston', 'Assembly Square', 'Back Bay', 'Beacon Hill', 'Brighton', 'Brookline', 'Central Square', 'Charlestown', 'Chinatown/Leather District', 'Davis Square', 'Dorchester', 'East Boston', 'East Cambridge', 'Fenway/Kenmore', 'Fort Point', 'Financial District', 'Harvard Square', 'Kendall Square', 'Jamaica Plain', 'Mission Hill', 'North End', 'Porter Square', 'Prospect Hill', 'Roxbury', 'Seaport', 'South End', 'South Boston', 'West End', 'Boston Metro - Car Required'], {}, { :class => 'ui fluid dropdown' }) %>
+      <%= f.select(:neighborhood, ['Alewife', 'Allston', 'Assembly Square', 'Back Bay', 'Beacon Hill', 'Brighton', 'Brookline', 'Central Square', 'Charlestown', 'Chinatown/Leather District', 'Davis Square', 'Dorchester', 'East Boston', 'East Cambridge', 'Fenway/Kenmore', 'Fort Point', 'Financial District', 'Harvard Square', 'Kendall Square', 'Jamaica Plain', 'Mission Hill', 'North End', 'Porter Square', 'Prospect Hill', 'Roxbury', 'Seaport', 'South End', 'South Boston', 'West End', 'Out of the City - Car Required'], {}, { :class => 'ui fluid dropdown' }) %>
     </div>
     <div class="field">
       <%= f.label :website %>

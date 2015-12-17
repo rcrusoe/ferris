@@ -30,4 +30,15 @@ $(document).ready(function(){
         $("#search-form").transition("fade down");
         return false;
     });
+
+    $('.ui.form')
+        .form({
+          fields: {
+            title    : 'empty',
+            short_blurb   : 'empty',
+            description : 'empty',
+            address : 'empty',
+          }
+        })
+    ;
 });
