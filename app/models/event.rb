@@ -5,20 +5,8 @@ class Event < ActiveRecord::Base
 	validates :description, presence: true
 	validates :address, presence: true
 	validates :price, numericality: { only_integer: true }
-	validate :event_date_cannot_be_in_the_past
-	validate :event_end_time_cannot_be_before_start_time
-
-	def event_date_cannot_be_in_the_past
-	  if date.present? && date < Date.today
-	      errors.add(:date, "can't be in the past")
-	  end
-	end
-
-	def event_end_time_cannot_be_before_start_time
-	    if end_time < start_time
-	      errors.add(:end_time, "can't be before start time.")
-	    end
-	end
+	#validate :event_date_cannot_be_in_the_past
+	#validate :event_end_time_cannot_be_before_start_time
 
 	# image upload properties
 	has_attached_file :image, styles: {
