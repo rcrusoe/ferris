@@ -11,7 +11,12 @@
     <div class="content">
       <p class="header"><%= @event.title %></p>
       <div class="meta">
-        <span class="date"><i class="calendar icon"></i><%= @event.date.strftime("%A, %B %d") %></span>
+        <% if @event.date.today? %>
+          <span class="date"><i class="calendar icon"></i> Today</span>
+        <% else @event.date.today? %>
+          <span class="date"><i class="calendar icon"></i><%= @event.date.strftime("%A, %B %d") %></span>
+        <% end %>
+
         <br>
         <span class="date"><i class="wait icon"></i><%= @event.start_time.strftime("%l:%M %P") %> - <%= @event.end_time.strftime("%l:%M %P") %></span>
       </div>
