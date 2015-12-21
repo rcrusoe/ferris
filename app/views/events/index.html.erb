@@ -1,35 +1,37 @@
 <% provide(:title, ' | Events') %>
-<div class="gutter">
-  <%= render 'header' %>  
+<%= render 'header' %>  
+<div class="ui grid stackable">
   <% @events.each do |event| %>
-    <% if event.date.today? || event.date.future? %>
-      <div class="ui cards preview-card">
-        <div class="card">
-          <%= link_to image_tag(event.image.url(:banner), class: "index-image"), event %>
-          <div class="content">
-            <div class="header"><%= link_to (event.title), event %></div>
-            <div class="meta">
-              <% if event.date.today? %>
-                Today, <%= event.start_time.strftime("%l:%M%P") %> - <%= event.end_time.strftime("%l:%M%P") %>
-              <% else event.date.today? %>
-                <%= event.date.strftime("%a. %m/%d") %>, <%= event.start_time.strftime("%l:%M%P") %> - <%= event.end_time.strftime("%l:%M%P") %>
-              <% end %>
+    <div class="four wide column">
+      <% if event.date.today? || event.date.future? %>
+        <div class="ui cards preview-card">
+          <div class="card">
+            <%= link_to image_tag(event.image.url(:banner), class: "index-image"), event %>
+            <div class="content">
+              <div class="header"><%= link_to (event.title), event %></div>
+              <div class="meta">
+                <% if event.date.today? %>
+                  Today, <%= event.start_time.strftime("%l:%M%P") %> - <%= event.end_time.strftime("%l:%M%P") %>
+                <% else event.date.today? %>
+                  <%= event.date.strftime("%a. %m/%d") %>, <%= event.start_time.strftime("%l:%M%P") %> - <%= event.end_time.strftime("%l:%M%P") %>
+                <% end %>
+              </div>
+              <div class="description">
+                <%= event.short_blurb %>
+              </div>
             </div>
-            <div class="description">
-              <%= event.short_blurb %>
+            <div class="extra content">
+              <span class="right floated">
+                <%= link_to 'Read More', event %>
+              </span>
+              <span>
+                <i class="globe icon"></i>
+                <%= event.neighborhood %>
+              </span>
             </div>
-          </div>
-          <div class="extra content">
-            <span class="right floated">
-              <%= link_to 'Read More', event %>
-            </span>
-            <span>
-              <i class="globe icon"></i>
-              <%= event.neighborhood %>
-            </span>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   <% end %>
 </div>
