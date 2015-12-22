@@ -59,6 +59,15 @@
         <div class="ui basic label">.00</div>
       </div>
     </div>
+    <div class="field">
+      <%= f.label :ticket_purchase_link %>
+      <div class="ui labeled input">
+        <div class="ui label">
+          http://
+        </div>
+        <%= f.text_field :purchase_url, :placeholder => "(optional)" %>
+      </div>
+    </div>
     <%= f.submit "Create new event", class: "ui blue fluid button" %>
   <% end %>
 </div>

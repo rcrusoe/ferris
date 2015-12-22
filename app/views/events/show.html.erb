@@ -38,12 +38,12 @@
       </a>
     </div>
     <div class="extra content">
-      <a href="<%= @event.website %>" target="_blank">
+      <a href="<%= @event.purchase_url %>" target="_blank">
         <i class="dollar icon"></i>
         $<%= @event.price %> entry fee
       </a>
     </div>
-    <form action="<%= @event.website %>" target="_blank">
+    <form action="<%= @event.purchase_url %>" target="_blank">
       <button class="ui blue fluid button" type="submit">
         Let's Go!
       </button>
