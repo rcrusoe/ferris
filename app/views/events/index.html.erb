@@ -1,6 +1,6 @@
 <% provide(:title, ' | Events') %>
 <%= render 'header' %>  
-<div class="ui grid stackable">
+<div class="ui padded grid stackable">
   <% @events.each do |event| %>
       <% if event.date.today? || event.date.future? %>
         <div class="four wide column">
