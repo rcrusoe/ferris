@@ -1,73 +1,75 @@
-<div class="ui form">
-  <%= form_for @event, html: { multipart: true } do |f| %>
-    <%= render 'shared/error_messages' %>
-    <div class="field">
-      <%= f.label :image %><br>
-      <%= f.file_field :image, html: { class: 'form-control' } %>
-      <% if f.object.image? %>
-          <br />
-          <%= image_tag(f.object.image.url(:small)) %><br />
-          <em>Currently Uploaded Image</em>
-      <% end %>
-    </div>
-    <div class="field">
-      <%= f.label :title %><br>
-      <%= f.text_field :title, class: "ui input" %>
-    </div>
-    <div class="field">
-      <%= f.label :short_blurb %><br>
-      <%= f.text_field :short_blurb, class: "ui input" %>
-    </div>
-    <div class="field">
-      <%= f.label :description %><br>
-      <%= f.text_area :description, class: "ui input" %>
-    </div>
-    <div class="field">
-      <%= f.label :date %><br>
-      <%= f.date_select :date %>
-    </div>
-    <div class="field">
-      <%= f.label :start_time %><br>
-      <%= f.time_select :start_time, {:minute_step => 15, :ampm => true} %>
-    </div>
-    <div class="field">
-      <%= f.label :end_time %><br>
-      <%= f.time_select :end_time, {:minute_step => 15, :ampm => true} %>
-    </div>
-    <div class="field">
-      <%= f.label :address %>
-      <%= f.text_field :address, class: "ui labeled input", :placeholder => "795 Massachusetts Ave, Cambridge, MA 02139" %>
-    </div>
-    <div class="field">
-      <%= f.label :neighborhood %>
-      <%= f.select(:neighborhood, ['Alewife', 'Allston', 'Assembly Square', 'Back Bay', 'Beacon Hill', 'Brighton', 'Brookline', 'Central Square', 'Charlestown', 'Chinatown/Leather District', 'Davis Square', 'Dorchester', 'East Boston', 'East Cambridge', 'Fenway/Kenmore', 'Fort Point', 'Financial District', 'Harvard Square', 'Inman/Union Square', 'Kendall Square', 'Jamaica Plain', 'Mission Hill', 'North End', 'Porter Square', 'Roxbury', 'Seaport', 'South End', 'South Boston', 'West End', 'Out of the City - Car Required'], {}, { :class => 'ui fluid dropdown' }) %>
-    </div>
-    <div class="field">
-      <%= f.label :website %>
-      <div class="ui labeled input">
-        <div class="ui label">
-          http://
+<div id="new-event-form">
+  <div class="ui form">
+    <%= form_for @event, html: { multipart: true } do |f| %>
+      <%= render 'shared/error_messages' %>
+      <div class="field">
+        <%= f.label :image %><br>
+        <%= f.file_field :image, html: { class: 'form-control' } %>
+        <% if f.object.image? %>
+            <br />
+            <%= image_tag(f.object.image.url(:small)) %><br />
+            <em>Currently Uploaded Image</em>
+        <% end %>
+      </div>
+      <div class="field">
+        <%= f.label :title %><br>
+        <%= f.text_field :title, class: "ui input" %>
+      </div>
+      <div class="field">
+        <%= f.label :short_blurb %><br>
+        <%= f.text_field :short_blurb, class: "ui input" %>
+      </div>
+      <div class="field">
+        <%= f.label :description %><br>
+        <%= f.text_area :description, class: "ui input" %>
+      </div>
+      <div class="field">
+        <%= f.label :date %><br>
+        <%= f.date_select :date %>
+      </div>
+      <div class="field">
+        <%= f.label :start_time %><br>
+        <%= f.time_select :start_time, {:minute_step => 15, :ampm => true} %>
+      </div>
+      <div class="field">
+        <%= f.label :end_time %><br>
+        <%= f.time_select :end_time, {:minute_step => 15, :ampm => true} %>
+      </div>
+      <div class="field">
+        <%= f.label :address %>
+        <%= f.text_field :address, class: "ui labeled input", :placeholder => "795 Massachusetts Ave, Cambridge, MA 02139" %>
+      </div>
+      <div class="field">
+        <%= f.label :neighborhood %>
+        <%= f.select(:neighborhood, ['Alewife', 'Allston', 'Assembly Square', 'Back Bay', 'Beacon Hill', 'Brighton', 'Brookline', 'Central Square', 'Charlestown', 'Chinatown/Leather District', 'Davis Square', 'Dorchester', 'East Boston', 'East Cambridge', 'Fenway/Kenmore', 'Fort Point', 'Financial District', 'Harvard Square', 'Inman/Union Square', 'Kendall Square', 'Jamaica Plain', 'Mission Hill', 'North End', 'Porter Square', 'Roxbury', 'Seaport', 'South End', 'South Boston', 'West End', 'Out of the City - Car Required'], {}, { :class => 'ui fluid dropdown' }) %>
+      </div>
+      <div class="field">
+        <%= f.label :website %>
+        <div class="ui labeled input">
+          <div class="ui label">
+            http://
+          </div>
+          <%= f.text_field :website, :placeholder => "mywebsite.com" %>
         </div>
-        <%= f.text_field :website, :placeholder => "mywebsite.com" %>
       </div>
-    </div>
-    <div class="field">
-      <%= f.label :price %>
-      <div class="ui right labeled input">
-        <div class="ui label">$</div>
-        <%= f.text_field :price %>
-        <div class="ui basic label">.00</div>
-      </div>
-    </div>
-    <div class="field">
-      <%= f.label :ticket_purchase_link %>
-      <div class="ui labeled input">
-        <div class="ui label">
-          http://
+      <div class="field">
+        <%= f.label :price %>
+        <div class="ui right labeled input">
+          <div class="ui label">$</div>
+          <%= f.text_field :price %>
+          <div class="ui basic label">.00</div>
         </div>
-        <%= f.text_field :purchase_url, :placeholder => "(optional)" %>
       </div>
-    </div>
-    <%= f.submit "Create new event", class: "ui blue fluid button" %>
-  <% end %>
+      <div class="field">
+        <%= f.label :ticket_purchase_link %>
+        <div class="ui labeled input">
+          <div class="ui label">
+            http://
+          </div>
+          <%= f.text_field :purchase_url, :placeholder => "(optional)" %>
+        </div>
+      </div>
+      <%= f.submit "Create new event", class: "ui blue fluid button" %>
+    <% end %>
+  </div>
 </div>

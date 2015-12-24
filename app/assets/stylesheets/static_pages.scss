@@ -38,12 +38,12 @@ h3{
 
 p{
 	font-size: 1.2em;
-	color: #a8a8a8;
 	margin-top: 5em;
 }
 
 .tagline{
 	margin-top: 7em;
+	color: #a8a8a8;
 }
 
 .description{
@@ -108,7 +108,7 @@ p{
 *
 */
 
-.ui.form{
+#new-event-form .ui.form{
 	max-width: 320px;
 	margin: auto;
 	margin-top: 5vh;
@@ -193,4 +193,36 @@ p{
 
 .invisible{
 	visibility: hidden;
+}
+
+/*
+*
+* user profile
+*
+*/
+
+#user-conversation .ui.form{
+	margin: auto;
+	margin-bottom: 2em;
+}
+
+#user-conversation .ui.input{
+	width: 100%;
+}
+
+.message-block{
+	display: block;
+	margin-bottom: 1em;
+	max-width: 80%;
+	clear: both
+}
+
+.admin{
+	float: right;
+}
+
+.ui.form textarea, .ui.form input[type="checkbox"] {
+    resize: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }

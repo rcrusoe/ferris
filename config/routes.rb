@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :events
   resources :events
   get 'static_pages/home'
+  get 'static_pages/user_index'
+  get 'static_pages/sample_user'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
