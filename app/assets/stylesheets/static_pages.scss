@@ -221,8 +221,12 @@ p{
 	float: right;
 }
 
-.ui.form textarea, .ui.form input[type="checkbox"] {
+#user-conversation .ui.form textarea, #user-conversation .ui.form input[type="checkbox"] {
     resize: none;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+.ui.labeled.icon.buttons .button, .ui.labeled.icon.button{
+	margin-top: 1em;
 }

@@ -1,3 +1,8 @@
+<!-- 
+**
+** Header Navigation
+**
+-->
 <div class="ui fluid three item menu sticky fixed">
   <a class="ui item" href="/static_pages/user_index">
     <i class="users icon"></i>
@@ -13,8 +18,18 @@
   </a>
 </div>
 
+
+<!-- Two Column Body -->
 <div class="ui two column very relaxed stackable padded grid">
+  
+  <!-- 
+  **
+  ** Conversation (Left Column)
+  **
+  -->
   <div class="column">
+
+    <!-- New Message Input Field -->
     <div id="user-conversation">
       <div class="ui form fluid">
         <div class="ui action input">
@@ -22,14 +37,8 @@
           <div type="submit" class="ui blue button">Send</div>
         </div>
       </div>
-      <div class="message-block admin">
-        <div class="ui compact message blue">
-          <div class="meta">
-            Dec. 24 1:58 pm EST 
-          </div>
-          <p>Tour the Taza Chocolate Factory ($6), check out the Harvard Museum of Natural History ($12), day pass to rock climb at BKB Somerville ($25), and standup comedy show at the Comedy Studio ($10-$15). Anything sound interesting?</p>
-        </div>
-      </div>
+
+      <!-- Outgoing Message -->
       <div class="message-block admin">
         <div class="ui compact message blue">
           <div class="meta">
@@ -38,6 +47,8 @@
           <p>Ok - I found a handful of things you could do in a single day (or throughout the weekend) all totaling in the ~$50 price range. These activities are all under 21 and clustered near Harvard Sq.</p>
         </div>
       </div>
+
+      <!-- Incoming Message -->
       <div class="message-block">
         <div class="ui compact message">
           <div class="meta">
@@ -46,6 +57,8 @@
           <p>We do not</p>
         </div>
       </div>
+
+      <!-- Many more messages for the sake of redundancy -->
       <div class="message-block admin">
         <div class="ui compact message blue">
           <div class="meta">
@@ -112,68 +125,239 @@
       </div>
     </div>
   </div>
+
+  <!-- 
+  **
+  ** User Information (Right Column)
+  **
+  -->
   <div class="column">
-    <table class="ui definition table">
-      <tbody>
-        <tr>
-          <td>Phone #:</td>
-          <td>845-264-0419</td>
-        </tr>
-        <tr>
-          <td>Name:</td>
-          <td>Robinson</td>
-        </tr>
-        <tr>
-          <td>Email:</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Neighborhood:</td>
-          <td>Harvard Sq.</td>
-        </tr>
-      </tbody>
-      <tfoot class="full-width">
-        <tr>
-          <th></th>
-          <th colspan="2">
-            <div class="ui right floated small primary button">
-              Edit
-            </div>
-          </th>
-        </tr>
-      </tfoot>
-    </table>
-    <div class="ui labeled button" tabindex="0">
-      <div class="ui red button">
-        <i class="plus icon"></i> New Conversation
-      </div>
-      <a class="ui basic red left pointing label">
-        2
-      </a>
+    <form class="ui form">
+
+      <!-- User Profile Table -->
+      <table class="ui definition table">
+        <tbody>
+          <tr>
+            <td class="five wide column">Phone #:</td>
+            <td>845-264-0419</td>
+          </tr>
+          <tr>
+            <td><label>Name:</label></td>
+            <td>
+              <div class="ui transparent input">
+                <input type="text" placeholder="Name">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><label>Email:</label></td>
+            <td>
+              <div class="ui transparent input">
+                <input type="text" placeholder="john@snow.com">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><label>Neighborhood:</label></td>
+            <td>
+              <select class="ui dropdown">
+                <option value="Select Neighborhood">Select Neighborhood</option>
+                <option value="Alewife">Alewife</option>
+                <option value="Allston">Allston</option>
+                <option value="Assembly Square">Assembly Square</option>
+                <option value="Back Bay">Back Bay</option>
+                <option value="Beacon Hill">Beacon Hill</option>
+                <option value="Brighton">Brighton</option>
+                <option value="Brookline">Brookline</option>
+                <option value="Central Square">Central Square</option>
+                <option value="Charlestown">Charlestown</option>
+                <option value="Chinatown/Leather District">Chinatown/Leather District</option>
+                <option value="Davis Square">Davis Square</option>
+                <option value="Dorchester">Dorchester</option>
+                <option value="East Boston">East Boston</option>
+                <option value="East Cambridge">East Cambridge</option>
+                <option value="Fenway/Kenmore">Fenway/Kenmore</option>
+                <option value="Fort Point">Fort Point</option>
+                <option value="Financial District">Financial District</option>
+                <option value="Harvard Square">Harvard Square</option>
+                <option value="Inman/Union Square">Inman/Union Square</option>
+                <option value="Kendall Square">Kendall Square</option>
+                <option value="Jamaica Plain">Jamaica Plain</option>
+                <option value="Mission Hill">Mission Hill</option>
+                <option value="North End">North End</option>
+                <option value="Porter Square">Porter Square</option>
+                <option value="Roxbury">Roxbury</option>
+                <option value="Seaport">Seaport</option>
+                <option value="South End">South End</option>
+                <option value="South Boston">South Boston</option>
+                <option value="West End">West End</option>
+                <option value="Greater Boston Area">Greater Boston Area</option>
+                <option value="Visiting Boston">Visiting Boston</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td><label># of Conversations:</label></td>
+            <td>
+              2
+            </td>
+          </tr>
+        </tbody>
+        <tfoot class="full-width">
+          <tr>
+            <th></th>
+            <th colspan="2">
+              <div class="ui right floated small primary button">
+                Save
+              </div>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+    </form>
+
+    <!-- Mark a new conversation -->
+    <div class="ui teal labeled icon button">
+      New Conversation
+      <i class="add icon"></i>
     </div>
-    <!--
-    <div class="ui segments">
-      <div class="ui top attached header">
-        <p>Dec. 24, 2015</p>
+
+    <!-- Suggestion Log for Sample Conversation -->
+    <div class="ui raised segment">
+      <div class="ui horizontal divider">
+        Dec. 25, 2015
       </div>
-      <div class="ui segments">
-        <div class="ui segment">
-          <p>Nested Top</p>
-        </div>
-        <div class="ui segment">
-          <p>Nested Middle</p>
-        </div>
-        <div class="ui segment">
-          <button class="ui small basic icon button"><i class="plus icon"></i></button>
-        </div>
+      <table class="ui very basic compact table">
+        <thead>
+          <tr>
+            <th class="thirteen wide column">Recommendation</th>
+            <th>Interest Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Sample Suggestion -->
+          <tr>
+            <td>
+              <div class="ui transparent input">
+                <input type="text" placeholder="Event Title">
+              </div>
+            </td>
+            <td>
+              <div class="ui icon buttons">
+                <button class="ui button"><i class="remove icon" ></i></button>
+                <button class="ui button"><i class="question icon"></i></button>
+                <button class="ui button"><i class="checkmark icon"></i></button>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Sample Suggestion -->
+          <tr>
+            <td>
+              <div class="ui transparent input">
+                <input type="text" placeholder="Event Title">
+              </div>
+            </td>
+            <td>
+              <div class="ui icon buttons">
+                <button class="ui button"><i class="remove icon" ></i></button>
+                <button class="ui button"><i class="question icon"></i></button>
+                <button class="ui button"><i class="checkmark icon"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button class="ui teal icon button">
+                <i class="plus icon"></i>
+              </button>
+            </td>
+            <td>
+              <div class="ui right floated small primary button">
+                Save
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- Suggestion Log for Sample Conversation -->
+    <div class="ui raised segment">
+      <div class="ui horizontal divider">
+        Dec. 14, 2015
       </div>
+      <table class="ui very basic compact table">
+        <thead>
+          <tr>
+            <th class="thirteen wide column">Recommendation</th>
+            <th>Interest Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Sample Suggestion -->
+          <tr>
+            <td>
+              <div class="ui transparent input">
+                <input type="text" placeholder="Event Title">
+              </div>
+            </td>
+            <td>
+              <div class="ui icon buttons">
+                <button class="ui button"><i class="remove icon" ></i></button>
+                <button class="ui button"><i class="question icon"></i></button>
+                <button class="ui button"><i class="checkmark icon"></i></button>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Sample Suggestion -->
+          <tr>
+            <td>
+              <div class="ui transparent input">
+                <input type="text" placeholder="Event Title">
+              </div>
+            </td>
+            <td>
+              <div class="ui icon buttons">
+                <button class="ui button"><i class="remove icon" ></i></button>
+                <button class="ui button"><i class="question icon"></i></button>
+                <button class="ui button"><i class="checkmark icon"></i></button>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Sample Suggestion -->
+          <tr>
+            <td>
+              <div class="ui transparent input">
+                <input type="text" placeholder="Event Title">
+              </div>
+            </td>
+            <td>
+              <div class="ui icon buttons">
+                <button class="ui button"><i class="remove icon" ></i></button>
+                <button class="ui button"><i class="question icon"></i></button>
+                <button class="ui button"><i class="checkmark icon"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button class="ui teal icon button">
+                <i class="plus icon"></i>
+              </button>
+            </td>
+            <td>
+              <div class="ui right floated small primary button">
+                Save
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="ui icon buttons">
-      <button class="ui button"><i class="radio icon"></i></button>
-      <button class="ui red button"><i class="remove icon"></i></button>
-      <button class="ui yellow button"><i class="help icon"></i></button>
-      <button class="ui green button"><i class="checkmark icon"></i></button>
-    </div>
-    -->
+
   </div>
 </div>
