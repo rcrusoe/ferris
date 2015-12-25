@@ -1,5 +1,31 @@
+<!-- 
+**
+** Header Navigation
+**
+-->
+<div class="ui secondary pointing top fixed menu">
+  <div class="right menu">
+    <a class="ui item">
+      Logout
+    </a>
+  </div>
+</div>
+
+<!-- 
+**
+** User Table
+**
+-->
 <div class="ui padded grid stackable">
   <div class="sixteen wide column">
+
+    <!-- Needs Response Filter Switch -->
+    <div class="ui toggle checkbox">
+      <input type="checkbox" name="public">
+      <label>Filter by those who need a response</label>
+    </div>
+
+    <!-- User Table -->
     <table class="ui celled striped table">
       <thead>
           <tr>
