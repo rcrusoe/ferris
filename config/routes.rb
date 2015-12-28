@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :events
-  resources :events
+  resources :users
+  resources :users
   resources :events
   get 'static_pages/home'
   get 'static_pages/user_index'
