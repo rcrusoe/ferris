@@ -1,0 +1,146 @@
+<div id="new-place-form">
+  <div class="ui form">
+    <%= form_for @place, html: { multipart: true } do |f| %>
+      <%= render 'error_messages' %>
+      <div class="field">
+        <%= f.label :image %><br>
+        <%= f.file_field :image, html: { class: 'form-control' } %>
+        <% if f.object.image? %>
+            <br />
+            <%= image_tag(f.object.image.url(:small)) %><br />
+            <em>Currently Uploaded Image</em>
+        <% end %>
+      </div>
+      <div class="field">
+        <%= f.label :name %><br>
+        <%= f.text_field :name, class: "ui input" %>
+      </div>
+      <div class="field">
+        <%= f.label :description %><br>
+        <%= f.text_area :description, class: "ui input" %>
+      </div>
+      <div class="field">
+        <%= f.label :address %>
+        <%= f.text_field :address, class: "ui labeled input", :placeholder => "795 Massachusetts Ave, Cambridge, MA 02139" %>
+      </div>
+      <div class="field">
+        <%= f.label :neighborhood %>
+        <%= f.select(:neighborhood, ['Alewife', 'Allston', 'Assembly Square', 'Back Bay', 'Beacon Hill', 'Brighton', 'Brookline', 'Central Square', 'Charlestown', 'Chinatown/Leather District', 'Davis Square', 'Dorchester', 'East Boston', 'East Cambridge', 'Fenway/Kenmore', 'Fort Point', 'Financial District', 'Harvard Square', 'Inman/Union Square', 'Kendall Square', 'Jamaica Plain', 'Mission Hill', 'North End', 'Porter Square', 'Roxbury', 'Seaport', 'South End', 'South Boston', 'West End', 'Out of the City - Car Required'], {}, { :class => 'ui fluid dropdown' }) %>
+      </div>
+      <div class="field">
+        <%= f.label :website %>
+        <div class="ui labeled input">
+          <div class="ui label">
+            http://
+          </div>
+          <%= f.text_field :website, :placeholder => "mywebsite.com" %>
+        </div>
+      </div>
+      <div class="field">
+        <%= f.label :phone_number %>
+        <%= f.text_field :phone_number, class: "ui labeled input", :placeholder => "5558675309" %>
+      </div>
+      <div class="ui segments">
+        <div class="ui segment">
+          <div class="field">
+            <%= f.label :monday_open? %><br>
+            <%= f.check_box :monday_open %>
+          </div>
+          <div class="field">
+            <%= f.label :monday_open_time %><br>
+            <%= f.time_select :monday_open_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+          <div class="field">
+            <%= f.label :monday_close_time %><br>
+            <%= f.time_select :monday_close_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="field">
+            <%= f.label :tuesday_open? %><br>
+            <%= f.check_box :tuesday_open %>
+          </div>
+          <div class="field">
+            <%= f.label :tuesday_open_time %><br>
+            <%= f.time_select :tuesday_open_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+          <div class="field">
+            <%= f.label :tuesday_close_time %><br>
+            <%= f.time_select :tuesday_close_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="field">
+            <%= f.label :wednesday_open? %><br>
+            <%= f.check_box :wednesday_open %>
+          </div>
+          <div class="field">
+            <%= f.label :wednesday_open_time %><br>
+            <%= f.time_select :wednesday_open_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+          <div class="field">
+            <%= f.label :wednesday_close_time %><br>
+            <%= f.time_select :wednesday_close_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="field">
+            <%= f.label :thursday_open? %><br>
+            <%= f.check_box :thursday_open %>
+          </div>
+          <div class="field">
+            <%= f.label :thursday_open_time %><br>
+            <%= f.time_select :thursday_open_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+          <div class="field">
+            <%= f.label :thursday_close_time %><br>
+            <%= f.time_select :thursday_close_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="field">
+            <%= f.label :friday_open? %><br>
+            <%= f.check_box :friday_open %>
+          </div>
+          <div class="field">
+            <%= f.label :friday_open_time %><br>
+            <%= f.time_select :friday_open_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+          <div class="field">
+            <%= f.label :friday_close_time %><br>
+            <%= f.time_select :friday_close_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="field">
+            <%= f.label :saturday_open? %><br>
+            <%= f.check_box :saturday_open %>
+          </div>
+          <div class="field">
+            <%= f.label :saturday_open_time %><br>
+            <%= f.time_select :saturday_open_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+          <div class="field">
+            <%= f.label :saturday_close_time %><br>
+            <%= f.time_select :saturday_close_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="field">
+            <%= f.label :sunday_open? %><br>
+            <%= f.check_box :sunday_open %>
+          </div>
+          <div class="field">
+            <%= f.label :sunday_open_time %><br>
+            <%= f.time_select :sunday_open_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+          <div class="field">
+            <%= f.label :sunday_close_time %><br>
+            <%= f.time_select :sunday_close_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+        </div>
+      </div>
+      <%= f.submit "Create new place", class: "ui blue fluid button" %>
+    <% end %>
+  </div>
+</div>

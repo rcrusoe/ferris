@@ -1,0 +1,28 @@
+<% provide(:title, ' | Places') %>
+<%= render 'header' %>  
+<div class="ui padded grid stackable">
+  <% @places.each do |place| %>
+    <div class="four wide column">
+      <div class="ui cards preview-card">
+        <div class="card">
+          <%= link_to image_tag(place.image.url(:banner), class: "index-image"), place %>
+          <div class="content">
+            <div class="header"><%= link_to (place.name), place %></div>
+            <div class="description">
+              <%= place.description %>
+            </div>
+          </div>
+          <div class="extra content">
+            <span class="right floated">
+              <%= link_to 'Read More', place %>
+            </span>
+            <span>
+              <i class="globe icon"></i>
+              <%= place.neighborhood %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,28 @@
+<div class="ui secondary fluid three item menu">
+  <a class="ui item" href="#" id="search-icon">
+    <i class="search icon"></i>
+  </a>
+  <a class="ui item hidden" href="#" id="remove-icon">
+    <i class="remove icon"></i>
+  </a>
+  <a class="item" href="./">
+    <%= image_tag("face.png", :class => "ui centered image mini") %>
+  </a>
+  <a class="ui item" href="/places/new">
+    <i class="plus icon"></i>
+  </a>
+</div>
+
+<div class="ui secondary menu hidden" id="search-form">
+  <div class="centered item">
+    <div class="ui icon input">
+      <%= form_tag(places_path, :method => "get") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search Places" %>
+      <%= submit_tag "Search" %>
+      <% end %>
+      <i class="search link icon"></i>
+    </div>
+  </div>
+</div>
+
+

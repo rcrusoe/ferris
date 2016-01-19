@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228193733) do
+ActiveRecord::Schema.define(version: 20160119171732) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -31,6 +31,42 @@ ActiveRecord::Schema.define(version: 20151228193733) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "short_blurb"
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "address"
+    t.string   "neighborhood"
+    t.string   "website"
+    t.string   "phone_number"
+    t.boolean  "monday_open"
+    t.time     "monday_open_time"
+    t.time     "monday_close_time"
+    t.boolean  "tuesday_open"
+    t.time     "tuesday_open_time"
+    t.time     "tuesday_close_time"
+    t.boolean  "wednesday_open"
+    t.time     "wednesday_open_time"
+    t.time     "wednesday_close_time"
+    t.boolean  "thursday_open"
+    t.time     "thursday_open_time"
+    t.time     "thursday_close_time"
+    t.boolean  "friday_open"
+    t.time     "friday_open_time"
+    t.time     "friday_close_time"
+    t.boolean  "saturday_open"
+    t.time     "saturday_open_time"
+    t.time     "saturday_close_time"
+    t.boolean  "sunday_open"
+    t.time     "sunday_open_time"
+    t.time     "sunday_close_time"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
