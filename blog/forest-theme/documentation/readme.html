@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>documentation.txt</title>
+<meta name="description" content="This file was exported from WriteMonkey editor.">
+<script src="file://c:\Users\ii\Documents\Visual%20Studio%202010\Projects\WriteMonkey\Sheet\bin\x86\Release\templates\goodies.js" type="text/javascript"></script>
+
+<link rel="stylesheet" type="text/css" href="file://c:\Users\ii\Documents\Visual%20Studio%202010\Projects\WriteMonkey\Sheet\bin\x86\Release\templates\goodies.css">
+
+
+
+<style type="text/css">
+<!--
+
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  /*color: #000;*/
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  /*color: #000;*/
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  /*color: #777;*/
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+
+
+
+-->
+</style>
+</head>
+<body>
+<h1>Forest Theme - v1.1.9</h1>
+<h2>Updates</h2>
+<h3>Version 1.1.9 – 25 August 2015</h3>
+<ul>
+<li>Updated the navigation menu</li>
+</ul>
+<h3>Version 1.1.8 – 8 Jule 2015</h3>
+<ul>
+<li>Fixed: Issues with close icon</li>
+<li>Update ghost 0.6.4</li>
+</ul>
+<h3>Version 1.1.7 – 18 May 2015</h3>
+<ul>
+<li>Fixed: Issues with prew posts</li>
+<li>Add google+ icon</li>
+</ul>
+<h3>Version 1.1.6 – 11 May 2015</h3>
+<ul>
+<li>Fixed: Issues with layout</li>
+</ul>
+<h3>Version 1.1.5 – 05 May 2015</h3>
+<ul>
+<li>Fixed: Issues in typography</li>
+<li>Add featured post</li>
+<li>Add tags to the regular posts</li>
+</ul>
+<h3>Version 1.1.1 – 24 April 2015</h3>
+<ul>
+<li>Fixed: Issue in navigation menu</li>
+<li>Fixed: Issue in pagination(icons)</li>
+<li>Fixed: Issue with sticky footer</li>
+<li>Sections of the subscription, info and social icons were transformed into partials for an easy-to-use</li>
+</ul>
+<h3>Version 1.1.0 – 17 April 2015</h3>
+<ul>
+<li>Add rss icon, rss-subscribe button, vkontakte button for sharing</li>
+<li>Add  Disqus comment system</li>
+<li>Update theme to v0.6.0 with new features (prew and next post)</li>
+<li>Fixed: Issues in mobile version</li>
+<li>Fixed: Issues in typography</li>
+</ul>
+<h3>Version 1.0.2 – 13 April 2015</h3>
+<ul>
+<li>Fixed: Issues in mobile version</li>
+<li>Fixed: Issues in typography</li>
+</ul>
+<h2>Installution:</h2>
+<ol>
+<li>Installing the theme</li>
+<li>Unzip the downloaded file from Themeforest you have purchased</li>
+<li>The zip containing html documentation folder and theme folder <em>'forest theme'</em></li>
+<li>Upload the theme folder to '/ghost/content/themes/'</li>
+<li>Restart Ghost</li>
+<li>Activate the theme trough Ghost backend</li>
+</ol>
+<h2>How to add Title and Description</h2>
+<p><img src="img/1.png" alt="test" /></p>
+<h2>How to add author background</h2>
+<p><img src="img/4.png" alt="test" /></p>
+<h2>How to add author avatar</h2>
+<p><img src="img/5.png" alt="test" /></p>
+<h2>How to add author location, website and bio</h2>
+<p><img src="img/6.png" alt="test" /></p>
+<h2>Adding post image</h2>
+<p><img src="img/2.png" alt="test" /></p>
+<h2>How to embed media</h2>
+<p>Just put the embed code.
+<img src="img/7.png" alt="test" /></p>
+<h2>How to add Navigation</h2>
+<ul>
+<li>Login to Ghost Dashboard, yoursite.com/ghost/</li>
+<li>Go to Settings</li>
+<li>Choose Navigation menu</li>
+<li>Add your links</li>
+</ul>
+<h2>Change the shortname Disqus comment</h2>
+<p><img src="img/25.png" alt="test" /></p>
+<h2>Content Formatting</h2>
+<p>(only availabe in Forest theme)</p>
+<h3>Intro paragraph:</h3>
+<pre><code>&lt;p class=&quot;intro&quot;&gt;
+text...
+&lt;/p&gt;
+</code></pre>
+
+<p><img src="img/21.png" alt="test" /></p>
+<h3>Pulling content:</h3>
+<pre><code>.pull-left
+.pull-right
+.pull-center
+</code></pre>
+
+<h4>Example:</h4>
+<p><img src="img/8.png" alt="test" />
+<img src="img/9.png" alt="test" />
+<img src="img/10.png" alt="test" /></p>
+<h4>More example with code:</h4>
+<h5>Pull center image with text</h5>
+<pre><code>&lt;figure class=&quot;pull-center&quot;&gt;
+    &lt;img src=&quot;/content/images/2015/04/brook-forest-hills-3939.jpg&quot; alt=&quot;&quot;&gt;
+    &lt;figcaption&gt;Forests are the dominant terrestrial ecosystem on Earth&lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+
+<p><img src="img/11.png" alt="test" /></p>
+<h5>Pull right image with text</h5>
+<pre><code>&lt;figure class=&quot;pull-right&quot;&gt;
+    &lt;img src=&quot;/content/images/2015/04/1280px-Hellyer_Gorge-_Tasmania.jpg&quot; alt=&quot;&quot;&gt;
+    &lt;figcaption&gt;Temperate rainforest in Tasmania's Hellyer Gorge&lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+
+<p><img src="img/12.png" alt="Pull right image" /></p>
+<h5>Pull left image with text</h5>
+<pre><code>&lt;figure class=&quot;pull-left&quot;&gt;
+    &lt;img src=&quot;/content/images/2015/04/1280px-Brussels_Zonienwoud.jpg&quot; alt=&quot;&quot;&gt;
+    &lt;figcaption&gt;Even, dense old-growth stand of beech trees (Fagus sylvatica) prepared to be regenerated by their saplings in the understory, in the Brussels part of the Sonian Forest.&lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+
+<p><img src="img/13.png" alt="Pull left image with text" /></p>
+<h5>Pull left caption</h5>
+<pre><code>&lt;figure class=&quot;caption pull-left&quot;&gt;
+    &lt;figcaption&gt;Brazil and Indonesia, which had the highest loss of forests in the 1990s, have significantly reduced their deforestation rates. China instituted a ban on logging, beginning in 1998, due to the erosion and flooding that it caused.&lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+
+<p><img src="img/14.png" alt="Pull left caption" /></p>
+<h3>Quote</h3>
+<p><img src="img/15.png" alt="quote" />
+You may use markdown</p>
+<pre><code>&gt; Such definitions typically define a forest as an area growing trees above some threshold.
+</code></pre>
+
+<p>or shortcut</p>
+<pre><code>Ctrl + Q
+</code></pre>
+
+<p>and of course you may using <code>.pull-left</code> and <code>.pull-right</code></p>
+<h2>Footer sections</h2>
+<pre><code>/ghost/content/themes/foresr-theme/default.hbs
+</code></pre>
+
+<p><img src="img/24.png" /></p>
+<h3>Change social links (only <code>href=&quot;&quot;</code>)</h3>
+<pre><code>/ghost/content/themes/foresr-theme/partials/social-icons-white.hbs
+/ghost/content/themes/foresr-theme/partials/social-icons-black.hbs
+</code></pre>
+
+<p><img src="img/18.png" />
+<img src="img/23.png" /></p>
+<h3>Change section the subscription</h3>
+<pre><code>/ghost/content/themes/foresr theme/partials/footer-subscription-block.hbs
+</code></pre>
+
+<p><img src="img/22.png" />
+<img src="img/20.png" /></p>
+<h3>Change section the information in the footer</h3>
+<pre><code>/ghost/content/themes/foresr-theme/partials/footer-info-block.hbs
+</code></pre>
+
+<p><img src="img/16.png" />
+<img src="img/19.png" /></p>
+<h2>Useful links</h2>
+<h3><a href="http://support.ghost.org/getting-started/">Getting Started with Ghost</a></h3>
+<h3><a href="http://support.ghost.org/add-navigation-menu-ghost-blog/">How to add a navigation menu to your Ghost blog</a></h3>
+<h3><a href="http://support.ghost.org/how-do-i-add-a-youtube-video/">How do I add a YouTube video?</a></h3>
+<h3><a href="http://support.ghost.org/setup-email-subscriptions-mailchimp/">How do I setup email subscriptions with MailChimp</a></h3>
+<h3><a href="http://support.ghost.org/setup-email-subscriptions-campaign-monitor/">How do I setup email subscriptions with Campaign Monitor</a></h3>
+<h3><a href="http://support.ghost.org/user-guide/">And More</a></h3>
+
+</body>
+</html>
