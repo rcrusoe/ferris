@@ -43,7 +43,8 @@
         $<%= @event.price %> entry fee
       </a>
     </div>
-    <form action="sms:16176827760&body=Hey Ferris, can you grab me a ticket for <%= @event.title %>" target="_blank">
+    <a href="sms:16176827760&body=Hey Ferris, can you grab me a ticket to '<%= @event.title %>'"></a>
+    <form action="" target="_blank">
       <button class="ui blue fluid button" type="submit">
         Attend Event
       </button>
