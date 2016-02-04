@@ -4,15 +4,17 @@ Rails.application.routes.draw do
   resources :users
   resources :users
   resources :events
-  get 'static_pages/home'
-  get 'static_pages/user_index'
-  get 'static_pages/sample_user'
+  get 'pages/home'
+  get 'pages/user_index'
+  get 'pages/sample_user'
+  get 'pages/explore'
+  get 'pages/dating'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'static_pages#home'
+  root 'pages#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

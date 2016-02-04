@@ -1,4 +1,4 @@
-module StaticPagesHelper
+module PagesHelper
 end
 
 class ExamplesController < ApplicationController
