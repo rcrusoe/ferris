@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  require 'rubygems' # not necessary with ruby 1.9 but included for completeness 
-  require 'twilio-ruby' 
 
   # GET /users
   # GET /users.json
@@ -26,9 +24,6 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @twilio_number = 16176827760
-    @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-
     @user = User.new(user_params)
 
     respond_to do |format|
