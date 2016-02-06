@@ -1,0 +1,44 @@
+<% provide(:title, ' | Your Personal Guide to Boston') %>
+<script src="jquery.js" type="text/javascript"></script>
+<script src="jquery.maskedinput.js" type="text/javascript"></script>
+<div class="ui grid stackable pusher">
+	<div class="one wide column">
+		
+	</div>
+	<div class="six wide column example small computer only tablet only">
+		<%= image_tag("example.png", :class => "ui centered image") %>
+	</div>
+	<div class="one wide column">
+		
+	</div>
+	<div class="six wide column description">
+		<%= image_tag("face.png", :class => "ui centered tiny image") %>
+	  	<h1>
+	  		Three events, daily.
+	  	</h1>
+	  	<h3>
+	  		One daily text message with three events worth checking out.
+	  	</h3>
+		<div class="ui massive action input" style="margin-top: 3em;">
+		  <input type="text" placeholder="(555) 123-4567" id="phone">
+		  <button class="ui blue button">Subscribe</button>
+		</div>
+	  	<div class="share centered" style="margin-top: 10em;">
+			<a target="_blank" href="https://www.facebook.com/joinferris"><i class="white facebook large icon"></i></a>
+			<a target="_blank" href="https://twitter.com/joinferris"><i class="white twitter large icon"></i></a>
+			<a target="_blank" href="https://instagram.com/joinferris"><i class="white instagram large icon"></i></a>
+		</div>
+	</div>
+	<div class="six wide column example small mobile only">
+		<%= image_tag("example.png", :class => "ui centered image") %>
+	</div>
+	<div class="one wide column">
+		
+	</div>
+</div>
+
+<script type="text/javascript">
+	jQuery(function($){
+	   $("#phone").mask("(999) 999-9999");
+	});
+</script>
