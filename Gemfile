@@ -20,6 +20,8 @@ group :development, :test do
   gem 'spring',      '1.1.3'
   gem 'rspec-rails',      ">= 2.0.0.beta"
   gem 'capybara'
+  gem 'awesome_print', require:'ap'
+
 end
 
 group :production do
