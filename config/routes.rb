@@ -10,5 +10,4 @@ Rails.application.routes.draw do
   get 'pages/sample_user'
   get 'pages/explore'
   get 'pages/dating'
-  get 'pages/threes'
 end
