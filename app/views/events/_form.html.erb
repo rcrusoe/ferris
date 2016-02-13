@@ -28,6 +28,10 @@
         <%= f.date_select :date %>
       </div>
       <div class="field">
+        <%= f.label :repeat_weekly %><br>
+        <%= f.check_box :repeat_weekly %>
+      </div>
+      <div class="field">
         <%= f.label :start_time %><br>
         <%= f.time_select :start_time, {:minute_step => 15, :ampm => true} %>
       </div>

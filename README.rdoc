@@ -1,4 +1,4 @@
-== README
+== Ferris
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
@@ -8,6 +8,8 @@ Things you may want to cover:
 * Ruby version
 
 * System dependencies
+
+The Paperclip image attachment gem requires you to install ImageMagick on your local machine. Using homebrew via the terminal run: `brew install imagemagick`
 
 * Configuration
 

@@ -21,7 +21,6 @@ group :development, :test do
   gem 'rspec-rails',      ">= 2.0.0.beta"
   gem 'capybara'
   gem 'awesome_print', require:'ap'
-
 end
 
 group :production do

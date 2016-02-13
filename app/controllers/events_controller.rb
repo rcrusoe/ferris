@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   def index
     #@events = Event.all
     if params[:search]
-      @events = Event.search(params[:search]).order("events.date, events.start_time")
+      @events = Event.search(params[:search]).order('events.date, events.start_time')
     else
       @events = Event.all.order('events.date, events.start_time')
     end
@@ -74,7 +74,7 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:title, :description, :date, :start_time, :end_time, :address, :neighborhood, :website, :price, :purchase_url, :image, :short_blurb)
+    params.require(:event).permit(:title, :description, :date, :start_time, :end_time, :address, :neighborhood, :website, :price, :purchase_url, :image, :short_blurb, :repeat_weekly)
   end
 
 end
