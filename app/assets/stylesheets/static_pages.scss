@@ -160,26 +160,25 @@ h4{
 	margin-top: 0;
 }
 
-.ui.card > .content > .header:not(.ui), .ui.cards > .card > .content > .header:not(.ui){
-	text-align: center;
-	font-size: 2em;
-}
-
 .plan-description{
 	font-size: 1.5em;
 	text-align: center;
 	line-height: 1.5em;
 }
 
+.not-included{
+	opacity: 0.3;
+}
+ /*
 .ui.card > .extra, .ui.cards > .card > .extra{
 	font-size: 1.5em;
 	color: #8798a4;
 }
-
-.not-included{
-	opacity: 0.3;
+.ui.card > .content > .header:not(.ui), .ui.cards > .card > .content > .header:not(.ui){
+	text-align: center;
+	font-size: 2em;
 }
-
+*/
 .ui.button{
 	padding: 1.25em;
 }
