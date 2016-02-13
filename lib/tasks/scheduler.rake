@@ -8,7 +8,10 @@ task :schedule_events => :environment do
       future_event = event.dup
       future_event.date += (n + 1).week
       # only save the event for the next week if it does not already exist
-      future_event.save if Event.where(title: future_event.title, date: future_event.date).count == 0
+      if Event.where(title: future_event.title, date: future_event.date).count == 0
+        future_event.save
+        future_event.copy_attachments_from(event) # custom patch for copying S3 bucket images
+      end
     end
   end
   puts "#{events.count} events repeated"
