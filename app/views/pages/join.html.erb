@@ -1,41 +1,20 @@
 <% provide(:title, ' | Your Personal Guide to Boston') %>
 
-<!-- Header -->
-<div class="ui top fixed menu">
-  <a class="item" href="#top" id="top-link">
-    <%= image_tag("face-beta.png", :class => "ui centered image tiny") %>
-  </a>
-  <div class="right menu">
- 	<a class="text item" href="#how-it-works" id="how-it-works-link">How It Works</a>
-  	<a class="text item" href="#sign-up" id="sign-up-link">Sign Up</a>
-  </div>
-</div>
-
 <!-- Hero -->
-<div class="section" id="top">
+<div class="section">
 	<div class="ui grid stackable">
-		<div class="two wide column">
+		<div class="four wide column">
 			
 		</div>
-		<div class="four wide column example small computer only tablet only">
-			<%= image_tag("example.png", :class => "ui centered image") %>
-		</div>
-		<div class="one wide column">
-			
-		</div>
-		<div class="six wide column description">
-			<%= image_tag("face.png", :class => "ui centered tiny image") %>
+		<div class="eight wide column description">
 		  	<h1>
-		  		Explore Your City
+		  		Experience Your City
 		  	</h1>
-		  	<h3>
+			<h3>
 		  		Break from your routine and commit to trying something new every week.
 		  	</h3>
 		</div>
-		<div class="six wide column example small mobile only">
-			<%= image_tag("example.png", :class => "ui centered image") %>
-		</div>
-		<div class="two wide column">
+		<div class="four wide column">
 			
 		</div>
 	</div>
@@ -56,10 +35,10 @@
 			    	1
 			    </h3>
 			    <h2 class="step-label">
-			    	Weekly Deposit
+			    	Meet Your Guide
 			    </h2>
 			    <p class="step-description">
-			    	Setup a weekly deposit to use towards living new experiences.
+			    	We'll connect you with a real person, who will track down the best new experiences for you.
 			    </p>
 		  	</div>
 		</div>
@@ -69,7 +48,47 @@
 			    	2
 			    </h3>
 			    <h2 class="step-label">
-			    	Meet Your Leader
+			    	Weekly Options
+			    </h2>
+			    <p class="step-description">
+			    	Your guide will text you a set of options for the week, hand-picked for you. Reply to make reservations.
+			    </p>
+		  	</div>
+		</div>
+		<div class="four wide column">
+	  		<div class="how-it-works-step">
+			    <h3 class="step-value">
+			    	3
+			    </h3>
+			    <h2 class="step-label">
+			    	Meet New People
+			    </h2>
+			    <p class="step-description">
+			    	On the day of the event you chose, you'll be sent a location to meet with a few people who are also going.
+			    </p>
+		  	</div>
+		</div>
+		<!--
+		<div class="four wide column">
+	  		<div class="how-it-works-step">
+			    <h3 class="step-value">
+			    	1
+			    </h3>
+			    <h2 class="step-label">
+			    	Weekly Deposit
+			    </h2>
+			    <p class="step-description">
+			    	Setup a small weekly deposit to use towards living new experiences.
+			    </p>
+		  	</div>
+		</div>
+		<div class="four wide column">
+	  		<div class="how-it-works-step">
+			    <h3 class="step-value">
+			    	2
+			    </h3>
+			    <h2 class="step-label">
+			    	Meet Your Guide
 			    </h2>
 			    <p class="step-description">
 			    	We'll connect you with a real person, who will lead you to new experiences each week.
@@ -89,30 +108,9 @@
 			    </p>
 		  	</div>
 		</div>
+		-->
 		<div class="two wide column">
 			
-		</div>
-	</div>
-	<div class="section">
-		<div class="ui grid stackable">
-			<div class="two wide column">
-				
-			</div>
-			<div class="six wide column">
-				<%= image_tag("tom.jpg", :class => "testimonial-picture") %>
-				<p class="testimonial">
-					"I've lived in Boston for two years, but the first bundle from Ferris included multiple activities I had never heard of - and tailored to my interests! Highly recommend, thanks Ferris!"
-				</p>
-			</div>
-			<div class="six wide column">
-				<%= image_tag("masha.jpg", :class => "testimonial-picture") %>
-				<p class="testimonial">
-					"BRAVO! What's special about this is the human element. I was able to ask my leader questions after she sent me my bundle - it took all of the stress out of planning something to do this week."
-				</p>
-			</div>
-			<div class="two wide column">
-				
-			</div>
 		</div>
 	</div>
 </div>
@@ -120,16 +118,22 @@
 <!-- Pricing -->
 <div class="section" id="sign-up" style="padding-bottom: 20px">
 	<h2 class="section-header">
-		Take the Leap
+		Join the Experience
 	</h2>
 	<div class="ui grid stackable">
-		<div class="six wide column">
+		<div class="two wide column">
 			
+		</div>
+		<div class="four wide column">
+				<%= image_tag("tom.jpg", :class => "testimonial-picture") %>
+				<p class="testimonial">
+					"I've lived in Boston for two years, but the first bundle from Ferris included multiple activities I had never heard of - and tailored to my interests! Highly recommend, thanks Ferris!"
+				</p>
 		</div>
 		<div class="four wide column">
 			<div class="ui card">
 			  <div class="content">
-			    <div class="header" style="color: #2185d0">Urban Explorer</div>
+			    <div class="header" style="color: #2185d0">Weekly Subscription</div>
 			  </div>
 			  <div class="content">
 			      <div class="plan-description">
@@ -143,14 +147,20 @@
 			    Reply via text to make reservations.
 			  </div>
 			  <div class="extra content">
-			    Text your guide for additional suggestions throughout the week.
+			    Text your guide with any questions about the bundle.
 			  </div>
-			  <div class="ui blue bottom attached button" onclick="location.href='https://app.moonclerk.com/pay/2v9e421sjzb';">
-			    $8 Weekly Deposit
+			  <div class="ui blue bottom attached button" onclick="location.href='https://ferris3.typeform.com/to/dAZa38';">
+			    Join Beta
 			  </div>
 			</div>
 		</div>
-		<div class="six wide column">
+		<div class="four wide column">
+			<%= image_tag("masha.jpg", :class => "testimonial-picture") %>
+			<p class="testimonial">
+				"BRAVO! What's special about this is the human element. I was able to ask my leader questions after she sent me my bundle - it took all of the stress out of planning something to do this week."
+			</p>
+		</div>
+		<div class="two wide column">
 			
 		</div>
 	</div>
