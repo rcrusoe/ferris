@@ -108,7 +108,7 @@ h4{
 */
 
 .section{
-	padding-top: 25vh;
+	padding-top: 20vh;
 }
 
 .section-header{
@@ -183,6 +183,36 @@ h4{
 
 .ui.button{
 	padding: 1.25em;
+}
+
+.chevron:hover{
+	cursor: pointer;
+}
+
+.chevron{
+	color: black !important;
+}
+
+.join-buttons{
+	margin-top: 100px;
+}
+
+#join{
+	background: black;
+	margin-top: 100px;
+	padding-bottom: 300px;
+	h2, p{
+		color: white;
+		text-align: center;
+		margin: auto;
+	}
+	p{
+		margin-top: 20px;
+	}
+	button{
+		width: 100%;
+		margin: 50px 0;
+	}
 }
 
 /*

@@ -1,52 +1,124 @@
 <% provide(:title, ' | Your Personal Guide to Boston') %>
-<div class="ui grid stackable">
-	<div class="one wide column">
-		
-	</div>
-	<div class="six wide column example small computer only tablet only">
-		<%= image_tag("example.png", :class => "ui centered image") %>
-	</div>
-	<div class="one wide column">
-		
-	</div>
-	<div class="six wide column description">
-		<%= image_tag("face.png", :class => "ui centered tiny image") %>
-	  	<h1>
-	  		Hello, I'm Ferris.
-	  	</h1>
-	  	<h3>
-	  		Text "Hello" to discover something new in Boston.
-	  	</h3>
-	  	<h2>
-	  		<a href="sms:16176827760&body=Hello">(617) 682-7760</a>
-	  	</h2>
-	  	<p class="tagline">
-	  		Subscribe to receive a weekly adventure, curated by local experts.
-	  	</p>
-	  	<form action="//joinferris.us12.list-manage.com/subscribe/post?u=21b6967c01aad0a88e2735908&amp;id=fd723c98b3" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-	  		<div class="ui action input">
-			  <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Email Address">
-			  <button class="ui button">Subscribe</button>
-			</div>
-	  	</form>
-	  	<form action="https://www.instagram.com/explore/tags/joinferris/">
-			<button class="ui basic button" style="margin-top: 2em">
-			  <i class="icon instagram"></i>
-			  #joinferris
-			</button>
-		</form>
-	  	<!--
-	  	<div class="share centered">
-			<a target="_blank" href="https://www.facebook.com/joinferris"><i class="white facebook large icon"></i></a>
-			<a target="_blank" href="https://twitter.com/joinferris"><i class="white twitter large icon"></i></a>
-			<a target="_blank" href="https://instagram.com/joinferris"><i class="white instagram large icon"></i></a>
+
+<!-- Hero -->
+<div>
+	<div class="ui grid stackable">
+		<div class="four wide column">
+			
 		</div>
-		-->
-	</div>
-	<div class="six wide column example small mobile only">
-		<%= image_tag("example.png", :class => "ui centered image") %>
-	</div>
-	<div class="one wide column">
-		
+		<div class="eight wide column description" style="font-family: Vollkorn">
+		  	<h1 style="font-size: 10em;">
+		  		GET OFF <br>THE COUCH
+		  	</h1>
+		  	<h2 style="font-family: Vollkhorn, serif; font-style: italic;">and</h2>
+		  	<h1>
+		  		GO EXPLORE THE WORLD
+		  	</h1>
+		</div>
+		<div class="four wide column">
+			
+		</div>
 	</div>
 </div>
+
+<div style="text-align: center; margin-top: 80px;">
+	<a class="chevron" id="to-section-2"><i class="chevron down huge icon"></i></a>
+</div>
+
+<!-- How It Works -->
+<div class="section" id="how-it-works">
+	<h2 class="section-header">
+		We'd like to help. Here's how:
+	</h2>
+	<div class="ui grid stackable">
+		<div class="four wide column">
+			
+		</div>
+		<div class="four wide column">
+	  		<div class="how-it-works-step">
+			    <h3 class="step-value">
+			    	1
+			    </h3>
+			    <h2 class="step-label">
+			    	We text you options.
+			    </h2>
+			    <p class="step-description">
+			    	We find interesting things happening in Boston and text you a skinny list, tailored to your interests, each week. 
+			    </p>
+		  	</div>
+		</div>
+		<div class="four wide column">
+	  		<div class="how-it-works-step">
+			    <h3 class="step-value">
+			    	2
+			    </h3>
+			    <h2 class="step-label">
+			    	You reply to join.
+			    </h2>
+			    <p class="step-description">
+			    	Text back if you would like to buy tickets, make dinner reservations, or ask any sort of question.
+			    </p>
+		  	</div>
+		</div>
+		<div class="four wide column">
+			
+		</div>
+		<div class="six wide column">
+	
+		</div>
+		<div class="four wide column" style="margin-top: 20px;">
+			<div class="how-it-works-step">
+				<h2 class="step-label">
+					Flying solo?  
+				</h2>
+				<p class="step-description">
+					Let us know, and we'll connect you with other people going to the same event.
+				</p>
+			</div>
+		</div>
+		<div class="six wide column">
+			
+		</div>
+	</div>
+</div>
+
+<div style="text-align: center; margin-top: 40px;">
+	<a class="chevron" id="to-section-3"><i class="chevron down huge icon"></i></a>
+</div>
+
+<!-- Pricing -->
+<div class="section" id="join">
+	<h2 class="section-header">
+		Join the Experience
+	</h2>
+	<div class="ui grid stackable join-buttons">
+		<div class="two wide column">
+			
+		</div>
+		<div class="six wide column">
+			<button class="ui inverted button" onclick="location.href='https://ferris3.typeform.com/to/dAZa38';">Join for Free.</button>
+		</div>
+		<div class="six wide column">
+			<button class="ui inverted button" onclick="location.href='https://app.moonclerk.com/pay/78t6rq2h8q4';">Join and Pay $3/week.</button>
+		</div>
+		<div class="two wide column">
+			
+		</div>
+	</div>
+	<p style="font-size: 1.75em; max-width: 500px;">
+		There's nothing different between the two options. Either you choose to support us, or you don't :).
+	</p>
+</div>
+
+<script>
+	$("#to-section-2").click(function() {
+	    $('html, body').animate({
+	        scrollTop: $("#how-it-works").offset().top
+	    }, 500);
+	});
+	$("#to-section-3").click(function() {
+	    $('html, body').animate({
+	        scrollTop: $("#join").offset().top
+	    }, 500);
+	});
+</script>
