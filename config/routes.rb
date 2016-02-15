@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get 'pages/explore'
   get 'pages/dating'
   get 'pages/join'
+  get 'pages/bundle_7814922644'
 end

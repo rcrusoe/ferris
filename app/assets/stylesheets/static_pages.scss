@@ -137,7 +137,7 @@ h4{
 
 .step-description{
 	font-size: 1.75em;
-	font-family: "Georgia", serif;
+	font-family: "Vollkorn", serif;
 	color: #5f666e;
 	margin-top: 1em;
 	letter-spacing: .2px;
@@ -214,6 +214,43 @@ h4{
 		margin: 50px 0;
 	}
 }
+
+/*
+*
+* bundle
+*
+*/
+
+.bundle{
+	text-align: center;
+	.extra{
+		text-align: left;
+	}
+	.guide-avatar{
+		margin: 1em auto 1em;
+	}
+	.guide-subtitle{
+		font-size: 0.75em;
+		color: #5f666e;
+	}
+	a{
+		color: #2185D0 !important;
+	}
+	.ui.button{
+		margin: 0.5em 0 0 0.5em;
+	}
+	.adventure-image{
+		margin-top: 1em;
+	}
+	.event-meta{
+		line-height: 3em;
+	}
+	.event-title{
+		font-weight: 800;
+		line-height: 2em;
+	}
+}
+
 
 /*
 *
