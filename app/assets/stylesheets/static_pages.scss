@@ -201,13 +201,19 @@ h4{
 	background: black;
 	margin-top: 100px;
 	padding-bottom: 300px;
-	h2, p{
+	h2, h4, p, a{
 		color: white;
 		text-align: center;
 		margin: auto;
 	}
+	h4{
+		margin-top: 30px;
+	}
 	p{
-		margin-top: 20px;
+		margin-top: 10px;
+	}
+	a{
+		text-decoration: underline;
 	}
 	button{
 		width: 100%;
