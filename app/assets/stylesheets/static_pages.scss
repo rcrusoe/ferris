@@ -200,7 +200,7 @@ h4{
 #join{
 	background: black;
 	margin-top: 100px;
-	padding-bottom: 300px;
+	padding-bottom: 100px;
 	h2, h4, p, a{
 		color: white;
 		text-align: center;
@@ -218,6 +218,19 @@ h4{
 	button{
 		width: 100%;
 		margin: 50px 0;
+	}
+}
+
+.newsletter-block{
+	p{
+		margin-top: 10px;
+		text-align: center;
+	}
+	form{
+		margin: auto;
+	}
+	.description{
+		margin-top: 40px;
 	}
 }
 
