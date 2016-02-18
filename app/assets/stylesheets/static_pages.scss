@@ -7,12 +7,10 @@
 */
 
 body{
-	height: 100vh;
 	font-family: "Roboto", sans-serif;
 	font-size: 10px;
 	line-height: 1.15em;
 	color: #000;
-	margin-top: 15px;
 }
 
 h1, h2{
@@ -108,7 +106,8 @@ h4{
 */
 
 .section{
-	padding-top: 20vh;
+	padding-top: 15vh;
+	padding-bottom: 10vh;
 }
 
 .section-header{
@@ -189,12 +188,33 @@ h4{
 	cursor: pointer;
 }
 
-.chevron{
-	color: black !important;
-}
-
 .join-buttons{
 	margin-top: 100px;
+}
+
+.hero{
+	background: #3498db;
+	h1, h2, h3{
+		color: white;
+	}
+	h2{
+		font-size: 2.5em;
+		margin-bottom: 3em;
+		font-weight: 800;
+		letter-spacing: 1.5px;
+	}
+	h1{
+		font-size: 3.5em;
+		margin-bottom: 1.5em;
+	}
+	h3{
+		margin-top: 1.5em;
+		font-weight: 200;
+		line-height: 1.5em;
+	}
+	.icon{
+		color: white;
+	}
 }
 
 #join{
@@ -231,6 +251,10 @@ h4{
 	.description{
 		margin-top: 40px;
 	}
+}
+
+i.icon{
+	margin: 0;
 }
 
 /*
