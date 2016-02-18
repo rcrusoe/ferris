@@ -4,7 +4,9 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    #@events = Event.all
+    if Rails.env.production?
+      authenticate
+    end
     if params[:search]
       @events = Event.search(params[:search]).order('events.date, events.start_time')
     else
@@ -85,4 +87,10 @@ class EventsController < ApplicationController
     params.require(:event).permit(:title, :description, :date, :start_time, :end_time, :address, :neighborhood, :website, :price, :purchase_url, :image, :short_blurb, :repeat_weekly)
   end
 
+  # events page is internal
+  def authenticate
+    authenticate_or_request_with_http_basic('Events archive is private.') do |username, password|
+      username == 'ferris' && password == 'boston'
+    end
+  end
 end
