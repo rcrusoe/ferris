@@ -19,7 +19,11 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    @event = Event.new
+    if params[:id]
+      @event = Event.find(params[:id]).dup
+    else
+      @event = Event.new
+    end
   end
 
   # GET /events/1/edit
@@ -30,11 +34,15 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
+        if params[:addDate]
+          format.html { redirect_to controller: 'events', action: 'new', id: @event.id }
+          format.json { render :show, status: :created, location: @event }
+        else
+          format.html { redirect_to @event, notice: 'Event was successfully created.' }
+          format.json { render :show, status: :created, location: @event }
+        end
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }

@@ -73,7 +73,8 @@
           <%= f.text_field :purchase_url, :placeholder => "(optional)" %>
         </div>
       </div>
-      <%= f.submit "Create new event", class: "ui blue fluid button" %>
+      <%= f.submit "Create new event", class: "ui blue fluid button", name: 'create' %>
+      <%= f.submit "Create and add another date", class: "ui blue fluid button", name: 'addDate' %>
     <% end %>
   </div>
 </div>

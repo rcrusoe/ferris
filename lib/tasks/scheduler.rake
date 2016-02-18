@@ -1,6 +1,6 @@
 desc 'This task is called by the Heroku scheduler add-on'
 task :schedule_events => :environment do
-  WEEKS_TO_GENERATE = 2
+  WEEKS_TO_GENERATE = 1
   puts 'Generating recurring events...'
   events = Event.where(repeat_weekly: true, date: Date.today)
   events.each do |event|
