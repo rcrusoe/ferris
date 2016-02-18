@@ -540,6 +540,10 @@ i.icon{
 	visibility: hidden;
 }
 
+.ui.labeled.icon.buttons .button, .ui.labeled.icon.button{
+	margin: 0 !important;
+}
+
 /*
 *
 * user profile

@@ -22,7 +22,10 @@
               </div>
               <div class="extra content">
                 <span class="right floated">
-                  <%= link_to 'Read More', event %>
+                  <button class="ui mini basic labeled icon button copy-to-clipboard" data-clipboard-text="<%= event.short_blurb %> Details here: www.joinferris.com/events/<%= event.id %>">
+                    <i class="copy icon"></i>
+                    Copy
+                  </button>
                 </span>
                 <span>
                   <i class="globe icon"></i>
@@ -35,3 +38,19 @@
     <% end %>
   <% end %>
 </div>
+
+<script>
+  var clipboard = new Clipboard('.copy-to-clipboard');
+  clipboard.on('success', function(e) {
+    console.info('Action:', e.action);
+    console.info('Text:', e.text);
+    console.info('Trigger:', e.trigger);
+
+    e.clearSelection();
+  });
+
+  clipboard.on('error', function(e) {
+      console.error('Action:', e.action);
+      console.error('Trigger:', e.trigger);
+  });
+</script>
