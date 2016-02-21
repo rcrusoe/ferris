@@ -1,11 +1,5 @@
 @import "semantic-ui";
 
-/*
-*
-* homepage
-*
-*/
-
 body{
 	font-family: "Roboto", sans-serif;
 	font-size: 10px;
@@ -39,125 +33,27 @@ p{
 	margin-top: 5em;
 }
 
-.tagline{
-	margin-top: 7em;
-	color: #a8a8a8;
-}
-
-.description{
-	text-align: center;
-	margin-top: 15vh;
-}
-
-.example img{
-	width: 100%;
-	margin-top: 5vh;
-}
-
-.ui.action.input:not([class*="left action"]) > input{
-	font-size: 1.4em;
-}
-
-.share{
-	margin-top: 4em;
-}
-
-.guide{
-	font-size: 1.2em;
-	font-weight: 200;
-	text-align: left;
-	.rounded-circle{
-		border-radius: 50% !important;
-	}
-	.header{
-		letter-spacing: 1px;
-		text-transform: uppercase;
-	}
-	.subtitle{
-		font-size: 1.2em;
-		line-height: 2em;
-		font-weight: 400;
-	}
-	.guide-quote, .subtitle{
-		color: #a8a8a8;
-	}
-	.guide-quote{
-		font-family: "Georgia", serif;
-		font-style: italic;
-	}
-}
-
-h4{
-	margin-top: 3em;
-	font-size: 2.2em;
-	font-weight: 400;
-	text-align: center;
-}
-
-.ui.items > .item:last-child{
-	width: 90%;
-	margin: 3em auto;
-}
 
 /*
 *
-* join landing page
+* homepage
 *
 */
 
+.header{
+	margin: 2em 0;
+	.ui.action.input:not([class*="left action"]) > input{
+		font-size: 1em;
+	}
+}
+
 .section{
-	padding-top: 15vh;
-	padding-bottom: 10vh;
+	padding: 10em 0;
 }
 
 .section-header{
 	text-align: center;
 	margin-bottom: 1em;
-}
-
-.how-it-works-step{
-	text-align: center;
-}
-
-.step-value{
-	font-size: 1.5em;
-	margin-top: 1em;
-	border: 2px solid black;
-	border-radius: 50%;
-	width: 40px;
-	padding: .5em 0;
-	margin: auto;
-}
-
-.step-label{
-	font-size: 2em;
-	margin-top: 1em;
-}
-
-.step-description{
-	font-size: 1.75em;
-	font-family: "Vollkorn", serif;
-	color: #5f666e;
-	margin-top: 1em;
-	letter-spacing: .2px;
-	line-height: 1.5em;
-}
-
-.testimonial-picture{
-	width: 40%;
-	border-radius: 50%;
-	display: inherit;
-	margin: 30px auto;
-}
-
-.testimonial{
-	font-size: 1.5em;
-	font-family: "Georgia", serif;
-	color: #5f666e;
-	letter-spacing: .2px;
-	line-height: 1.5em;
-	margin-top: 0;
-	text-align: center;
 }
 
 .plan-description{
@@ -184,28 +80,20 @@ h4{
 	padding: 1.25em;
 }
 
-.chevron:hover{
-	cursor: pointer;
-}
-
-.join-buttons{
-	margin-top: 100px;
-}
-
 .hero{
-	background: #3498db;
+	background: #2ecc71;
+	padding: 8em 0;
 	h1, h2, h3{
 		color: white;
 	}
 	h2{
-		font-size: 2.5em;
-		margin-bottom: 3em;
+		font-size: 2em;
 		font-weight: 800;
-		letter-spacing: 1.5px;
+		margin-bottom: 1em;
 	}
 	h1{
-		font-size: 3.5em;
-		margin-bottom: 1.5em;
+		font-size: 3em;
+		margin-bottom: 1em;
 	}
 	h3{
 		margin-top: 1.5em;
@@ -217,26 +105,72 @@ h4{
 	}
 }
 
+#how-it-works{
+	.step{
+		text-align: center;
+		.value{
+			font-size: 1.5em;
+			margin-top: 1em;
+			border: 2px solid black;
+			border-radius: 50%;
+			width: 40px;
+			padding: .5em 0;
+			margin: auto;
+		}
+		.label{
+			font-size: 2em;
+			margin-top: 1em;
+		}
+		.description{
+			font-size: 1.5em;
+			color: #5f666e;
+			margin-top: 1em;
+			letter-spacing: .2px;
+			line-height: 1.5em;
+		}
+	}
+}
+
+#reviews{
+	background: #f9f9f9;
+	.review{
+		font-size: 1.5em;
+		color: #5f666e;
+		margin-top: 1em;
+		letter-spacing: .2px;
+		line-height: 1.5em;
+		text-align: center;
+	}
+	.review-name{
+		font-size: 1.75em;
+		margin-top: 2em;
+		text-align: center;		
+	}
+}
+
 #join{
 	background: #FFE934;
-	margin-top: 100px;
-	padding-bottom: 100px;
+	padding: 4em 0;
 	h2, h4, p, a{
 		text-align: center;
-		margin: auto;
+		margin: 2em auto;
+	}
+	.ui.horizontal.statistics .statistic{
+		margin: 1em auto !important;
 	}
 	h4{
 		margin-top: 30px;
 	}
 	p{
-		margin-top: 10px;
+		margin: 20px 0;
+		font-size: 1.5em;
 	}
 	a{
 		text-decoration: underline;
 	}
 	button{
 		width: 100%;
-		margin: 50px 0;
+		margin: 20px 0;
 	}
 }
 
@@ -257,42 +191,18 @@ i.icon{
 	margin: 0;
 }
 
-/*
-*
-* bundle
-*
-*/
-
-.bundle{
+.description{
 	text-align: center;
-	.extra{
-		text-align: left;
-	}
-	.guide-avatar{
-		margin: 1em auto 1em;
-	}
-	.guide-subtitle{
-		font-size: 0.75em;
-		color: #5f666e;
-	}
-	a{
-		color: #2185D0 !important;
-	}
-	.ui.button{
-		margin: 0.5em 0 0 0.5em;
-	}
-	.adventure-image{
-		margin-top: 1em;
-	}
-	.event-meta{
-		line-height: 3em;
-	}
-	.event-title{
-		font-weight: 800;
-		line-height: 2em;
-	}
+	margin-top: 15vh;
 }
 
+.ui.action.input:not([class*="left action"]) > input{
+	font-size: 1.4em;
+}
+
+.secure{
+	margin-top: 3em;
+}
 
 /*
 *
@@ -542,40 +452,4 @@ i.icon{
 
 .ui.labeled.icon.buttons .button, .ui.labeled.icon.button{
 	margin: 0 !important;
-}
-
-/*
-*
-* user profile
-*
-*/
-
-#user-conversation .ui.form{
-	margin: auto;
-	margin-bottom: 2em;
-}
-
-#user-conversation .ui.input{
-	width: 100%;
-}
-
-.message-block{
-	display: block;
-	margin-bottom: 1em;
-	max-width: 80%;
-	clear: both
-}
-
-.admin{
-	float: right;
-}
-
-#user-conversation .ui.form textarea, #user-conversation .ui.form input[type="checkbox"] {
-    resize: none;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.ui.labeled.icon.buttons .button, .ui.labeled.icon.button{
-	margin-top: 1em;
 }
