@@ -150,14 +150,11 @@ p{
 }
 
 #join{
-	background: #FFE934;
+	background: #D5DFE5;
 	padding: 4em 0;
 	h2, h4, p, a{
 		text-align: center;
 		margin: 2em auto;
-	}
-	.ui.horizontal.statistics .statistic{
-		margin: 1em auto !important;
 	}
 	h4{
 		margin-top: 30px;
@@ -169,9 +166,9 @@ p{
 	a{
 		text-decoration: underline;
 	}
-	button{
-		width: 100%;
-		margin: 20px 0;
+	.tagline{
+		font-size: 1.5em;
+		margin-top: 1em;
 	}
 }
 

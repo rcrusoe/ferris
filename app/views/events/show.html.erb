@@ -32,23 +32,22 @@
       </a>
     </div>
     <div class="extra content">
-      <a href="<%= @event.website %>">
+      <a href="<%= @event.website %>" target="_blank">
         <i class="linkify icon"></i>
         Event Website
       </a>
     </div>
     <div class="extra content">
-      <a href="sms:16176827760&body=Hey Ferris, can you grab me a ticket to '<%= @event.title %>'">
+      <a href="<%= @event.purchase_url %>" target="_blank">
         <i class="dollar icon"></i>
         $<%= @event.price %> entry fee
       </a>
-    <!--
-    <a href="sms:16176827760&body=Hey Ferris, can you grab me a ticket to '<%= @event.title %>'">
+    </div>
+    <form action="<%= @event.purchase_url %>" target="_blank">
       <button class="ui blue fluid button" type="submit">
         Attend Event
       </button>
-    </a>
-    -->
+    </form>
   </div>
 </div>
 
