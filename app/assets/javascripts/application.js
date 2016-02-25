@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require semantic-ui
-
+//= require typed.js
 $(document).ready(function(){
     $("#search-icon").click(function(){
         $("#search-icon").addClass("hidden");

@@ -1,0 +1,235 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/5.1.0/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'bower' ]
+2 info using npm@3.3.12
+3 info using node@v5.1.0
+4 verbose config Skipping project config: /Users/robinsongreig/.npmrc. (matches userconfig)
+5 silly loadCurrentTree Starting
+6 silly install loadCurrentTree
+7 silly install readLocalPackageData
+8 silly fetchPackageMetaData bower
+9 silly fetchNamedPackageData bower
+10 silly mapToRegistry name bower
+11 silly mapToRegistry using default registry
+12 silly mapToRegistry registry https://registry.npmjs.org/
+13 silly mapToRegistry uri https://registry.npmjs.org/bower
+14 verbose request uri https://registry.npmjs.org/bower
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 3:53:44 PM
+17 verbose request id 56894ebd83949d00
+18 verbose etag "7QZXHJE3RLUDX6XJAR2271UTF"
+19 http request GET https://registry.npmjs.org/bower
+20 http 200 https://registry.npmjs.org/bower
+21 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+21 verbose headers   etag: '"S76KM5ZVH8HSKXS96KI43GG3"',
+21 verbose headers   'content-type': 'application/json',
+21 verbose headers   'cache-control': 'max-age=300',
+21 verbose headers   'content-length': '169106',
+21 verbose headers   'accept-ranges': 'bytes',
+21 verbose headers   date: 'Wed, 24 Feb 2016 20:53:27 GMT',
+21 verbose headers   via: '1.1 varnish',
+21 verbose headers   age: '115',
+21 verbose headers   connection: 'keep-alive',
+21 verbose headers   'x-served-by': 'cache-iad2142-IAD',
+21 verbose headers   'x-cache': 'HIT',
+21 verbose headers   'x-cache-hits': '3',
+21 verbose headers   'x-timer': 'S1456347207.062066,VS0,VE0',
+21 verbose headers   vary: 'Accept' }
+22 silly get cb [ 200,
+22 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+22 silly get     etag: '"S76KM5ZVH8HSKXS96KI43GG3"',
+22 silly get     'content-type': 'application/json',
+22 silly get     'cache-control': 'max-age=300',
+22 silly get     'content-length': '169106',
+22 silly get     'accept-ranges': 'bytes',
+22 silly get     date: 'Wed, 24 Feb 2016 20:53:27 GMT',
+22 silly get     via: '1.1 varnish',
+22 silly get     age: '115',
+22 silly get     connection: 'keep-alive',
+22 silly get     'x-served-by': 'cache-iad2142-IAD',
+22 silly get     'x-cache': 'HIT',
+22 silly get     'x-cache-hits': '3',
+22 silly get     'x-timer': 'S1456347207.062066,VS0,VE0',
+22 silly get     vary: 'Accept' } ]
+23 verbose get saving bower to /Users/robinsongreig/.npm/registry.npmjs.org/bower/.cache.json
+24 silly install normalizeTree
+25 silly loadCurrentTree Finishing
+26 silly loadIdealTree Starting
+27 silly install loadIdealTree
+28 silly cloneCurrentTree Starting
+29 silly install cloneCurrentTreeToIdealTree
+30 silly cloneCurrentTree Finishing
+31 silly loadShrinkwrap Starting
+32 silly install loadShrinkwrap
+33 silly loadShrinkwrap Finishing
+34 silly loadAllDepsIntoIdealTree Starting
+35 silly install loadAllDepsIntoIdealTree
+36 silly resolveWithNewModule bower@1.7.7 checking installable status
+37 silly cache add args [ 'bower', null ]
+38 verbose cache add spec bower
+39 silly cache add parsed spec Result {
+39 silly cache add   raw: 'bower',
+39 silly cache add   scope: null,
+39 silly cache add   name: 'bower',
+39 silly cache add   rawSpec: '',
+39 silly cache add   spec: '*',
+39 silly cache add   type: 'range' }
+40 silly addNamed bower@*
+41 verbose addNamed "*" is a valid semver range for bower
+42 silly addNameRange { name: 'bower', range: '*', hasData: false }
+43 silly mapToRegistry name bower
+44 silly mapToRegistry using default registry
+45 silly mapToRegistry registry https://registry.npmjs.org/
+46 silly mapToRegistry uri https://registry.npmjs.org/bower
+47 verbose addNameRange registry:https://registry.npmjs.org/bower not in flight; fetching
+48 verbose get https://registry.npmjs.org/bower not expired, no request
+49 silly addNameRange number 2 { name: 'bower', range: '*', hasData: true }
+50 silly addNameRange versions [ 'bower',
+50 silly addNameRange   [ '0.1.0',
+50 silly addNameRange     '0.1.2',
+50 silly addNameRange     '0.1.3',
+50 silly addNameRange     '0.2.0',
+50 silly addNameRange     '0.3.0',
+50 silly addNameRange     '0.3.1',
+50 silly addNameRange     '0.3.2',
+50 silly addNameRange     '0.4.0',
+50 silly addNameRange     '0.5.0',
+50 silly addNameRange     '0.5.1',
+50 silly addNameRange     '0.6.0',
+50 silly addNameRange     '0.6.1',
+50 silly addNameRange     '0.6.2',
+50 silly addNameRange     '0.6.3',
+50 silly addNameRange     '0.6.4',
+50 silly addNameRange     '0.6.5',
+50 silly addNameRange     '0.6.6',
+50 silly addNameRange     '0.6.7',
+50 silly addNameRange     '0.6.8',
+50 silly addNameRange     '0.7.0',
+50 silly addNameRange     '0.7.1',
+50 silly addNameRange     '0.8.0',
+50 silly addNameRange     '0.8.1',
+50 silly addNameRange     '0.8.2',
+50 silly addNameRange     '0.8.3',
+50 silly addNameRange     '0.8.4',
+50 silly addNameRange     '0.8.5',
+50 silly addNameRange     '0.8.6',
+50 silly addNameRange     '0.9.0',
+50 silly addNameRange     '0.9.1',
+50 silly addNameRange     '0.9.2',
+50 silly addNameRange     '0.10.0',
+50 silly addNameRange     '1.0.0',
+50 silly addNameRange     '1.0.1',
+50 silly addNameRange     '1.0.2',
+50 silly addNameRange     '1.0.3',
+50 silly addNameRange     '1.1.0',
+50 silly addNameRange     '1.1.1',
+50 silly addNameRange     '1.1.2',
+50 silly addNameRange     '1.2.0',
+50 silly addNameRange     '1.2.1',
+50 silly addNameRange     '1.2.2',
+50 silly addNameRange     '1.2.3',
+50 silly addNameRange     '1.2.4',
+50 silly addNameRange     '1.2.5',
+50 silly addNameRange     '1.2.6',
+50 silly addNameRange     '1.2.7',
+50 silly addNameRange     '1.2.8',
+50 silly addNameRange     '1.3.0',
+50 silly addNameRange     '1.3.1',
+50 silly addNameRange     '1.3.2',
+50 silly addNameRange     '1.3.3',
+50 silly addNameRange     '1.3.4',
+50 silly addNameRange     '1.3.5',
+50 silly addNameRange     '1.3.6',
+50 silly addNameRange     '1.3.7',
+50 silly addNameRange     '1.3.8',
+50 silly addNameRange     '1.3.9',
+50 silly addNameRange     '1.3.10',
+50 silly addNameRange     '1.3.11',
+50 silly addNameRange     '1.3.12',
+50 silly addNameRange     '1.4.0',
+50 silly addNameRange     '1.4.1',
+50 silly addNameRange     '1.5.0',
+50 silly addNameRange     '1.5.1',
+50 silly addNameRange     '1.5.2',
+50 silly addNameRange     '1.5.3',
+50 silly addNameRange     '1.6.2',
+50 silly addNameRange     '1.6.3',
+50 silly addNameRange     '1.6.4',
+50 silly addNameRange     '1.6.5',
+50 silly addNameRange     '1.5.4',
+50 silly addNameRange     '1.4.2',
+50 silly addNameRange     '1.6.6',
+50 silly addNameRange     '1.6.7',
+50 silly addNameRange     '1.6.8',
+50 silly addNameRange     '1.6.9',
+50 silly addNameRange     '1.7.0',
+50 silly addNameRange     '1.7.1',
+50 silly addNameRange     '1.7.2',
+50 silly addNameRange     '1.7.5',
+50 silly addNameRange     '1.7.6',
+50 silly addNameRange     '1.7.7' ] ]
+51 silly addNamed bower@1.7.7
+52 verbose addNamed "1.7.7" is a plain semver version for bower
+53 silly cache afterAdd bower@1.7.7
+54 verbose afterAdd /Users/robinsongreig/.npm/bower/1.7.7/package/package.json not in flight; writing
+55 verbose afterAdd /Users/robinsongreig/.npm/bower/1.7.7/package/package.json written
+56 silly loadAllDepsIntoIdealTree Finishing
+57 silly idealTree:prePrune robinsongreig
+57 silly idealTree:prePrune ├── aws-sdk@2.2.31
+57 silly idealTree:prePrune ├── bower@1.7.7
+57 silly idealTree:prePrune ├── ghost-s3-storage@0.2.2
+57 silly idealTree:prePrune ├── sax@0.5.3
+57 silly idealTree:prePrune ├── when@3.7.7
+57 silly idealTree:prePrune ├── xml2js@0.2.8
+57 silly idealTree:prePrune └── xmlbuilder@0.4.2
+58 silly loadIdealTree Finishing
+59 silly currentTree robinsongreig
+59 silly currentTree ├── aws-sdk@2.2.31
+59 silly currentTree ├── ghost-s3-storage@0.2.2
+59 silly currentTree ├── sax@0.5.3
+59 silly currentTree ├── when@3.7.7
+59 silly currentTree ├── xml2js@0.2.8
+59 silly currentTree └── xmlbuilder@0.4.2
+60 silly idealTree robinsongreig
+60 silly idealTree ├── aws-sdk@2.2.31
+60 silly idealTree ├── bower@1.7.7
+60 silly idealTree ├── ghost-s3-storage@0.2.2
+60 silly idealTree ├── sax@0.5.3
+60 silly idealTree ├── when@3.7.7
+60 silly idealTree ├── xml2js@0.2.8
+60 silly idealTree └── xmlbuilder@0.4.2
+61 silly generateActionsToTake Starting
+62 silly install generateActionsToTake
+63 warn checkPermissions Missing write access to /Users/robinsongreig/node_modules
+64 silly rollbackFailedOptional Starting
+65 silly rollbackFailedOptional Finishing
+66 silly runTopLevelLifecycles Starting
+67 silly runTopLevelLifecycles Finishing
+68 silly install printInstalled
+69 warn ENOENT ENOENT: no such file or directory, open '/Users/robinsongreig/package.json'
+70 warn EPACKAGEJSON robinsongreig No description
+71 warn EPACKAGEJSON robinsongreig No repository field.
+72 warn EPACKAGEJSON robinsongreig No README data
+73 warn EPACKAGEJSON robinsongreig No license field.
+74 verbose stack Error: EACCES: permission denied, access '/Users/robinsongreig/node_modules'
+74 verbose stack     at Error (native)
+75 verbose cwd /Users/robinsongreig/Projects/Ferris/ferris
+76 error Darwin 15.2.0
+77 error argv "/usr/local/Cellar/node/5.1.0/bin/node" "/usr/local/bin/npm" "install" "bower"
+78 error node v5.1.0
+79 error npm  v3.3.12
+80 error path /Users/robinsongreig/node_modules
+81 error code EACCES
+82 error errno -13
+83 error syscall access
+84 error Error: EACCES: permission denied, access '/Users/robinsongreig/node_modules'
+84 error     at Error (native)
+84 error  { [Error: EACCES: permission denied, access '/Users/robinsongreig/node_modules']
+84 error   errno: -13,
+84 error   code: 'EACCES',
+84 error   syscall: 'access',
+84 error   path: '/Users/robinsongreig/node_modules' }
+85 error Please try running this command again as root/Administrator.
+86 verbose exit [ -13, true ]

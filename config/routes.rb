@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   get 'pages/sample_user'
   get 'pages/explore'
   get 'pages/dating'
-  get 'pages/join'
   get 'pages/bundle_9786063511'
-  get 'pages/adventures'
+  get '/adventures', to: 'pages#adventures'
 end

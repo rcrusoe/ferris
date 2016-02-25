@@ -1,4 +1,37 @@
 <% provide(:title, ' | Your Personal Guide to Boston') %>
+<script>
+    $(function(){
+        $(".message-1").typed({
+            strings: ["Hello"],
+            typeSpeed: 0,
+            showCursor: false,
+        });
+        $(".message-2").typed({
+            strings: ["Hello! Are you looking for something to do tonight, or later this week?"],
+            typeSpeed: 0,
+            showCursor: false,
+            startDelay: 1000,
+        });
+        $(".message-3").typed({
+            strings: ["Wednesday! I'm looking for a low key date night for my girlfriend and I. Is there anything worth checking out in Cambridge or Somerville?"],
+            typeSpeed: 0,
+            showCursor: false,
+            startDelay: 5000,
+        });
+        $(".message-4").typed({
+            strings: ["The poetry slam in the Cantab is one of my favorite weekly events. Even if you think you don't like poetry, this is worth checking out. More info here: www.joinferris.com/events/373"],
+            typeSpeed: 0,
+            showCursor: false,
+            startDelay: 11500,
+        });
+        $(".message-5").typed({
+            strings: ["That actually sounds pretty cool. Thanks Ferris!"],
+            typeSpeed: 0,
+            showCursor: false,
+            startDelay: 19500,
+        });
+    });
+</script>
 
 <!--Header-->
 <div class="header sticky">
@@ -68,7 +101,8 @@
 	</div>
 </div>
 
-<!-- How It Works -->
+<!-- Old How It Works -->
+<!--
 <div class="section" id="how-it-works">
 	<h2 class="section-header">
 		Break from routine and discover more of Boston.
@@ -121,7 +155,71 @@
 		</div>
 	</div>
 </div>
+-->
 
+<!-- How It Works -->
+<div class="section" id="how-it-works">
+	<h2 class="section-header">
+		Break from routine and discover more of Boston.
+	</h2>
+	<div class="ui grid stackable">
+		<div class="three wide column">
+			
+		</div>
+		<div class="five wide column">
+			<div class="messages">
+				<p class="user message-1"></p>
+				<p class="ferris message-2"></p>
+				<p class="user message-3"></p>
+				<p class="ferris message-4"></p>
+				<p class="user message-5"></p>
+			</div>
+		</div>
+		<div class="one wide column">
+			
+		</div>
+		<div class="four wide column">
+	  		<div class="step">
+			    <h3 class="value">
+			    	<i class="user icon"></i>
+			    </h3>
+			    <h2 class="label">
+			    	We're real people, seriously.
+			    </h2>
+			    <p class="description">
+			    	When you text this service, you'll be chatting with real people who have explored Boston for years.
+			    </p>
+		  	</div>
+	  		<div class="step">
+			    <h3 class="value">
+			    	<i class="sun icon"></i>
+			    </h3>
+			    <h2 class="label">
+			    	Date nights or day trips.
+			    </h2>
+			    <p class="description">
+			    	No matter what you’re planning, we’ll help you find something new and exciting.
+			    </p>
+		  	</div>
+	  		<div class="step">
+			    <h3 class="value">
+			    	<i class="child icon"></i>
+			    </h3>
+			    <h2 class="label">
+			    	Want to meet new people?
+			    </h2>
+			    <p class="description">
+			    	Let us know, and we'll connect you with other people who are exploring Boston.
+			    </p>
+		  	</div>
+		</div>
+		<div class="three wide column">
+				
+		</div>
+	</div>
+</div>
+
+<!-- Email Sign Up-->
 <div id="join">
 	<div class="ui grid stackable newsletter-block">
 		<div class="five wide column">

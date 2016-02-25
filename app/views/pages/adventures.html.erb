@@ -1,4 +1,37 @@
 <% provide(:title, ' | Live More Experiences') %>
+<script>
+    $(function(){
+        $(".message-1").typed({
+            strings: ["Hello! I just saved another $5 for you, bringing your balance to $250."],
+            typeSpeed: 0,
+            showCursor: false,
+        });
+        $(".message-2").typed({
+            strings: ["Sweet. What's on my list?"],
+            typeSpeed: 0,
+            showCursor: false,
+            startDelay: 3500,
+        });
+        $(".message-3").typed({
+            strings: ["You can afford a few items on your list. <br><br>1. $45 - Guitar Lesson. <br>2. $141 - Helicopter Flight Lesson<br>3. $159 - Skydiving<br><br>Would you like me to book something for you?"],
+            typeSpeed: 0,
+            showCursor: false,
+            startDelay: 5500,
+        });
+        $(".message-4").typed({
+            strings: ["Book 3 for this weekend."],
+            typeSpeed: 0,
+            showCursor: false,
+            startDelay: 13500,
+        });
+        $(".message-5").typed({
+            strings: ["Awesome. You're going skydiving this weekend. That brings your balance to $91."],
+            typeSpeed: 0,
+            showCursor: false,
+            startDelay: 15500,
+        });
+    });
+</script>
 
 <!--Header-->
 <div class="header">
@@ -64,11 +97,20 @@
 		Buy experiences, not stuff.
 	</h2>
 	<div class="ui grid stackable">
-		<div class="four wide column">
+		<div class="three wide column">
 			
 		</div>
-		<div class="four wide column">
-			<%= image_tag("experience-example.png", :class => "ui centered image medium") %>
+		<div class="five wide column">
+			<div class="messages">
+				<p class="ferris message-1"></p>
+				<p class="user message-2"></p>
+				<p class="ferris message-3"></p>
+				<p class="user message-4"></p>
+				<p class="ferris message-5"></p>
+			</div>
+		</div>
+		<div class="one wide column">
+			
 		</div>
 		<div class="four wide column">
 	  		<div class="step">
@@ -105,7 +147,7 @@
 			    </p>
 		  	</div>
 		</div>
-		<div class="four wide column">
+		<div class="three wide column">
 				
 		</div>
 		<div class="five wide column">
