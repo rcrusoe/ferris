@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213192251) do
+ActiveRecord::Schema.define(version: 20160224212103) do
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "conversations", ["user_id"], name: "index_conversations_on_user_id"
+
+  create_table "conversations_tags", id: false, force: :cascade do |t|
+    t.integer "conversation_id"
+    t.integer "tag_id"
+  end
+
+  add_index "conversations_tags", ["conversation_id"], name: "index_conversations_tags_on_conversation_id"
+  add_index "conversations_tags", ["tag_id"], name: "index_conversations_tags_on_tag_id"
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -33,6 +49,16 @@ ActiveRecord::Schema.define(version: 20160213192251) do
     t.string   "short_blurb"
     t.boolean  "repeat_weekly"
   end
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "body",            null: false
+    t.boolean  "inbound"
+    t.integer  "conversation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
 
   create_table "places", force: :cascade do |t|
     t.string   "name"
@@ -70,15 +96,30 @@ ActiveRecord::Schema.define(version: 20160213192251) do
     t.datetime "image_updated_at"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "phone_number"
+  create_table "tags", force: :cascade do |t|
     t.string   "name"
-    t.string   "email"
-    t.string   "neighborhood"
-    t.integer  "number_of_conversations"
-    t.binary   "needs_response"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "phone_number",                       null: false
+    t.integer  "conversations_count"
+    t.string   "email"
+    t.string   "encrypted_password"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  add_index "users", ["phone_number"], name: "index_users_on_phone_number", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

@@ -5,6 +5,9 @@ ruby '2.2.3'
 # webserver for Heroku
 gem 'puma'
 
+# authentication
+gem 'devise'
+
 gem 'rails',                '4.2.2'
 gem 'sass-rails',           '5.0.2'
 gem 'uglifier',             '2.5.3'
@@ -21,9 +24,13 @@ gem 'twilio-ruby', '~> 4.2.1'
 # formatted printing from rails console
 gem 'awesome_print', require:'ap'
 
+# http requests made easy
+gem 'rest-client'
+
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
   gem 'byebug',      '3.4.0'
+  # gem 'better_errors'
   gem 'web-console', '2.0.0.beta3'
   gem 'spring',      '1.1.3'
   gem 'rspec-rails',      '>= 2.0.0.beta'
