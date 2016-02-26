@@ -1,0 +1,524 @@
+<% provide(:title, ' | Dashboard') %>
+<script src="https://code.highcharts.com"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<!--Header-->
+<div class="header sticky">
+	<div class="ui grid stackable">
+		<div class="two wide column">
+			
+		</div>
+		<div class="twelve wide column">
+			<div class="ui secondary menu">
+				<a class="item" href="http://www.joinferris.com">
+			    	<%= image_tag("face.png", :class => "ui centered image mini") %>
+			  	</a>
+				<div class="right menu">
+					<a class="active item" id="to-lifetime-stats">
+						Lifetime Stats
+					</a>
+					<a class="item" id="to-period-stats">
+						Period Stats
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="two wide column">
+			
+		</div>
+	</div>
+</div>
+
+<!-- Lifetime Statistics -->
+<div class="stats-section" id="lifetime-stats">
+	<div class="ui grid stackable">
+		<div class="two wide column">
+			
+		</div>
+		<div class="three wide column">
+			<div class="ui statistic">
+			  <div class="label">
+			    Total Conversations
+			  </div>
+			  <div class="value">
+			    2500
+			  </div>
+			</div>
+		</div>
+		<div class="three wide column">
+			<div class="ui statistic">
+			  <div class="label">
+			    Total Users
+			  </div>
+			  <div class="value">
+			    1700
+			  </div>
+			</div>
+		</div>
+		<div class="three wide column">
+			<div class="ui statistic">
+			  <div class="label">
+			    Repeat Users
+			  </div>
+			  <div class="value">
+			    600
+			  </div>
+			</div>
+		</div>
+		<div class="three wide column">
+			<div class="ui statistic">
+			  <div class="label">
+			    Avg. Days Between Use
+			  </div>
+			  <div class="value">
+			    6
+			  </div>
+			</div>
+		</div>
+		<div class="two wide column">
+			
+		</div>
+		<div class="two wide column">
+			
+		</div>
+		<div class="twelve wide column">
+			<div id="repeats" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+		</div>
+		<div class="two wide column">
+			
+		</div>
+	</div>
+</div>
+
+<!-- Period Statistics -->
+<div class="stats-section" id="period-stats">
+	<div class="ui grid stackable">
+		<div class="two wide column">
+			
+		</div>
+		<div class="three wide column">
+			<div class="ui statistic">
+			  <div class="label">
+			    Conversations This Period
+			  </div>
+			  <div class="value">
+			    407
+			  </div>
+			</div>
+		</div>
+		<div class="three wide column">
+			<div class="ui statistic">
+			  <div class="label">
+			    New Users This Period
+			  </div>
+			  <div class="value">
+			    300
+			  </div>
+			</div>
+		</div>
+		<div class="three wide column">
+			<div class="ui statistic">
+			  <div class="label">
+			    Repeat Users This Period
+			  </div>
+			  <div class="value">
+			    107
+			  </div>
+			</div>
+		</div>
+		<div class="three wide column">
+			<div class="ui form">
+			  <div class="field">
+			    <label>Period</label>
+			    <select class="ui dropdown">
+			      <option value="">Period</option>
+			      <option value="1">Today</option>
+			      <option value="2">Yesterday</option>
+			      <option value="3">This Week</option>
+			      <option value="4">Last Week</option>
+			      <option value="5">This Month</option>
+			      <option value="6">Last Month</option>
+			    </select>
+			  </div>
+			</div>
+		</div>
+		<div class="two wide column">
+			
+		</div>
+		<div class="two wide column">
+			
+		</div>
+		<div class="twelve wide column">
+			<div id="conversations" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+		</div>
+		<div class="two wide column">
+			
+		</div>
+	</div>
+</div>
+
+<!-- Repeats Script -->
+<script>
+	$(function () {
+	    $('#repeats').highcharts({
+	        chart: {
+	            type: 'column'
+	        },
+	        title: {
+	            text: 'Conversations Per Repeat User'
+	        },
+	        xAxis: {
+	            type: 'category',
+	            labels: {
+	                rotation: 0,
+	                style: {
+	                    fontSize: '13px',
+	                    fontFamily: 'Verdana, sans-serif'
+	                }
+	            }
+	        },
+	        yAxis: {
+	            min: 0,
+	            allowDecimals: false,
+	            title: {
+	                text: '# of Users'
+	            }
+	        },
+	        legend: {
+	            enabled: false
+	        },
+	        tooltip: {
+	            pointFormat: '{point.y} Users'
+	        },
+	        series: [{
+	            name: 'Population',
+	            data: [
+	                ['2', 200],
+	                ['3', 70],
+	                ['4', 40],
+	                ['5', 20],
+	                ['6', 5],
+	                ['7', 1],
+	            ],
+	            dataLabels: {
+	                enabled: true,
+	                rotation: -90,
+	                color: '#FFFFFF',
+	                align: 'right',
+	                format: '{point.y}', // one decimal
+	                y: 10, // 10 pixels down from the top
+	                style: {
+	                    fontSize: '13px',
+	                    fontFamily: 'Verdana, sans-serif'
+	                }
+	            }
+	        }]
+	    });
+	});
+</script>
+
+<!-- Conversations Script -->
+<script>
+	$(function () {
+	    $('#conversations').highcharts({
+	        chart: {
+	            type: 'area'
+	        },
+	        title: {
+	            text: 'Conversations'
+	        },
+	        xAxis: {
+	        	categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+	            allowDecimals: false,
+	            labels: {
+	                formatter: function () {
+	                    return this.value; // clean, unformatted number for year
+	                }
+	            }
+	        },
+	        yAxis: {
+	            title: {
+	                text: 'Conversations'
+	            },
+	            labels: {
+	                formatter: function () {
+	                    return this.value;
+	                }
+	            }
+	        },
+	        tooltip: {
+	            pointFormat: '{series.name}: {point.y:,.0f}'
+	        },
+	        plotOptions: {
+	            area: {
+	                marker: {
+	                    enabled: false,
+	                    symbol: 'circle',
+	                    radius: 2,
+	                    states: {
+	                        hover: {
+	                            enabled: true
+	                        }
+	                    }
+	                }
+	            }
+	        },
+	        series: [{
+	            name: 'Current Period',
+	            data: [200, 400, 400, 500, 200, 1000, 1000]
+	        }, {
+	            name: 'Previous Period',
+	            data: [100, 150, 400, 400, 150, 800, 800]
+	        }]
+	    });
+	});
+</script>
+
+<!-- Chart Styling -->
+<script>
+	/**
+	 * Dark theme for Highcharts JS
+	 * @author Torstein Honsi
+	 */
+
+	// Load the fonts
+	Highcharts.createElement('link', {
+	   href: '//fonts.googleapis.com/css?family=Unica+One',
+	   rel: 'stylesheet',
+	   type: 'text/css'
+	}, null, document.getElementsByTagName('head')[0]);
+
+	Highcharts.theme = {
+	   colors: ["#90ee7e", "#f9f9f9", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
+	      "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
+	   chart: {
+	      backgroundColor: {
+	         linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+	         stops: [
+	            [0, '#2a2a2b'],
+	            [1, '#3e3e40']
+	         ]
+	      },
+	      style: {
+	         fontFamily: "'Unica One', sans-serif"
+	      },
+	      plotBorderColor: '#606063'
+	   },
+	   title: {
+	      style: {
+	         color: '#E0E0E3',
+	         textTransform: 'uppercase',
+	         fontSize: '20px'
+	      }
+	   },
+	   subtitle: {
+	      style: {
+	         color: '#E0E0E3',
+	         textTransform: 'uppercase'
+	      }
+	   },
+	   xAxis: {
+	      gridLineColor: '#707073',
+	      labels: {
+	         style: {
+	            color: '#E0E0E3'
+	         }
+	      },
+	      lineColor: '#707073',
+	      minorGridLineColor: '#505053',
+	      tickColor: '#707073',
+	      title: {
+	         style: {
+	            color: '#A0A0A3'
+
+	         }
+	      }
+	   },
+	   yAxis: {
+	      gridLineColor: '#707073',
+	      labels: {
+	         style: {
+	            color: '#E0E0E3'
+	         }
+	      },
+	      lineColor: '#707073',
+	      minorGridLineColor: '#505053',
+	      tickColor: '#707073',
+	      tickWidth: 1,
+	      title: {
+	         style: {
+	            color: '#A0A0A3'
+	         }
+	      }
+	   },
+	   tooltip: {
+	      backgroundColor: 'rgba(0, 0, 0, 0.85)',
+	      style: {
+	         color: '#F0F0F0'
+	      }
+	   },
+	   plotOptions: {
+	      series: {
+	         dataLabels: {
+	            color: '#B0B0B3'
+	         },
+	         marker: {
+	            lineColor: '#333'
+	         }
+	      },
+	      boxplot: {
+	         fillColor: '#505053'
+	      },
+	      candlestick: {
+	         lineColor: 'white'
+	      },
+	      errorbar: {
+	         color: 'white'
+	      }
+	   },
+	   legend: {
+	      itemStyle: {
+	         color: '#E0E0E3'
+	      },
+	      itemHoverStyle: {
+	         color: '#FFF'
+	      },
+	      itemHiddenStyle: {
+	         color: '#606063'
+	      }
+	   },
+	   credits: {
+	      style: {
+	         color: '#666'
+	      }
+	   },
+	   labels: {
+	      style: {
+	         color: '#707073'
+	      }
+	   },
+
+	   drilldown: {
+	      activeAxisLabelStyle: {
+	         color: '#F0F0F3'
+	      },
+	      activeDataLabelStyle: {
+	         color: '#F0F0F3'
+	      }
+	   },
+
+	   navigation: {
+	      buttonOptions: {
+	         symbolStroke: '#DDDDDD',
+	         theme: {
+	            fill: '#505053'
+	         }
+	      }
+	   },
+
+	   // scroll charts
+	   rangeSelector: {
+	      buttonTheme: {
+	         fill: '#505053',
+	         stroke: '#000000',
+	         style: {
+	            color: '#CCC'
+	         },
+	         states: {
+	            hover: {
+	               fill: '#707073',
+	               stroke: '#000000',
+	               style: {
+	                  color: 'white'
+	               }
+	            },
+	            select: {
+	               fill: '#000003',
+	               stroke: '#000000',
+	               style: {
+	                  color: 'white'
+	               }
+	            }
+	         }
+	      },
+	      inputBoxBorderColor: '#505053',
+	      inputStyle: {
+	         backgroundColor: '#333',
+	         color: 'silver'
+	      },
+	      labelStyle: {
+	         color: 'silver'
+	      }
+	   },
+
+	   navigator: {
+	      handles: {
+	         backgroundColor: '#666',
+	         borderColor: '#AAA'
+	      },
+	      outlineColor: '#CCC',
+	      maskFill: 'rgba(255,255,255,0.1)',
+	      series: {
+	         color: '#7798BF',
+	         lineColor: '#A6C7ED'
+	      },
+	      xAxis: {
+	         gridLineColor: '#505053'
+	      }
+	   },
+
+	   scrollbar: {
+	      barBackgroundColor: '#808083',
+	      barBorderColor: '#808083',
+	      buttonArrowColor: '#CCC',
+	      buttonBackgroundColor: '#606063',
+	      buttonBorderColor: '#606063',
+	      rifleColor: '#FFF',
+	      trackBackgroundColor: '#404043',
+	      trackBorderColor: '#404043'
+	   },
+
+	   // special colors for some of the
+	   legendBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+	   background2: '#505053',
+	   dataLabelsColor: '#B0B0B3',
+	   textColor: '#C0C0C0',
+	   contrastTextColor: '#F0F0F3',
+	   maskColor: 'rgba(255,255,255,0.3)'
+	};
+
+	// Apply the theme
+	Highcharts.setOptions(Highcharts.theme);
+</script>
+
+<script>
+	$( document ).ready(function() {
+	   	$('#period-stats')
+		  .transition('browse')
+		;
+	});
+	$("#to-lifetime-stats").click(function() {
+		$('#lifetime-stats')
+		  .transition('vertical flip in')
+		;
+		$('#period-stats')
+		  .transition('vertical flip out')
+		;
+		$("#to-lifetime-stats").addClass("active");
+		$("#to-period-stats").removeClass("active");
+	});
+	$("#to-period-stats").click(function() {
+		$('#period-stats')
+		  .transition('vertical flip in')
+		;
+		$('#lifetime-stats')
+		  .transition('vertical flip out')
+		;
+		$("#to-lifetime-stats").removeClass("active");
+		$("#to-period-stats").addClass("active");
+	});
+	$('select.dropdown')
+	  .dropdown()
+	;
+</script>
