@@ -11,10 +11,14 @@
     <div class="content">
       <p class="header"><%= @event.title %></p>
       <div class="meta">
-        <% if @event.date.today? %>
-          <span class="date"><i class="calendar icon"></i> Today</span>
-        <% else @event.date.today? %>
-          <span class="date"><i class="calendar icon"></i><%= @event.date.strftime("%A, %B %d") %></span>
+        <% if @event.repeat_weekly == true %>
+          <span class="date"><i class="calendar icon"></i> Every <%= @event.date.strftime("%A") %></span>
+        <% else @event.repeat_weekly == false %>
+          <% if @event.date.today? %>
+            <span class="date"><i class="calendar icon"></i> Today</span>
+          <% else @event.date.today? %>
+            <span class="date"><i class="calendar icon"></i> <%= @event.date.strftime("%A, %B %d") %></span>
+          <% end %>
         <% end %>
 
         <br>
