@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   get 'pages/bundle_9786063511'
   get '/adventures', to: 'pages#adventures'
   get '/dashboard', to: 'pages#dashboard'
+  get '/dates', to: 'pages#dates'
 end

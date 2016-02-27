@@ -169,7 +169,7 @@ p{
 	}
 }
 
-#join{
+.secondary-cta{
 	background: #D5DFE5;
 	padding: 4em 0;
 	.ui.button{
@@ -193,6 +193,9 @@ p{
 	.tagline{
 		font-size: 1.5em;
 		margin-top: 1em;
+	}
+	.ui.statistics > .statistic{
+		margin: auto;
 	}
 }
 
