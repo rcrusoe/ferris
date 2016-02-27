@@ -20,6 +20,19 @@
 	  ga('send', 'pageview');
 
 	</script>
+	<script>
+    var ValidatelyOpt = {};
+    ValidatelyOpt.account = '2958970401-3723';
+    ValidatelyOpt.wait = 10; // Delay until the widget appears. If you want to display the widget programmatically, then set to '0'. You can display the widget programatically by calling this function - "ValidatelyWidget.displayForm();"
+    ValidatelyOpt.force = false;
+    // false = The recruit widget will set a cookie in the users browser so it only pops-up once and never again for an individual user, even if they restart their browser or refresh the page, until they clear the cookie
+    // true = The recruit widget will pop-up every time all users who visit the page even if the user has visited the page before
+    (function(d,u,t,o,e){
+        var a=d.createElement(t),m=d.getElementsByTagName(t)[0],s='';
+        o.url=d.URL;for(var k in o)s+=k+','+e(e(o[k]))+'*';
+        a.async=1;a.src=u+s;m.parentNode.insertBefore(a, m);
+    })(document,'https://validately.com/widget/','script',ValidatelyOpt,encodeURIComponent);
+</script>
 </head>
 <body>
 	<%= yield %>
