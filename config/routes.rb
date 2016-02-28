@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users
   resources :events
 
-  root 'pages#home'
+  root 'pages#dates'
   get 'pages/home'
   get 'pages/user_index'
   get 'pages/sample_user'
@@ -13,5 +13,4 @@ Rails.application.routes.draw do
   get 'pages/bundle_9786063511'
   get '/adventures', to: 'pages#adventures'
   get '/dashboard', to: 'pages#dashboard'
-  get '/dates', to: 'pages#dates'
 end
