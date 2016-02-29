@@ -13,9 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
 //= require semantic-ui
 //= require typed.js
+//= require paloma
+//= require_tree .
+
 $(document).ready(function(){
     $("#search-icon").click(function(){
         $("#search-icon").addClass("hidden");

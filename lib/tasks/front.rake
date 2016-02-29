@@ -11,12 +11,12 @@ namespace :front do
     get_all_conversations.each do |c|
       if c['message_type'] == 'sms'
 
-        # first create a user if phone number does not exist
-        user = User.where(phone_number: c['recipient']['handle']).first_or_create
-        ap user
-
         # get the conversation object from front
         conversation_json = get_conversation(c['url'])
+        user_created_at = Time.at(conversation_json['created_at']/1000)
+        # first create a user if phone number does not exist
+        user = User.where(phone_number: c['recipient']['handle'], created_at: user_created_at).first_or_create
+        ap user
 
         # for each message check timestamp, assign to conversation, save
         conversation = nil

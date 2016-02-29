@@ -12,7 +12,7 @@
 		<div class="twelve wide column">
 			<div class="ui secondary menu">
 				<a class="item" href="http://www.joinferris.com">
-			    	<%= image_tag("face.png", :class => "ui centered image mini") %>
+			    	<%= image_tag('face.png', :class => 'ui centered image mini') %>
 			  	</a>
 				<div class="right menu">
 					<a class="active item" id="to-lifetime-stats">
@@ -42,7 +42,7 @@
 			    Total Conversations
 			  </div>
 			  <div class="value">
-			    2500
+			    <%= @total_conversations %>
 			  </div>
 			</div>
 		</div>
@@ -52,7 +52,7 @@
 			    Total Users
 			  </div>
 			  <div class="value">
-			    1700
+                <%= @total_users %>
 			  </div>
 			</div>
 		</div>
@@ -62,7 +62,7 @@
 			    Repeat Users
 			  </div>
 			  <div class="value">
-			    600
+                <%= @repeat_users.count %>
 			  </div>
 			</div>
 		</div>
@@ -72,7 +72,7 @@
 			    Avg. Days Between Use
 			  </div>
 			  <div class="value">
-			    6
+                <%= @avg_days %>
 			  </div>
 			</div>
 		</div>
@@ -102,8 +102,7 @@
 			  <div class="label">
 			    Conversations This Period
 			  </div>
-			  <div class="value">
-			    407
+			  <div id="conversations_over_period" class="value">
 			  </div>
 			</div>
 		</div>
@@ -112,8 +111,7 @@
 			  <div class="label">
 			    New Users This Period
 			  </div>
-			  <div class="value">
-			    300
+			  <div id="users_over_period" class="value">
 			  </div>
 			</div>
 		</div>
@@ -122,8 +120,7 @@
 			  <div class="label">
 			    Repeat Users This Period
 			  </div>
-			  <div class="value">
-			    107
+              <div id="repeat_users_over_period" class="value">
 			  </div>
 			</div>
 		</div>
@@ -131,8 +128,7 @@
 			<div class="ui form">
 			  <div class="field">
 			    <label>Period</label>
-			    <select class="ui dropdown">
-			      <option value="">Period</option>
+			    <select id="period_select" class="ui dropdown">
 			      <option value="1">Today</option>
 			      <option value="2">Yesterday</option>
 			      <option value="3">This Week</option>
@@ -185,6 +181,11 @@
 	                text: '# of Users'
 	            }
 	        },
+            xAxis: {
+                title: {
+                    text: 'Conversations'
+                }
+            },
 	        legend: {
 	            enabled: false
 	        },
@@ -193,14 +194,7 @@
 	        },
 	        series: [{
 	            name: 'Population',
-	            data: [
-	                ['2', 200],
-	                ['3', 70],
-	                ['4', 40],
-	                ['5', 20],
-	                ['6', 5],
-	                ['7', 1],
-	            ],
+	            data:<%= @bar_chart %>,
 	            dataLabels: {
 	                enabled: true,
 	                rotation: -90,
@@ -213,63 +207,6 @@
 	                    fontFamily: 'Verdana, sans-serif'
 	                }
 	            }
-	        }]
-	    });
-	});
-</script>
-
-<!-- Conversations Script -->
-<script>
-	$(function () {
-	    $('#conversations').highcharts({
-	        chart: {
-	            type: 'area'
-	        },
-	        title: {
-	            text: 'Conversations'
-	        },
-	        xAxis: {
-	        	categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-	            allowDecimals: false,
-	            labels: {
-	                formatter: function () {
-	                    return this.value; // clean, unformatted number for year
-	                }
-	            }
-	        },
-	        yAxis: {
-	            title: {
-	                text: 'Conversations'
-	            },
-	            labels: {
-	                formatter: function () {
-	                    return this.value;
-	                }
-	            }
-	        },
-	        tooltip: {
-	            pointFormat: '{series.name}: {point.y:,.0f}'
-	        },
-	        plotOptions: {
-	            area: {
-	                marker: {
-	                    enabled: false,
-	                    symbol: 'circle',
-	                    radius: 2,
-	                    states: {
-	                        hover: {
-	                            enabled: true
-	                        }
-	                    }
-	                }
-	            }
-	        },
-	        series: [{
-	            name: 'Current Period',
-	            data: [200, 400, 400, 500, 200, 1000, 1000]
-	        }, {
-	            name: 'Previous Period',
-	            data: [100, 150, 400, 400, 150, 800, 800]
 	        }]
 	    });
 	});
