@@ -1,8 +1,9 @@
 namespace :front do
   URL = 'https://api.frontapp.com/companies/ferris/inboxes/kz3/conversations/all'
+  # TODO: move credentials to ENV variable on Heroku
   USERNAME = 'ferris'
   PASSWORD = 'bb2322077886e32690b7d875f89633de'
-  OBJECTS_PER_PAGE = 10
+  OBJECTS_PER_PAGE = 1000
   HOURS_BETWEEN_CONVO = 18
 
   desc 'Load all existing conversations and messages from Front'
@@ -13,9 +14,12 @@ namespace :front do
 
         # get the conversation object from front
         conversation_json = get_conversation(c['url'])
-        user_created_at = Time.at(conversation_json['created_at']/1000)
+
         # first create a user if phone number does not exist
-        user = User.where(phone_number: c['recipient']['handle'], created_at: user_created_at).first_or_create
+        user_created_at = Time.at(conversation_json['created_at']/1000)
+        user = User.where(phone_number: c['recipient']['handle']).first_or_create
+        user.created_at = user_created_at
+        user.save
         ap user
 
         # for each message check timestamp, assign to conversation, save
@@ -53,7 +57,7 @@ namespace :front do
                                            url: URL,
                                            user: USERNAME,
                                            password: PASSWORD,
-                                           headers: {params: {pageSize: OBJECTS_PER_PAGE, page:0}},
+                                           headers: {params: {pageSize: OBJECTS_PER_PAGE, page:1}},
                                            :content_type => :json,
                                            :accept => :json
     JSON(response)['conversations']
@@ -62,24 +66,32 @@ namespace :front do
   # returns a conversation JSON object from front
   def get_conversation(url)
     # url = 'https://api.frontapp.com/companies/ferris/conversations/18blgo'
-    conversation = RestClient::Request.execute method: :get,
+    response = RestClient::Request.execute method: :get,
                                                url: url,
                                                user: USERNAME,
                                                password: PASSWORD,
                                                :content_type => :json,
                                                :accept => :json
-    JSON(conversation)
+    JSON(response)
   end
 
   # returns a message body string from front
   def get_message_body(url)
-    message = RestClient::Request.execute method: :get,
-                                               url: url,
-                                               user: USERNAME,
-                                               password: PASSWORD,
-                                               :content_type => :json,
-                                               :accept => :json
-    JSON(message)['text']
+    response = RestClient::Request.execute method: :get,
+                                          url: url,
+                                          user: USERNAME,
+                                          password: PASSWORD,
+                                          :content_type => :json,
+                                          :accept => :json
+
+    if response.headers[:x_ratelimit_remaining].to_i == 1
+      reset_time = Time.at(response.headers[:x_ratelimit_reset].to_i)
+      delay = (reset_time - Time.now)
+      puts 'SLEEPING FOR: '+ delay.to_s
+      sleep delay
+    end
+
+    JSON(response)['text']
   end
 
   # hours between two messages
