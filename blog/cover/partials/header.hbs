@@ -1,0 +1,17 @@
+{{#if @blog.logo}}
+	<a href="{{@blog.url}}">
+	    <img class="blog-logo" src="{{@blog.logo}}" alt="{{@blog.title}}" />
+	</a>
+{{else}}
+	<h2 class="blog-title"><a href="{{@blog.url}}">{{@blog.title}}</a></h2>
+{{/if}}
+
+{{navigation}}
+
+{{#if @blog.navigation}}
+	<div class="menu-btn">
+		<div class="material-burger">
+		    <span></span>
+		</div>
+	</div>
+{{/if}}

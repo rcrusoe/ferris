@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   resources :places
   resources :events
 
-  root 'pages#dates'
-  get 'pages/home'
+  root 'pages#home'
+  get 'pages/dates'
   get 'pages/user_index'
   get 'pages/sample_user'
   get 'pages/explore'

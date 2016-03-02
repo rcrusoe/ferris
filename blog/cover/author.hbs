@@ -1,0 +1,41 @@
+{{!< default}}
+
+{{! This is a author page template. It displays posts from a paticular author }}
+    
+    {{#author}}
+    <section class="author-profile">
+        {{#if image}}
+        <div class="author-image" style="background-image: url({{image}})"></div>
+        {{/if}}
+        <h1 class="author-name">{{name}}</h1>
+        {{#if bio}}
+        <div class="wrapper">
+            <p class="author-bio">{{bio}}</p>
+        </div>
+        {{/if}}
+        <div class="author-meta">
+            {{#if location}}<span class="author-location"><i class="fa fa-globe"></i> {{location}}</span>{{/if}}
+            {{#if website}}<span class="author-link"><i class="fa fa-link"></i> <a href="{{website}}">{{website}}</a></span>{{/if}}
+        </div>
+    </section>
+    {{/author}}
+
+    <div class="posts">
+        {{#foreach posts}}
+        <a href="{{url}}" class="{{post_class}} {{^if image}} no-featured-image {{/if}}" {{#if image}} style="background-image:url({{image}})" {{/if}}>
+            <div class="post-info">
+
+            	{{#if tags}}
+    				{{#foreach tags}}
+    					<div class="tag tag-{{name}}">{{name}}</div>
+    				{{/foreach}}
+    			{{/if}}
+
+                <h1 class="post-title">{{{title}}}</h1>
+            </div>
+        </a>
+        {{/foreach}}
+    </div>
+
+{{!! Pagination links }}
+{{pagination}}

@@ -1,0 +1,34 @@
+{{!< default}}
+
+{{! This is a page template. A page outputs content just like any other post, and has all the same
+    attributes by default, but you can also customise it to behave differently if you prefer. }}
+
+{{! Everything inside the #post tags pulls data from the post }}
+{{#post}}
+
+{{#if image}}
+<div class="featured-image" style="background-image:url({{image}})">
+    <div class="post-info">
+        <div class="wrapper">
+            <h1 class="post-title">{{{title}}}</h1>
+        </div>
+    </div>
+</div>
+{{else}}
+<div class="wrapper no-image">
+    {{#if tags}}
+        {{#foreach tags}}
+            <a class="tag tag-{{name}}" href="{{url}}">{{name}}</a>
+        {{/foreach}}
+    {{/if}}
+    <h1 class="post-title">{{{title}}}</h1>
+</div>
+{{/if}}
+
+<div class="wrapper {{#has tag='one-column'}}one-column{{/has}} {{#has tag='two-column'}}two-column{{/has}}">
+    <article class="post-content">
+		{{content}}        
+    </article> <!-- .post-content -->
+</div> <!-- .wrapper -->
+
+{{/post}}

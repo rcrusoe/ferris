@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {{! Document Settings }}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        {{! Page Meta }}
+        <title>{{meta_title}}</title>
+        <meta name="description" content="{{meta_description}}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" href="{{asset "/favicon.ico"}}">
+
+        {{! CSS  }}
+        <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{asset "css/screen.css"}}">
+        
+        {{! Ghost outputs important style and meta data with this tag }}
+        {{ghost_head}}
+
+    </head>
+    <body class="{{body_class}}">
+        
+        <header class="site-header push">
+            {{> "header"}}
+        </header>
+
+        {{#if @blog.navigation}}
+            <nav class="pushy pushy-left">
+                {{navigation}}
+            </nav>
+        {{/if}}
+
+        <div class="site-overlay"></div>
+
+        <main id="main" role="main">
+            {{{body}}}
+        </main>
+
+        <footer class="site-footer push clearfix">
+            <div class="wrapper">
+                {{> "footer"}}
+            </div>
+        </footer>
+
+        {{! Ghost outputs important scripts and data with this tag }}
+        {{ghost_foot}}
+
+        <script type="text/javascript"> 
+            //Load jQuery if it doesn't exist
+            if (typeof jQuery == 'undefined') {
+                document.write('<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></'+'script>');
+            }
+        </script> 
+
+        <script src="{{asset "js/theme-options.js"}}"></script>
+        <script src="{{asset "js/main.min.js"}}"></script>
+    </body>
+</html>

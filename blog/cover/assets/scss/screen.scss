@@ -1,0 +1,1252 @@
+/*! Cover - v1.0.2 - 2016.01.24
+* Cover is a magazine theme for Ghost
+* http://www.voltthemes.com
+* by Volt Themes */
+
+@import "normalize";
+@import "variables";
+@import "mixins";
+@import "lightbox";
+@import "pushy";
+
+/* ==========================================================================
+   Table of Contents
+   ========================================================================== */
+
+/*
+    
+    1. Base Styles
+    2. Media
+    3. Header
+    4. Footer
+    5. Headings
+    6. Forms
+    7. Blockquote
+    8. General Pages
+    9. Home Page
+    10. Post Page
+    11. Post Layouts
+    12. Static Page
+    13. Author Page
+    14. Sharing
+    15. Comments
+    16. Pagination
+    17. Read Next
+    18. Error Page
+    19. Media Queries
+
+*/
+
+/* ==========================================================================
+   1. Base Styles
+   ========================================================================== */
+   
+*{
+    -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+}
+
+html,
+body{
+    overflow-x: hidden;
+}
+
+html{
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+body{
+    background: #FFF;
+    font-family: 'Lato', sans-serif;
+}
+
+a:link,
+a:visited{
+    color: $primary-color;
+    text-decoration: none;
+    @include transition(color, 500ms);
+}
+
+a:hover{
+    color: #000;
+}
+
+a:focus {
+    outline: 0;
+}
+
+#main{
+    float: left;
+    width: 100%;
+    margin-top: 52px;
+}
+
+.wrapper{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* Remove text-shadow in selection highlight:*/
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/* A better looking default horizontal rule */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid $tertiary-color;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/* Clearfix: contain floats */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* Vertically Centers */
+
+.vertical{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/* ==========================================================================
+   2. Media
+   ========================================================================== */
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+.post-content{
+    img{
+        display: block;
+        margin: 0 auto;
+        padding: 10px 0;
+    }
+}
+
+/* Remove the gap between images, videos, audio and canvas and the bottom of their containers */
+
+audio,
+canvas,
+img,
+svg,
+video{
+    vertical-align: middle;
+}
+
+.fluid-width-video-wrapper{
+    transform: translate3d(0, 0, 0); /* fixes issue in Chrome w/ CSS columns */
+}
+
+/* ==========================================================================
+   3. Header
+   ========================================================================== */
+
+.site-header{
+    width: 100%;
+    height: 55px;
+    background: #FFF;
+    position: fixed;
+    z-index: 1000;
+    padding: 0 3%;
+}
+
+.nav{
+    list-style-type: none;
+    float: right;
+    margin: 17px 0;
+    padding: 0;
+
+
+    li{
+        display: inline-block;
+        padding: 0 15px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.9em;
+
+        a{
+            color: #000;
+            text-decoration: none;
+            @include transition(opacity, 0.5s);
+        }
+
+        a:hover{
+            opacity: 0.4;
+        }
+    }
+
+    li:last-child{
+        padding-right: 0;
+    }
+}
+
+.nav-current{
+    a:link,
+    a:visited{
+        color: $primary-color;
+    }
+}
+
+.blog-title{
+    float: left;
+    margin: 11px 0;
+
+    a:link,
+    a:visited{
+        color: #000;
+        text-decoration: none;
+    }
+}
+
+.blog-logo{
+    height: 30px;
+    margin: 13px 0;
+}
+
+/* Menu button */
+
+.menu-btn{
+    display: none;
+    float: right;
+    color: #000;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 20px 0;
+}
+
+.pushy{
+    display: none;
+}
+
+/* ==========================================================================
+   4. Footer
+   ========================================================================== */
+
+.site-footer{
+    clear: both;
+    background: #f5f5f5;
+    padding: 5px 0;
+    color: #464646;
+    font-weight: 300;
+
+    a:link,
+    a:visited{
+        color: #464646;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    a:hover{
+        color: $primary-color;
+    }
+}
+
+.site-info{
+    float: left;
+    font-size: 0.8em;
+}
+
+.social{
+    float: right;
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 0;
+
+    i{
+        padding-right: 5px;
+    }
+}
+
+/* ==========================================================================
+   5. Headings
+   ========================================================================== */
+
+h1{
+    font-size: 2.3em;
+    line-height: 1.2em;
+}
+
+h2{
+    font-size: 1.8em;
+    line-height: 1.1em;
+}
+
+h3{
+    font-size: 1.3em;
+    line-height: 1.1em;
+}
+
+h1, h2, h3, h4{
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   6. Forms
+   ========================================================================== */
+
+/* Remove default fieldset styles. */
+
+fieldset{
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Allow only vertical resizing of textareas. */
+
+textarea{
+    resize: vertical;
+}
+
+input, 
+textarea{
+    border: 1px solid $tertiary-color;
+    padding: 5px 10px;
+}
+
+input[type=text]:focus, textarea:focus {
+    border: 1px solid $primary-color;
+    outline: none;
+}
+
+input[type='submit']{
+    padding: 5px 0;
+    margin: 0;
+    background: $primary-color;
+    border: 0;
+    color: #FFF;
+    border-radius: 3px;
+    @include transition(opacity, 0.3s);
+
+    &:hover{
+        opacity: 0.7;
+    }
+}
+
+/* ==========================================================================
+   7. Blockquote
+   ========================================================================== */
+
+blockquote{
+    margin: 30px 0;
+    padding: 10px 20px;
+    font-size: 1.5em;
+    border-left: 2px solid $primary-color;
+    font-style: italic;
+    color: #999999;
+
+    p{
+        display: inline;
+    }
+}
+
+
+/* ==========================================================================
+   8. General Pages
+   ========================================================================== */
+
+.home-template,
+.archive-template,
+.tag-template,
+.author-template{
+    #main{
+        margin-left: 0.2%;
+        margin-right: 0.2%;
+        margin-bottom: 0.3%;
+    }
+
+    .post{
+        float: left;
+        position: relative;
+        width: 19.5%;
+        height: 450px;
+        border-radius: 3px;
+        margin: 0.2%;
+        @include background-size(cover);
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        /* overlay */
+        &:before{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 0;
+            content: " ";
+            width: 100%;
+            border-radius: 3px;
+            background: rgba(0,0,0,0.4);
+            @include transition(background, 300ms);
+        }
+
+        /* hover effect */
+        &:hover:before{
+            background: rgba(0,0,0,0.2);
+        }
+    }
+
+    .post-info{
+        position: absolute;
+        bottom: 30px;
+        padding: 0 5%;
+    }
+
+    .post-title{
+        color: #FFF;
+        font-weight: 900;
+        font-size: 1.8em;
+        line-height: 32px;
+        margin-top: 3px;
+        margin-bottom: 0;
+        text-transform: uppercase;
+    }
+}
+
+.archive-template,
+.author-template,
+.tag-template{
+    .post{
+        width: 32.75%;
+    }
+}
+
+/* ==========================================================================
+   9. Home Page
+   ========================================================================== */
+
+.home-template{
+        
+    /* make first post bigger */
+    .post:first-child{
+        width: 59.3%;
+
+        .post-title{
+            font-size: 3.5em;
+            line-height: 58px;
+        }
+    }
+
+    /* make 6th post bigger */
+    .post:nth-child(6){
+        width: 39.4%;
+    }
+
+}
+
+.tag{
+    display: inline-block;
+    background: $primary-color;
+    color: #FFF;
+    padding: 2px 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    margin-right: 5px;
+    margin-bottom: 7px;
+}
+
+a:link.tag,
+a:visited.tag{
+    color: #FFF;
+    text-decoration: none;
+}
+
+.no-featured-image{
+    border: 1px solid $tertiary-color;
+
+    .post-title{
+        color: #000 !important;
+    }
+
+    &:before{
+        display: none;
+    }
+
+}
+
+/* ==========================================================================
+   10. Post Page
+   ========================================================================== */
+
+.post-template{
+    .featured-image{
+        position: relative;
+        width: 100%;
+        padding-top: 30%;
+        @include background-size(cover);
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        &:before{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 0;
+            content: " ";
+            width: 100%;
+            background: rgba(0,0,0,0.4);
+            @include transition(background, 300ms);
+        }
+    }
+
+    .no-image{
+        margin-top: 40px;
+        text-align: center;
+        margin-bottom: -20px;
+
+        .post-title,
+        .post-date{
+            color: #000;
+        }
+    }
+
+    .post-info{
+        width: 100%;
+        position: absolute;
+        bottom: 0px;
+    }
+
+    .post-title{
+        color: #FFF;
+        font-weight: 900;
+        font-size: 3.0em;
+        line-height: 1.1em;
+        margin: 3px 0 10px 0;
+        text-transform: uppercase;
+    }
+
+    .post-date{
+        font-size: 1em;
+        font-weight: 400;
+        line-height: 1em;
+        color: #FFF;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .post-meta{
+        float: left;
+        width: 280px;
+        margin-top: 60px;
+    }
+
+    .post-content{
+        float: right;
+        width: calc(100% - 350px);
+        font-size: 1.1em;
+        font-weight: 300;
+        margin-left: 70px;
+        margin-top: 40px;
+        margin-bottom: 80px;
+    }
+
+    .author-image{
+        float: left;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        @include background-size(cover);
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .author-info{
+        float: left;
+        margin-left: 15px;
+        width: calc(100% - 95px);
+
+        &.no-author-image{
+            width: 100%;
+            margin-left: 0;
+        }
+    }
+
+    .author-name{
+        text-decoration: none;
+        color: #000;
+
+        h3{
+            margin: 0;
+            font-size: 1em;
+        }
+    }
+
+    .author-bio{
+        font-size: 0.8em;
+        line-height: 1.2em;
+        margin: 5px 0;
+        font-weight: 300;
+    }
+
+    .author-posts{
+        float: right;
+        font-size: 0.7em;
+        font-weight: 300;
+        text-transform: uppercase;
+        color: #B8B8BF;
+        text-decoration: none;
+        margin-top: 5px;
+
+        i{
+            margin-left: 2px;
+        }
+    }
+}
+
+/* ==========================================================================
+   11. Post Layouts
+   ========================================================================== */
+
+.post-info,
+.no-image{
+    .tag-one-column,
+    .tag-two-column{
+        display: none;
+    }
+}
+
+.one-column,
+.two-column{
+    .post-info{
+        text-align: center;
+    }
+    .post-content{
+        width: 100%;
+        float: none;
+        margin: 0 auto;
+        margin-top: 60px;
+        margin-bottom: 30px;
+    }
+    .post-meta{
+        width: 100%;
+        margin-top: 0;
+        padding-top: 40px;
+        border-top: 1px solid $tertiary-color;
+    }
+    .comments{
+        width: 100%;
+        margin: 10px 0;
+        border-top: 0;
+    }
+    .post-share{
+        text-align: center;
+        .facebook-share,
+        .twitter-share,
+        .google-plus-share{
+            display: inline-block;
+            max-width: 100px;
+            float: none;
+        }
+    }
+}
+
+.two-column{
+    .post-content{
+        -webkit-column-count: 2; /* Chrome, Safari, Opera */
+        -moz-column-count: 2; /* Firefox */
+        column-count: 2;
+
+        -webkit-column-gap: 60px; /* Chrome, Safari, Opera */
+        -moz-column-gap: 60px; /* Firefox */
+        column-gap: 60px;
+
+        -webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
+        page-break-inside: avoid; /* Firefox */
+        break-inside: avoid; /* IE 10+ */
+
+        p:first-child{
+            margin-top: 0;
+        }
+    }
+}
+
+/* ==========================================================================
+   12. Static Page
+   ========================================================================== */
+
+.page-template{
+    .post-content{
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 40px;
+    }
+}
+
+/* ==========================================================================
+   13. Author Page
+   ========================================================================== */
+
+.author-template{
+    .wrapper{
+        max-width: 900px;
+    }
+}
+
+.author-profile{
+    text-align: center;
+    padding: 50px 0;
+
+    .author-image{
+        width: 90px;
+        height: 90px;
+        @include background-size(cover);
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .author-name{
+        margin: 0px;
+    }
+
+    .author-location,
+    .author-link{
+        i{
+            margin-right: 2px;
+        }
+    }
+
+    .author-link{
+        margin-left: 15px;
+    }
+
+}
+
+/* ==========================================================================
+   14. Sharing
+   ========================================================================== */
+
+.post-share{
+    float: left;
+    width: 100%;
+    margin-top: 30px;
+    padding: 10px 0;
+    border-top: 1px solid $tertiary-color;
+    border-bottom: 1px solid $tertiary-color;
+
+    a:link,
+    a:visited{
+        text-decoration: none;
+    }
+
+    .facebook-share,
+    .twitter-share,
+    .google-plus-share{
+        float: left;
+        width: 30.5%;
+        font-size: 0.8em;
+        border-radius: 3px;
+        color: #FFF;
+        @include transition(opacity, 300ms);
+
+        &:hover{
+            opacity: 0.7;
+        }
+        
+        i{
+            font-size: 1.2em;
+            color: #FFF;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            padding-top: 7px;
+        }
+    }
+
+    .facebook-share{
+        background: #3B5A9A;
+    }
+
+    .twitter-share{
+        margin: 0 4%;
+        background: #28A8E0;
+    }
+
+    .google-plus-share{
+        background: #dd4b39;
+    }
+}
+
+/* ==========================================================================
+   15. Comments
+   ========================================================================== */
+
+.comments{
+    float: left;
+    width: calc(100% - 350px);
+    margin-left: 350px;
+    margin-top: -60px;
+    padding: 50px 0;
+    border-top: 1px solid $tertiary-color;
+    text-align: center;
+
+    .show-comments{
+        border-radius: 3px;
+        border: 0;
+        background: $primary-color;
+        color: #FFF;
+        display: inline-block;
+        padding: 15px 40px;
+        font-size: .9em;
+        outline: none;
+        text-transform: uppercase;
+        @include transition(opacity, 300ms);
+
+        &:hover{
+            opacity: 0.7;
+        }
+    }
+}
+
+/* ==========================================================================
+   16. Pagination
+   ========================================================================== */
+
+.pagination{
+    clear: both;
+    text-align: center;
+}
+
+.newer-posts,
+.older-posts,
+.load-more-posts{
+    display: inline-block;
+    text-align: center;
+    font-size: .9em;
+    background: #ef6c00;
+    color: #FFF;
+    padding: 15px 40px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin: 20px 0;
+    cursor: pointer;
+    @include transition(opacity, 300ms);
+
+    &:hover{
+        opacity: 0.7;
+        color: #FFF;
+    }
+}
+
+a:link.newer-posts,
+a:visited.newer-posts,
+a:link.older-posts,
+a:visited.older-posts{
+    color: #FFF;
+}
+
+/* ==========================================================================
+   17. Read Next
+   ========================================================================== */
+
+.read-next{
+    clear: both;
+    text-align: center;
+
+    .prev-post,
+    .next-post{
+        position: relative;
+        display: block;
+        width: 50%;
+        float: left;
+        padding-top: 18%;
+        @include background-size(cover);
+        background-position: center center;
+        background-repeat: no-repeat;
+
+        /* overlay */
+        &:before{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 0;
+            content: " ";
+            width: 100%;
+            background: rgba(0,0,0,0.4);
+            @include transition(background, 300ms);
+        }
+
+        /* hover effect */
+        &:hover:before{
+            background: rgba(0,0,0,0.2);
+        }
+    }
+
+    .info{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        max-width: 600px;
+        padding: 0 5%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .post-title{
+        font-size: 1.6em;
+    }
+
+    .single-story{
+        width: 100%;
+
+        .info{
+            max-width: 700px;
+        }
+
+        .post-title{
+            font-size: 2.0em;
+        }
+    }
+
+    .no-featured-image{
+        border-bottom: 0;
+    }
+
+}
+/* ==========================================================================
+   18. Error Page
+   ========================================================================== */
+
+.error-content{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 70px;
+
+    h1{
+        text-transform: uppercase;
+        font-size: 3.0em;
+        font-weight: 900;
+        line-height: 1.1em;
+    }
+
+    p{
+        font-weight: 300;
+        font-size: 1.1em;
+    }
+}
+
+/* ==========================================================================
+   19. Media Queries
+   ========================================================================== */
+
+@media screen and (max-width: 1250px){
+
+    /* General Pages */
+    .home-template,
+    .archive-template,
+    .tag-template,
+    .author-template{
+        .post-title{
+            font-size: 1.5em;
+            line-height: 1.2em;
+        }
+    }
+
+    /* Home Page */
+
+    .home-template .post:first-child .post-title{
+        font-size: 3.2em;
+        line-height: 1.1em;
+    }
+
+    /* Read Next */
+
+    .read-next .prev-post, 
+    .read-next .next-post{
+        height: 250px;
+        padding-top: 0;
+    }
+}
+
+@media screen and (max-width: 1100px){
+
+    /* Header */
+
+    .site-header{
+        padding: 0 5.5%;
+
+        .nav{
+            display: none;
+        }
+    }
+
+    .menu-btn,
+    .pushy{
+        display: block;
+    }
+
+    /* General Pages */
+
+    .home-template,
+    .archive-template,
+    .tag-template,
+    .author-template{
+        .post{
+            width: 49.4%;
+            height: auto;
+            padding-top: 44.2%;
+        }
+
+        .post-title{
+            font-size: 1.8em;
+        }
+    }
+
+    .archive-template,
+    .author-template,
+    .tag-template{
+        .post-info{
+            padding: 0 10%;
+        }
+    }
+
+    /* Home Page */
+
+    .home-template{
+
+        .post:first-child{
+            width: 99.2%;
+
+            .post-info{
+                padding: 0 5%;
+            }
+        }
+
+        .post:nth-child(6){
+            width: 49.4%;
+        }
+
+        .post-info{
+            padding: 0 10%;
+        }
+    }
+
+    /* Post Page */
+
+    .post-template{
+        .featured-image{
+            height: auto;
+            padding-top: 44.2%;
+        }
+    }
+
+}
+
+@media screen and (max-width: 950px){
+    /* Post Page */
+    .post-template{
+        .post-content{
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .post-meta{
+            width: 100%;
+            margin-top: 0;
+            padding-top: 30px;
+            border-top: 1px solid $tertiary-color;
+        }
+    }
+
+    .post-template,
+    .page-template{
+        .featured-image{
+            height: 450px;
+            padding-top: 0;
+        }
+    }
+
+    /* Post layouts */
+
+    .one-column,
+    .two-column{
+        .post-content{
+            margin-bottom: 40px;
+       }
+    }
+
+    /* Share */
+
+    .post-share{
+        text-align: center;
+    }
+
+    /* Comments */
+
+    .comments{
+        width: 100%;
+        margin: 10px 0;
+        border-top: 0;
+    }
+
+    /* Read Next */
+
+    .read-next .prev-post, 
+    .read-next .next-post{
+        width: 100%;
+    }
+    
+}
+
+@media screen and (max-width: 750px){
+
+    /* General Pages */
+
+    .home-template,
+    .archive-template,
+    .tag-template,
+    .author-template{
+        .post{
+            width: 99.2%;
+            height: 300px;
+            padding-top: 0;
+        }
+
+    }
+
+    .archive-template,
+    .author-template,
+    .tag-template{
+        .post-info{
+            padding: 0 5%;
+        }
+    }
+
+    /* Home Page */
+
+    .home-template{
+        .post:first-child,
+        .post:nth-child(6){
+            width: 99.2%;
+            height: 300px;
+        }
+
+        .post:first-child .post-title{
+            font-size: 1.8em;
+            line-height: 1.2em;
+        }
+
+        .post-info{
+            padding: 0 5%;
+        }
+    }
+
+    /* Post layouts */
+
+    .two-column .post-content{
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+    }
+
+}
+
+@media screen and (max-width: 500px){
+    /* Post Page */
+
+    .post-template,
+    .page-template{
+        .featured-image{
+            height: 400px;
+        }
+
+        .post-title{
+            font-size: 2.5em;
+        }
+    }
+
+    /* Read Next */
+
+    .read-next{
+        .post-title,
+        .single-story .post-title{
+            font-size: 1.5em;
+        }
+    }
+
+    /* Post layouts */
+
+    .one-column,
+    .two-column{
+        .post-share{
+            .facebook-share, 
+            .twitter-share, 
+            .google-plus-share, 
+            .facebook-share, 
+            .twitter-share, 
+            .google-plus-share{
+                float: left;
+                max-width: none;
+            }
+        }
+    }
+
+    /* Footer */
+
+    .site-footer{
+        text-align: center;
+    }
+
+    .site-info{
+        width: 100%;
+    }
+
+    .social{
+        float: none;
+    }
+}
+
+@media screen and (max-width: 350px){
+    .post-template,
+    .page-template{
+
+        .post-title{
+            font-size: 2.0em;
+        }
+    }
+
+    /* Read Next */
+
+    .read-next{
+        .post-title{
+            font-size: 1.3em;
+        }
+    }
+
+}

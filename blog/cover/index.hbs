@@ -1,0 +1,22 @@
+{{!< default}}
+
+{{! This is the home page template. It loops though all your posts and displays them. }}
+
+    {{#foreach posts}}
+    <a href="{{url}}" class="{{post_class}} {{^if image}} no-featured-image {{/if}}" {{#if image}} style="background-image:url({{image}})" {{/if}}>
+        <div class="post-info">
+
+        	{{#if tags}}
+				{{#foreach tags}}
+					<div class="tag tag-{{name}}">{{name}}</div>
+				{{/foreach}}
+			{{/if}}
+
+            <h1 class="post-title">{{{title}}}</h1>
+
+        </div>
+    </a>
+    {{/foreach}}
+
+{{!! Pagination links }}
+{{pagination}}
