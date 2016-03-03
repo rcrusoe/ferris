@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # specify ruby version for Heroku
-ruby '2.2.1'
+ruby '2.2.3'
 
 # webserver for Heroku
 gem 'puma'
