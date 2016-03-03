@@ -17,4 +17,7 @@ Rails.application.routes.draw do
   # ANALYTICS DASHBOARD
   get '/dashboard', to: 'dashboard#index', as: :dashboard
   match '/dashboard/metrics' => 'dashboard#metrics', :via => :post
+
+  # FRONT WEBHOOK
+  match '/front/mirror' => 'front#mirror', :via => :post
 end
