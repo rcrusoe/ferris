@@ -18,18 +18,20 @@ class DashboardController < ApplicationController
       averages << avg_days
       ap averages
     end
-    @avg_days = (averages.reduce(:+) / averages.size).round if @repeat_users
 
-    # bucket users by number of conversations and put in hash for bar chart
-    (2..MAX_CONVERSATIONS).each do |i|
-      users_per_convo = User.where("conversations_count = #{i}").count
-      convo_buckets[i] += users_per_convo
+    unless @repeat_users.nil?
+      @avg_days = (averages.reduce(:+) / averages.size).round
+
+      # bucket users by number of conversations and put in hash for bar chart
+      (2..MAX_CONVERSATIONS).each do |i|
+        users_per_convo = User.where("conversations_count = #{i}").count
+        convo_buckets[i] += users_per_convo
+      end
+
+      convo_buckets.each do |key, value|
+        @bar_chart << [key, value]
+      end
     end
-
-    convo_buckets.each do |key, value|
-      @bar_chart << [key, value]
-    end
-
     js :URL => request.original_url
   end
 
