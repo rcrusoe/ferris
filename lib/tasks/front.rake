@@ -3,7 +3,7 @@ namespace :front do
   # TODO: move credentials to ENV variable on Heroku
   USERNAME = 'ferris'
   PASSWORD = 'bb2322077886e32690b7d875f89633de'
-  OBJECTS_PER_PAGE = 1000
+  OBJECTS_PER_PAGE = 50
   HOURS_BETWEEN_CONVO = 18
 
   desc 'Load all existing conversations and messages from Front'
@@ -31,7 +31,7 @@ namespace :front do
           message.created_at = Time.at(m['date']/1000)
 
           # if time since last message is outside threshold, create a new conversation
-          if previous_message.nil? || hours_between(message.created_at, previous_message.created_at) > HOURS_BETWEEN_CONVO
+          if previous_message.nil? || (m['inbound'] && hours_between(message.created_at, previous_message.created_at) > HOURS_BETWEEN_CONVO)
             conversation = Conversation.where(user: user, created_at: message.created_at).first_or_create
             # TODO: add conversation tags
             ap conversation
@@ -57,7 +57,7 @@ namespace :front do
                                            url: URL,
                                            user: USERNAME,
                                            password: PASSWORD,
-                                           headers: {params: {pageSize: OBJECTS_PER_PAGE, page:1}},
+                                           headers: {params: {pageSize: OBJECTS_PER_PAGE, page:0}},
                                            :content_type => :json,
                                            :accept => :json
     JSON(response)['conversations']
