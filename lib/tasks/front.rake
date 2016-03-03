@@ -14,9 +14,9 @@ namespace :front do
 
         # get the conversation object from front
         conversation_json = get_conversation(c['url'])
+        user_created_at = Time.at(conversation_json['created_at']/1000)
 
         # first create a user if phone number does not exist
-        user_created_at = Time.at(conversation_json['created_at']/1000)
         user = User.where(phone_number: c['recipient']['handle']).first_or_create
         user.created_at = user_created_at
         user.save
@@ -26,8 +26,7 @@ namespace :front do
         conversation = nil
         previous_message = nil
         conversation_json['messages'].reverse!.each do |m| # reverse to put the oldest messages first
-          message = Message.new(body: get_message_body(m['url']),
-                                inbound: m['inbound'])
+          message = Message.new(body: get_message_body(m['url']), inbound: m['inbound'])
           message.created_at = Time.at(m['date']/1000)
 
           # if time since last message is outside threshold, create a new conversation
