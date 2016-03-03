@@ -4,7 +4,7 @@ body{
 	font-family: "Roboto", sans-serif;
 	font-size: 10px;
 	line-height: 1.15em;
-	color: #000;
+	color: #404D57;
 }
 
 h1, h2{
@@ -200,9 +200,26 @@ p{
 }
 
 .newsletter-block{
+	.footer-nav{
+		margin-bottom: 3em;
+	}
 	p{
 		margin-top: 10px;
 		text-align: center;
+	}
+	h3{
+		font-size: 2em;
+	}
+	h4{
+		font-size: 1.5em;
+		margin: 0.5em 0;
+		font-weight: 200;
+		a{
+			color: #404D57;
+		}
+		a:hover{
+			color: #E5665D;
+		}
 	}
 	form{
 		margin: auto;

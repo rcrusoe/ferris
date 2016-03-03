@@ -1,5 +1,13 @@
 <div id="new-event-form">
   <div class="ui form">
+    <div style="margin-bottom: 2em;">
+      <h3 style="text-align: center">
+        List My Event
+      </h3>
+      <p style="font-size: 1em; margin-top: 1em">
+        Ferris is a free marketing tool to promote your events to a local, engaged audience in Boston. Every day, hundreds of people text Ferris looking for something to do in Boston. Our human-assisted algorithm will recommend events and venues to people's interests, all through text messaging. All you have to do to have your events promoted is to add them to our database by filling out the form below.
+      </p>
+    </div>
     <%= form_for @event, html: { multipart: true } do |f| %>
       <%= render 'error_messages' %>
       <div class="field">
@@ -74,7 +82,7 @@
         </div>
       </div>
       <%= f.submit "Create new event", class: "ui blue fluid button", name: 'create' %>
-      <%= f.submit "Create and add another date", class: "ui blue fluid button", name: 'addDate' %>
+      <!--<%= f.submit "Create and add another date", class: "ui blue fluid button", name: 'addDate' %>-->
     <% end %>
   </div>
 </div>
