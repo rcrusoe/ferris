@@ -19,7 +19,7 @@ class DashboardController < ApplicationController
       ap averages
     end
 
-    unless @repeat_users.nil?
+    unless @repeat_users.empty?
       @avg_days = (averages.reduce(:+) / averages.size).round
 
       # bucket users by number of conversations and put in hash for bar chart
@@ -40,7 +40,7 @@ class DashboardController < ApplicationController
     period = params[:period].to_i
     case period
       when 0
-        range = Date.today.beginning_of_day..Date.today.end_of_dayw
+        range = Date.today.beginning_of_day..Date.today.end_of_day
       when 1
         range = Date.yesterday.beginning_of_day..Date.yesterday.end_of_day
       when 2 # This Week
