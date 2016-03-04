@@ -2,6 +2,9 @@ class DashboardController < ApplicationController
   MAX_CONVERSATIONS = 7
 
   def index
+    if Rails.env.production?
+      authenticate
+    end
     @total_conversations = Conversation.count
     @total_users = User.count
     @repeat_users = User.where('conversations_count > 1')
