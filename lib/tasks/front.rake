@@ -55,7 +55,7 @@ namespace :front do
   desc 'total number of conversations to migrate from Front'
   task :count => :environment do
     ARGV.each { |a| task a.to_sym do ; end }
-    ap get_all_conversations.count
+    ap get_all_conversations
   end
 
   desc 'Pull conversations from google voice csv'
@@ -84,7 +84,7 @@ namespace :front do
                                            headers: {params: {pageSize: OBJECTS_PER_PAGE, page:ARGV[1]}},
                                            :content_type => :json,
                                            :accept => :json
-    JSON(response)['conversations']
+    JSON(response)['conversations'][93..-1]
   end
 
   # returns a conversation JSON object from front
@@ -107,9 +107,9 @@ namespace :front do
                                           :content_type => :json,
                                           :accept => :json
 
-    if response.headers[:x_ratelimit_remaining].to_i == 1
+    if response.headers[:x_ratelimit_remaining].to_i == 2
       reset_time = Time.at(response.headers[:x_ratelimit_reset].to_i)
-      delay = (reset_time - Time.now)
+      delay = (reset_time - Time.now) + 3
       puts 'SLEEPING FOR: '+ delay.to_s
       sleep delay
     end
