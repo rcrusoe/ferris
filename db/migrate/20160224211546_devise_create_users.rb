@@ -10,7 +10,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-  end
   # def change
   #   create_table(:users) do |t|
   #     ## Custom fields
