@@ -14,13 +14,9 @@
 				<a class="item" href="http://www.joinferris.com">
 			    	<%= image_tag('face.png', :class => 'ui centered image mini') %>
 			  	</a>
-				<div class="right menu">
-					<a class="active item" id="to-lifetime-stats">
-						Lifetime Stats
-					</a>
-					<a class="item" id="to-period-stats">
-						Period Stats
-					</a>
+				<div class="menu right">
+                    <a class="active item" data-tab="lifetime">Lifetime Stats</a>
+                    <a class="item" data-tab="period">Period Stats</a>
 				</div>
 			</div>
 		</div>
@@ -31,7 +27,7 @@
 </div>
 
 <!-- Lifetime Statistics -->
-<div class="stats-section" id="lifetime-stats">
+<div class="ui tab stats-section active" id="lifetime-stats" data-tab="lifetime">
 	<div class="ui grid stackable">
 		<div class="two wide column">
 			
@@ -77,10 +73,10 @@
 			</div>
 		</div>
 		<div class="two wide column">
-			
+
 		</div>
 		<div class="two wide column">
-			
+
 		</div>
 		<div class="twelve wide column">
 			<div id="repeats" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
@@ -92,7 +88,7 @@
 </div>
 
 <!-- Period Statistics -->
-<div class="stats-section" id="period-stats">
+<div class="ui tab stats-section" id="period-stats" data-tab="period">
 	<div class="ui grid stackable">
 		<div class="two wide column">
 			
@@ -100,7 +96,7 @@
 		<div class="three wide column">
 			<div class="ui statistic">
 			  <div class="label">
-			    Conversations This Period
+			    Conversations
 			  </div>
 			  <div id="conversations_over_period" class="value">
 			  </div>
@@ -109,7 +105,7 @@
 		<div class="three wide column">
 			<div class="ui statistic">
 			  <div class="label">
-			    New Users This Period
+			    New Users
 			  </div>
 			  <div id="users_over_period" class="value">
 			  </div>
@@ -118,7 +114,7 @@
 		<div class="three wide column">
 			<div class="ui statistic">
 			  <div class="label">
-			    Repeat Users This Period
+			    Repeat Users
 			  </div>
               <div id="repeat_users_over_period" class="value">
 			  </div>
@@ -427,35 +423,4 @@
 
 	// Apply the theme
 	Highcharts.setOptions(Highcharts.theme);
-</script>
-
-<script>
-	$( document ).ready(function() {
-	   	$('#period-stats')
-		  .transition('browse')
-		;
-	});
-	$("#to-lifetime-stats").click(function() {
-		$('#lifetime-stats')
-		  .transition('vertical flip in')
-		;
-		$('#period-stats')
-		  .transition('vertical flip out')
-		;
-		$("#to-lifetime-stats").addClass("active");
-		$("#to-period-stats").removeClass("active");
-	});
-	$("#to-period-stats").click(function() {
-		$('#period-stats')
-		  .transition('vertical flip in')
-		;
-		$('#lifetime-stats')
-		  .transition('vertical flip out')
-		;
-		$("#to-lifetime-stats").removeClass("active");
-		$("#to-period-stats").addClass("active");
-	});
-	$('select.dropdown')
-	  .dropdown()
-	;
 </script>

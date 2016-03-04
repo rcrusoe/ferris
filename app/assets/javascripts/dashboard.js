@@ -2,6 +2,16 @@ var DASHBOARD_URL;
 var DashboardController = Paloma.controller('Dashboard');
 
 DashboardController.prototype.index = function() {
+
+  // UI Setup
+  $('.menu .item').tab();
+  $('.menu .item').click(function(){
+    drawLifetimeGraph();
+  });
+
+  $('select.dropdown').dropdown();
+
+  // Data Loading
   DASHBOARD_URL = this.params['URL'];
   var period = 0; // default is today
   var metrics; // hash from server
@@ -22,7 +32,7 @@ DashboardController.prototype.index = function() {
         $('#conversations_over_period').text(metrics['conversations']);
         $('#users_over_period').text(metrics['new_users']);
         $('#repeat_users_over_period').text(metrics['repeat_users']);
-        drawGraph();
+        drawLifetimeGraph();
       }
     });
   }
@@ -34,7 +44,7 @@ DashboardController.prototype.index = function() {
   });
 
   // REPOPULATE GRAPH WITH DATA BASED ON TIME RANGE
-  function drawGraph() {
+  function drawLifetimeGraph() {
     $('#conversations').highcharts({
       chart: {
         type: ((period == 0 || period == 1) ? 'column' : 'area')
