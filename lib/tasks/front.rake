@@ -55,7 +55,7 @@ namespace :front do
   desc 'total number of conversations to migrate from Front'
   task :count => :environment do
     ARGV.each { |a| task a.to_sym do ; end }
-    ap get_all_conversations
+    ap get_all_conversations.find_index {|c| c['recipient']['handle'] == '+19199248897'}
   end
 
   desc 'Pull conversations from google voice csv'
@@ -84,7 +84,7 @@ namespace :front do
                                            headers: {params: {pageSize: OBJECTS_PER_PAGE, page:ARGV[1]}},
                                            :content_type => :json,
                                            :accept => :json
-    JSON(response)['conversations'][93..-1]
+    JSON(response)['conversations'][229..-1]
   end
 
   # returns a conversation JSON object from front
@@ -95,6 +95,14 @@ namespace :front do
                                                password: PASSWORD,
                                                :content_type => :json,
                                                :accept => :json
+
+    if response.headers[:x_ratelimit_remaining].to_i < 3
+      reset_time = Time.at(response.headers[:x_ratelimit_reset].to_i)
+      delay = (reset_time - Time.now) + 5
+      puts 'SLEEPING FOR: '+ delay.to_s
+      sleep delay
+    end
+
     JSON(response)
   end
 
@@ -107,9 +115,9 @@ namespace :front do
                                           :content_type => :json,
                                           :accept => :json
 
-    if response.headers[:x_ratelimit_remaining].to_i == 2
+    if response.headers[:x_ratelimit_remaining].to_i < 3
       reset_time = Time.at(response.headers[:x_ratelimit_reset].to_i)
-      delay = (reset_time - Time.now) + 3
+      delay = (reset_time - Time.now) + 5
       puts 'SLEEPING FOR: '+ delay.to_s
       sleep delay
     end
