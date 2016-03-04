@@ -1,7 +1,7 @@
 class CreateConversations < ActiveRecord::Migration
   def change
     create_table :conversations do |t|
-      t.integer :message_count
+      t.integer :messages_count
       t.references :user, index: true, foreign_key: true
       t.timestamps null: false
     end
