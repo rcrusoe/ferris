@@ -30,7 +30,12 @@ namespace :front do
         conversation = nil
         previous_message = nil
         conversation_json['messages'].reverse!.each do |m| # reverse to put the oldest messages first
-          message = Message.new(body: get_message_body(m['url']), inbound: m['inbound'])
+          text = m['blurb']
+          if text.chars.length > 185
+            puts 'Text too long, getting message body from API...'
+            text = get_message_body(m['url'])
+          end
+          message = Message.new(body: text, inbound: m['inbound'])
           message.created_at = Time.at(m['date']/1000)
 
           # if time since last message is outside threshold, create a new conversation
@@ -55,7 +60,7 @@ namespace :front do
   desc 'total number of conversations to migrate from Front'
   task :count => :environment do
     ARGV.each { |a| task a.to_sym do ; end }
-    ap get_all_conversations.find_index {|c| c['recipient']['handle'] == '+19199248897'}
+    ap get_all_conversations.find_index {|c| c['recipient']['handle'] == '+19788856343'}
   end
 
   desc 'Pull conversations from google voice csv'
@@ -84,7 +89,7 @@ namespace :front do
                                            headers: {params: {pageSize: OBJECTS_PER_PAGE, page:ARGV[1]}},
                                            :content_type => :json,
                                            :accept => :json
-    JSON(response)['conversations'][229..-1]
+    JSON(response)['conversations'][396..-1]
   end
 
   # returns a conversation JSON object from front

@@ -17,7 +17,7 @@ class DashboardController < ApplicationController
       # take the span between first and last conversation date
       span_days = (user.conversations.last.created_at.to_date - user.conversations.first.created_at.to_date).to_i
       # divide by number of conversations
-      avg_days = span_days / user.conversations.count
+      avg_days = span_days / user.conversations_count
       averages << avg_days
       ap averages
     end
