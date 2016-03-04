@@ -8,8 +8,10 @@ namespace :front do
   OBJECTS_PER_PAGE = 1000
   HOURS_BETWEEN_CONVO = 18
 
-  desc 'Load all existing conversations and messages from Front'
+  desc 'Load all existing conversations and messages from Front, takes page number as argument'
   task :get_conversations => :environment do
+    ARGV.each { |a| task a.to_sym do ; end }
+
     # get a list of all messages for user from front, then break up into conversations
     get_all_conversations.each do |c|
       if c['message_type'] == 'sms'
@@ -52,6 +54,7 @@ namespace :front do
 
   desc 'total number of conversations to migrate from Front'
   task :count => :environment do
+    ARGV.each { |a| task a.to_sym do ; end }
     ap get_all_conversations.count
   end
 
@@ -78,7 +81,7 @@ namespace :front do
                                            url: URL,
                                            user: USERNAME,
                                            password: PASSWORD,
-                                           headers: {params: {pageSize: OBJECTS_PER_PAGE, page:0}},
+                                           headers: {params: {pageSize: OBJECTS_PER_PAGE, page:ARGV[1]}},
                                            :content_type => :json,
                                            :accept => :json
     JSON(response)['conversations']
