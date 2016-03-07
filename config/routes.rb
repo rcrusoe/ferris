@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # devise_for :users
   resources :places
   resources :events
-  match '/events/new/get_address_and_loc' => 'events#get_address_and_loc', :via => :post
+  match '/events/get_address_and_loc' => 'events#get_address_and_loc', :via => :post
 
 
   root 'pages#home'

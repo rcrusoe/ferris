@@ -26,11 +26,12 @@ class EventsController < ApplicationController
     else
       @event = Event.new
     end
-    js :URL => request.original_url
+    js :URL => request.base_url
   end
 
   # GET /events/1/edit
   def edit
+    js :new, :URL => request.base_url # execute same javascript as new
   end
 
   # POST /events

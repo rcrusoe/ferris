@@ -17,8 +17,8 @@
   <div class="centered item">
     <div class="ui icon input">
       <%= form_tag(events_path, :method => "get") do %>
-      <%= text_field_tag :search, params[:search], placeholder: "Search Events" %>
-      <%= submit_tag "Search" %>
+         <%= text_field_tag :search, params[:search], placeholder: "Search Events" %>
+         <%= submit_tag "Search" %>
       <% end %>
       <i class="search link icon"></i>
     </div>

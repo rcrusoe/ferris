@@ -17,7 +17,7 @@ EventsController.prototype.new = function() {
 
   function getAddressAndLoc(place_id) {
     $.ajax({
-      url         : EVENTS_URL + "/get_address_and_loc",
+      url         : EVENTS_URL + "/events/get_address_and_loc",
       data        : JSON.stringify({ "place_id" : place_id }),
       dataType    : "text",
       type        : "POST",

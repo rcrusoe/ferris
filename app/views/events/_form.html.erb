@@ -49,7 +49,7 @@
       </div>
       <div class="field">
         <%= f.label 'Place'%><br>
-        <%= f.association :place, label: false, label_method: :name, value_method: :id, prompt: 'None' %>
+        <%= f.association :place, label: false, collection: Place.order(:name), label_method: :name, value_method: :id, prompt: 'None' %>
       </div>
       <div class="field">
         <%= f.label :address, required: false %>
