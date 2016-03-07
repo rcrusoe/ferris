@@ -26,6 +26,7 @@ class EventsController < ApplicationController
     else
       @event = Event.new
     end
+    js :URL => request.original_url
   end
 
   # GET /events/1/edit
@@ -74,6 +75,13 @@ class EventsController < ApplicationController
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # input is place_id, output is address and location strings in a json hash
+  def get_address_and_loc
+    id = params[:place_id].to_i
+    place = Place.find(id)
+    render json: { address: place.address, loc: place.neighborhood }
   end
 
   private

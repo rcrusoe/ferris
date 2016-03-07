@@ -32,10 +32,6 @@
         <%= f.text_area :description, class: "ui input" %>
       </div>
       <div class="field">
-        <%= f.label 'Place'%><br>
-        <%= f.association :place, label: false, label_method: :name, value_method: :id, prompt: 'None' %>
-      </div>
-      <div class="field">
         <%= f.label :date %><br>
         <%= f.date_select :date %>
       </div>
@@ -50,6 +46,10 @@
       <div class="field">
         <%= f.label :repeat_weekly %><br>
         <%= f.check_box :repeat_weekly %>
+      </div>
+      <div class="field">
+        <%= f.label 'Place'%><br>
+        <%= f.association :place, label: false, label_method: :name, value_method: :id, prompt: 'None' %>
       </div>
       <div class="field">
         <%= f.label :address, required: false %>

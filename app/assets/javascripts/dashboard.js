@@ -35,7 +35,7 @@ DashboardController.prototype.index = function() {
         drawLifetimeGraph();
       }
     });
-  }
+  };
 
   // PERIOD SELECTED FROM DROPDOWN
   $( "#period_select" ).change(function() {
