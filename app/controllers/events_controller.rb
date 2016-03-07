@@ -25,6 +25,7 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id]).dup
     else
       @event = Event.new
+      ap @event.place_id
     end
   end
 
