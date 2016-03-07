@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+	before_save :sanitize_website, :sanitize_purchase_url
+
 	# form validations
 	validates :title, presence: true
 	validates :short_blurb, presence: true
@@ -21,8 +23,6 @@ class Event < ActiveRecord::Base
 	def self.search(search)
 	  where("title || description || date || neighborhood ILIKE ?", "%#{search}%")
 	end
-
-  	before_save :sanitize_website, :sanitize_purchase_url
 
 	def sanitize_website
 	  unless self.website.include?("http://") || self.website.include?("https://")
