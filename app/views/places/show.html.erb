@@ -3,9 +3,6 @@
 <div class="place-card">
   <div class="ui card">
     <div class="ui fluid image">
-      <div class="ui green ribbon label">
-        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.joinferris.com/places/<%= @place.id %>"><i class="facebook icon"></i>Share</a>
-      </div>
       <%= image_tag @place.image.url(:medium) %>
     </div>
     <div class="content">
@@ -16,82 +13,6 @@
       </div>
     </div>
     <div class="extra content">
-      <table class="ui table">
-        <tbody>
-          <tr>
-            <td class = "collapsing">Monday:</td>
-            <td>
-              <% if @place.monday_open == true %>
-                <%= @place.monday_open_time.strftime("%l:%M %P") %> - <%= @place.monday_close_time.strftime("%l:%M %P") %>
-              <% else @place.monday_open == false %>
-                  CLOSED
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td class = "collapsing">Tuesday:</td>
-            <td>
-              <% if @place.tuesday_open == true %>
-                <%= @place.tuesday_open_time.strftime("%l:%M %P") %> - <%= @place.tuesday_close_time.strftime("%l:%M %P") %>
-              <% else @place.tuesday_open == false %>
-                  CLOSED
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td class = "collapsing">Wednesday:</td>
-            <td>
-              <% if @place.wednesday_open == true %>
-                <%= @place.wednesday_open_time.strftime("%l:%M %P") %> - <%= @place.wednesday_close_time.strftime("%l:%M %P") %>
-              <% else @place.wednesday_open == false %>
-                  CLOSED
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td class = "collapsing">Thursday:</td>
-            <td>
-              <% if @place.thursday_open == true %>
-                <%= @place.thursday_open_time.strftime("%l:%M %P") %> - <%= @place.thursday_close_time.strftime("%l:%M %P") %>
-              <% else @place.thursday_open == false %>
-                  CLOSED
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td class = "collapsing">Friday:</td>
-            <td>
-              <% if @place.friday_open == true %>
-                <%= @place.friday_open_time.strftime("%l:%M %P") %> - <%= @place.friday_close_time.strftime("%l:%M %P") %>
-              <% else @place.friday_open == false %>
-                  CLOSED
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td class = "collapsing">Saturday:</td>
-            <td>
-              <% if @place.saturday_open == true %>
-                <%= @place.saturday_open_time.strftime("%l:%M %P") %> - <%= @place.saturday_close_time.strftime("%l:%M %P") %>
-              <% else @place.saturday_open == false %>
-                  CLOSED
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td class = "collapsing">Sunday:</td>
-            <td>
-              <% if @place.sunday_open == true %>
-                <%= @place.sunday_open_time.strftime("%l:%M %P") %> - <%= @place.sunday_close_time.strftime("%l:%M %P") %>
-              <% else @place.sunday_open == false %>
-                  CLOSED
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="extra content">
       <a href="http://maps.google.com/?q=<%= @place.address %>" target="_blank">
         <i class="location arrow icon"></i>
         <%= @place.neighborhood %>
@@ -100,14 +21,102 @@
     <div class="extra content">
       <a href="<%= @place.website %>" target="_blank">
         <i class="linkify icon"></i>
-        Website
+        Visit Website
       </a>
     </div>
     <div class="extra content">
       <a href="tel:<%= @place.phone_number %>" target="_blank">
         <i class="phone icon"></i>
-        Call For More Information
+        Call Them
       </a>
+    </div>
+    <div class="extra content ui accordion">
+      <div class="title">
+        <i class="dropdown icon"></i>
+        Hours
+      </div>
+      <div class="content">
+        <table class="ui very basic table transition hidden">
+          <tbody>
+            <tr>
+              <td class = "collapsing">Monday:</td>
+              <td class="right aligned">
+                <% if @place.monday_open == true %>
+                  <%= @place.monday_open_time.strftime("%l:%M %P") %> - <%= @place.monday_close_time.strftime("%l:%M %P") %>
+                <% else @place.monday_open == false %>
+                    CLOSED
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td class = "collapsing">Tuesday:</td>
+              <td class="right aligned">
+                <% if @place.tuesday_open == true %>
+                  <%= @place.tuesday_open_time.strftime("%l:%M %P") %> - <%= @place.tuesday_close_time.strftime("%l:%M %P") %>
+                <% else @place.tuesday_open == false %>
+                    CLOSED
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td class = "collapsing">Wednesday:</td>
+              <td class="right aligned">
+                <% if @place.wednesday_open == true %>
+                  <%= @place.wednesday_open_time.strftime("%l:%M %P") %> - <%= @place.wednesday_close_time.strftime("%l:%M %P") %>
+                <% else @place.wednesday_open == false %>
+                    CLOSED
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td class = "collapsing">Thursday:</td>
+              <td class="right aligned">
+                <% if @place.thursday_open == true %>
+                  <%= @place.thursday_open_time.strftime("%l:%M %P") %> - <%= @place.thursday_close_time.strftime("%l:%M %P") %>
+                <% else @place.thursday_open == false %>
+                    CLOSED
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td class = "collapsing">Friday:</td>
+              <td class="right aligned">
+                <% if @place.friday_open == true %>
+                  <%= @place.friday_open_time.strftime("%l:%M %P") %> - <%= @place.friday_close_time.strftime("%l:%M %P") %>
+                <% else @place.friday_open == false %>
+                    CLOSED
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td class = "collapsing">Saturday:</td>
+              <td class="right aligned">
+                <% if @place.saturday_open == true %>
+                  <%= @place.saturday_open_time.strftime("%l:%M %P") %> - <%= @place.saturday_close_time.strftime("%l:%M %P") %>
+                <% else @place.saturday_open == false %>
+                    CLOSED
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td class = "collapsing">Sunday:</td>
+              <td class="right aligned">
+                <% if @place.sunday_open == true %>
+                  <%= @place.sunday_open_time.strftime("%l:%M %P") %> - <%= @place.sunday_close_time.strftime("%l:%M %P") %>
+                <% else @place.sunday_open == false %>
+                    CLOSED
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
+
+<script>
+  $('.ui.accordion')
+    .accordion()
+  ;
+</script>

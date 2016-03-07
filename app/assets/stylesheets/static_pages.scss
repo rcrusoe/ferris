@@ -318,6 +318,18 @@ i.icon{
 	font-size: 16px;
 }
 
+.ui.table{
+	margin-top: 0 !important;
+}
+
+.ui.accordion .title:not(.ui){
+	padding: 0 !important;
+}
+
+.ui.accordion .title .dropdown.icon, .ui.accordion .accordion .title .dropdown.icon{
+	margin: 0 !important;
+}
+
 /*
 *
 * new event form
