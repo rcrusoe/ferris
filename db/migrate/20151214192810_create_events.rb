@@ -11,8 +11,9 @@ class CreateEvents < ActiveRecord::Migration
       t.string :website
       t.integer :price
       t.string :purchase_url
-      add_attachment :events, :image
       t.timestamps null: false
     end
+
+    add_attachment :events, :image
   end
 end
