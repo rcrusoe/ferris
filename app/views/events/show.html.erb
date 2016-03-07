@@ -3,9 +3,6 @@
 <div class="event-card">
   <div class="ui card">
     <div class="ui fluid image">
-      <div class="ui green ribbon label">
-        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.joinferris.com/events/<%= @event.id %>"><i class="facebook icon"></i>Share</a>
-      </div>
       <%= image_tag @event.image.url(:medium) %>
     </div>
     <div class="content">
@@ -38,7 +35,7 @@
     <div class="extra content">
       <a href="<%= @event.website %>" target="_blank">
         <i class="linkify icon"></i>
-        Event Website
+        Visit Website
       </a>
     </div>
     <div class="extra content">
@@ -49,7 +46,7 @@
     </div>
     <form action="<%= @event.purchase_url %>" target="_blank">
       <button class="ui blue fluid button" type="submit">
-        Attend Event
+        Book Now
       </button>
     </form>
   </div>
