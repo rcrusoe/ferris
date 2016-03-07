@@ -60,7 +60,7 @@ class DashboardController < ApplicationController
 
     # Query Database with date range
     conversations = Conversation.where(created_at: range).count
-    new_users = User.where(created_at: range, conversations_count: 1).count
+    new_users = User.where(created_at: range).count
     repeat_users = User.where('conversations_count > 1').joins(:conversations).where(conversations: {:created_at => range}).uniq.count
     conversation_buckets = Conversation.group_by_day(:created_at, range: range).count
 
