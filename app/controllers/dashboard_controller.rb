@@ -43,19 +43,19 @@ class DashboardController < ApplicationController
     period = params[:period].to_i
     case period
       when 0
-        range = Date.today.beginning_of_day..Date.today.end_of_day
+        range = Date.current.beginning_of_day..Date.current.end_of_day
       when 1
-        range = Date.yesterday.beginning_of_day..Date.yesterday.end_of_day
+        range = Date.current.yesterday.beginning_of_day..Date.current.yesterday.end_of_day
       when 2 # This Week
-        range = Date.today.at_beginning_of_week.beginning_of_day..Date.today.at_end_of_week.end_of_day
+        range = Date.current.at_beginning_of_week.beginning_of_day..Date.current.at_end_of_week.end_of_day
       when 3 # Last Week
         range = 1.week.ago.at_beginning_of_week.beginning_of_day..1.week.ago.at_end_of_week.end_of_day
       when 4 # This Month
-        range = Date.today.beginning_of_month.beginning_of_day..Date.today.end_of_month.end_of_day
+        range = Date.current.beginning_of_month.beginning_of_day..Date.current.end_of_month.end_of_day
       when 5 # Last Month
         range = 1.month.ago.beginning_of_month.beginning_of_day..1.month.ago.end_of_month.end_of_day
       else # default to Today
-        range = Date.today.beginning_of_day..Date.today.end_of_day
+        range = Date.current.beginning_of_day..Date.current.end_of_day
     end
 
     # Query Database with date range
@@ -68,6 +68,6 @@ class DashboardController < ApplicationController
                   new_users: new_users,
                   repeat_users: repeat_users,
                   conversation_buckets: conversation_buckets.values,
-                  dates: conversation_buckets.keys.map! {|d| d.strftime("%-m/%-d")} }
+                  dates: conversation_buckets.keys.map! {|d| d.strftime('%-m/%-d')} }
   end
 end
