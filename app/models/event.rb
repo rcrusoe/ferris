@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
 	before_save :sanitize_website, :sanitize_purchase_url
 
+  belongs_to :place
+
 	# form validations
 	validates :title, presence: true
 	validates :short_blurb, presence: true

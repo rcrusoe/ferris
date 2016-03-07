@@ -1,4 +1,8 @@
 class Place < ActiveRecord::Base
+	has_many :events
+
+  accepts_nested_attributes_for :events
+
 	# form validations
 	validates :name, presence: true
 	validates :description, presence: true

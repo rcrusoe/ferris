@@ -8,7 +8,7 @@
         Ferris is a free marketing tool to promote your events to a local, engaged audience in Boston. Every day, hundreds of people text Ferris looking for something to do in Boston. Our human-assisted algorithm will recommend events and venues to people's interests, all through text messaging. All you have to do to have your events promoted is to add them to our database by filling out the form below.
       </p>
     </div>
-    <%= form_for @event, html: { multipart: true } do |f| %>
+    <%= simple_form_for @event, html: { multipart: true } do |f| %>
       <%= render 'error_messages' %>
       <div class="field">
         <%= f.label :image %><br>
@@ -20,24 +20,24 @@
         <% end %>
       </div>
       <div class="field">
-        <%= f.label :title %><br>
+        <%= f.label :title, required: false %><br>
         <%= f.text_field :title, class: "ui input" %>
       </div>
       <div class="field">
-        <%= f.label :short_blurb %><br>
+        <%= f.label :short_blurb, required: false %><br>
         <%= f.text_field :short_blurb, class: "ui input" %>
       </div>
       <div class="field">
-        <%= f.label :description %><br>
+        <%= f.label :description, required: false %><br>
         <%= f.text_area :description, class: "ui input" %>
+      </div>
+      <div class="field">
+        <%= f.label 'Place'%><br>
+        <%= f.association :place, label: false, label_method: :name, value_method: :id, prompt: 'None' %>
       </div>
       <div class="field">
         <%= f.label :date %><br>
         <%= f.date_select :date %>
-      </div>
-      <div class="field">
-        <%= f.label :repeat_weekly %><br>
-        <%= f.check_box :repeat_weekly %>
       </div>
       <div class="field">
         <%= f.label :start_time %><br>
@@ -48,7 +48,11 @@
         <%= f.time_select :end_time, {:minute_step => 15, :ampm => true} %>
       </div>
       <div class="field">
-        <%= f.label :address %>
+        <%= f.label :repeat_weekly %><br>
+        <%= f.check_box :repeat_weekly %>
+      </div>
+      <div class="field">
+        <%= f.label :address, required: false %>
         <%= f.text_field :address, class: "ui labeled input", :placeholder => "795 Massachusetts Ave, Cambridge, MA 02139" %>
       </div>
       <div class="field">
@@ -81,7 +85,7 @@
           <%= f.text_field :purchase_url, :placeholder => "(optional)" %>
         </div>
       </div>
-      <%= f.submit "Create new event", class: "ui blue fluid button", name: 'create' %>
+      <%= f.submit "Create new event", class: "ui blue fluid button", name: 'create' %><br>
       <!--<%= f.submit "Create and add another date", class: "ui blue fluid button", name: 'addDate' %>-->
     <% end %>
   </div>
