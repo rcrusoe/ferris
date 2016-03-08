@@ -1,0 +1,9 @@
+<div class='nested-fields ui segment'>
+  <%= f.input :day,
+              collection: 0..6,
+              label_method: ->(obj){ t(Date::DAYNAMES[obj]) },
+              wrapper_html: { class: 'field' } %>
+  <%= f.input :open_time, as: :time, minute_step: 15, ampm: true, wrapper_html: { class: 'field' } %>
+  <%= f.input :close_time, as: :time, minute_step: 15, ampm: true, wrapper_html: { class: 'field' } %>
+  <%= link_to_remove_association 'Remove', f %>
+</div>

@@ -37,7 +37,9 @@ gem 'paloma'
 # group activerecord queries by date
 gem 'groupdate'
 
+# better forms
 gem 'simple_form'
+gem 'cocoon'
 
 # one line charting
 # http://ankane.github.io/chartkick/

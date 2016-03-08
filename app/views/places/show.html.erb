@@ -41,19 +41,19 @@
             <tr>
               <td class = "collapsing">Monday:</td>
               <td class="right aligned">
-                <% if @place.monday_open == true %>
-                  <%= @place.monday_open_time.strftime("%l:%M %P") %> - <%= @place.monday_close_time.strftime("%l:%M %P") %>
-                <% else @place.monday_open == false %>
-                    CLOSED
+                <% if @open_hours.key?(1) %>
+                  <%= @open_hours[1] %>
+                <% else %>
+                  CLOSED
                 <% end %>
               </td>
             </tr>
             <tr>
               <td class = "collapsing">Tuesday:</td>
               <td class="right aligned">
-                <% if @place.tuesday_open == true %>
-                  <%= @place.tuesday_open_time.strftime("%l:%M %P") %> - <%= @place.tuesday_close_time.strftime("%l:%M %P") %>
-                <% else @place.tuesday_open == false %>
+                <% if @open_hours.key?(2) %>
+                    <%= @open_hours[2] %>
+                <% else %>
                     CLOSED
                 <% end %>
               </td>
@@ -61,9 +61,9 @@
             <tr>
               <td class = "collapsing">Wednesday:</td>
               <td class="right aligned">
-                <% if @place.wednesday_open == true %>
-                  <%= @place.wednesday_open_time.strftime("%l:%M %P") %> - <%= @place.wednesday_close_time.strftime("%l:%M %P") %>
-                <% else @place.wednesday_open == false %>
+                <% if @open_hours.key?(3) %>
+                    <%= @open_hours[3] %>
+                <% else %>
                     CLOSED
                 <% end %>
               </td>
@@ -71,9 +71,9 @@
             <tr>
               <td class = "collapsing">Thursday:</td>
               <td class="right aligned">
-                <% if @place.thursday_open == true %>
-                  <%= @place.thursday_open_time.strftime("%l:%M %P") %> - <%= @place.thursday_close_time.strftime("%l:%M %P") %>
-                <% else @place.thursday_open == false %>
+                <% if @open_hours.key?(4) %>
+                    <%= @open_hours[4] %>
+                <% else %>
                     CLOSED
                 <% end %>
               </td>
@@ -81,9 +81,9 @@
             <tr>
               <td class = "collapsing">Friday:</td>
               <td class="right aligned">
-                <% if @place.friday_open == true %>
-                  <%= @place.friday_open_time.strftime("%l:%M %P") %> - <%= @place.friday_close_time.strftime("%l:%M %P") %>
-                <% else @place.friday_open == false %>
+                <% if @open_hours.key?(5) %>
+                    <%= @open_hours[5] %>
+                <% else %>
                     CLOSED
                 <% end %>
               </td>
@@ -91,9 +91,9 @@
             <tr>
               <td class = "collapsing">Saturday:</td>
               <td class="right aligned">
-                <% if @place.saturday_open == true %>
-                  <%= @place.saturday_open_time.strftime("%l:%M %P") %> - <%= @place.saturday_close_time.strftime("%l:%M %P") %>
-                <% else @place.saturday_open == false %>
+                <% if @open_hours.key?(6) %>
+                    <%= @open_hours[6] %>
+                <% else %>
                     CLOSED
                 <% end %>
               </td>
@@ -101,9 +101,9 @@
             <tr>
               <td class = "collapsing">Sunday:</td>
               <td class="right aligned">
-                <% if @place.sunday_open == true %>
-                  <%= @place.sunday_open_time.strftime("%l:%M %P") %> - <%= @place.sunday_close_time.strftime("%l:%M %P") %>
-                <% else @place.sunday_open == false %>
+                <% if @open_hours.key?(0) %>
+                    <%= @open_hours[0] %>
+                <% else %>
                     CLOSED
                 <% end %>
               </td>

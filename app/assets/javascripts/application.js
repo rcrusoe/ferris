@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require semantic-ui
 //= require typed.js
+//= require cocoon
 //= require paloma
 //= require_tree .
 

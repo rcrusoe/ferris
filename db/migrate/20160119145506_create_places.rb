@@ -7,6 +7,10 @@ class CreatePlaces < ActiveRecord::Migration
       t.string :neighborhood
       t.string :website
       t.string :phone_number
+
+
+
+
       t.boolean :monday_open
       t.time :monday_open_time
       t.time :monday_close_time

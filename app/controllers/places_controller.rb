@@ -10,6 +10,10 @@ class PlacesController < ApplicationController
   # GET /places/1
   # GET /places/1.json
   def show
+    @open_hours = Hash.new
+    @place.open_times.each do |schedule|
+      @open_hours[schedule.day] = "#{schedule.open_time.strftime('%l:%M %P')} - #{schedule.close_time.strftime('%l:%M %P')}"
+    end
   end
 
   # GET /places/new
@@ -69,6 +73,6 @@ class PlacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:name, :description, :address, :neighborhood, :website, :phone_number, :monday_open, :monday_open_time, :monday_close_time, :tuesday_open, :tuesday_open_time, :tuesday_close_time, :wednesday_open, :wednesday_open_time, :wednesday_close_time, :thursday_open, :thursday_open_time, :thursday_close_time, :friday_open, :friday_open_time, :friday_close_time, :saturday_open, :saturday_open_time, :saturday_close_time, :sunday_open, :sunday_open_time, :sunday_close_time, :image)
+      params.require(:place).permit(:name, :description, :address, :neighborhood, :website, :phone_number, :image, open_times_attributes: [:id, :day, :open_time, :close_time, :_destroy])
     end
 end
