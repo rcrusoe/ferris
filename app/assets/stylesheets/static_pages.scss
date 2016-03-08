@@ -326,8 +326,21 @@ i.icon{
 	padding: 0 !important;
 }
 
+/* Hours */
 .ui.accordion .title .dropdown.icon, .ui.accordion .accordion .title .dropdown.icon{
 	margin: 0 !important;
+}
+
+/* Associated Events */
+.ui.items > .item > .content > .header:not(.ui){
+	font-size: 1em;
+	font-weight: 200;
+	margin-top: 0.25em;
+}
+
+.ui.items > .item > .content p:last-child{
+	font-size: .875em;
+	color: rgba(0, 0, 0, 0.68);
 }
 
 /*
