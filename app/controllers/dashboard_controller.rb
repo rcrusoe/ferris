@@ -35,7 +35,7 @@ class DashboardController < ApplicationController
         @bar_chart << [key, value]
       end
     end
-    js :URL => request.original_url
+    js :URL => request.original_url # TODO: move to config file
   end
 
   # receive a period (today, this week, this month) and return key metrics to display

@@ -17,6 +17,7 @@ DashboardController.prototype.index = function() {
   var metrics; // hash from server
   loadDataFromServer();
 
+  // TODO: switch to library
   function loadDataFromServer() {
     $.ajax({
       url         : DASHBOARD_URL + "/metrics",
