@@ -1,5 +1,5 @@
 <% provide(:title, ' | Events') %>
-<%= render 'header' %>  
+<%= render 'header' %>
 <div class="ui padded grid stackable">
   <% @events.each do |event| %>
       <% if event.date.today? || event.date.future? %>
@@ -17,7 +17,7 @@
                   <% end %>
                 </div>
                 <div class="description">
-                  <%= event.short_blurb %>
+                  <%= truncate(event.short_blurb, length: 105, omission: '...') %>
                 </div>
               </div>
               <div class="extra content">

@@ -9,7 +9,7 @@
           <div class="content">
             <div class="header"><%= link_to (place.name), place %></div>
             <div class="description">
-              <%= place.description %>
+              <%= truncate(place.description, length: 105, omission: '...') %>
             </div>
           </div>
           <div class="extra content">
