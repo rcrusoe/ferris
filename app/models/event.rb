@@ -36,5 +36,5 @@ class Event < ActiveRecord::Base
 	  unless self.purchase_url.include?("http://") || self.purchase_url.include?("https://")
 	      self.purchase_url = "http://" + self.purchase_url
 	  end
-	end
+  end
 end
