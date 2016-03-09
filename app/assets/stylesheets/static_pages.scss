@@ -343,6 +343,26 @@ i.icon{
 	color: rgba(0, 0, 0, 0.68);
 }
 
+#place-events{
+	.ui.statistics > .statistic{
+		background-color: #D5DFE5; 
+		width: 80px; 
+		padding: .375em 0; 
+		margin: 0 1em 0 1.5em;
+	}
+	.header{
+		font-size: 1.125em;
+		margin: 0.25em 0 0.375em 0;
+		max-width: 250px;
+	}
+	.event-subtitle{
+		color: rgba(0,0,0,0.4);
+	}
+	.ui.statistics .statistic > .value, .ui.statistic > .value, .ui.statistics .statistic > .label, .ui.statistic > .label{
+		color: #fff;
+	}
+}
+
 /*
 *
 * new event form

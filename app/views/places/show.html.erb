@@ -9,7 +9,6 @@
       <p class="header"><%= @place.name %></p>
       <div class="description">
         <%= @place.description %>
-
       </div>
     </div>
     <div class="extra content">
@@ -36,7 +35,7 @@
         Hours
       </div>
       <div class="content">
-        <table class="ui very basic table transition hidden">
+        <table class="ui very basic unstackable table transition hidden">
           <tbody>
             <tr>
               <td class = "collapsing">Monday:</td>
@@ -112,45 +111,51 @@
         </table>
       </div>
     </div>
-    <div class="extra content ui accordion">
-      <div class="ui link items">
-        <div class="item">
-          <div class="ui statistics">
-            <div class="statistic" style="background-color: #FEE749; width: 80px; padding: .375em 0; margin-right: 2.5em;">
-              <div class="label">
-                MAR
-              </div>
-              <div class="value" style="font-size: 3em;">
-                22
-              </div>
-            </div>
-          </div>
-          <div class="content">
-            <div class="header">Stevie Feliciano what if</div>
-            <div style="margin-top: 0.5em">
-              <span style="color: rgba(0,0,0,0.4);"><i class="clock icon"></i> 7:45 pm - 12:45 am</span>
-            </div>
-          </div>
-        </div>
+    <div class="extra content ui accordion" id="place-events">
+      <div class="title">
+        <i class="dropdown icon"></i>
+        Upcoming Events
       </div>
-      <div class="ui link items">
-        <div class="item">
-          <div class="ui statistics">
-            <div class="statistic" style="background-color: #FEE749; width: 80px; padding: .375em 0; margin-right: 2.5em;">
-              <div class="label">
-                MAR
+      <div class="content">
+        <div class="ui vertical segment">
+          <a href="http://www.joinferris.com">
+            <div class="ui statistics">
+              <div class="statistic left floated">
+                <div class="label">
+                  MAR
+                </div>
+                <div class="value" style="font-size: 3em;">
+                  22
+                </div>
               </div>
-              <div class="value" style="font-size: 3em;">
-                22
+              <div>
+                <div class="header">Club Bohemia at the Cantab</div>
+                <div class="event-subtitle">
+                  Wed., 7:45 pm - 12:45 am
+                </div>
               </div>
             </div>
-          </div>
-          <div class="content">
-            <div class="header">Stevie Feliciano what if</div>
-            <div style="margin-top: 0.5em">
-              <span style="color: rgba(0,0,0,0.4);"><i class="clock icon"></i> 7:45 pm - 12:45 am</span>
+          </a>
+        </div>
+        <div class="ui vertical segment">
+          <a href="http://www.joinferris.com">
+            <div class="ui statistics">
+              <div class="statistic left floated">
+                <div class="label">
+                  MAR
+                </div>
+                <div class="value" style="font-size: 3em;">
+                  22
+                </div>
+              </div>
+              <div>
+                <div class="header">Club Bohemia at the Cantab yeah but what the title wraps</div>
+                <div class="event-subtitle">
+                  Wed., 7:45 pm - 12:45 am
+                </div>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>

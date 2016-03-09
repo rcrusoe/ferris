@@ -1,6 +1,6 @@
 <div id="new-place-form">
   <div class="ui form">
-    <%= simple_form_for @place, html: { multipart: true } do |f| %>
+    <%= form_for @place, html: { multipart: true } do |f| %>
       <%= render 'error_messages' %>
       <div class="field">
         <%= f.label :image %><br>
@@ -40,13 +40,107 @@
         <%= f.label :phone_number %>
         <%= f.text_field :phone_number, class: "ui labeled input", :placeholder => "5558675309" %>
       </div>
-      <%= f.simple_fields_for :open_times do |open_time| %>
-        <%= render 'open_time_fields', :f => open_time %>
-      <% end %>
-      <div class='field links'>
-        <%= link_to_add_association 'Add Open Hours', f, :open_times %>
+      <div class="ui segments">
+        <div class="ui segment">
+          <div class="field">
+            <%= f.label :monday_open? %><br>
+            <%= f.check_box :monday_open %>
+          </div>
+          <div class="field">
+            <%= f.label :monday_open_time %><br>
+            <%= f.time_select :monday_open_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+          <div class="field">
+            <%= f.label :monday_close_time %><br>
+            <%= f.time_select :monday_close_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="field">
+            <%= f.label :tuesday_open? %><br>
+            <%= f.check_box :tuesday_open %>
+          </div>
+          <div class="field">
+            <%= f.label :tuesday_open_time %><br>
+            <%= f.time_select :tuesday_open_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+          <div class="field">
+            <%= f.label :tuesday_close_time %><br>
+            <%= f.time_select :tuesday_close_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="field">
+            <%= f.label :wednesday_open? %><br>
+            <%= f.check_box :wednesday_open %>
+          </div>
+          <div class="field">
+            <%= f.label :wednesday_open_time %><br>
+            <%= f.time_select :wednesday_open_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+          <div class="field">
+            <%= f.label :wednesday_close_time %><br>
+            <%= f.time_select :wednesday_close_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="field">
+            <%= f.label :thursday_open? %><br>
+            <%= f.check_box :thursday_open %>
+          </div>
+          <div class="field">
+            <%= f.label :thursday_open_time %><br>
+            <%= f.time_select :thursday_open_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+          <div class="field">
+            <%= f.label :thursday_close_time %><br>
+            <%= f.time_select :thursday_close_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="field">
+            <%= f.label :friday_open? %><br>
+            <%= f.check_box :friday_open %>
+          </div>
+          <div class="field">
+            <%= f.label :friday_open_time %><br>
+            <%= f.time_select :friday_open_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+          <div class="field">
+            <%= f.label :friday_close_time %><br>
+            <%= f.time_select :friday_close_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="field">
+            <%= f.label :saturday_open? %><br>
+            <%= f.check_box :saturday_open %>
+          </div>
+          <div class="field">
+            <%= f.label :saturday_open_time %><br>
+            <%= f.time_select :saturday_open_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+          <div class="field">
+            <%= f.label :saturday_close_time %><br>
+            <%= f.time_select :saturday_close_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="field">
+            <%= f.label :sunday_open? %><br>
+            <%= f.check_box :sunday_open %>
+          </div>
+          <div class="field">
+            <%= f.label :sunday_open_time %><br>
+            <%= f.time_select :sunday_open_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+          <div class="field">
+            <%= f.label :sunday_close_time %><br>
+            <%= f.time_select :sunday_close_time, {:minute_step => 15, :ampm => true} %>
+          </div>
+        </div>
       </div>
-      <%= f.submit 'Create new place', class: 'ui blue fluid button' %>
+      <%= f.submit "Create new place", class: "ui blue fluid button" %>
     <% end %>
   </div>
 </div>
