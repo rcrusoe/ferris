@@ -4,5 +4,5 @@ class User < ActiveRecord::Base
   # devise :database_authenticatable, :registerable,
   #        :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :conversations, dependent: :destroy
+  has_many :conversations, -> { order(created_at: :asc) }, dependent: :destroy
 end
