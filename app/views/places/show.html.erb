@@ -120,7 +120,7 @@
       <div class="content">
       <% @place.future_events.each do |event| %>
         <div class="ui vertical segment">
-          <%= link_to event.website do %>
+          <%= link_to event_path(@event) do %>
             <div class="ui statistics">
               <div class="statistic left floated">
                 <div class="label">
