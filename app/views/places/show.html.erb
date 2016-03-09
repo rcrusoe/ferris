@@ -117,46 +117,28 @@
         Upcoming Events
       </div>
       <div class="content">
+      <% @place.events.each do |event| %>
         <div class="ui vertical segment">
           <a href="http://www.joinferris.com">
             <div class="ui statistics">
               <div class="statistic left floated">
                 <div class="label">
-                  MAR
+                  <%= event.date.strftime('%b') %>
                 </div>
                 <div class="value" style="font-size: 3em;">
-                  22
+                  <%= event.date.day %>
                 </div>
               </div>
               <div>
-                <div class="header">Club Bohemia at the Cantab</div>
+                <div class="header"><%= event.title %></div>
                 <div class="event-subtitle">
-                  Wed., 7:45 pm - 12:45 am
+                  <%= "#{event.date.strftime('%a')}, #{event.start_time.strftime('%l:%M %P')} - #{event.end_time.strftime('%l:%M %P')}" %>
                 </div>
               </div>
             </div>
           </a>
         </div>
-        <div class="ui vertical segment">
-          <a href="http://www.joinferris.com">
-            <div class="ui statistics">
-              <div class="statistic left floated">
-                <div class="label">
-                  MAR
-                </div>
-                <div class="value" style="font-size: 3em;">
-                  22
-                </div>
-              </div>
-              <div>
-                <div class="header">Club Bohemia at the Cantab yeah but what the title wraps</div>
-                <div class="event-subtitle">
-                  Wed., 7:45 pm - 12:45 am
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
+      <% end %>
       </div>
     </div>
   </div>
