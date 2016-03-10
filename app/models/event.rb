@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   before_save :sanitize_urls
   after_save :generate_recurrences
 
-  has_many :occurrences, -> { order(date: :asc) }
+  has_many :occurrences, -> { order(date: :asc) }, dependent: :destroy
   belongs_to :place
 
   serialize :recurrence, Hash
@@ -49,13 +49,20 @@ class Event < ActiveRecord::Base
       Occurrence.where('event_id = ? AND date >= ?', self.id, Date.current).delete_all
 
       # schedule events for the next month
+      # TODO: make instance variable with schedule instance to avoid repeat instantiation
       schedule = IceCube::Schedule.new
       schedule.add_recurrence_rule(self.recurrence)
       schedule.occurrences(Time.current + 1.month).each do |o|
         Occurrence.create(event: self,
                           date: o.to_date)
       end
+    else
+      Occurrence.create(event: self, date: self.date)
     end
+  end
+
+  def recurring?
+    self.recurrence
   end
 
 	# index search properties
@@ -71,5 +78,6 @@ class Event < ActiveRecord::Base
     unless self.purchase_url.include?('http://') || self.purchase_url.include?('https://')
       self.purchase_url = 'http://' + self.purchase_url
     end
-	end
+  end
+
 end
