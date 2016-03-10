@@ -7,11 +7,15 @@ class EventsController < ApplicationController
     if Rails.env.production?
       authenticate
     end
+
     if params[:search]
-      @events = Event.search(params[:search]).order('events.date, events.start_time')
+      events = Event.search(params[:search])
     else
-      @events = Event.all.order('events.date, events.start_time')
+      events = Event.all
     end
+
+    # TODO: will this be efficient for 500+ events?
+    @event_instances = events.map { |e| e.occurrences }.flatten!.sort_by(&:date)
   end
 
   # GET /events/1

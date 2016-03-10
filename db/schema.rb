@@ -71,8 +71,6 @@ ActiveRecord::Schema.define(version: 20160309225807) do
   create_table "occurrences", force: :cascade do |t|
     t.integer  "event_id"
     t.date     "date"
-    t.time     "start_time"
-    t.time     "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -53,9 +53,7 @@ class Event < ActiveRecord::Base
       schedule.add_recurrence_rule(self.recurrence)
       schedule.occurrences(Time.current + 1.month).each do |o|
         Occurrence.create(event: self,
-                          date: o.to_date,
-                          start_time: self.start_time,
-                          end_time: self.end_time)
+                          date: o.to_date)
       end
     end
   end

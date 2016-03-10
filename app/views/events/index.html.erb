@@ -1,35 +1,35 @@
 <% provide(:title, ' | Events') %>
 <%= render 'header' %>
 <div class="ui padded grid stackable">
-  <% @events.each do |event| %>
-      <% if event.date.today? || event.date.future? %>
+  <% @event_instances.each do |instance| %>
+      <% if instance.date.today? || instance.date.future? %>
         <div class="four wide column">
           <div class="ui cards preview-card">
             <div class="card">
-              <%= link_to image_tag(event.image.url(:banner), class: "index-image"), event %>
+              <%= link_to image_tag(instance.event.image.url(:banner), class: "index-image"), instance.event %>
               <div class="content">
-                <div class="header"><%= link_to (event.title), event %></div>
+                <div class="header"><%= link_to (instance.event.title), instance.event %></div>
                 <div class="meta">
-                  <% if event.date.today? %>
-                    Today, <%= event.start_time.strftime("%l:%M%P") %> - <%= event.end_time.strftime("%l:%M%P") %>
-                  <% else event.date.today? %>
-                    <%= event.date.strftime("%a. %m/%d") %>, <%= event.start_time.strftime("%l:%M%P") %> - <%= event.end_time.strftime("%l:%M%P") %>
+                  <% if instance.date.today? %>
+                    Today, <%= instance.event.start_time.strftime("%l:%M%P") %> - <%= instance.event.end_time.strftime("%l:%M%P") %>
+                  <% else instance.date.today? %>
+                    <%= instance.date.strftime("%a. %m/%d") %>, <%= instance.event.start_time.strftime("%l:%M%P") %> - <%= instance.event.end_time.strftime("%l:%M%P") %>
                   <% end %>
                 </div>
                 <div class="description">
-                  <%= truncate(event.short_blurb, length: 105, omission: '...') %>
+                  <%= truncate(instance.event.short_blurb, length: 105, omission: '...') %>
                 </div>
               </div>
               <div class="extra content">
                 <span class="right floated">
-                  <button class="ui mini basic labeled icon button copy-to-clipboard" data-clipboard-text="<%= event.short_blurb %> More info here: www.joinferris.com/events/<%= event.id %>">
+                  <button class="ui mini basic labeled icon button copy-to-clipboard" data-clipboard-text="<%= instance.event.short_blurb %> More info here: www.joinferris.com/events/<%= instance.event_id %>">
                     <i class="copy icon"></i>
                     Copy
                   </button>
                 </span>
                 <span>
                   <i class="globe icon"></i>
-                  <%= event.neighborhood %>
+                  <%= instance.event.neighborhood %>
                 </span>
               </div>
             </div>
