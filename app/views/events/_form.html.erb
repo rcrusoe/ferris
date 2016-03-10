@@ -44,8 +44,8 @@
         <%= f.time_select :end_time, {:minute_step => 15, :ampm => true} %>
       </div>
       <div class="field">
-        <%= f.label :repeat_weekly %><br>
-        <%= f.check_box :repeat_weekly %>
+        <%= f.label :recurrence %><br>
+        <%= f.select_recurring :recurrence %>
       </div>
       <div class="field">
         <%= f.label 'Place'%><br>

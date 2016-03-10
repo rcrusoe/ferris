@@ -30,9 +30,12 @@ DashboardController.prototype.index = function() {
       success     : function (response) {
 
         metrics = $.parseJSON(response);
-        $('#conversations_over_period').text(metrics['conversations']);
-        $('#users_over_period').text(metrics['new_users']);
-        $('#repeat_users_over_period').text(metrics['repeat_users']);
+        var count1 = new CountUp("conversations_over_period", $('#conversations_over_period').text(), metrics['conversations'], 0, 2);
+        var count2 = new CountUp("users_over_period", $('#users_over_period').text(), metrics['new_users'], 0, 2);
+        var count3 = new CountUp("repeat_users_over_period", $('#repeat_users_over_period').text(), metrics['repeat_users'], 0, 2);
+        count1.start();
+        count2.start();
+        count3.start();
         drawLifetimeGraph();
       }
     });

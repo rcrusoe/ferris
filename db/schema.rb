@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308164129) do
+ActiveRecord::Schema.define(version: 20160309225807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20160308164129) do
     t.string   "short_blurb"
     t.boolean  "repeat_weekly"
     t.integer  "place_id"
+    t.text     "recurrence"
   end
 
   add_index "events", ["place_id"], name: "index_events_on_place_id", using: :btree
@@ -66,6 +67,17 @@ ActiveRecord::Schema.define(version: 20160308164129) do
   end
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+
+  create_table "occurrences", force: :cascade do |t|
+    t.integer  "event_id"
+    t.date     "date"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "occurrences", ["event_id"], name: "index_occurrences_on_event_id", using: :btree
 
   create_table "open_times", force: :cascade do |t|
     t.integer  "place_id"
@@ -122,5 +134,6 @@ ActiveRecord::Schema.define(version: 20160308164129) do
   add_foreign_key "conversations", "users"
   add_foreign_key "events", "places"
   add_foreign_key "messages", "conversations"
+  add_foreign_key "occurrences", "events"
   add_foreign_key "open_times", "places"
 end

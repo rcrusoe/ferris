@@ -15,8 +15,10 @@
 //= require turbolinks
 //= require semantic-ui
 //= require typed.js
+//= require countUp.js
 //= require cocoon
 //= require paloma
+//= require recurring_select
 //= require_tree .
 
 $(document).ready(function(){

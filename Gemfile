@@ -46,8 +46,10 @@ gem 'active_model_serializers', '0.9.0'
 # http requests made easy
 gem 'rest-client'
 
-# group activerecord queries by date
+# date related
 gem 'groupdate'
+gem 'ice_cube'
+gem 'recurring_select'
 
 # better forms
 gem 'simple_form'
