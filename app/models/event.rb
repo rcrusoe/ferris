@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
-	before_save :sanitize_website, :sanitize_purchase_url
-  after_create :generate_recurrences
+  before_save :sanitize_urls
+  after_save :generate_recurrences
 
   has_many :occurrences, -> { order(date: :asc) }
   belongs_to :place
@@ -29,9 +29,7 @@ class Event < ActiveRecord::Base
   def recurrence=(new_rule)
     if RecurringSelect.is_valid_rule?(new_rule)
       rule = RecurringSelect.dirty_hash_to_rule(new_rule).to_hash
-      s = IceCube::Schedule.new(now = Time.current.beginning_of_day)
-      s.add_recurrence_rule(rule)
-      write_attribute(:recurrence, s.to_hash)
+      write_attribute(:recurrence, rule)
     else
       write_attribute(:recurrence, nil)
     end
@@ -39,37 +37,41 @@ class Event < ActiveRecord::Base
 
   # custom getter to convert hash into schedule
   def recurrence
-    schedule = IceCube::Schedule.from_hash(read_attribute(:recurrence))
-    schedule.start_time = Time.current.beginning_of_day
-    schedule
+    unless read_attribute(:recurrence).empty?
+      IceCube::Rule.from_hash(read_attribute(:recurrence))
+    end
   end
 
-  # create occurrences for repeating events
+  # on creation or update, generate event instances
   def generate_recurrences
-    # get a list of all occurrences for the next 30 days
-    # for each occurrence
-      # create with the date, grab start and end time from base object
-  end
+    unless read_attribute(:recurrence).empty?
+      # remove all already scheduled occurrences in the future
+      Occurrence.where('event_id = ? AND date >= ?', self.id, Date.current).delete_all
 
-  # convert hash to schedule object when accessing attribute
-  # def recurrence
-  #
-  # end
+      # schedule events for the next month
+      schedule = IceCube::Schedule.new
+      schedule.add_recurrence_rule(self.recurrence)
+      schedule.occurrences(Time.current + 1.month).each do |o|
+        Occurrence.create(event: self,
+                          date: o.to_date,
+                          start_time: self.start_time,
+                          end_time: self.end_time)
+      end
+    end
+  end
 
 	# index search properties
 	def self.search(search)
-	  where("title || description || date || neighborhood ILIKE ?", "%#{search}%")
+	  where('title || description || date || neighborhood ILIKE ?', "%#{search}%")
 	end
 
-	def sanitize_website
-	  unless self.website.include?("http://") || self.website.include?("https://")
-	      self.website = "http://" + self.website
-	  end
-	end
+	def sanitize_urls
+	  unless self.website.include?('http://') || self.website.include?('https://')
+	      self.website = 'http://' + self.website
+    end
 
-	def sanitize_purchase_url
-	  unless self.purchase_url.include?("http://") || self.purchase_url.include?("https://")
-	      self.purchase_url = "http://" + self.purchase_url
-	  end
-  end
+    unless self.purchase_url.include?('http://') || self.purchase_url.include?('https://')
+      self.purchase_url = 'http://' + self.purchase_url
+    end
+	end
 end
