@@ -41,9 +41,19 @@
     <div class="extra content">
       <a href="<%= @event.purchase_url %>" target="_blank">
         <i class="dollar icon"></i>
+        <% if @event.price == 0 %>
+          Free
+        <% else %>
         $<%= @event.price %> entry fee
+        <% end %>
       </a>
     </div>
+    <% unless @event.place.nil? %>
+      <div class="extra content">
+        <i class="calendar icon"></i>
+            <%= link_to 'View All Events At This Venue', place_path(@event.place) %>
+      </div>
+    <% end %>
     <form action="<%= @event.purchase_url %>" target="_blank">
       <button class="ui blue fluid button" type="submit">
         Book Now
