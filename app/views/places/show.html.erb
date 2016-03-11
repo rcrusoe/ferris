@@ -118,22 +118,22 @@
         Upcoming Events
       </div>
       <div class="content">
-      <% @place.future_events.each do |event| %>
+      <% @place.future_events.each do |instance| %>
         <div class="ui vertical segment">
-          <%= link_to event_path(event) do %>
+          <%= link_to event_path(instance.event) do %>
             <div class="ui statistics">
               <div class="statistic left floated">
                 <div class="label">
-                  <%= event.date.strftime('%b') %>
+                  <%= instance.date.strftime('%b') %>
                 </div>
                 <div class="value" style="font-size: 3em;">
-                  <%= event.date.day %>
+                  <%= instance.date.day %>
                 </div>
               </div>
               <div>
-                <div class="header"><%= event.title %></div>
+                <div class="header"><%= instance.event.title %></div>
                 <div class="event-subtitle">
-                  <%= "#{event.date.strftime('%a')}, #{event.start_time.strftime('%l:%M %P')} - #{event.end_time.strftime('%l:%M %P')}" %>
+                  <%= "#{instance.date.strftime('%a')}, #{instance.event.start_time.strftime('%l:%M %P')} - #{instance.event.end_time.strftime('%l:%M %P')}" %>
                 </div>
               </div>
             </div>

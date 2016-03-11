@@ -25,11 +25,7 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    if params[:id]
-      @event = Event.find(params[:id]).dup
-    else
-      @event = Event.new
-    end
+    @event = Event.new
     js :URL => request.base_url
   end
 
@@ -44,13 +40,8 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     respond_to do |format|
       if @event.save
-        if params[:addDate]
-          format.html { redirect_to controller: 'events', action: 'new', id: @event.id }
-          format.json { render :show, status: :created, location: @event }
-        else
-          format.html { redirect_to @event, notice: 'Event was successfully created.' }
-          format.json { render :show, status: :created, location: @event }
-        end
+        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
