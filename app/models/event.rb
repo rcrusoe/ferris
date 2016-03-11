@@ -61,10 +61,6 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def recurring?
-    self.recurrence
-  end
-
 	# index search properties
 	def self.search(search)
 	  where('title || description || date || neighborhood ILIKE ?', "%#{search}%")

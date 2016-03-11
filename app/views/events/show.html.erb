@@ -8,7 +8,7 @@
     <div class="content">
       <p class="header"><%= @event.title %></p>
       <div class="meta">
-        <% if @event.recurring? %>
+        <% if @event.recurrence? %>
           <span class="date"><i class="calendar icon"></i> <%= @event.recurrence.to_s %></span>
         <% elsif @event.date.today? %>
           <span class="date"><i class="calendar icon"></i> Today</span>

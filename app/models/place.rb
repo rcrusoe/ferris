@@ -27,8 +27,6 @@ class Place < ActiveRecord::Base
   end
 
   def future_events
-    ap Event.where(place: self)
-    events.map { |e| e.occurrences }.flatten!.sort_by(&:date)
     events = []
     Event.where(place: self).each do |e|
       events << e.occurrences.where(date: Date.current..2.weeks.from_now)
