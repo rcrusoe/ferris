@@ -27,10 +27,10 @@ class Place < ActiveRecord::Base
   end
 
   def future_events
-    events = []
+    instances = []
     Event.where(place: self).each do |e|
-      events << e.occurrences.where(date: Date.current..2.weeks.from_now)
+      instances << e.occurrences.where(date: Date.current..2.weeks.from_now)
     end
-    events.flatten!.sort_by(&:date) unless events.empty?
+    instances.flatten!.sort_by(&:date) unless instances.empty?
   end
 end
