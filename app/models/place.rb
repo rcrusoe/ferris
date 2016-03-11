@@ -31,6 +31,6 @@ class Place < ActiveRecord::Base
     Event.where(place: self).each do |e|
       events << e.occurrences.where(date: Date.current..2.weeks.from_now)
     end
-    events.flatten!.sort_by(&:date)
+    events.flatten!.sort_by(&:date) unless events.empty?
   end
 end
