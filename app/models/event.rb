@@ -53,8 +53,7 @@ class Event < ActiveRecord::Base
       schedule = IceCube::Schedule.new
       schedule.add_recurrence_rule(self.recurrence)
       schedule.occurrences(Time.current + 1.month).each do |o|
-        Occurrence.create(event: self,
-                          date: o.to_date)
+        Occurrence.create(event: self, date: o.to_date)
       end
     else
       Occurrence.create(event: self, date: self.date)

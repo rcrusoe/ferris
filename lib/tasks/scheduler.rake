@@ -1,37 +1,18 @@
-desc 'This task is called by the Heroku scheduler add-on'
+desc 'This task is called by the Heroku scheduler add-on nightly, but only executes once a month'
 task :schedule_events => :environment do
-  WEEKS_TO_GENERATE = 1
-  puts 'Generating recurring events...'
-  events = Event.where(repeat_weekly: true, date: Date.current)
-  events.each do |event|
-    WEEKS_TO_GENERATE.times do |n|
-      future_event = event.dup
-      future_event.date += (n + 1).week
-      # only save the event for the next week if it does not already exist
-      if Event.where(title: future_event.title, date: future_event.date).count == 0
-        future_event.save
-        future_event.copy_attachments_from(event) # custom patch for copying S3 bucket images
+  count = 0
+  if Date.current == Date.current.end_of_month
+    Event.where.not(recurrence: nil).each do |event|
+      schedule = IceCube::Schedule.new
+      schedule.add_recurrence_rule(event.recurrence)
+      # schedule events for the next month if they do not already exist
+      schedule.occurrences(Time.current + 1.month).each do |o|
+        Occurrence.where(event: event, date: o.to_date).first_or_create do |occurrence|
+          count += 1
+          ap occurrence
+        end
       end
     end
+    puts "#{count} event occurrences generated for #{Date.current..Date.current + 1.month}"
   end
-  puts "#{events.count} events repeated"
-end
-
-task :schedule_events_now => :environment do
-  WEEKS_TO_GENERATE = 1
-  puts 'Generating recurring events...'
-  events = Event.where(repeat_weekly: true)
-  events.each do |event|
-    WEEKS_TO_GENERATE.times do |n|
-      future_event = event.dup
-      future_event.date += (n + 1).week
-      # only save the event for the next week if it does not already exist
-      if Event.where(title: future_event.title, date: future_event.date).count == 0
-        future_event.save
-        future_event.copy_attachments_from(event) # custom patch for copying S3 bucket images
-        ap future_event
-      end
-    end
-  end
-  puts "#{events.count} events repeated"
 end

@@ -8,8 +8,7 @@ namespace :refactor do
         schedule = IceCube::Schedule.new
         schedule.add_recurrence_rule(event.recurrence)
         schedule.occurrences(Time.current + 1.month).each do |o|
-          Occurrence.create(event: event,
-                            date: o.to_date)
+          Occurrence.create(event: event, date: o.to_date)
         end
         event.save
       else
