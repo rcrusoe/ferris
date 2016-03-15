@@ -15,7 +15,7 @@ class EventsController < ApplicationController
     end
 
     # TODO: will this be efficient for 500+ events?
-    @event_instances = events.map { |e| e.occurrences }.flatten!.sort_by(&:date)
+    @event_instances = events.map { |e| e.occurrences }.flatten!.sort_by {|o| [o.date, o.event.start_time]}
   end
 
   # GET /events/1
