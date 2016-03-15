@@ -44,10 +44,10 @@ class Event < ActiveRecord::Base
 
   # on creation or update, generate event instances
   def generate_recurrences
+    # remove all already scheduled occurrences in the future
+    Occurrence.where('event_id = ? AND date >= ?', self.id, Date.current).delete_all
+    
     unless read_attribute(:recurrence).empty?
-      # remove all already scheduled occurrences in the future
-      Occurrence.where('event_id = ? AND date >= ?', self.id, Date.current).delete_all
-
       # schedule events for the next month
       # TODO: make instance variable with schedule instance to avoid repeat instantiation
       schedule = IceCube::Schedule.new
