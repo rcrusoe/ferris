@@ -7,8 +7,8 @@ class Place < ActiveRecord::Base
 
   # form validations
   validates :name, presence: true
-  validates :description, presence: true
-  validates :address, presence: true
+  # validates :description, presence: true
+  # validates :address, presence: true
   #validate :event_date_cannot_be_in_the_past
   #validate :event_end_time_cannot_be_before_start_time
 
