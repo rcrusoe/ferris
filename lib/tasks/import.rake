@@ -4,6 +4,9 @@ namespace :import do
     RestClient.log = 'stdout'
     FACEBOOK_URL = 'https://graph.facebook.com/search'
     APP_TOKEN = '1234616279893134|Eu-Wn_GvsmTTwJdO3prt61YSu1I'
+    PLACE_FIELDS = 'id,category_list,name,link,description,likes,checkins,hours'
+    EVENT_FIELDS = 'events.fields(id,name,category,description,ticket_uri,type,cover.fields(id,source),start_time,attending_count,'\
+            'declined_count,maybe_count,noreply_count).since(' + Time.current.to_i.to_s + ').until(' + (Time.current + 1.month).to_i.to_s + ')'
 
     CATEGORIES = ['gallery']
                   # 'history',
@@ -45,14 +48,13 @@ namespace :import do
 
   # returns a JSON conversation list from front
   def search(query)
-    events_str = 'events.fields(id,name,category,description,ticket_uri,type,cover.fields(id,source),start_time,attending_count,'\
-            'declined_count,maybe_count,noreply_count).since(' + Time.current.to_i.to_s + ').until(' + (Time.current + 1.month).to_i.to_s + ')'
-    url = FACEBOOK_URL+"?q=#{query}&type=page&fields=id,category_list,name,link,description,likes,checkins,hours,#{events_str}&limit=500&access_token=#{APP_TOKEN}"
+    url = FACEBOOK_URL+"?q=#{query}&type=page&fields=#{PLACE_FIELDS},#{EVENT_FIELDS}&limit=500&access_token=#{APP_TOKEN}"
 
     # loop over each page of responses
     loop do
       response = RestClient.get url, {accept: :json}
       json = JSON(response)
+      ap json
       deserialize(json['data'])
 
       if json.key?('next')
@@ -77,7 +79,7 @@ namespace :import do
       # place.image = json['cover']
       place.save
       $places << place
-      ap place
+      # ap place
 
       # create events
       if json.key?('events')
@@ -92,7 +94,7 @@ namespace :import do
           event.place = place
           # event.save
           $events << event
-          ap event
+          # ap event
         end
       end
 
