@@ -15,7 +15,7 @@
         <%= f.file_field :image, html: { class: 'form-control' } %>
         <% if f.object.image? %>
             <br />
-            <%= image_tag(f.object.image.url(:small)) %><br />
+            <%= image_tag(f.object.image.url(:medium)) %><br />
             <em>Currently Uploaded Image</em>
         <% end %>
       </div>

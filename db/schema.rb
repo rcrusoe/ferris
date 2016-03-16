@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314153050) do
+ActiveRecord::Schema.define(version: 20160316173156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,9 +50,10 @@ ActiveRecord::Schema.define(version: 20160314153050) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.string   "short_blurb"
+    t.text     "short_blurb"
     t.integer  "place_id"
     t.text     "recurrence"
+    t.boolean  "approved"
   end
 
   add_index "events", ["place_id"], name: "index_events_on_place_id", using: :btree
@@ -94,12 +95,20 @@ ActiveRecord::Schema.define(version: 20160314153050) do
     t.string   "neighborhood"
     t.string   "website"
     t.string   "phone_number"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "fb_id"
+    t.integer  "fb_likes"
+    t.integer  "fb_checkins"
+    t.boolean  "approved",           default: true
+    t.string   "email"
+    t.text     "fb_link"
+    t.string   "price_range"
+    t.text     "about"
   end
 
   create_table "tags", force: :cascade do |t|
