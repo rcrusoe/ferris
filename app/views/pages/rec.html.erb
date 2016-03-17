@@ -1,0 +1,121 @@
+<div class="ui secondary fluid one item menu">
+  <a class="item" href="http://www.joinferris.com/">
+    <%= image_tag("face.png", :class => "ui centered image mini") %>
+  </a>
+</div>
+
+<div class="ui grid stackable" id="rec">
+	<div class="six wide column computer only tablet only">
+		
+	</div>
+	<div class="four wide column">
+		<p>
+			Allison said:
+		</p>
+		<p class="user-request">
+			It's for a second date. We both like music a lot and booze. No improv acting, outside is iffy since it's supposed to be cold and rainy/snowy. Pretty much open for anything! I'm new in Boston
+		</p>
+		<h3>
+			Recommend One Option
+		</h3>
+		<div id="shuffle">
+           	<div class="ui cards preview-card">
+	            <div class="card">
+	            	<%= image_tag("paella.jpeg", :class => "index-image") %>
+	              	<div class="content">
+	                <div class="header">Paella and Spanish Wines</div>
+	                <div class="meta">
+	                	Today
+	                </div>
+	                <div class="description">
+	                	Dave's Fresh Pasta is hosting an evening of wine tasting and delicious food.
+	                </div>
+	              </div>
+	              <div class="extra content"> 
+	                <span class="right floated">
+	                  <button class="ui mini teal basic labeled icon button">
+	                    <i class="thumbs outline up icon"></i>
+	                    Recommend
+	                  </button>
+	                </span>
+	                <span>
+	                  <i class="globe icon"></i>
+	                  Davis Square
+	                </span>
+	              </div>
+	            </div>
+	        </div>
+			<div class="ui cards preview-card">
+	            <div class="card">
+	            	<%= image_tag("cantab.jpeg", :class => "index-image") %>
+	              	<div class="content">
+	                <div class="header">Club Bohemia at the Cantab</div>
+	                <div class="meta">
+	                	Today
+	                </div>
+	                <div class="description">
+	                	The Cantab hosts some dance-worthy modern funk every Thursday night.
+	                </div>
+	              </div>
+	              <div class="extra content"> 
+	                <span class="right floated">
+	                  <button class="ui mini teal basic labeled icon button">
+	                    <i class="thumbs outline up icon"></i>
+	                    Recommend
+	                  </button>
+	                </span>
+	                <span>
+	                  <i class="globe icon"></i>
+	                  Central Square
+	                </span>
+	              </div>
+	            </div>
+	        </div>
+			<div class="ui cards preview-card">
+	            <div class="card">
+	            	<%= image_tag("andrew.jpg", :class => "index-image") %>
+	              	<div class="content">
+	                <div class="header">Andrew DiMarzo, Zion Rodman, Ray Hendricks</div>
+	                <div class="meta">
+	                	Today
+	                </div>
+	                <div class="description">
+	                	There's a low key concert at a small art gallery in Cambridge.
+	                </div>
+	              </div>
+	              <div class="extra content"> 
+	                <span class="right floated">
+	                  <button class="ui mini teal basic labeled icon button">
+	                    <i class="thumbs outline up icon"></i>
+	                    Recommend
+	                  </button>
+	                </span>
+	                <span>
+	                  <i class="globe icon"></i>
+	                  Central Square
+	                </span>
+	              </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="six wide column computer only tablet only">
+		
+	</div>
+</div>
+
+<script>
+	// Randomly sort options
+	$(function () {
+	    var parent = $("#shuffle");
+	    var divs = parent.children();
+	    while (divs.length) {
+	        parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+	    }
+	});
+
+	// Change button styling on click.
+	$("button").click(function(){
+	    $(this).toggleClass("basic");
+	});
+</script>

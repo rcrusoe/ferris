@@ -248,6 +248,28 @@ i.icon{
 
 /*
 *
+* rec test page
+*
+*/
+
+#rec{
+	h3{
+		margin-top: 1em !important; 
+		text-align: center;
+	}
+	.user-request{
+		font-size: 1.5em;
+		padding: 1em;
+		border-radius: 1em;
+		display: block;
+		margin-top: 1em;
+		width: 100%;
+		background-color: #E6E5EB;
+	}
+}
+
+/*
+*
 * dashboard
 *
 */
