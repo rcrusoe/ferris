@@ -12,7 +12,7 @@
                 <div class="meta">
                   <% if instance.date.today? %>
                       Today, <%= instance.event.start_time.strftime("%l:%M%P") %>
-                      <%= '- '+@event.end_time.strftime("%l:%M %P") unless instance.event.end_time.nil? %>
+                      <%= '- '+instance.event.end_time.strftime("%l:%M %P") unless instance.event.end_time.nil? %>
                   <% else instance.date.today? %>
                       <%= instance.date.strftime("%a. %m/%d") %>,
                       <%= instance.event.start_time.strftime("%l:%M%P") %>
@@ -20,7 +20,7 @@
                   <% end %>
                 </div>
                 <div class="description">
-                  <%= truncate(instance.event.short_blurb, length: 105, omission: '...') %>
+                  <%= truncate(instance.event.short_blurb, length: 105, seperator: ' ', omission: '...') %>
                 </div>
               </div>
               <div class="extra content">

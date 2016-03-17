@@ -17,8 +17,8 @@
         <% end %>
         <br>
         <span class="date"><i class="wait icon"></i>
-          <%= @event.start_time.strftime("%l:%M %P") %>
-          <%= '- '+@event.end_time.strftime("%l:%M %P") unless @event.end_time.nil? %></span>
+          <%= @event.start_time.strftime("%l:%M%P") %>
+          <%= '- '+@event.end_time.strftime("%l:%M%P") unless @event.end_time.nil? %></span>
       </div>
       <div class="description">
         <%= @event.description %>

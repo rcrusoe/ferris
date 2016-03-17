@@ -2,7 +2,7 @@ namespace :import do
   desc 'Import events from Facebook'
   task :facebook => :environment do
     RestClient.log = 'stdout'
-    LIMIT = 5
+    LIMIT = 5000
     EVENT_DATE_RANGE = 2.weeks
     FACEBOOK_URL = 'https://graph.facebook.com/search'
     APP_TOKEN = '1234616279893134|Eu-Wn_GvsmTTwJdO3prt61YSu1I'
@@ -10,22 +10,22 @@ namespace :import do
     EVENT_FIELDS = 'events.fields(id,name,link,description,ticket_uri,cover.fields(id,source),start_time,end_time,attending_count,'\
     'maybe_count,interested_count).since(' + Time.current.to_i.to_s + ').until(' + (Time.current + EVENT_DATE_RANGE).to_i.to_s + ')'
 
-    CATEGORIES = ['concert venue']
-                  # 'history',
-                  # 'art',
-                  # 'concert venues',
+    CATEGORIES = ['concert venue',
+                  'gallery',
+                  'art',
+                  'outdoors',
                   # 'sports',
                   # 'bars',
                   # 'restaurants',
                   # 'grill',
-                  # 'museums']
+                  'music']
 
-    PLACES = ['boston']
-              # 'boston massachusetts',
-              # 'cambridge massachusetts',
-              # 'somerville massachusetts',
-              # 'south end boston',
-              # 'back bay boston']
+    PLACES = ['boston',
+              'boston massachusetts',
+              'cambridge massachusetts',
+              'somerville massachusetts',
+              'south end boston',
+              'back bay boston']
 
     $places = []
     $events = []
@@ -65,8 +65,8 @@ namespace :import do
   # converts a list of facebook place data to ActiveRecord Models
   def deserialize(list)
     list.each do |json|
-      # TODO: do we want to update places? if so don't skip, first_or_create
-      next if Place.where(fb_id: json['id']).present?
+      # skip place if already exists or has no events
+      next if Place.where(fb_id: json['id']).present? || json['events'].nil?
 
       # sanitize and check for fields
       email = json['emails'].first if json.key?('emails')
@@ -86,7 +86,7 @@ namespace :import do
                         fb_checkins: json['checkins'],
                         fb_link: json['link'],
                         website: sanitize(json['website']),
-                        email:sanitize(email),
+                        email: sanitize(email),
                         phone_number: sanitize(json['phone']),
                         price_range: json['price_range'],
                         approved: false)
@@ -101,15 +101,18 @@ namespace :import do
       # create events
       if json.key?('events')
         $places_with_events += 1
+
         json['events']['data'].each do |json_event|
-          # next if Event.where(fb_id: json_event['id']).present?
+          next if Event.where(fb_id: json_event['id']).present?
+
           # sanitize fields
-          start_time = json_event['start_time'].to_time if json_event.key?('start_time')
-          end_time = json_event['end_time'].to_time if json_event.key?('end_time')
+          start_time = DateTime.strptime(json_event['start_time'],'%Y-%m-%dT%H:%M:%S').in_time_zone.to_time if json_event.key?('start_time')
+          end_time = DateTime.strptime(json_event['end_time'],'%Y-%m-%dT%H:%M:%S').in_time_zone.to_time if json_event.key?('end_time')
 
           event = Event.new(fb_id: json_event['id'],
                             title: json_event['name'].downcase!.titleize,
                             description: json_event['description'],
+                            short_blurb: json_event['description'],
                             website: "https://www.facebook.com/events/#{json_event['id']}",
                             purchase_url: json_event['ticket_uri'],
                             date: json_event['start_time'].to_date,
