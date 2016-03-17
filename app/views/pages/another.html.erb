@@ -23,6 +23,7 @@
 		<button class="ui teal fluid button" style="margin: 2em 0;" id="another-button">
 		  Show Another
 		</button>
+    </div>
 	<div class="six wide column computer only tablet only">
 		
 	</div>
@@ -33,5 +34,6 @@
 	    $("#error-message").removeClass("hidden");
 	    $("#another-button").addClass("hidden");
 	    $(".thankyou").addClass("hidden");
+        ga('send', 'event', 'button', 'click', 'another');
 	});
 </script>

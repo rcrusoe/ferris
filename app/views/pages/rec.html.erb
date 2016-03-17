@@ -1,6 +1,6 @@
 <div class="ui secondary fluid one item menu">
   <a class="item" href="http://www.joinferris.com/">
-    <%= image_tag("face.png", :class => "ui centered image mini") %>
+    <%= image_tag('face.png', :class => 'ui centered image mini') %>
   </a>
 </div>
 
@@ -19,84 +19,84 @@
 			Recommend One Option
 		</h3>
 		<div id="shuffle">
-           	<div class="ui cards preview-card">
-	            <div class="card">
-	            	<%= image_tag("paella.png", :class => "index-image") %>
-	              	<div class="content">
-	                <div class="header">Paella and Spanish Wines</div>
-	                <div class="meta">
-	                	Today
-	                </div>
-	                <div class="description">
-	                	Dave's Fresh Pasta is hosting an evening of wine tasting and delicious food.
-	                </div>
-	              </div>
-	              <div class="extra content"> 
+          <%= link_to another_path, :id => '1', :class => 'ui cards preview-card' do %>
+              <div class="card">
+                <%= image_tag('paella.png', :class => 'index-image') %>
+                <div class="content">
+                  <div class="header">Paella and Spanish Wines</div>
+                  <div class="meta">
+                    Today
+                  </div>
+                  <div class="description">
+                    Dave's Fresh Pasta is hosting an evening of wine tasting and delicious food.
+                  </div>
+                </div>
+                <div class="extra content">
 	                <span class="right floated">
 	                  <button class="ui mini teal basic labeled icon button">
-	                    <i class="thumbs outline up icon"></i>
-	                    Recommend
-	                  </button>
+                        <i class="thumbs outline up icon"></i>
+                        Recommend
+                      </button>
 	                </span>
 	                <span>
 	                  <i class="globe icon"></i>
 	                  Davis Square
 	                </span>
-	              </div>
-	            </div>
-	        </div>
-			<div class="ui cards preview-card">
-	            <div class="card">
-	            	<%= image_tag("cantab.png", :class => "index-image") %>
-	              	<div class="content">
-	                <div class="header">Club Bohemia at the Cantab</div>
-	                <div class="meta">
-	                	Today
-	                </div>
-	                <div class="description">
-	                	The Cantab hosts some dance-worthy modern funk every Thursday night.
-	                </div>
-	              </div>
-	              <div class="extra content"> 
+                </div>
+              </div>
+          <% end %>
+          <%= link_to another_path, :id => '2', :class => 'ui cards preview-card' do %>
+              <div class="card">
+                <%= image_tag("cantab.png", :class => "index-image") %>
+                <div class="content">
+                  <div class="header">Club Bohemia at the Cantab</div>
+                  <div class="meta">
+                    Today
+                  </div>
+                  <div class="description">
+                    The Cantab hosts some dance-worthy modern funk every Thursday night.
+                  </div>
+                </div>
+                <div class="extra content">
 	                <span class="right floated">
 	                  <button class="ui mini teal basic labeled icon button">
-	                    <i class="thumbs outline up icon"></i>
-	                    Recommend
-	                  </button>
+                        <i class="thumbs outline up icon"></i>
+                        Recommend
+                      </button>
 	                </span>
 	                <span>
 	                  <i class="globe icon"></i>
 	                  Central Square
 	                </span>
-	              </div>
-	            </div>
-	        </div>
-			<div class="ui cards preview-card">
-	            <div class="card">
-	            	<%= image_tag("andrew.png", :class => "index-image") %>
-	              	<div class="content">
-	                <div class="header">Andrew DiMarzo, Zion Rodman, Ray Hendricks</div>
-	                <div class="meta">
-	                	Today
-	                </div>
-	                <div class="description">
-	                	There's a low key concert at a small art gallery in Cambridge.
-	                </div>
-	              </div>
-	              <div class="extra content"> 
+                </div>
+              </div>
+          <% end %>
+          <%= link_to another_path, :id => '3', :class => 'ui cards preview-card' do %>
+              <div class="card">
+                <%= image_tag("andrew.png", :class => "index-image") %>
+                <div class="content">
+                  <div class="header">Andrew DiMarzo, Zion Rodman, Ray Hendricks</div>
+                  <div class="meta">
+                    Today
+                  </div>
+                  <div class="description">
+                    There's a low key concert at a small art gallery in Cambridge.
+                  </div>
+                </div>
+                <div class="extra content">
 	                <span class="right floated">
 	                  <button class="ui mini teal basic labeled icon button">
-	                    <i class="thumbs outline up icon"></i>
-	                    Recommend
-	                  </button>
+                        <i class="thumbs outline up icon"></i>
+                        Recommend
+                      </button>
 	                </span>
 	                <span>
 	                  <i class="globe icon"></i>
 	                  Central Square
 	                </span>
-	              </div>
-	            </div>
-	        </div>
+                </div>
+              </div>
+          <% end %>
 	    </div>
 	</div>
 	<div class="six wide column computer only tablet only">
@@ -115,7 +115,9 @@
 	});
 
 	// Change button styling on click.
-	$("button").click(function(){
-	    $(this).toggleClass("basic");
+	$(".cards").click(function(){
+      var id = $(this).attr('id');
+      $(this).find('button').toggleClass("basic");
+      ga('send', 'event', 'button', 'click', 'recommendation', id);
 	});
 </script>
