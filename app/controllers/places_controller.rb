@@ -4,7 +4,7 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.json
   def index
-    @places = Place.all.order(:fb_likes)
+    @places = Place.all
   end
 
   # GET /places/1
