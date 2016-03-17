@@ -16,7 +16,9 @@
           <span class="date"><i class="calendar icon"></i> <%= @event.date.strftime("%A, %B %d") %></span>
         <% end %>
         <br>
-        <span class="date"><i class="wait icon"></i><%= @event.start_time.strftime("%l:%M %P") %> - <%= @event.end_time.strftime("%l:%M %P") %></span>
+        <span class="date"><i class="wait icon"></i>
+          <%= @event.start_time.strftime("%l:%M %P") %>
+          <%= '- '+@event.end_time.strftime("%l:%M %P") unless @event.end_time.nil? %></span>
       </div>
       <div class="description">
         <%= @event.description %>
@@ -38,7 +40,7 @@
     <div class="extra content">
       <a href="<%= @event.purchase_url %>" target="_blank">
         <i class="dollar icon"></i>
-        <% if @event.price == 0 %>
+        <% if @event.price == 0 || @event.price.nil? %>
           Free
         <% else %>
         $<%= @event.price %> entry fee

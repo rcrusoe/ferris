@@ -9,10 +9,11 @@ class Event < ActiveRecord::Base
 
 	# form validations
 	validates :title, presence: true
-	validates :short_blurb, presence: true
-	validates :description, presence: true
-	validates :address, presence: true
-	validates :price, numericality: { only_integer: true }
+	# validates :short_blurb, presence: true
+	# validates :description, presence: true
+	# validates :address, presence: true
+	# validates :price, numericality: { only_integer: true }
+
 	#validate :event_date_cannot_be_in_the_past
 	#validate :event_end_time_cannot_be_before_start_time
 
@@ -66,11 +67,11 @@ class Event < ActiveRecord::Base
 	end
 
 	def sanitize_urls
-	  unless self.website.include?('http://') || self.website.include?('https://')
+	  unless  self.website.nil? || self.website.include?('http://') || self.website.include?('https://')
 	      self.website = 'http://' + self.website
     end
 
-    unless self.purchase_url.include?('http://') || self.purchase_url.include?('https://')
+    unless self.purchase_url.nil? || self.purchase_url.include?('http://') || self.purchase_url.include?('https://')
       self.purchase_url = 'http://' + self.purchase_url
     end
   end

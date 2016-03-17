@@ -3,15 +3,14 @@ namespace :import do
   task :facebook => :environment do
     RestClient.log = 'stdout'
     LIMIT = 5
-    EVENT_DATE_RANGE = 1.month
+    EVENT_DATE_RANGE = 2.weeks
     FACEBOOK_URL = 'https://graph.facebook.com/search'
     APP_TOKEN = '1234616279893134|Eu-Wn_GvsmTTwJdO3prt61YSu1I'
-    # MAYBE_ADD_LATER = 'picture.type(large),talking_about_count,ratings(NEED_PAGE_ACCESS_TOKEN)'
-    PLACE_FIELDS = 'id,name,link,category,category_list,about,description,likes,checkins,location,hours,price_range,cover.fields(source),emails,phone,website'
-    EVENT_FIELDS = 'events.fields(id,name,category,description,ticket_uri,cover.fields(id,source),start_time,attending_count,'\
-            'declined_count,maybe_count,noreply_count).since(' + Time.current.to_i.to_s + ').until(' + (Time.current + EVENT_DATE_RANGE).to_i.to_s + ')'
+    PLACE_FIELDS = 'id,name,link,category,category_list,about,description,likes,checkins,location,hours,price_range,cover.fields(source),picture.type(large),emails,phone,website'
+    EVENT_FIELDS = 'events.fields(id,name,link,description,ticket_uri,cover.fields(id,source),start_time,end_time,attending_count,'\
+    'maybe_count,interested_count).since(' + Time.current.to_i.to_s + ').until(' + (Time.current + EVENT_DATE_RANGE).to_i.to_s + ')'
 
-    CATEGORIES = ['art gallery']
+    CATEGORIES = ['concert venue']
                   # 'history',
                   # 'art',
                   # 'concert venues',
@@ -32,9 +31,6 @@ namespace :import do
     $events = []
     $places_with_events = 0
     puts 'Importing events from Facebook...'
-
-    # events.fields(id,name,cover.fields(id,source),picture.type(large),description,start_time,attending_count,'\
-    #         'declined_count,maybe_count,noreply_count).since(' + Time.current.to_i.to_s + ').until(' + (Time.current + 1.month).to_i.to_s + ')&access_token=1234616279893134|Eu-Wn_GvsmTTwJdO3prt61YSu1I'
 
     CATEGORIES.each do |category|
       PLACES.each do |place|
@@ -72,8 +68,15 @@ namespace :import do
       # TODO: do we want to update places? if so don't skip, first_or_create
       next if Place.where(fb_id: json['id']).present?
 
-      # processing on fields
+      # sanitize and check for fields
       email = json['emails'].first if json.key?('emails')
+
+      # default to cover photo, but fall back on picture
+      if json.key?('cover')
+        image = URI.parse(json['cover']['source'])
+      elsif json.key?('picture')
+        image = URI.parse(json['picture']['data']['url'])
+      end
 
       place = Place.new(fb_id: json['id'],
                         name: json['name'],
@@ -82,35 +85,47 @@ namespace :import do
                         fb_likes: json['likes'],
                         fb_checkins: json['checkins'],
                         fb_link: json['link'],
-                        website: json['website'],
-                        email: email,
-                        phone_number: json['phone'],
+                        website: sanitize(json['website']),
+                        email:sanitize(email),
+                        phone_number: sanitize(json['phone']),
                         price_range: json['price_range'],
                         approved: false)
                         # address: json['address'],
                         # neighborhood: json['neighborhood'],
                         # phone_number: json['phone_number'])
-      place.image = URI.parse(json['cover']['source']) if json.key?('cover')
+      place.image = image
       place.save
       $places << place
       # ap place
 
       # create events
-      # if json.key?('events')
-      #   $places_with_events += 1
-      #   json['events']['data'].each do |json_event|
-      #     event = Event.new(title: json_event['name'],
-      #                       # description:,
-      #                       date: json_event['start_time'].to_date,
-      #                       start_time: json_event['start_time'].to_time.utc
-      #                       # end_time:,
-      #     )
-      #     event.place = place
-      #     # event.save
-      #     $events << event
-      #     # ap event
-      #   end
-      # end
+      if json.key?('events')
+        $places_with_events += 1
+        json['events']['data'].each do |json_event|
+          # next if Event.where(fb_id: json_event['id']).present?
+          # sanitize fields
+          start_time = json_event['start_time'].to_time if json_event.key?('start_time')
+          end_time = json_event['end_time'].to_time if json_event.key?('end_time')
+
+          event = Event.new(fb_id: json_event['id'],
+                            title: json_event['name'].downcase!.titleize,
+                            description: json_event['description'],
+                            website: "https://www.facebook.com/events/#{json_event['id']}",
+                            purchase_url: json_event['ticket_uri'],
+                            date: json_event['start_time'].to_date,
+                            start_time: start_time,
+                            end_time: end_time,
+                            attending_count: json_event['attending_count'],
+                            maybe_count: json_event['maybe_count'],
+                            interested_count: json_event['interested_count'],
+                            approved: false)
+          event.image = URI.parse(json_event['cover']['source']) if json_event.key?('cover')
+          event.place = place
+          event.save
+          $events << event
+          # ap event
+        end
+      end
 
       # create open hours
       # if json.key?('hours')
@@ -121,6 +136,15 @@ namespace :import do
       #     event.save
       #   end
       # end
+    end
+  end
+
+  # catch facebooks nil case
+  def sanitize(field)
+    if field == '<<not-applicable>>'
+      nil
+    else
+      field
     end
   end
 end

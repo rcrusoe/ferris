@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 20160316173156) do
     t.string   "website"
     t.integer  "price"
     t.string   "purchase_url"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -53,7 +53,11 @@ ActiveRecord::Schema.define(version: 20160316173156) do
     t.text     "short_blurb"
     t.integer  "place_id"
     t.text     "recurrence"
-    t.boolean  "approved"
+    t.string   "fb_id"
+    t.boolean  "approved",           default: true
+    t.integer  "attending_count"
+    t.integer  "maybe_count"
+    t.integer  "interested_count"
   end
 
   add_index "events", ["place_id"], name: "index_events_on_place_id", using: :btree

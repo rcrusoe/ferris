@@ -11,9 +11,12 @@
                 <div class="header"><%= link_to (instance.event.title), instance.event %></div>
                 <div class="meta">
                   <% if instance.date.today? %>
-                    Today, <%= instance.event.start_time.strftime("%l:%M%P") %> - <%= instance.event.end_time.strftime("%l:%M%P") %>
+                      Today, <%= instance.event.start_time.strftime("%l:%M%P") %>
+                      <%= '- '+@event.end_time.strftime("%l:%M %P") unless instance.event.end_time.nil? %>
                   <% else instance.date.today? %>
-                    <%= instance.date.strftime("%a. %m/%d") %>, <%= instance.event.start_time.strftime("%l:%M%P") %> - <%= instance.event.end_time.strftime("%l:%M%P") %>
+                      <%= instance.date.strftime("%a. %m/%d") %>,
+                      <%= instance.event.start_time.strftime("%l:%M%P") %>
+                      <%= '- '+instance.event.end_time.strftime("%l:%M %P") unless instance.event.end_time.nil? %>
                   <% end %>
                 </div>
                 <div class="description">
