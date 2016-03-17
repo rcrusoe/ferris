@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/adventures', to: 'pages#adventures'
   get '/join' => redirect('https://app.moonclerk.com/pay/j0cqdx8sij4')
   get '/rec', to: 'pages#rec'
+  get '/another', to: 'pages#another'
 
   # ANALYTICS DASHBOARD
   get '/dashboard', to: 'dashboard#index', as: :dashboard

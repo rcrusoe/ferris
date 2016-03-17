@@ -1,0 +1,37 @@
+<div class="ui secondary fluid one item menu">
+  <a class="item" href="http://www.joinferris.com/">
+    <%= image_tag("face.png", :class => "ui centered image mini") %>
+  </a>
+</div>
+
+<div class="ui grid stackable" id="rec">
+	<div class="six wide column computer only tablet only">
+		
+	</div>
+	<div class="four wide column">
+		<div class="thankyou">
+			<h3>
+				Thank you!
+			</h3>
+			<p style="margin-top: 0; text-align: center;">
+				We'll send your recommendation. Would you to help another person?
+			</p>
+		</div>
+		<p class="hidden" style="margin-top: 2em; text-align: center;" id="error-message">
+			Oops. It looks like everyone has found something to do! (That's a good thing.)
+		</p>
+		<button class="ui teal fluid button" style="margin: 2em 0;" id="another-button">
+		  Show Another
+		</button>
+	<div class="six wide column computer only tablet only">
+		
+	</div>
+</div>
+
+<script>
+	$("#another-button").click(function(){
+	    $("#error-message").removeClass("hidden");
+	    $("#another-button").addClass("hidden");
+	    $(".thankyou").addClass("hidden");
+	});
+</script>
