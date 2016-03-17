@@ -113,11 +113,4 @@
 	        parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
 	    }
 	});
-
-	// Change button styling on click.
-	$(".cards").click(function(){
-      var id = $(this).attr('id');
-      $(this).find('button').toggleClass("basic");
-      ga('send', 'event', 'button', 'click', 'recommendation', id);
-	});
 </script>
