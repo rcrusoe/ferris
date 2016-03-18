@@ -7,11 +7,17 @@ PagesController.prototype.rec = function() {
   // Change button styling on click.
   $(".cards").click(function(e){
     e.preventDefault();
+    var cb = generate_callback($(this));
     var id = $(this).attr('id');
-    mixpanel.track("Recommendation Clicked", {
+    mixpanel.track("Testing delay", {
       "event": id
-    });
-    $(this).find('button').toggleClass("basic");
-    $(location).attr('href', URL+'/another');
+    }, setTimeout(cb, 500));
   });
+
+  function generate_callback(a) {
+    return function() {
+      a.find('button').toggleClass("basic");
+      $(location).attr('href', URL+'/another');
+    }
+  }
 };
