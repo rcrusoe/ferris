@@ -8,7 +8,9 @@ PagesController.prototype.rec = function() {
   $(".cards").click(function(e){
     e.preventDefault();
     var id = $(this).attr('id');
-    ga('send', 'event', 'button', 'click', 'recommendation', id);
+    mixpanel.track("Recommendation Clicked", {
+      "event": id
+    });
     $(this).find('button').toggleClass("basic");
     $(location).attr('href', URL+'/another');
   });

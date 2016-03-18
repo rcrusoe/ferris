@@ -34,6 +34,6 @@
 	    $("#error-message").removeClass("hidden");
 	    $("#another-button").addClass("hidden");
 	    $(".thankyou").addClass("hidden");
-        ga('send', 'event', 'button', 'click', 'another');
+        mixpanel.track("Another Recommendation Clicked");
 	});
 </script>
