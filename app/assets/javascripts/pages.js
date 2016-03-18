@@ -9,7 +9,7 @@ PagesController.prototype.rec = function() {
     e.preventDefault();
     var cb = generate_callback($(this));
     var id = $(this).attr('id');
-    mixpanel.track("Testing delay", {
+    mixpanel.track("Recommendation Clicked", {
       "event": id
     }, setTimeout(cb, 500));
   });
