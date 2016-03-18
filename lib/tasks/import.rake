@@ -6,26 +6,43 @@ namespace :import do
     EVENT_DATE_RANGE = 2.weeks
     FACEBOOK_URL = 'https://graph.facebook.com/search'
     APP_TOKEN = '1234616279893134|Eu-Wn_GvsmTTwJdO3prt61YSu1I'
-    PLACE_FIELDS = 'id,name,link,category,category_list,about,description,likes,checkins,location,hours,price_range,cover.fields(source),picture.type(large),emails,phone,website'
-    EVENT_FIELDS = 'events.fields(id,name,link,description,ticket_uri,cover.fields(id,source),start_time,end_time,attending_count,'\
-    'maybe_count,interested_count).since(' + Time.current.to_i.to_s + ').until(' + (Time.current + EVENT_DATE_RANGE).to_i.to_s + ')'
 
-    CATEGORIES = ['concert venue',
-                  'gallery',
-                  'art',
-                  'outdoors',
+    #============================================================================
+    # Place
+    #============================================================================
+    PLACE_FIELDS = 'id,name,location,category,category_list,about,description,hours' +
+                   'likes,checkins,price_range,cover.fields(source),picture.type(large),emails,phone,website,link'
+
+    #============================================================================
+    # Event
+    #============================================================================
+    EVENT_FIELDS = 'events.fields(id,name,link,description,ticket_uri,cover.fields(id,source),start_time,end_time,' +
+                   'attending_count,maybe_count,interested_count)' +
+                   '.since(' + Time.current.to_i.to_s + ').until(' + (Time.current + EVENT_DATE_RANGE).to_i.to_s + ')'
+
+    #============================================================================
+    # Categories
+    #============================================================================
+    CATEGORIES = ['concert']
+                  # 'gallery',
+                  # 'art',
+                  # 'outdoors',
                   # 'sports',
                   # 'bars',
                   # 'restaurants',
                   # 'grill',
-                  'music']
+                  # 'music',
+                  # 'concert venue']
 
-    PLACES = ['boston',
-              'boston massachusetts',
-              'cambridge massachusetts',
-              'somerville massachusetts',
-              'south end boston',
-              'back bay boston']
+    #============================================================================
+    # Regions
+    #============================================================================
+    REGIONS = ['boston']
+              # 'boston massachusetts',
+              # 'cambridge massachusetts',
+              # 'somerville massachusetts',
+              # 'south end boston',
+              # 'back bay boston']
 
     $places = []
     $events = []
@@ -33,8 +50,8 @@ namespace :import do
     puts 'Importing events from Facebook...'
 
     CATEGORIES.each do |category|
-      PLACES.each do |place|
-        search("#{category} in #{place}")
+      REGIONS.each do |region|
+        search("#{category} in #{region}")
       end
     end
 
