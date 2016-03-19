@@ -9,9 +9,20 @@ class EventsController < ApplicationController
     end
 
     if params[:search]
-      events = Event.search(params[:search])
+      events = Event.where(approved: true).search(params[:search])
     else
-      events = Event.all
+      events = Event.where(approved: true)
+    end
+
+    # TODO: will this be efficient for 500+ events?
+    @event_instances = events.map { |e| e.occurrences }.flatten!.sort_by {|o| [o.date, o.event.start_time]}
+  end
+
+  def unapproved
+    if params[:search]
+      events = Event.where(approved: false).search(params[:search])
+    else
+      events = Event.where(approved: false)
     end
 
     # TODO: will this be efficient for 500+ events?

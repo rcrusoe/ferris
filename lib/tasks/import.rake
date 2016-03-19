@@ -95,6 +95,12 @@ namespace :import do
         image = URI.parse(json['picture']['data']['url'])
       end
 
+      # for now just concat location parameters into a string
+      location = json['location']
+      unless location.nil?
+        address = [location['street'] || '', location['city'] || '', location['state'] || '', location['zip'] || ''].compact.join(', ')
+      end
+
       place = Place.new(fb_id: json['id'],
                         name: json['name'],
                         about: json['about'],
@@ -106,12 +112,11 @@ namespace :import do
                         email: sanitize(email),
                         phone_number: sanitize(json['phone']),
                         price_range: json['price_range'],
+                        address: address,
                         approved: false)
-                        # address: json['address'],
                         # neighborhood: json['neighborhood'],
-                        # phone_number: json['phone_number'])
-      place.image = image
-      place.save
+      # place.image = image
+      # place.save
       $places << place
       # ap place
 
@@ -138,6 +143,7 @@ namespace :import do
                             attending_count: json_event['attending_count'],
                             maybe_count: json_event['maybe_count'],
                             interested_count: json_event['interested_count'],
+                            address: event.address,
                             approved: false)
           event.image = URI.parse(json_event['cover']['source']) if json_event.key?('cover')
           event.place = place
