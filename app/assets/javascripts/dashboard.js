@@ -30,9 +30,12 @@ DashboardController.prototype.index = function() {
       success     : function (response) {
 
         metrics = $.parseJSON(response);
-        var count1 = new CountUp("conversations_over_period", $('#conversations_over_period').text(), metrics['conversations'], 0, 2);
-        var count2 = new CountUp("users_over_period", $('#users_over_period').text(), metrics['new_users'], 0, 2);
-        var count3 = new CountUp("repeat_users_over_period", $('#repeat_users_over_period').text(), metrics['repeat_users'], 0, 2);
+        var options = {
+          separator : ''
+        };
+        var count1 = new CountUp("conversations_over_period", $('#conversations_over_period').text(), metrics['conversations'], 0, 2, options);
+        var count2 = new CountUp("users_over_period", $('#users_over_period').text(), metrics['new_users'], 0, 2, options);
+        var count3 = new CountUp("repeat_users_over_period", $('#repeat_users_over_period').text(), metrics['repeat_users'], 0, 2, options);
         count1.start();
         count2.start();
         count3.start();
