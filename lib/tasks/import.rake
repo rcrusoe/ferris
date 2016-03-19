@@ -2,7 +2,7 @@ namespace :import do
   desc 'Import events from Facebook'
   task :facebook => :environment do
     RestClient.log = 'stdout'
-    LIMIT = 5000
+    LIMIT = 20
     EVENT_DATE_RANGE = 2.weeks
     FACEBOOK_URL = 'https://graph.facebook.com/search'
     APP_TOKEN = '1234616279893134|Eu-Wn_GvsmTTwJdO3prt61YSu1I'
@@ -115,8 +115,8 @@ namespace :import do
                         address: address,
                         approved: false)
                         # neighborhood: json['neighborhood'],
-      # place.image = image
-      # place.save
+      place.image = image
+      place.save
       $places << place
       # ap place
 
@@ -143,7 +143,7 @@ namespace :import do
                             attending_count: json_event['attending_count'],
                             maybe_count: json_event['maybe_count'],
                             interested_count: json_event['interested_count'],
-                            address: event.address,
+                            address: place.address,
                             approved: false)
           event.image = URI.parse(json_event['cover']['source']) if json_event.key?('cover')
           event.place = place

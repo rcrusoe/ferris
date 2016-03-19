@@ -54,6 +54,8 @@ class DashboardController < ApplicationController
         range = Date.current.beginning_of_month.beginning_of_day..Date.current.end_of_month.end_of_day
       when 5 # Last Month
         range = 1.month.ago.beginning_of_month.beginning_of_day..1.month.ago.end_of_month.end_of_day
+      when 6 # Last 3 Month
+        range = 3.month.ago.beginning_of_month.beginning_of_day..Date.current.end_of_month.end_of_day
       else # default to Today
         range = Date.current.beginning_of_day..Date.current.end_of_day
     end
@@ -62,7 +64,12 @@ class DashboardController < ApplicationController
     conversations = Conversation.where(created_at: range).count
     new_users = User.where(created_at: range).count
     repeat_users = User.where('conversations_count > 1').joins(:conversations).where(conversations: {:created_at => range}).uniq.count
-    conversation_buckets = Conversation.group_by_day(:created_at, range: range).count
+
+    if period == 6
+      conversation_buckets = Conversation.group_by_week(:created_at, range: range).count
+    else
+      conversation_buckets = Conversation.group_by_day(:created_at, range: range).count
+    end
 
     render json: {conversations: conversations,
                   new_users: new_users,

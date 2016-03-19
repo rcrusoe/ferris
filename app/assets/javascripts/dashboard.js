@@ -119,6 +119,9 @@ DashboardController.prototype.index = function() {
       case 5:
         return metrics['dates']
         break;
+      case 6:
+        return metrics['dates']
+        break;
       default:
         return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     }
