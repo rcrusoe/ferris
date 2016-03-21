@@ -2,7 +2,7 @@ namespace :import do
   desc 'Import events from Facebook'
   task :facebook => :environment do
     RestClient.log = 'stdout'
-    LIMIT = 5000
+    LIMIT = 20
     EVENT_DATE_RANGE = 2.weeks
     FACEBOOK_URL = 'https://graph.facebook.com/search'
     APP_TOKEN = '1234616279893134|Eu-Wn_GvsmTTwJdO3prt61YSu1I'
@@ -81,42 +81,46 @@ namespace :import do
   # converts a list of facebook place data to ActiveRecord Models
   def deserialize(list)
     list.each do |json|
-      next if Place.where(fb_id: json['id']).present? || skip(json)
 
-      # sanitize and check for fields
-      email = json['emails'].first if json.key?('emails')
+      next if skip_place?(json)
 
-      # default to cover photo, but fall back on picture
-      if json.key?('cover')
-        image = URI.parse(json['cover']['source'])
-      elsif json.key?('picture')
-        image = URI.parse(json['picture']['data']['url'])
+      place = Place.where(fb_id: json['id']).first
+      if place.nil?
+        # sanitize and check for fields
+        email = json['emails'].first if json.key?('emails')
+
+        # default to cover photo, but fall back on picture
+        if json.key?('cover')
+          image = URI.parse(json['cover']['source'])
+        elsif json.key?('picture')
+          image = URI.parse(json['picture']['data']['url'])
+        end
+
+        # for now just concat location parameters into a string
+        location = json['location']
+        unless location.nil?
+          address = [location['street'] || '', location['city'] || '', location['state'] || '', location['zip'] || ''].compact.join(', ')
+        end
+
+        place = Place.new(fb_id: json['id'],
+                          name: json['name'],
+                          about: json['about'],
+                          description: json['description'],
+                          fb_likes: json['likes'],
+                          fb_checkins: json['checkins'],
+                          fb_link: json['link'],
+                          website: sanitize(json['website']),
+                          email: sanitize(email),
+                          phone_number: sanitize(json['phone']),
+                          price_range: json['price_range'],
+                          address: address,
+                          approved: false)
+        # neighborhood: json['neighborhood'],
+        place.image = image
+        place.save
+        $places << place
+        # ap place
       end
-
-      # for now just concat location parameters into a string
-      location = json['location']
-      unless location.nil?
-        address = [location['street'] || '', location['city'] || '', location['state'] || '', location['zip'] || ''].compact.join(', ')
-      end
-
-      place = Place.new(fb_id: json['id'],
-                        name: json['name'],
-                        about: json['about'],
-                        description: json['description'],
-                        fb_likes: json['likes'],
-                        fb_checkins: json['checkins'],
-                        fb_link: json['link'],
-                        website: sanitize(json['website']),
-                        email: sanitize(email),
-                        phone_number: sanitize(json['phone']),
-                        price_range: json['price_range'],
-                        address: address,
-                        approved: false)
-                        # neighborhood: json['neighborhood'],
-      place.image = image
-      place.save
-      $places << place
-      # ap place
 
       # create events
       if json.key?('events')
@@ -173,7 +177,7 @@ namespace :import do
   end
 
   # returns true if import should skip given place
-  def skip(json)
+  def skip_place?(json)
     if json['events'].nil?
       return true
     end
@@ -182,6 +186,10 @@ namespace :import do
       if json['location']['state'] != 'MA'
         return true
       end
+
+      # if ['boston', 'cambridge', 'somerville', 'brookline', 'allston', 'brighton'].include?(json['location']['city'].downcase)
+      #   return true
+      # end
     end
 
     return false
