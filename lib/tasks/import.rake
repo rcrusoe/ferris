@@ -2,7 +2,7 @@ namespace :import do
   desc 'Import events from Facebook'
   task :facebook => :environment do
     RestClient.log = 'stdout'
-    LIMIT = 20
+    LIMIT = 5000
     EVENT_DATE_RANGE = 2.weeks
     FACEBOOK_URL = 'https://graph.facebook.com/search'
     APP_TOKEN = '1234616279893134|Eu-Wn_GvsmTTwJdO3prt61YSu1I'
@@ -10,7 +10,7 @@ namespace :import do
     #============================================================================
     # Place
     #============================================================================
-    PLACE_FIELDS = 'id,name,location,category,category_list,about,description,hours' +
+    PLACE_FIELDS = 'id,name,location,category,category_list,about,description,hours,' +
                    'likes,checkins,price_range,cover.fields(source),picture.type(large),emails,phone,website,link'
 
     #============================================================================
@@ -68,7 +68,6 @@ namespace :import do
     loop do
       response = RestClient.get url, {accept: :json}
       json = JSON(response)
-      # ap json
       deserialize(json['data'])
 
       if json.key?('next')
@@ -82,8 +81,7 @@ namespace :import do
   # converts a list of facebook place data to ActiveRecord Models
   def deserialize(list)
     list.each do |json|
-      # skip place if already exists or has no events
-      next if Place.where(fb_id: json['id']).present? || json['events'].nil?
+      next if Place.where(fb_id: json['id']).present? || skip(json)
 
       # sanitize and check for fields
       email = json['emails'].first if json.key?('emails')
@@ -172,5 +170,20 @@ namespace :import do
     else
       field
     end
+  end
+
+  # returns true if import should skip given place
+  def skip(json)
+    if json['events'].nil?
+      return true
+    end
+
+    if json.key?('location')
+      if json['location']['state'] != 'MA'
+        return true
+      end
+    end
+
+    return false
   end
 end
