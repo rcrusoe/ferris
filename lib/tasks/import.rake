@@ -2,7 +2,7 @@ namespace :import do
   desc 'Import events from Facebook'
   task :facebook => :environment do
     RestClient.log = 'stdout'
-    LIMIT = 100
+    LIMIT = 5000
     EVENT_DATE_RANGE = 2.weeks
     FACEBOOK_URL = 'https://graph.facebook.com/search'
     APP_TOKEN = '1234616279893134|Eu-Wn_GvsmTTwJdO3prt61YSu1I'
@@ -23,42 +23,44 @@ namespace :import do
     #============================================================================
     # Categories
     #============================================================================
-    CATEGORIES = ['concert']
-                  # 'gallery',
-                  # 'art',
-                  # 'outdoors',
-                  # 'sports',
-                  # 'bars',
-                  # 'restaurants',
-                  # 'grill',
-                  # 'music',
-                  # 'concert venue']
+    CATEGORIES = ['concert', 'concert venue', 'music', 'festival', 'theater', 'comedy', 'jazz', 'hip hop',
+                  'gallery', 'museum', 'art', 'art gallery', 'books',
+                  'outdoors', 'sports', 'bicycle', 'bike', 'swim', 'sail', 'kayak', 'running', 'rock climbing',
+                  'nightlife', 'bars', 'drinks', 'food', 'club', 'dance', 'party',
+                  'science', 'technology', 'trivia',
+                  'restaurants', 'grill', 'coffee', 'cafe',
+                  'college', 'university'
+                 ]
 
     #============================================================================
     # Regions
     #============================================================================
-    REGIONS = ['boston']
-              # 'boston massachusetts',
-              # 'cambridge massachusetts',
-              # 'somerville massachusetts',
-              # 'south end boston',
-              # 'back bay boston']
+    REGIONS = ['boston',
+               'boston massachusetts',
+               'cambridge massachusetts',
+               'somerville massachusetts',
+               'brookline massachusetts',
+               'allston massachusetts',
+               'south boston massachusetts',
+               'jamaica plain massachusetts'
+              ]
 
     $places = []
     $events = []
-    $places_with_events = 0
     puts 'Importing events from Facebook...'
+    started_at = Time.now
 
     CATEGORIES.each do |category|
       REGIONS.each do |region|
+        puts "Query: #{category} in #{region}"
         search("#{category} in #{region}")
       end
     end
 
     # Output results
     puts "#{$places.count} places imported"
-    puts "#{$places_with_events} places with events"
     puts "#{$events.count} events imported"
+    puts "#{((Time.now - started_at)/60).to_i} minutes elapsed, queried #{CATEGORIES.count} keywords"
   end
 
   def search(query)
@@ -134,8 +136,6 @@ namespace :import do
 
       # add any new events for place
       if json.key?('events')
-        $places_with_events += 1
-
         json['events']['data'].each do |json_event|
           next if Event.where(fb_id: json_event['id']).present?
 
@@ -144,12 +144,12 @@ namespace :import do
           end_time = DateTime.strptime(json_event['end_time'],'%Y-%m-%dT%H:%M:%S').in_time_zone.to_time if json_event.key?('end_time')
 
           event = Event.new(fb_id: json_event['id'],
-                            title: json_event['name'].downcase!.titleize,
+                            title: json_event['name'].downcase.titleize,
                             description: json_event['description'],
                             short_blurb: json_event['description'],
                             website: "https://www.facebook.com/events/#{json_event['id']}",
                             purchase_url: json_event['ticket_uri'],
-                            date: json_event['start_time'].to_date,
+                            date: start_time.to_date,
                             start_time: start_time,
                             end_time: end_time,
                             attending_count: json_event['attending_count'],
