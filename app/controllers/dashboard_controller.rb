@@ -66,7 +66,7 @@ class DashboardController < ApplicationController
     repeat_users = User.where('conversations_count > 1').joins(:conversations).where(conversations: {:created_at => range}).uniq.count
 
     if period == 6
-      conversation_buckets = Conversation.group_by_week(:created_at, range: range).count
+      conversation_buckets = Conversation.group_by_week(:created_at, week_start: :mon, range: range).count
     else
       conversation_buckets = Conversation.group_by_day(:created_at, range: range).count
     end
