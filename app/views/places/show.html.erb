@@ -29,88 +29,90 @@
         Call Them
       </a>
     </div>
-    <div class="extra content ui accordion">
-      <div class="title">
-        <i class="dropdown icon"></i>
-        Hours
-      </div>
-      <div class="content">
-        <table class="ui very basic unstackable table transition hidden">
-          <tbody>
-            <tr>
-              <td class = "collapsing">Monday:</td>
-              <td class="right aligned">
-                <% if @open_hours.key?(1) %>
-                  <%= @open_hours[1] %>
-                <% else %>
-                  CLOSED
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td class = "collapsing">Tuesday:</td>
-              <td class="right aligned">
-                <% if @open_hours.key?(2) %>
-                    <%= @open_hours[2] %>
-                <% else %>
-                    CLOSED
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td class = "collapsing">Wednesday:</td>
-              <td class="right aligned">
-                <% if @open_hours.key?(3) %>
-                    <%= @open_hours[3] %>
-                <% else %>
-                    CLOSED
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td class = "collapsing">Thursday:</td>
-              <td class="right aligned">
-                <% if @open_hours.key?(4) %>
-                    <%= @open_hours[4] %>
-                <% else %>
-                    CLOSED
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td class = "collapsing">Friday:</td>
-              <td class="right aligned">
-                <% if @open_hours.key?(5) %>
-                    <%= @open_hours[5] %>
-                <% else %>
-                    CLOSED
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td class = "collapsing">Saturday:</td>
-              <td class="right aligned">
-                <% if @open_hours.key?(6) %>
-                    <%= @open_hours[6] %>
-                <% else %>
-                    CLOSED
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td class = "collapsing">Sunday:</td>
-              <td class="right aligned">
-                <% if @open_hours.key?(0) %>
-                    <%= @open_hours[0] %>
-                <% else %>
-                    CLOSED
-                <% end %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <% unless @open_hours.empty? %>
+        <div class="extra content ui accordion">
+          <div class="title">
+            <i class="dropdown icon"></i>
+            Hours
+          </div>
+          <div class="content">
+            <table class="ui very basic unstackable table transition hidden">
+              <tbody>
+              <tr>
+                <td class = "collapsing">Monday:</td>
+                <td class="right aligned">
+                  <% if @open_hours.key?(1) %>
+                      <%= @open_hours[1] %>
+                  <% else %>
+                      CLOSED
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class = "collapsing">Tuesday:</td>
+                <td class="right aligned">
+                  <% if @open_hours.key?(2) %>
+                      <%= @open_hours[2] %>
+                  <% else %>
+                      CLOSED
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class = "collapsing">Wednesday:</td>
+                <td class="right aligned">
+                  <% if @open_hours.key?(3) %>
+                      <%= @open_hours[3] %>
+                  <% else %>
+                      CLOSED
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class = "collapsing">Thursday:</td>
+                <td class="right aligned">
+                  <% if @open_hours.key?(4) %>
+                      <%= @open_hours[4] %>
+                  <% else %>
+                      CLOSED
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class = "collapsing">Friday:</td>
+                <td class="right aligned">
+                  <% if @open_hours.key?(5) %>
+                      <%= @open_hours[5] %>
+                  <% else %>
+                      CLOSED
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class = "collapsing">Saturday:</td>
+                <td class="right aligned">
+                  <% if @open_hours.key?(6) %>
+                      <%= @open_hours[6] %>
+                  <% else %>
+                      CLOSED
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class = "collapsing">Sunday:</td>
+                <td class="right aligned">
+                  <% if @open_hours.key?(0) %>
+                      <%= @open_hours[0] %>
+                  <% else %>
+                      CLOSED
+                  <% end %>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    <% end %>
     <% unless @place.future_events.nil? %>
     <div class="extra content ui accordion" id="place-events">
       <div class="title">

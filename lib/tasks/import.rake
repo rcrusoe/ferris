@@ -2,7 +2,7 @@ namespace :import do
   desc 'Import events from Facebook'
   task :facebook => :environment do
     RestClient.log = 'stdout'
-    LIMIT = 20
+    LIMIT = 100
     EVENT_DATE_RANGE = 2.weeks
     FACEBOOK_URL = 'https://graph.facebook.com/search'
     APP_TOKEN = '1234616279893134|Eu-Wn_GvsmTTwJdO3prt61YSu1I'
@@ -84,6 +84,7 @@ namespace :import do
 
       next if skip_place?(json)
 
+      # if place does not exist in DB, create before pulling events
       place = Place.where(fb_id: json['id']).first
       if place.nil?
         # sanitize and check for fields
@@ -120,9 +121,18 @@ namespace :import do
         place.save
         $places << place
         # ap place
+
+        # create open hours
+        if json.key?('hours')
+          hours = json['hours']
+          day_prefix = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+          day_prefix.each_with_index do |day, index|
+            OpenTime.create(place: place, day: index, open_time: hours["#{day}_1_open"], close_time: hours["#{day}_1_close"]) if hours.key?("#{day}_1_open")
+          end
+        end
       end
 
-      # create events
+      # add any new events for place
       if json.key?('events')
         $places_with_events += 1
 
@@ -154,16 +164,6 @@ namespace :import do
           # ap event
         end
       end
-
-      # create open hours
-      # if json.key?('hours')
-      #   @places_with_events += 1
-      #   json['events']['data'].each do |json_event|
-      #     event = Event.new('fields')
-      #     event.place = place
-      #     event.save
-      #   end
-      # end
     end
   end
 
