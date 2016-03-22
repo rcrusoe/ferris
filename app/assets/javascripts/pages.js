@@ -12,7 +12,7 @@ PagesController.prototype.rec = function() {
     var cb = generate_callback($(this));
     var id = $(this).attr('id');
     var eventName = $.trim($('.header'+'#'+id).text());
-    mixpanel.track("Recommendation Clicked -Test", {
+    mixpanel.track("Recommendation Clicked", {
       "request": index,
       "event": eventName
     }, setTimeout(cb, 500));
@@ -22,7 +22,7 @@ PagesController.prototype.rec = function() {
     e.preventDefault();
     var cb = generate_callback($(this));
     var recText = $('#custom_rec_text').val();
-    mixpanel.track("Personal Recommendation Clicked -Test", {
+    mixpanel.track("Personal Recommendation Clicked", {
       "request": index,
       "text": recText
     }, setTimeout(cb, 500));
@@ -31,7 +31,7 @@ PagesController.prototype.rec = function() {
   function generate_callback(a) {
     return function() {
       a.find('button').toggleClass("basic");
-      if (index < 4) {
+      if (index < 9) {
         $(location).attr('href', URL+'/rec?index='+(index+1));
       }else {
         $(location).attr('href', URL+'/another');
