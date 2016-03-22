@@ -5,7 +5,7 @@ PagesController.prototype.rec = function() {
   URL = this.params['URL'];
 
   // Change button styling on click.
-  $(".cards").click(function(e){
+  $(".recommend-button").click(function(e){
     e.preventDefault();
     var cb = generate_callback($(this));
     var id = $(this).attr('id');

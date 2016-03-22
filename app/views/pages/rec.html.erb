@@ -19,85 +19,103 @@
 			Recommend One Option
 		</h3>
 		<div id="shuffle">
-          <%= link_to another_path, :id => 'Paella and Spanish Wines', :class => 'ui cards preview-card' do %>
-              <div class="card">
-                <%= image_tag('paella.png', :class => 'index-image') %>
-                <div class="content">
-                  <div class="header">Paella and Spanish Wines</div>
-                  <div class="meta">
-                    Today
-                  </div>
-                  <div class="description">
-                    Dave's Fresh Pasta is hosting an evening of wine tasting and delicious food.
-                  </div>
+          <div class="ui cards preview-card">
+            <div class="card">
+              <%= image_tag('paella.png', :class => 'index-image') %>
+              <div class="content">
+                <div class="header">
+                  Paella and Spanish Wines
                 </div>
-                <div class="extra content">
-	                <span class="right floated">
-	                  <button class="ui mini teal basic labeled icon button">
-                        <i class="thumbs outline up icon"></i>
-                        Recommend
-                      </button>
-	                </span>
-	                <span>
-	                  <i class="globe icon"></i>
-	                  Davis Square
-	                </span>
+                <div class="meta">
+                  Today
+                </div>
+                <div class="description">
+                  Dave's Fresh Pasta is hosting an evening of wine tasting and delicious food.
                 </div>
               </div>
-          <% end %>
-          <%= link_to another_path, :id => 'The Cantab', :class => 'ui cards preview-card' do %>
-              <div class="card">
-                <%= image_tag("cantab.png", :class => "index-image") %>
-                <div class="content">
-                  <div class="header">Club Bohemia at the Cantab</div>
-                  <div class="meta">
-                    Today
-                  </div>
-                  <div class="description">
-                    The Cantab hosts some dance-worthy modern funk every Thursday night.
-                  </div>
+              <div class="extra content">
+                <span class="right floated">
+                  <i class="tag icon"></i>
+                  Food, Wine
+                </span>
+                <span>
+                  <i class="globe icon"></i>
+                  Davis Square
+                </span>
+              </div>
+              <%= button_to "Recommend", another_path, :id => "Paella and Spanish Wines",
+              :class => "ui blue fluid button recommend-button", :method => :get %>
+            </div>
+          </div>
+          <div class="ui cards preview-card">
+            <div class="card">
+              <%= image_tag('andrew.png', :class => 'index-image') %>
+              <div class="content">
+                <div class="header">
+                  Andrew DiMarzo, Zion Rodman, Ray Hendricks
                 </div>
-                <div class="extra content">
-	                <span class="right floated">
-	                  <button class="ui mini teal basic labeled icon button">
-                        <i class="thumbs outline up icon"></i>
-                        Recommend
-                      </button>
-	                </span>
-	                <span>
-	                  <i class="globe icon"></i>
-	                  Central Square
-	                </span>
+                <div class="meta">
+                  Today
+                </div>
+                <div class="description">
+                  There's a low key concert at a small art gallery in Cambridge.
                 </div>
               </div>
-          <% end %>
-          <%= link_to another_path, :id => 'Andrew DiMarzo', :class => 'ui cards preview-card' do %>
-              <div class="card">
-                <%= image_tag("andrew.png", :class => "index-image") %>
-                <div class="content">
-                  <div class="header">Andrew DiMarzo, Zion Rodman, Ray Hendricks</div>
-                  <div class="meta">
-                    Today
-                  </div>
-                  <div class="description">
-                    There's a low key concert at a small art gallery in Cambridge.
-                  </div>
+              <div class="extra content">
+                <span class="right floated">
+                  <i class="tag icon"></i>
+                  Art, Music, Low Key
+                </span>
+                <span>
+                  <i class="globe icon"></i>
+                  Central Square
+                </span>
+              </div>
+              <%= button_to "Recommend", another_path, :id => "Andrew DiMarzo",
+              :class => "ui blue fluid button recommend-button", :method => :get %>
+            </div>
+          </div>
+          <div class="ui cards preview-card">
+            <div class="card">
+              <%= image_tag('cantab.png', :class => 'index-image') %>
+              <div class="content">
+                <div class="header">
+                  Club Bohemia at the Cantab
                 </div>
-                <div class="extra content">
-	                <span class="right floated">
-	                  <button class="ui mini teal basic labeled icon button">
-                        <i class="thumbs outline up icon"></i>
-                        Recommend
-                      </button>
-	                </span>
-	                <span>
-	                  <i class="globe icon"></i>
-	                  Central Square
-	                </span>
+                <div class="meta">
+                  Today
+                </div>
+                <div class="description">
+                  The Cantab hosts some dance-worthy modern funk every Thursday night.
                 </div>
               </div>
-          <% end %>
+              <div class="extra content">
+                <span class="right floated">
+                  <i class="tag icon"></i>
+                  Music, Bar
+                </span>
+                <span>
+                  <i class="globe icon"></i>
+                  Central Square
+                </span>
+              </div>
+              <%= button_to "Recommend", another_path, :id => "The Cantab",
+              :class => "ui blue fluid button recommend-button", :method => :get %>
+            </div>
+          </div>
 	    </div>
+      <div class="custom-rec">
+          <h3>
+              Write a Custom Recommendation
+          </h3>
+          <div class="ui form">
+            <div class="field">
+              <textarea rows="2" id="custom_rec_text"></textarea>
+            </div>
+            <%= button_to "Recommend", another_path, :id => "customRec",
+                  :class => "ui blue button right floated recommend-button", :method => :get %>
+          </div>
+      </div>
 	</div>
 	<div class="six wide column computer only tablet only">
 		
@@ -113,4 +131,9 @@
 	        parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
 	    }
 	});
+  $('#customRec').click(function() {
+      var recText = $('#custom_rec_text').val();
+      $('#customRec').attr('id', recText);
+      // 
+  });
 </script>
