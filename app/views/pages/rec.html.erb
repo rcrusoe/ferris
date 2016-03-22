@@ -10,10 +10,10 @@
 	</div>
 	<div class="four wide column">
 		<p>
-			Allison said:
+			<%= @name %> said:
 		</p>
 		<p class="user-request">
-			It's for a second date. We both like music a lot and booze. No improv acting, outside is iffy since it's supposed to be cold and rainy/snowy. Pretty much open for anything! I'm new in Boston
+          <%= @message %>
 		</p>
 		<h3>
 			Recommend One Option
@@ -21,99 +21,91 @@
 		<div id="shuffle">
           <div class="ui cards preview-card">
             <div class="card">
-              <%= image_tag('paella.png', :class => 'index-image') %>
+              <%= image_tag(@events[0].image.url(:banner), :class => 'index-image') %>
               <div class="content">
-                <div class="header">
-                  Paella and Spanish Wines
+                <div class="header" id="0">
+                  <%= @events[0].title %>
                 </div>
                 <div class="meta">
                   Today
                 </div>
                 <div class="description">
-                  Dave's Fresh Pasta is hosting an evening of wine tasting and delicious food.
+                  <%= @events[0].short_blurb %>
                 </div>
               </div>
               <div class="extra content">
-                <span class="right floated">
-                  <i class="tag icon"></i>
-                  Food, Wine
-                </span>
                 <span>
                   <i class="globe icon"></i>
-                  Davis Square
+                  <%= @events[0].neighborhood %>
                 </span>
               </div>
-              <%= button_to "Recommend", another_path, :id => "Paella and Spanish Wines",
-              :class => "ui blue fluid button recommend-button", :method => :get %>
+              <div class="ui blue fluid button recommend-button" id='0'>
+                Recommend
+              </div>
             </div>
           </div>
           <div class="ui cards preview-card">
             <div class="card">
-              <%= image_tag('andrew.png', :class => 'index-image') %>
+              <%= image_tag(@events[1].image.url(:banner), :class => 'index-image') %>
               <div class="content">
-                <div class="header">
-                  Andrew DiMarzo, Zion Rodman, Ray Hendricks
+                <div class="header" id="1">
+                  <%= @events[1].title %>
                 </div>
                 <div class="meta">
                   Today
                 </div>
                 <div class="description">
-                  There's a low key concert at a small art gallery in Cambridge.
+                  <%= @events[1].short_blurb %>
                 </div>
               </div>
               <div class="extra content">
-                <span class="right floated">
-                  <i class="tag icon"></i>
-                  Art, Music, Low Key
-                </span>
                 <span>
                   <i class="globe icon"></i>
-                  Central Square
+                  <%= @events[1].neighborhood %>
                 </span>
               </div>
-              <%= button_to "Recommend", another_path, :id => "Andrew DiMarzo",
-              :class => "ui blue fluid button recommend-button", :method => :get %>
+              <div class="ui blue fluid button recommend-button" id='1'>
+                Recommend
+              </div>
             </div>
           </div>
           <div class="ui cards preview-card">
             <div class="card">
-              <%= image_tag('cantab.png', :class => 'index-image') %>
+              <%= image_tag(@events[2].image.url(:banner), :class => 'index-image') %>
               <div class="content">
-                <div class="header">
-                  Club Bohemia at the Cantab
+                <div class="header" id="2">
+                  <%= @events[2].title %>
                 </div>
                 <div class="meta">
                   Today
                 </div>
                 <div class="description">
-                  The Cantab hosts some dance-worthy modern funk every Thursday night.
+                  <%= @events[2].short_blurb %>
                 </div>
               </div>
               <div class="extra content">
-                <span class="right floated">
-                  <i class="tag icon"></i>
-                  Music, Bar
-                </span>
                 <span>
                   <i class="globe icon"></i>
-                  Central Square
+                  <%= @events[2].neighborhood %>
                 </span>
               </div>
-              <%= button_to "Recommend", another_path, :id => "The Cantab",
-              :class => "ui blue fluid button recommend-button", :method => :get %>
+              <div class="ui blue fluid button recommend-button" id='2'>
+                Recommend
+              </div>
             </div>
           </div>
 	    </div>
       <div class="custom-rec">
           <h3>
-              Write a Custom Recommendation
+              Or have a personal recommendation?
           </h3>
           <div class="ui form">
             <div class="field">
               <textarea rows="2" id="custom_rec_text"></textarea>
             </div>
-            <%= button_to "Recommend", another_path, :id => "customRec",
-                  :class => "ui blue button right floated recommend-button", :method => :get %>
+            <div class="ui blue fluid button" id="customRec">
+              Recommend
+            </div>
           </div>
       </div>
 	</div>
@@ -131,9 +123,4 @@
 	        parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
 	    }
 	});
-  $('#customRec').click(function() {
-      var recText = $('#custom_rec_text').val();
-      $('#customRec').attr('id', recText);
-      // 
-  });
 </script>

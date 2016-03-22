@@ -11,29 +11,26 @@
 	<div class="four wide column">
 		<div class="thankyou">
 			<h3>
-				Thank you!
+              It looks like everyone has been given a recommendation.
 			</h3>
-			<p style="margin-top: 0; text-align: center;">
-				We'll send your recommendation. Would you to help another person?
-			</p>
+          <h3>
+            Thanks!
+          </h3>
 		</div>
-		<p class="hidden" style="margin-top: 2em; text-align: center;" id="error-message">
-			Oops. It looks like everyone has found something to do! (That's a good thing.)
-		</p>
-		<button class="ui teal fluid button" style="margin: 2em 0;" id="another-button">
-		  Show Another
-		</button>
+		<!--<p class="hidden" style="margin-top: 2em; text-align: center;" id="error-message">-->
+
+		<!--</p>-->
     </div>
 	<div class="six wide column computer only tablet only">
 		
 	</div>
 </div>
 
-<script>
-	$("#another-button").click(function(){
-	    $("#error-message").removeClass("hidden");
-	    $("#another-button").addClass("hidden");
-	    $(".thankyou").addClass("hidden");
-        mixpanel.track("Another Recommendation Clicked");
-	});
-</script>
+<!--<script>-->
+<!--//	$("#another-button").click(function(){-->
+<!--//	    $("#error-message").removeClass("hidden");-->
+<!--//	    $("#another-button").addClass("hidden");-->
+<!--//	    $(".thankyou").addClass("hidden");-->
+<!--//        mixpanel.track("Another Recommendation Clicked");-->
+<!--//	});-->
+<!--</script>-->
