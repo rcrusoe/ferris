@@ -22,7 +22,7 @@ PagesController.prototype.rec = function() {
     e.preventDefault();
     var cb = generate_callback($(this));
     var recText = $('#custom_rec_text').val();
-    mixpanel.track("Personal Recommendation Clicked", {
+    mixpanel.track("Recommendation Clicked", {
       "request": index,
       "text": recText
     }, setTimeout(cb, 500));
