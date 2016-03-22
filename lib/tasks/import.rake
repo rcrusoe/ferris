@@ -17,7 +17,7 @@ namespace :import do
     # Event
     #============================================================================
     EVENT_FIELDS = 'events.fields(id,name,link,description,ticket_uri,cover.fields(id,source),start_time,end_time,' +
-                   'attending_count,maybe_count,interested_count)' +
+                   'attending_count,maybe_count,interested_count,place)' +
                    '.since(' + Time.current.to_i.to_s + ').until(' + (Time.current + EVENT_DATE_RANGE).to_i.to_s + ')'
 
     #============================================================================
@@ -123,6 +123,15 @@ namespace :import do
         place.save
         $places << place
         # ap place
+
+        # tag place with categories
+        if json.key?('category_list')
+          json['category_list'].each do |category|
+            tag = Tag.where(name: category['name'].downcase).first_or_create
+            place.tags << tag
+            place.save
+          end
+        end
 
         # create open hours
         if json.key?('hours')

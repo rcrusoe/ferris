@@ -1,6 +1,7 @@
 class Place < ActiveRecord::Base
   has_many :events
   has_many :open_times, dependent: :destroy
+  has_and_belongs_to_many :tags
 
   accepts_nested_attributes_for :events, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :open_times, allow_destroy: true, reject_if: :all_blank
