@@ -10,7 +10,59 @@ namespace :bot do
 
   desc 'Date Recognition'
   task :when => :environment do
-    puts 'When would you like to do something?'
+    AlchemyAPI.key = "f286fcd06ef13744899ce740524ef099560102e4"
+
+    strings = []
+    Conversation.all.order('created_at desc').each do |c|
+      c.messages.each_with_index do |msg, index|
+        # message before last includes date
+        strings << c.messages[index-1].body if msg.body.include? "Sure! There's so many great options"
+      end
+    end
+
+    dates = []
+    strings.each do |s|
+      ap s
+      s.gsub!('!', '')
+      s.gsub!('?', '') if s.chars.count > 1
+      s.gsub!('/', ' ')
+      # ap s
+      parsed = Chronic.parse(s, :guess => false)
+
+      if parsed.nil?
+        n = Nickel.parse s
+        if n.occurrences.any?
+          parsed = n.occurrences[0].start_date.date
+        end
+      end
+
+      # second fallback is on Alchemy API
+      if parsed.nil?
+        results = AlchemyAPI.search(:keyword_extraction, text: s)
+        results.each do |r|
+          parsed = Chronic.parse(r['text'], :guess => false)
+          if parsed.nil?
+            n = Nickel.parse r['text']
+            if n.occurrences.any?
+              parsed = n.occurrences[0].start_date.date
+            end
+          end
+          break unless parsed.nil?
+        end
+      end
+
+      # manually check for certain ones
+      if s.downcase == 'later' || s.downcase == 'both'
+        parsed = Date.today
+      end
+
+      unless parsed.nil?
+        dates << parsed
+        ap parsed
+      end
+      # ap s if parsed.nil?
+    end
+    puts "#{dates.count} / #{strings.count}"
   end
 
   desc 'Category Extraction'
@@ -26,4 +78,11 @@ namespace :bot do
   task :preferences => :environment do
     puts 'What kind of things do you like?'
   end
+end
+
+private
+
+def extract_date_msg(conversation)
+  last_msg = nil
+
 end
