@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322015855) do
+ActiveRecord::Schema.define(version: 20160322185004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,14 +24,6 @@ ActiveRecord::Schema.define(version: 20160322015855) do
   end
 
   add_index "conversations", ["user_id"], name: "index_conversations_on_user_id", using: :btree
-
-  create_table "conversations_tags", id: false, force: :cascade do |t|
-    t.integer "conversation_id"
-    t.integer "tag_id"
-  end
-
-  add_index "conversations_tags", ["conversation_id"], name: "index_conversations_tags_on_conversation_id", using: :btree
-  add_index "conversations_tags", ["tag_id"], name: "index_conversations_tags_on_tag_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -61,6 +53,22 @@ ActiveRecord::Schema.define(version: 20160322015855) do
   end
 
   add_index "events", ["place_id"], name: "index_events_on_place_id", using: :btree
+
+  create_table "locations", force: :cascade do |t|
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
+    t.string   "neighborhood"
+    t.integer  "place_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "locations", ["place_id"], name: "index_locations_on_place_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.text     "body",            null: false

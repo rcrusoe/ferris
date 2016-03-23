@@ -99,12 +99,6 @@ namespace :import do
           image = URI.parse(json['picture']['data']['url'])
         end
 
-        # for now just concat location parameters into a string
-        location = json['location']
-        unless location.nil?
-          address = [location['street'] || '', location['city'] || '', location['state'] || '', location['zip'] || ''].compact.join(', ')
-        end
-
         place = Place.new(fb_id: json['id'],
                           name: json['name'],
                           about: json['about'],
@@ -116,13 +110,25 @@ namespace :import do
                           email: sanitize(email),
                           phone_number: sanitize(json['phone']),
                           price_range: json['price_range'],
-                          address: address,
                           approved: false)
         # neighborhood: json['neighborhood'],
         place.image = image
         place.save
         $places << place
         # ap place
+
+        # create a location for the place
+        location = json['location']
+        unless location.nil?
+          Location.create(place: place,
+                          lat: location['latitude'],
+                          lng: location['longitude'],
+                          street: location['street'],
+                          city: location['city'],
+                          state: location['state'],
+                          zip: location['zip'],
+                          country: location['country'])
+        end
 
         # tag place with categories
         if json.key?('category_list')
