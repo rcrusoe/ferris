@@ -214,6 +214,7 @@ namespace :import do
 
   # get price from description
   def extract_price(string)
-
+    price = string.scan(/\$\s*[\d.]+/)
+    return price.first.gsub!('$', '').gsub!('', '').to_i unless price.first.nil?
   end
 end

@@ -40,7 +40,11 @@
                 <span>
                   <% unless instance.event.place.location.nil? %>
                     <i class="globe icon"></i>
-                    <%= instance.event.place.location.neighborhood %>
+                    <% if instance.event.place.location.neighborhood? %>
+                      <%= instance.event.place.location.neighborhood %>
+                    <% else %>
+                      <%= instance.event.place.location.city if instance.event.place.location.city? %>
+                    <% end %>
                   <% end %>
                 </span>
       </div>
