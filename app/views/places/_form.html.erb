@@ -21,7 +21,10 @@
         </div>
         <div class="field">
           <%= f.label 'Address' %>
-          <%= f.text_field :full_address, class: "ui labeled input", placeholder:"795 Massachusetts Ave, Cambridge, MA 02139" %>
+          <%= f.text_field :full_address,
+                           class: "ui labeled input",
+                           placeholder: "795 Massachusetts Ave, Cambridge, MA 02139",
+                           value: @place.address %>
         </div>
         <div class="field">
           <%= f.label :website %>

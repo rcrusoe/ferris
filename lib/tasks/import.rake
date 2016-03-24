@@ -109,6 +109,10 @@ namespace :import do
           state =location['state']
           zip = location['zip']
           country = location['country']
+
+          # get neighborhood
+          result = Geocoder.search("#{lat}, #{lng}").first
+          hood = result.neighborhood if result
         end
 
         place = Place.new(fb_id: json['id'],
@@ -129,6 +133,7 @@ namespace :import do
                           state: state,
                           zip: zip,
                           country: country,
+                          neighborhood: hood,
                           approved: false)
         place.image = image
         place.save

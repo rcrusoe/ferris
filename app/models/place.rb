@@ -24,27 +24,11 @@ class Place < ActiveRecord::Base
     end
   end
 
-  reverse_geocoded_by :lat, :lng do |obj, result|
-    if result.first
-      geo = result.first
-      obj.street = geo.street_address
-      obj.city = geo.city
-      obj.state = geo.state_code
-      obj.zip = geo.postal_code
-      obj.country = geo.country
-      obj.neighborhood = geo.neighborhood
-    end
-  end
-
-
-  after_validation :geocode #:reverse_geocode
+  after_validation :geocode, if: :geocode?
 
   # form validations
   validates :name, presence: true
   # validates :description, presence: true
-  # validates :address, presence: true
-  #validate :event_date_cannot_be_in_the_past
-  #validate :event_end_time_cannot_be_before_start_time
 
   # image upload properties
   has_attached_file :image, styles: {
@@ -60,6 +44,7 @@ class Place < ActiveRecord::Base
     where("name || description || neighborhood ILIKE ?", "%#{search}%")
   end
 
+  # returns all event instances in the next two weeks
   def future_events
     instances = []
     Event.where(place: self).each do |e|
@@ -69,13 +54,21 @@ class Place < ActiveRecord::Base
   end
 
   # GEOCODING
-  # def address
-  #   unless read_attribute(:address).nil?
-  #     [street, city, state, zip, country].compact.join(', ')
-  #   end
-  # end
+  def address
+    read_attribute(:address) || [street, city, state, zip, country].compact.join(', ')
+  end
 
-  def address_changed?
-    street_changed? || city_changed? || state_changed? || zip_changed? || country_changed?
+  def geocode?
+    # if address was not changed
+    if full_address == address
+      return false
+    end
+
+    # if imported from facebook and has no full_address (param from form)
+    if fb_id && full_address.nil?
+      return false
+    end
+    
+    return true
   end
 end
