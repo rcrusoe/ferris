@@ -3,41 +3,7 @@
 <div class="ui padded grid stackable">
   <% @event_instances.each do |instance| %>
       <% if instance.date.today? || instance.date.future? %>
-        <div class="four wide column">
-          <div class="ui cards preview-card">
-            <div class="card">
-              <%= link_to image_tag(instance.event.image.url(:banner), class: "index-image"), instance.event %>
-              <div class="content">
-                <div class="header"><%= link_to (instance.event.title), instance.event %></div>
-                <div class="meta">
-                  <% if instance.date.today? %>
-                      Today, <%= instance.event.start_time.strftime("%l:%M%P") %>
-                      <%= '- '+instance.event.end_time.strftime("%l:%M %P") unless instance.event.end_time.nil? %>
-                  <% else instance.date.today? %>
-                      <%= instance.date.strftime("%a. %m/%d") %>,
-                      <%= instance.event.start_time.strftime("%l:%M%P") %>
-                      <%= '- '+instance.event.end_time.strftime("%l:%M %P") unless instance.event.end_time.nil? %>
-                  <% end %>
-                </div>
-                <div class="description">
-                  <%= truncate(instance.event.short_blurb, length: 105, seperator: ' ', omission: '...') %>
-                </div>
-              </div>
-              <div class="extra content">
-                <span class="right floated">
-                  <button class="ui mini basic labeled icon button copy-to-clipboard" data-clipboard-text="<%= instance.event.short_blurb %> More info here: www.joinferris.com/events/<%= instance.event_id %>">
-                    <i class="copy icon"></i>
-                    Copy
-                  </button>
-                </span>
-                <span>
-                  <i class="globe icon"></i>
-                  <%= instance.event.neighborhood %>
-                </span>
-              </div>
-            </div>
-          </div>
-      </div>
+          <%= render(:partial => 'shared/eventCard', :locals => {:instance => instance})%>
     <% end %>
   <% end %>
 </div>

@@ -1,0 +1,49 @@
+<div class="four wide column">
+  <div class="ui cards preview-card">
+    <div class="card">
+
+      <!-- Use event's place image if event has no image -->
+      <% if instance.event.image? %>
+        <%= link_to image_tag(instance.event.image.url(:banner), class: "index-image"), instance.event %>
+      <% elsif instance.event.place.image? %>
+        <%= link_to image_tag(instance.event.place.image.url(:banner), class: "index-image"), instance.event %>
+      <% end %>
+
+      <div class="content">
+        <!-- Title-->
+        <div class="header"><%= link_to (instance.event.title), instance.event %></div>
+        <!-- Date -->
+        <div class="meta">
+          <% if instance.date.today? %>
+              Today, <%= instance.event.start_time.strftime("%l:%M%P") %>
+              <%= '- '+instance.event.end_time.strftime("%l:%M %P") unless instance.event.end_time.nil? %>
+          <% else %>
+              <%= instance.date.strftime("%a. %m/%d") %>,
+              <%= instance.event.start_time.strftime("%l:%M%P") %>
+              <%= '- '+instance.event.end_time.strftime("%l:%M %P") unless instance.event.end_time.nil? %>
+          <% end %>
+        </div>
+        <!-- Blurb -->
+        <div class="description">
+          <%= truncate(instance.event.short_blurb, length: 105, seperator: ' ', omission: '...') %>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="extra content">
+                <span class="right floated">
+                  <button class="ui mini basic labeled icon button copy-to-clipboard" data-clipboard-text="<%= instance.event.short_blurb %> More info here: www.joinferris.com/events/<%= instance.event_id %>">
+                    <i class="copy icon"></i>
+                    Copy
+                  </button>
+                </span>
+                <span>
+                  <% unless instance.event.place.location.nil? %>
+                    <i class="globe icon"></i>
+                    <%= instance.event.place.location.neighborhood %>
+                  <% end %>
+                </span>
+      </div>
+    </div>
+  </div>
+</div>

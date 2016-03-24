@@ -26,9 +26,9 @@
       </div>
     </div>
     <div class="extra content">
-      <a href="http://maps.google.com/?q=<%= @event.address %>" target="_blank">
+      <a href="http://maps.google.com/?q=<%= @event.place.location.address %>" target="_blank">
         <i class="location arrow icon"></i>
-        <%= @event.neighborhood %>
+        <%= @event.place.location.neighborhood %>
       </a>
     </div>
     <div class="extra content">

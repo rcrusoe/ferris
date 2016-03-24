@@ -24,25 +24,25 @@ namespace :import do
     # Categories
     #============================================================================
     CATEGORIES = ['concert', 'concert venue', 'music', 'festival', 'theater', 'comedy', 'jazz', 'hip hop',
-                  'gallery', 'museum', 'art', 'art gallery', 'books',
-                  'outdoors', 'sports', 'bicycle', 'bike', 'swim', 'sail', 'kayak', 'running', 'rock climbing',
-                  'nightlife', 'bars', 'drinks', 'food', 'club', 'dance', 'party',
-                  'science', 'technology', 'trivia',
-                  'restaurants', 'grill', 'coffee', 'cafe',
-                  'college', 'university'
+                  # 'gallery', 'museum', 'art', 'art gallery', 'books',
+                  # 'outdoors', 'sports', 'bicycle', 'bike', 'swim', 'sail', 'kayak', 'running', 'rock climbing',
+                  # 'nightlife', 'bars', 'drinks', 'food', 'club', 'dance', 'party',
+                  # 'science', 'technology', 'trivia',
+                  # 'restaurants', 'grill', 'coffee', 'cafe',
+                  # 'college', 'university'
                  ]
 
     #============================================================================
     # Regions
     #============================================================================
     REGIONS = ['boston',
-               'boston massachusetts',
-               'cambridge massachusetts',
-               'somerville massachusetts',
-               'brookline massachusetts',
-               'allston massachusetts',
-               'south boston massachusetts',
-               'jamaica plain massachusetts'
+               # 'boston massachusetts',
+               # 'cambridge massachusetts',
+               # 'somerville massachusetts',
+               # 'brookline massachusetts',
+               # 'allston massachusetts',
+               # 'south boston massachusetts',
+               # 'jamaica plain massachusetts'
               ]
 
     $places = []
@@ -115,12 +115,12 @@ namespace :import do
         place.image = image
         place.save
         $places << place
-        # ap place
+        ap place
 
         # create a location for the place
         location = json['location']
         unless location.nil?
-          Location.create(place: place,
+          loc = Location.create(place: place,
                           lat: location['latitude'],
                           lng: location['longitude'],
                           street: location['street'],
@@ -128,6 +128,7 @@ namespace :import do
                           state: location['state'],
                           zip: location['zip'],
                           country: location['country'])
+          ap loc
         end
 
         # tag place with categories
@@ -171,12 +172,13 @@ namespace :import do
                             maybe_count: json_event['maybe_count'],
                             interested_count: json_event['interested_count'],
                             address: place.address,
+                            price: extract_price(json_event['description']),
                             approved: false)
           event.image = URI.parse(json_event['cover']['source']) if json_event.key?('cover')
           event.place = place
           event.save
           $events << event
-          # ap event
+          ap event
         end
       end
     end
@@ -208,5 +210,10 @@ namespace :import do
     end
 
     return false
+  end
+
+  # get price from description
+  def extract_price(string)
+
   end
 end
