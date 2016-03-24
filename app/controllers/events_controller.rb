@@ -22,11 +22,11 @@ class EventsController < ApplicationController
     if params[:search]
       events = Event.where(approved: false).search(params[:search])
     else
-      events = Event.where(approved: false)
+      events = Event.where(approved: false).order(interested_count: :desc)
     end
 
     # TODO: will this be efficient for 500+ events?
-    @event_instances = events.map { |e| e.occurrences }.flatten!.sort_by {|o| [o.date, o.event.start_time]}
+    @event_instances = events.map { |e| e.occurrences }.flatten!#.sort_by {|o| [o.date, o.event.start_time]}
   end
 
   # GET /events/1
