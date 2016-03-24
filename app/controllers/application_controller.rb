@@ -5,8 +5,10 @@ class ApplicationController < ActionController::Base
 
   # events page is internal
   def authenticate
-    authenticate_or_request_with_http_basic('Events archive is private.') do |username, password|
-      username == 'ferris' && password == 'boston'
+    if Rails.env.production?
+      authenticate_or_request_with_http_basic('Events archive is private.') do |username, password|
+        username == 'ferris' && password == 'boston'
+      end
     end
   end
 end

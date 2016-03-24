@@ -1,9 +1,14 @@
 <% provide(:title, ' | Events') %>
 <%= render 'header' %>
+<% if @event_instances.nil? %>
+  <div class="twelve wide column">
+    No Events in Queue
+  </div>
+<% end %>
 <div class="ui padded grid stackable">
-  <% @event_instances.each do |instance| %>
-      <% if instance.date.today? || instance.date.future? %>
-          <%= render(:partial => 'shared/eventCard', :locals => {:instance => instance})%>
+  <% @event_instances.to_a.each do |instance| %>
+    <% if instance.date.today? || instance.date.future? %>
+      <%= render(:partial => 'shared/eventCard', :locals => {:instance => instance})%>
     <% end %>
   <% end %>
 </div>
@@ -19,7 +24,7 @@
   });
 
   clipboard.on('error', function(e) {
-      console.error('Action:', e.action);
-      console.error('Trigger:', e.trigger);
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
   });
 </script>

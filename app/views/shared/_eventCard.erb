@@ -15,12 +15,12 @@
         <!-- Date -->
         <div class="meta">
           <% if instance.date.today? %>
-              Today, <%= instance.event.start_time.strftime("%l:%M%P") %>
-              <%= '- '+instance.event.end_time.strftime("%l:%M %P") unless instance.event.end_time.nil? %>
+            Today, <%= instance.event.start_time.strftime("%l:%M%P") %>
+            <%= '- '+instance.event.end_time.strftime("%l:%M %P") unless instance.event.end_time.nil? %>
           <% else %>
-              <%= instance.date.strftime("%a. %-m/%d") %>,
-              <%= instance.event.start_time.strftime("%l:%M%P") %>
-              <%= '- '+instance.event.end_time.strftime("%l:%M %P") unless instance.event.end_time.nil? %>
+            <%= instance.date.strftime("%a. %-m/%d") %>,
+            <%= instance.event.start_time.strftime("%l:%M%P") %>
+            <%= '- '+instance.event.end_time.strftime("%l:%M %P") unless instance.event.end_time.nil? %>
           <% end %>
         </div>
         <!-- Blurb -->

@@ -4,9 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    if Rails.env.production?
-      authenticate
-    end
+    authenticate
 
     if params[:search]
       events = Event.where(approved: true).search(params[:search])
@@ -19,6 +17,8 @@ class EventsController < ApplicationController
   end
 
   def import
+    authenticate
+
     if params[:search]
       events = Event.where(approved: false).search(params[:search])
     else

@@ -6,13 +6,38 @@ class Place < ActiveRecord::Base
   accepts_nested_attributes_for :events, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :open_times, allow_destroy: true, reject_if: :all_blank
 
-  geocoded_by :address, :latitude  => :lat, :longitude => :lng
+  # Ghost attributes from form
+  attr_accessor :full_address
 
-  reverse_geocoded_by :lat, :lng do |obj, geo|
-    obj.neighborhood = geo.first.neighborhood
+  # takes an address string and returns all location fields
+  geocoded_by :full_address do |obj, result|
+    if result.first
+      geo = result.first
+      obj.street = geo.street_address
+      obj.city = geo.city
+      obj.state = geo.state_code
+      obj.zip = geo.postal_code
+      obj.country = geo.country
+      obj.neighborhood = geo.neighborhood
+      obj.lat = geo.coordinates[0]
+      obj.lng = geo.coordinates[1]
+    end
   end
 
-  after_validation :geocode, :reverse_geocode, if: :address_changed?
+  reverse_geocoded_by :lat, :lng do |obj, result|
+    if result.first
+      geo = result.first
+      obj.street = geo.street_address
+      obj.city = geo.city
+      obj.state = geo.state_code
+      obj.zip = geo.postal_code
+      obj.country = geo.country
+      obj.neighborhood = geo.neighborhood
+    end
+  end
+
+
+  after_validation :geocode #:reverse_geocode
 
   # form validations
   validates :name, presence: true
@@ -44,9 +69,11 @@ class Place < ActiveRecord::Base
   end
 
   # GEOCODING
-  def address
-    [street, city, state, zip, country].compact.join(', ')
-  end
+  # def address
+  #   unless read_attribute(:address).nil?
+  #     [street, city, state, zip, country].compact.join(', ')
+  #   end
+  # end
 
   def address_changed?
     street_changed? || city_changed? || state_changed? || zip_changed? || country_changed?

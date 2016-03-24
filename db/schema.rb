@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 20160324144346) do
 
   add_index "conversations", ["user_id"], name: "index_conversations_on_user_id", using: :btree
 
+  create_table "conversations_tags", id: false, force: :cascade do |t|
+    t.integer "conversation_id"
+    t.integer "tag_id"
+  end
+
+  add_index "conversations_tags", ["conversation_id"], name: "index_conversations_tags_on_conversation_id", using: :btree
+  add_index "conversations_tags", ["tag_id"], name: "index_conversations_tags_on_tag_id", using: :btree
+
   create_table "events", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
