@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # devise_for :users
   resources :places
   resources :events
-  get 'unapproved', to: 'events#unapproved', as: :unapproved
+  get 'import', to: 'events#import', as: :import
   match '/events/get_address_and_loc' => 'events#get_address_and_loc', :via => :post
 
 

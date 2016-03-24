@@ -25,12 +25,18 @@
 
       </div>
     </div>
-    <div class="extra content">
-      <a href="http://maps.google.com/?q=<%= @event.place.location.address %>" target="_blank">
-        <i class="location arrow icon"></i>
-        <%= @event.place.location.neighborhood %>
-      </a>
-    </div>
+    <% unless @event.place.location.nil? %>
+        <div class="extra content">
+          <a href="http://maps.google.com/?q=<%= @event.place.location.address %>" target="_blank">
+            <i class="location arrow icon"></i>
+            <% if @event.place.location.neighborhood? %>
+                <%= @event.place.location.neighborhood %>
+            <% else %>
+                <%= @event.place.location.city if @event.place.location.city? %>
+            <% end %>
+          </a>
+        </div>
+    <% end %>
     <div class="extra content">
       <a href="<%= @event.website %>" target="_blank">
         <i class="linkify icon"></i>

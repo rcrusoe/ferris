@@ -18,7 +18,7 @@
               Today, <%= instance.event.start_time.strftime("%l:%M%P") %>
               <%= '- '+instance.event.end_time.strftime("%l:%M %P") unless instance.event.end_time.nil? %>
           <% else %>
-              <%= instance.date.strftime("%a. %m/%d") %>,
+              <%= instance.date.strftime("%a. %-m/%d") %>,
               <%= instance.event.start_time.strftime("%l:%M%P") %>
               <%= '- '+instance.event.end_time.strftime("%l:%M %P") unless instance.event.end_time.nil? %>
           <% end %>

@@ -18,7 +18,7 @@ class EventsController < ApplicationController
     @event_instances = events.map { |e| e.occurrences }.flatten!.sort_by {|o| [o.date, o.event.start_time]}
   end
 
-  def unapproved
+  def import
     if params[:search]
       events = Event.where(approved: false).search(params[:search])
     else
