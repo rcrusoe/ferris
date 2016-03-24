@@ -99,6 +99,18 @@ namespace :import do
           image = URI.parse(json['picture']['data']['url'])
         end
 
+        # check for location data
+        if json.key?('location')
+          location = json['location']
+          lat = location['latitude']
+          lng = location['longitude']
+          street = location['street']
+          city = location['city']
+          state =location['state']
+          zip = location['zip']
+          country = location['country']
+        end
+
         place = Place.new(fb_id: json['id'],
                           name: json['name'],
                           about: json['about'],
@@ -110,26 +122,18 @@ namespace :import do
                           email: sanitize(email),
                           phone_number: sanitize(json['phone']),
                           price_range: json['price_range'],
+                          lat: lat,
+                          lng: lng,
+                          street: street,
+                          city: city,
+                          state: state,
+                          zip: zip,
+                          country: country,
                           approved: false)
-        # neighborhood: json['neighborhood'],
         place.image = image
         place.save
         $places << place
         ap place
-
-        # create a location for the place
-        location = json['location']
-        unless location.nil?
-          loc = Location.create(place: place,
-                          lat: location['latitude'],
-                          lng: location['longitude'],
-                          street: location['street'],
-                          city: location['city'],
-                          state: location['state'],
-                          zip: location['zip'],
-                          country: location['country'])
-          ap loc
-        end
 
         # tag place with categories
         if json.key?('category_list')
@@ -214,7 +218,9 @@ namespace :import do
 
   # get price from description
   def extract_price(string)
-    price = string.scan(/\$\s*[\d.]+/)
-    return price.first.gsub!('$', '').gsub!('', '').to_i unless price.first.nil?
+    unless string.nil?
+      price = string.scan(/\$\s*[\d.]+/)
+      return price.first.gsub!('$', '').gsub!('', '').to_i unless price.first.nil?
+    end
   end
 end

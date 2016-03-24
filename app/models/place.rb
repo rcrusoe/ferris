@@ -1,11 +1,18 @@
 class Place < ActiveRecord::Base
   has_many :events
   has_many :open_times, dependent: :destroy
-  has_one :location, dependent: :destroy
   has_and_belongs_to_many :tags
 
   accepts_nested_attributes_for :events, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :open_times, allow_destroy: true, reject_if: :all_blank
+
+  geocoded_by :address, :latitude  => :lat, :longitude => :lng
+
+  reverse_geocoded_by :lat, :lng do |obj, geo|
+    obj.neighborhood = geo.first.neighborhood
+  end
+
+  after_validation :geocode, :reverse_geocode, if: :address_changed?
 
   # form validations
   validates :name, presence: true
@@ -34,5 +41,14 @@ class Place < ActiveRecord::Base
       instances << e.occurrences.where(date: Date.current..2.weeks.from_now)
     end
     instances.flatten!.sort_by(&:date) unless instances.empty?
+  end
+
+  # GEOCODING
+  def address
+    [street, city, state, zip, country].compact.join(', ')
+  end
+
+  def address_changed?
+    street_changed? || city_changed? || state_changed? || zip_changed? || country_changed?
   end
 end

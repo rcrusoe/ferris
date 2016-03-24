@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322185004) do
+ActiveRecord::Schema.define(version: 20160324144346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,22 +53,6 @@ ActiveRecord::Schema.define(version: 20160322185004) do
   end
 
   add_index "events", ["place_id"], name: "index_events_on_place_id", using: :btree
-
-  create_table "locations", force: :cascade do |t|
-    t.float    "lat"
-    t.float    "lng"
-    t.string   "street"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "country"
-    t.string   "neighborhood"
-    t.integer  "place_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "locations", ["place_id"], name: "index_locations_on_place_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.text     "body",            null: false
@@ -121,6 +105,13 @@ ActiveRecord::Schema.define(version: 20160322185004) do
     t.text     "fb_link"
     t.string   "price_range"
     t.text     "about"
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
   end
 
   create_table "places_tags", id: false, force: :cascade do |t|

@@ -11,14 +11,14 @@
         <%= @place.description %>
       </div>
     </div>
-    <% unless @place.location.nil? %>
+    <% if @place.city? %>
         <div class="extra content">
-          <a href="http://maps.google.com/?q=<%= @place.location.address %>" target="_blank">
+          <a href="http://maps.google.com/?q=<%= @place.address %>" target="_blank">
             <i class="location arrow icon"></i>
-            <% if @place.location.neighborhood? %>
-                <%= @place.location.neighborhood %>
+            <% if @place.neighborhood? %>
+                <%= @place.neighborhood %>
             <% else %>
-                <%= @place.location.city if @place.location.city? %>
+                <%= @place.city if @place.city? %>
             <% end %>
           </a>
         </div>
