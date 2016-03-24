@@ -55,6 +55,7 @@ class Place < ActiveRecord::Base
 
   # GEOCODING
   def address
+    # TODO: remove read_attribute after migration
     read_attribute(:address) || [street, city, state, zip, country].compact.join(', ')
   end
 
@@ -68,7 +69,7 @@ class Place < ActiveRecord::Base
     if fb_id && full_address.nil?
       return false
     end
-    
+
     return true
   end
 end

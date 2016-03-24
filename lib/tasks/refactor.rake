@@ -39,13 +39,18 @@ namespace :refactor do
     # for each place, take the address string and create location fields
     places = Place.where(approved: true)
     places.to_a.each do |p|
-      result = Geocoder.search(p.address).first
+      geo = Geocoder.search(p.address).first
       puts 'querying...'
-      sleep(3)
-      ap result.street_address
-      ap result.city
-      ap result.state_code
-      ap result.country
+      sleep(2)
+      p.street = geo.street_address
+      p.city = geo.city
+      p.state = geo.state_code
+      p.zip = geo.postal_code
+      p.country = geo.country
+      p.neighborhood = geo.neighborhood
+      p.lat = geo.coordinates[0]
+      p.lng = geo.coordinates[1]
+      ap p
     end
   end
 end
