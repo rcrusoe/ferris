@@ -8,6 +8,11 @@ class PlacesController < ApplicationController
     @places = Place.where(approved: true)
   end
 
+  def import
+    authenticate
+    @places = Place.where(approved: false)
+  end
+
   # GET /places/1
   # GET /places/1.json
   def show
@@ -74,6 +79,6 @@ class PlacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:name, :description, :full_address, :website, :phone_number, :image, open_times_attributes: [:id, :day, :open_time, :close_time, :_destroy])
+      params.require(:place).permit(:name, :description, :full_address, :website, :phone_number, :image, :approved, open_times_attributes: [:id, :day, :open_time, :close_time, :_destroy])
     end
 end

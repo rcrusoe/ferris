@@ -1,5 +1,5 @@
 class Place < ActiveRecord::Base
-  has_many :events
+  has_many :events, dependent: :nullify
   has_many :open_times, dependent: :destroy
   has_and_belongs_to_many :tags
 

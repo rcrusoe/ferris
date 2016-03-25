@@ -1,7 +1,5 @@
 class AddTagsToPlace < ActiveRecord::Migration
-  def change
-    # drop_table :conversations_tags
-
+  de f change
     create_join_table :places, :tags do |t|
       t.index [:place_id, :tag_id]
       t.index [:tag_id, :place_id]

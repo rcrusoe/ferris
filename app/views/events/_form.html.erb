@@ -51,6 +51,8 @@
         <%= f.label 'Place'%><br>
         <%= f.association :place, label: false, collection: Place.order(:name), label_method: :name, value_method: :id, prompt: 'None' %>
       </div>
+      <%= link_to @event.place.name, place_path(@event.place), class: "ui blue fluid button" %>
+      <br/>
       <div class="field">
         <%= f.label :address, required: false %>
         <%= f.text_field :address, class: "ui labeled input", :placeholder => "795 Massachusetts Ave, Cambridge, MA 02139" %>
@@ -90,13 +92,13 @@
           <%= f.input :approved, as: :boolean %>
         <% end %>
       </div>
-      <% unless @event.approved? %>
+      <% if not @event.approved? %>
         <%= f.submit 'Approve', class: "ui blue fluid button", name: 'approve' %>
       <% else %>
         <%= f.submit 'Create', class: "ui blue fluid button", name: 'create' %>
       <% end %>
       <br/>
-      <%= link_to 'Delete', event_path(@event), :confirm => 'Are you sure?', :method => :delete, class: "ui blue fluid button" %>
+      <%= link_to 'Delete', event_path(@event), :method => :delete, class: "ui blue fluid button" %>
     <% end %>
   </div>
 </div>

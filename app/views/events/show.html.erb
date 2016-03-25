@@ -25,7 +25,7 @@
 
       </div>
     </div>
-    <% if @event.place.city? %>
+    <% unless @event.place.nil? %>
         <div class="extra content">
           <a href="http://maps.google.com/?q=<%= @event.place.address %>" target="_blank">
             <i class="location arrow icon"></i>

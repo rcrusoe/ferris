@@ -45,7 +45,18 @@
         <div class='field links'>
           <%= link_to_add_association 'Add Open Hours', f, :open_times %>
         </div>
-        <%= f.submit 'Create new place', class: 'ui blue fluid button' %>
+      <div class="field">
+        <% unless @place.approved? %>
+          <%= f.input :approved, as: :boolean %>
+        <% end %>
+      </div>
+      <% if not @place.approved? %>
+        <%= f.submit 'Approve', class: 'ui blue fluid button', name: 'approve' %>
+      <% else %>
+        <%= f.submit 'Create new place', class: 'ui blue fluid button', name: 'create' %>
+      <% end %>
+      <br/>
+      <%= link_to 'Delete', place_path(@place), :method => :delete, class: "ui blue fluid button" %>
     <% end %>
   </div>
 </div>

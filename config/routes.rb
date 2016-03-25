@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   # devise_for :users
   resources :places
   resources :events
-  get 'import', to: 'events#import', as: :import
+  get 'import/events', to: 'events#import', as: :import_events
+  get 'import/places', to: 'places#import', as: :import_places
   match '/events/get_address_and_loc' => 'events#get_address_and_loc', :via => :post
 
 

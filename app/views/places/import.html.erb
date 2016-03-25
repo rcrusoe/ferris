@@ -1,0 +1,46 @@
+<% provide(:title, ' | Places') %>
+<div class="ui padded grid stackable">
+  <% @places.each do |place| %>
+    <div class="four wide column">
+      <div class="ui cards preview-card">
+        <div class="card">
+          <%= link_to image_tag(place.image.url(:banner), class: 'index-image'), place %>
+          <div class="content">
+            <div class="header"><%= link_to (place.name), place %></div>
+            <div class="description">
+              <%= truncate(place.description, length: 105, omission: '...') %>
+            </div>
+          </div>
+          <div class="extra content">
+            <span class="right floated">
+              <button class="ui mini basic labeled icon button copy-to-clipboard" data-clipboard-text="<%= place.description %> More info here: www.joinferris.com/places/<%= place.id %>">
+                <i class="copy icon"></i>
+                Copy
+              </button>
+            </span>
+            <span>
+              <i class="globe icon"></i>
+              <%= place.neighborhood %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  var clipboard = new Clipboard('.copy-to-clipboard');
+  clipboard.on('success', function(e) {
+    console.info('Action:', e.action);
+    console.info('Text:', e.text);
+    console.info('Trigger:', e.trigger);
+
+    e.clearSelection();
+  });
+
+  clipboard.on('error', function(e) {
+      console.error('Action:', e.action);
+      console.error('Trigger:', e.trigger);
+  });
+</script>
