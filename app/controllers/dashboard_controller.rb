@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
 
     @total_conversations = Conversation.count
     @total_users = User.count
-    @repeat_users = User.where('conversations_count > 1')
+    @repeat_users = User.where('conversations_count > 1').includes(:conversations)
 
     convo_buckets = Hash.new(0)
     @bar_chart = [] # list of tuples with the label and user count per number of conversations
@@ -18,7 +18,6 @@ class DashboardController < ApplicationController
       # divide by number of conversations
       avg_days = span_days / user.conversations_count
       averages << avg_days
-      ap averages
     end
 
     unless @repeat_users.empty?

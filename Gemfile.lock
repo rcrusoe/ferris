@@ -50,6 +50,9 @@ GEM
     binding_of_caller (0.7.3.pre1)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
+    bullet (5.0.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.9.0)
     byebug (3.4.0)
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
@@ -247,6 +250,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
+    uniform_notifier (1.9.0)
     warden (1.2.6)
       rack (>= 1.0)
     web-console (2.0.0.beta3)
@@ -264,6 +268,7 @@ DEPENDENCIES
   active_model_serializers (= 0.9.0)
   awesome_print
   aws-sdk (< 2.0)
+  bullet
   byebug
   capybara
   cocoon

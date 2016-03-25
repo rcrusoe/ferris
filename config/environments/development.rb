@@ -49,4 +49,8 @@ Rails.application.configure do
           :secret_access_key => 'WgVqwihri22PCxztkV42V+s1xxem3JYgh5pDy7Xd'
       }
   }
+
+  #Enable bullet in your application
+  Bullet.enable = false
+  Bullet.alert = true
 end

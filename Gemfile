@@ -79,6 +79,7 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'ruby-prof'
   gem 'meta_request' # rails console in chrome
+  gem 'bullet'
 end
 
 group :production do

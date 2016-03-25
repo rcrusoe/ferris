@@ -7,9 +7,9 @@ class EventsController < ApplicationController
     authenticate
 
     if params[:search]
-      events = Event.where(approved: true).search(params[:search])
+      events = Event.where(approved: true).includes(:occurrences, :place).search(params[:search])
     else
-      events = Event.where(approved: true)
+      events = Event.where(approved: true).includes(:occurrences, :place)
     end
 
     # TODO: will this be efficient for 500+ events?
@@ -20,9 +20,9 @@ class EventsController < ApplicationController
     authenticate
 
     if params[:search]
-      events = Event.where(approved: false).search(params[:search])
+      events = Event.where(approved: false).includes(:occurrences, :place).search(params[:search])
     else
-      events = Event.where(approved: false).order(interested_count: :desc)
+      events = Event.where(approved: false).includes(:occurrences, :place).order(interested_count: :desc)
     end
 
     # TODO: will this be efficient for 500+ events?
