@@ -183,7 +183,6 @@ namespace :import do
                             attending_count: json_event['attending_count'],
                             maybe_count: json_event['maybe_count'],
                             interested_count: json_event['interested_count'],
-                            address: place.address,
                             price: extract_price(json_event['description']),
                             approved: false)
           event.image = URI.parse(json_event['cover']['source']) if json_event.key?('cover')

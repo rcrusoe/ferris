@@ -55,8 +55,7 @@ class Place < ActiveRecord::Base
 
   # GEOCODING
   def address
-    # TODO: remove read_attribute after migration
-    read_attribute(:address) || [street, city, state, zip, country].compact.join(', ')
+    [street, city, state, zip, country].compact.join(', ')
   end
 
   def geocode?
