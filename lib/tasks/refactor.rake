@@ -50,6 +50,7 @@ namespace :refactor do
       p.neighborhood = geo.neighborhood
       p.lat = geo.coordinates[0]
       p.lng = geo.coordinates[1]
+      p.save
       ap p
     end
   end

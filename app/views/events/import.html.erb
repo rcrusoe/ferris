@@ -8,7 +8,7 @@
 <div class="ui padded grid stackable">
   <% @event_instances.to_a.each do |instance| %>
     <% if instance.date.today? || instance.date.future? %>
-      <%= render(:partial => 'shared/eventCard', :locals => {:instance => instance})%>
+      <%= render(:partial => 'shared/importCard', :locals => {:instance => instance})%>
     <% end %>
   <% end %>
 </div>

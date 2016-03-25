@@ -25,7 +25,7 @@
       </div>
       <div class="field">
         <%= f.label :short_blurb, required: false %><br>
-        <%= f.text_field :short_blurb, class: "ui input" %>
+        <%= f.text_area :short_blurb, class: "ui input" %>
       </div>
       <div class="field">
         <%= f.label :description, required: false %><br>
@@ -85,8 +85,18 @@
           <%= f.text_field :purchase_url, :placeholder => "(optional)" %>
         </div>
       </div>
-      <%= f.submit "Create new event", class: "ui blue fluid button", name: 'create' %><br>
-      <!--<%= f.submit "Create and add another date", class: "ui blue fluid button", name: 'addDate' %>-->
+      <div class="field">
+        <% unless @event.approved? %>
+          <%= f.input :approved, as: :boolean %>
+        <% end %>
+      </div>
+      <% unless @event.approved? %>
+        <%= f.submit 'Approve', class: "ui blue fluid button", name: 'approve' %>
+      <% else %>
+        <%= f.submit 'Create', class: "ui blue fluid button", name: 'create' %>
+      <% end %>
+      <br/>
+      <%= link_to 'Delete', event_path(@event), :confirm => 'Are you sure?', :method => :delete, class: "ui blue fluid button" %>
     <% end %>
   </div>
 </div>
