@@ -1,4 +1,16 @@
 <% provide(:title, ' | Events') %>
+<br/>
+<div class="three wide column">
+  <div class="ui statistic">
+    <div class="label">
+      Unapproved Events
+    </div>
+    <div id="events_left" class="value">
+      <%= Event.where(approved: false).count %>
+    </div>
+  </div>
+</div>
+
 <% if @event_instances.nil? %>
   <div class="twelve wide column">
     No Events in Queue
