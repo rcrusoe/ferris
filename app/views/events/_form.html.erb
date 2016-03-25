@@ -51,7 +51,9 @@
         <%= f.label 'Place'%><br>
         <%= f.association :place, label: false, collection: Place.order(:name), label_method: :name, value_method: :id, prompt: 'None' %>
       </div>
-      <%= link_to @event.place.name, place_path(@event.place), class: "ui blue fluid button" %>
+      <% unless @event.place.nil? %>
+        <%= link_to @event.place.name, place_path(@event.place), class: "ui blue fluid button" %>
+      <% end %>
       <br/>
       <div class="field">
         <%= f.label :address, required: false %>
@@ -98,7 +100,9 @@
         <%= f.submit 'Create', class: "ui blue fluid button", name: 'create' %>
       <% end %>
       <br/>
-      <%= link_to 'Delete', event_path(@event), :method => :delete, class: "ui blue fluid button" %>
+      <% unless @event.new_record? %>
+        <%= link_to 'Delete', event_path(@event), :method => :delete, class: "ui blue fluid button" %>
+      <% end %>
     <% end %>
   </div>
 </div>

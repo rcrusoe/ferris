@@ -26,6 +26,12 @@
                            placeholder: "795 Massachusetts Ave, Cambridge, MA 02139",
                            value: @place.address %>
         </div>
+        <% unless @place.new_record? %>
+          <div class="field">
+            <%= f.label :neighborhood %><br>
+            <%= f.text_field :neighborhood, class: "ui input" %>
+          </div>
+        <% end %>
         <div class="field">
           <%= f.label :website %>
           <div class="ui labeled input">
@@ -56,7 +62,9 @@
         <%= f.submit 'Create new place', class: 'ui blue fluid button', name: 'create' %>
       <% end %>
       <br/>
-      <%= link_to 'Delete', place_path(@place), :method => :delete, class: "ui blue fluid button" %>
+      <% unless @place.new_record? %>
+        <%= link_to 'Delete', place_path(@place), :method => :delete, class: "ui blue fluid button" %>
+      <% end %>
     <% end %>
   </div>
 </div>

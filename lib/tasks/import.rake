@@ -23,26 +23,26 @@ namespace :import do
     #============================================================================
     # Categories
     #============================================================================
-    CATEGORIES = ['concert', 'concert venue', 'music', 'festival', 'theater', 'comedy', 'jazz', 'hip hop',
-                  'gallery', 'museum', 'art', 'art gallery', 'books',
-                  'outdoors', 'sports', 'bicycle', 'bike', 'swim', 'sail', 'kayak', 'running', 'rock climbing',
-                  'nightlife', 'bars', 'drinks', 'food', 'club', 'dance', 'party',
-                  'science', 'technology', 'trivia',
-                  'restaurants', 'grill', 'coffee', 'cafe',
-                  'college', 'university'
-                 ]
+    CATEGORIES = ['concert']#, 'concert venue', 'music', 'festival', 'theater', 'comedy', 'jazz', 'hip hop',
+                  # 'gallery', 'museum', 'art', 'art gallery', 'books',
+                  # 'outdoors', 'sports', 'bicycle', 'bike', 'swim', 'sail', 'kayak', 'running', 'rock climbing',
+                  # 'nightlife', 'bars', 'drinks', 'food', 'club', 'dance', 'party',
+                  # 'science', 'technology', 'trivia',
+                  # 'restaurants', 'grill', 'coffee', 'cafe',
+                  # 'college', 'university'
+                 #]
 
     #============================================================================
     # Regions
     #============================================================================
     REGIONS = ['boston',
-               'boston massachusetts',
-               'cambridge massachusetts',
-               'somerville massachusetts',
-               'brookline massachusetts',
-               'allston massachusetts',
-               'south boston massachusetts',
-               'jamaica plain massachusetts'
+               # 'boston massachusetts',
+               # 'cambridge massachusetts',
+               # 'somerville massachusetts',
+               # 'brookline massachusetts',
+               # 'allston massachusetts',
+               # 'south boston massachusetts',
+               # 'jamaica plain massachusetts'
               ]
 
     $places = []
@@ -162,7 +162,10 @@ namespace :import do
       # add any new events for place
       if json.key?('events')
         json['events']['data'].each do |json_event|
+
+          # if the event already exists or is blacklisted, skip
           next if Event.where(fb_id: json_event['id']).present?
+          next if Blacklist.where(fb_id: json_event['id']).present?
 
           # sanitize fields
           start_time = DateTime.strptime(json_event['start_time'],'%Y-%m-%dT%H:%M:%S').in_time_zone.to_time if json_event.key?('start_time')
@@ -187,7 +190,7 @@ namespace :import do
           event.place = place
           event.save
           $events << event
-          ap event
+          # ap event
         end
       end
     end
@@ -204,10 +207,13 @@ namespace :import do
 
   # returns true if import should skip given place
   def skip_place?(json)
+
+    # has no events
     if json['events'].nil?
       return true
     end
 
+    # not in massachusetts
     if json.key?('location')
       if json['location']['state'] != 'MA'
         return true
@@ -216,6 +222,11 @@ namespace :import do
       # if ['boston', 'cambridge', 'somerville', 'brookline', 'allston', 'brighton'].include?(json['location']['city'].downcase)
       #   return true
       # end
+    end
+
+    # is blacklisted
+    if Blacklist.where(fb_id: json['id']).present?
+      return true
     end
 
     return false

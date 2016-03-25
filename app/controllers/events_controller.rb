@@ -77,7 +77,13 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
+    # if the event was unapproved, add it to our import blacklist
+    unless @event.approved?
+      Blacklist.create(fb_id: @event.fb_id, name: @event.title)
+    end
+
     @event.destroy
+
     respond_to do |format|
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }

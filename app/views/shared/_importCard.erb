@@ -34,11 +34,11 @@
                 <span class="right floated">
                   <button class="ui mini basic labeled icon button copy-to-clipboard" data-clipboard-text="<%= instance.event.short_blurb %> More info here: www.joinferris.com/events/<%= instance.event_id %>">
                     <i class="copy icon"></i>
-                    IMPORT
+                    Copy
                   </button>
                 </span>
                 <span>
-                  <% if instance.event.place.city? %>
+                  <% unless instance.event.place.nil? %>
                     <i class="globe icon"></i>
                     <% if instance.event.place.neighborhood? %>
                       <%= instance.event.place.neighborhood %>

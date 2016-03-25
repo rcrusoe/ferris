@@ -16,6 +16,13 @@ ActiveRecord::Schema.define(version: 20160324144346) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "blacklist", force: :cascade do |t|
+    t.string   "fb_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "conversations", force: :cascade do |t|
     t.integer  "messages_count"
     t.integer  "user_id"
