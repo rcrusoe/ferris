@@ -48,7 +48,9 @@ class Event < ActiveRecord::Base
     # remove all already scheduled occurrences in the future
     Occurrence.where('event_id = ? AND date >= ?', self.id, Date.current).delete_all
     
-    unless read_attribute(:recurrence).empty?
+    if read_attribute(:recurrence).empty?
+      Occurrence.create(event: self, date: self.date)
+    else
       # schedule events for the next month
       # TODO: make instance variable with schedule instance to avoid repeat instantiation
       schedule = IceCube::Schedule.new
@@ -56,8 +58,6 @@ class Event < ActiveRecord::Base
       schedule.occurrences(Time.current + 1.month).each do |o|
         Occurrence.create(event: self, date: o.to_date)
       end
-    else
-      Occurrence.create(event: self, date: self.date)
     end
   end
 
