@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  MAX_CONVERSATIONS = 7
+  MAX_CONVERSATIONS = 10
 
   def index
     authenticate
@@ -7,21 +7,23 @@ class DashboardController < ApplicationController
     @total_conversations = Conversation.count
     @total_users = User.count
     @repeat_users = User.where('conversations_count > 1').includes(:conversations)
+    repeat_users_last_30_days = User.where('conversations_count > 1').joins(:conversations)
+                                    .where(conversations: {:created_at => 2.month.ago..Date.current.end_of_day}).uniq
 
     convo_buckets = Hash.new(0)
     @bar_chart = [] # list of tuples with the label and user count per number of conversations
     averages = []
     # for every user with multiple conversations, calculate avg days between
-    @repeat_users.each do |user|
+    repeat_users_last_30_days.each do |user|
       # take the span between first and last conversation date
       span_days = (user.conversations.last.created_at.to_date - user.conversations.first.created_at.to_date).to_i
       # divide by number of conversations
-      avg_days = span_days / user.conversations_count
+      avg_days = span_days.to_f / user.conversations_count
       averages << avg_days
     end
 
     unless @repeat_users.empty?
-      @avg_days = (averages.reduce(:+) / averages.size).round
+      @avg_days = (averages.reduce(:+) / averages.size).round(2)
 
       # bucket users by number of conversations and put in hash for bar chart
       (2..MAX_CONVERSATIONS).each do |i|
