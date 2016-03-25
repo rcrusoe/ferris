@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322015855) do
+ActiveRecord::Schema.define(version: 20160324144346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blacklist", force: :cascade do |t|
+    t.string   "fb_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "messages_count"
@@ -105,6 +112,13 @@ ActiveRecord::Schema.define(version: 20160322015855) do
     t.text     "fb_link"
     t.string   "price_range"
     t.text     "about"
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
   end
 
   create_table "places_tags", id: false, force: :cascade do |t|

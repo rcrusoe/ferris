@@ -99,10 +99,20 @@ namespace :import do
           image = URI.parse(json['picture']['data']['url'])
         end
 
-        # for now just concat location parameters into a string
-        location = json['location']
-        unless location.nil?
-          address = [location['street'] || '', location['city'] || '', location['state'] || '', location['zip'] || ''].compact.join(', ')
+        # check for location data
+        if json.key?('location')
+          location = json['location']
+          lat = location['latitude']
+          lng = location['longitude']
+          street = location['street']
+          city = location['city']
+          state =location['state']
+          zip = location['zip']
+          country = location['country']
+
+          # get neighborhood
+          result = Geocoder.search("#{lat}, #{lng}").first
+          hood = result.neighborhood if result
         end
 
         place = Place.new(fb_id: json['id'],
@@ -116,13 +126,19 @@ namespace :import do
                           email: sanitize(email),
                           phone_number: sanitize(json['phone']),
                           price_range: json['price_range'],
-                          address: address,
+                          lat: lat,
+                          lng: lng,
+                          street: street,
+                          city: city,
+                          state: state,
+                          zip: zip,
+                          country: country,
+                          neighborhood: hood,
                           approved: false)
-        # neighborhood: json['neighborhood'],
         place.image = image
         place.save
         $places << place
-        # ap place
+        ap place
 
         # tag place with categories
         if json.key?('category_list')
@@ -146,7 +162,10 @@ namespace :import do
       # add any new events for place
       if json.key?('events')
         json['events']['data'].each do |json_event|
+
+          # if the event already exists or is blacklisted, skip
           next if Event.where(fb_id: json_event['id']).present?
+          next if Blacklist.where(fb_id: json_event['id']).present?
 
           # sanitize fields
           start_time = DateTime.strptime(json_event['start_time'],'%Y-%m-%dT%H:%M:%S').in_time_zone.to_time if json_event.key?('start_time')
@@ -165,6 +184,7 @@ namespace :import do
                             maybe_count: json_event['maybe_count'],
                             interested_count: json_event['interested_count'],
                             address: place.address,
+                            price: extract_price(json_event['description']),
                             approved: false)
           event.image = URI.parse(json_event['cover']['source']) if json_event.key?('cover')
           event.place = place
@@ -187,10 +207,13 @@ namespace :import do
 
   # returns true if import should skip given place
   def skip_place?(json)
+
+    # has no events
     if json['events'].nil?
       return true
     end
 
+    # not in massachusetts
     if json.key?('location')
       if json['location']['state'] != 'MA'
         return true
@@ -201,6 +224,19 @@ namespace :import do
       # end
     end
 
+    # is blacklisted
+    if Blacklist.where(fb_id: json['id']).present?
+      return true
+    end
+
     return false
+  end
+
+  # get price from description
+  def extract_price(string)
+    unless string.nil?
+      price = string.scan(/\$\s*[\d.]+/)
+      return price.first.gsub!('$', '').gsub!('', '').to_i unless price.first.nil?
+    end
   end
 end

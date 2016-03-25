@@ -25,12 +25,18 @@
 
       </div>
     </div>
-    <div class="extra content">
-      <a href="http://maps.google.com/?q=<%= @event.address %>" target="_blank">
-        <i class="location arrow icon"></i>
-        <%= @event.neighborhood %>
-      </a>
-    </div>
+    <% unless @event.place.nil? %>
+        <div class="extra content">
+          <a href="http://maps.google.com/?q=<%= @event.place.address %>" target="_blank">
+            <i class="location arrow icon"></i>
+            <% if @event.place.neighborhood? %>
+                <%= @event.place.neighborhood %>
+            <% else %>
+                <%= @event.place.city if @event.place.city? %>
+            <% end %>
+          </a>
+        </div>
+    <% end %>
     <div class="extra content">
       <a href="<%= @event.website %>" target="_blank">
         <i class="linkify icon"></i>
@@ -47,6 +53,7 @@
         <% end %>
       </a>
     </div>
+    <!-- TODO: all events will have places in the future, check if it's a one-off place -->
     <% unless @event.place.nil? %>
       <div class="extra content">
         <i class="calendar icon"></i>

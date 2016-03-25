@@ -4,9 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    if Rails.env.production?
-      authenticate
-    end
+    authenticate
 
     if params[:search]
       events = Event.where(approved: true).search(params[:search])
@@ -18,15 +16,17 @@ class EventsController < ApplicationController
     @event_instances = events.map { |e| e.occurrences }.flatten!.sort_by {|o| [o.date, o.event.start_time]}
   end
 
-  def unapproved
+  def import
+    authenticate
+
     if params[:search]
       events = Event.where(approved: false).search(params[:search])
     else
-      events = Event.where(approved: false)
+      events = Event.where(approved: false).order(interested_count: :desc)
     end
 
     # TODO: will this be efficient for 500+ events?
-    @event_instances = events.map { |e| e.occurrences }.flatten!.sort_by {|o| [o.date, o.event.start_time]}
+    @event_instances = events.map { |e| e.occurrences }.flatten!#.sort_by {|o| [o.date, o.event.start_time]}
   end
 
   # GET /events/1
@@ -77,7 +77,13 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
+    # if the event was unapproved, add it to our import blacklist
+    unless @event.approved?
+      Blacklist.create(fb_id: @event.fb_id, name: @event.title)
+    end
+
     @event.destroy
+
     respond_to do |format|
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
@@ -99,6 +105,6 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:title, :description, :place_id, :date, :start_time, :end_time, :address, :neighborhood, :website, :price, :purchase_url, :image, :short_blurb, :recurrence)
+    params.require(:event).permit(:title, :description, :place_id, :date, :start_time, :end_time, :address, :neighborhood, :website, :price, :purchase_url, :image, :short_blurb, :recurrence, :approved)
   end
 end

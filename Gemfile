@@ -58,6 +58,9 @@ gem 'cocoon'
 # one line charting
 # http://ankane.github.io/chartkick/
 
+# Location
+gem 'geocoder'
+
 # ============================================
 # Debug
 # ============================================
