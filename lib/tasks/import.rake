@@ -23,26 +23,26 @@ namespace :import do
     #============================================================================
     # Categories
     #============================================================================
-    CATEGORIES = ['concert']#, 'concert venue', 'music', 'festival', 'theater', 'comedy', 'jazz', 'hip hop',
-                  # 'gallery', 'museum', 'art', 'art gallery', 'books',
-                  # 'outdoors', 'sports', 'bicycle', 'bike', 'swim', 'sail', 'kayak', 'running', 'rock climbing',
-                  # 'nightlife', 'bars', 'drinks', 'food', 'club', 'dance', 'party',
-                  # 'science', 'technology', 'trivia',
-                  # 'restaurants', 'grill', 'coffee', 'cafe',
-                  # 'college', 'university'
-                 #]
+    CATEGORIES = ['concert', 'concert venue', 'music', 'festival', 'theater', 'comedy', 'jazz', 'hip hop',
+                  'gallery', 'museum', 'art', 'art gallery', 'books',
+                  'outdoors', 'sports', 'bicycle', 'bike', 'swim', 'sail', 'kayak', 'running', 'rock climbing',
+                  'nightlife', 'bars', 'drinks', 'food', 'club', 'dance', 'party',
+                  'science', 'technology', 'trivia',
+                  'restaurants', 'grill', 'coffee', 'cafe',
+                  'college', 'university'
+                 ]
 
     #============================================================================
     # Regions
     #============================================================================
     REGIONS = ['boston',
-               # 'boston massachusetts',
-               # 'cambridge massachusetts',
-               # 'somerville massachusetts',
-               # 'brookline massachusetts',
-               # 'allston massachusetts',
-               # 'south boston massachusetts',
-               # 'jamaica plain massachusetts'
+               'boston massachusetts',
+               'cambridge massachusetts',
+               'somerville massachusetts',
+               'brookline massachusetts',
+               'allston massachusetts',
+               'south boston massachusetts',
+               'jamaica plain massachusetts'
               ]
 
     $places = []
