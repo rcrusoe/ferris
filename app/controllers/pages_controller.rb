@@ -21,7 +21,7 @@ class PagesController < ApplicationController
                [522, 521, 515],
                [520, 488, 529],
                [563, 562, 482],
-               [482, 564, 563]]
+               [482, 525, 563]]
 
     if params[:index]
       index = params[:index].to_i
