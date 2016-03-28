@@ -71,10 +71,48 @@ class DashboardController < ApplicationController
       conversation_buckets = Conversation.group_by_day(:created_at, range: range).count
     end
 
+    # Retention Chart
+    retention_data = {
+        weeks: [],
+        data: []
+    }
+
+    # grab all users, bucketed by creation date
+    user_buckets = User.where(created_at: 12.weeks.ago.beginning_of_week.beginning_of_day..Date.current.end_of_day).select(:id, :created_at).group_by{ |u| u.created_at.beginning_of_week }
+
+    cell = [0,0,0]
+    first_week = true
+    # for each bucket, loop over 12 weeks and count conversations with a user_id in the cohort
+    user_buckets.sort.each do |k,v|
+      user_ids = v.map! {|u| u.id }
+      start = k.to_date.beginning_of_day
+      retention_data[:weeks] << "#{start.strftime('%b %-d')} -- #{user_ids.count} users"
+
+      until start > Date.current.end_of_week
+        cell_range = start..start+1.week
+
+        if first_week
+          returning_users = user_ids.count - User.where(id: user_ids).joins(:conversations).where(conversations: {:created_at => cell_range}).uniq.count
+          first_week = false
+        else
+          returning_users = Conversation.where(created_at: cell_range, user_id: user_ids).uniq.pluck(:user_id).count
+        end
+        cell[2] = ((returning_users.to_f / user_ids.count) * 100).round(1)
+        retention_data[:data] << cell.dup
+        start += 1.week
+        cell[0] += 1
+      end
+
+      cell[1] += 1
+      cell[0] = 0
+      first_week = true
+    end
+
     render json: {conversations: conversations,
                   new_users: new_users,
                   repeat_users: repeat_users,
                   conversation_buckets: conversation_buckets.values,
-                  dates: conversation_buckets.keys.map! {|d| d.strftime('%-m/%-d')} }
+                  dates: conversation_buckets.keys.map! {|d| d.strftime('%-m/%-d')},
+                  retention: retention_data}
   end
 end
