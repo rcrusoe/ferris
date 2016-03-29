@@ -7,6 +7,7 @@ DashboardController.prototype.index = function() {
   $('.menu .item').tab();
   $('.menu .item').click(function(){
     drawLifetimeGraph();
+    drawRetentionChart(metrics['retention']);
   });
 
   $('select.dropdown').dropdown();

@@ -15,9 +15,9 @@
           <%= image_tag('face.png', :class => 'ui centered image mini') %>
         </a>
         <div class="menu right">
-          <a class="item" data-tab="lifetime">Lifetime Stats</a>
+          <a class="active item" data-tab="lifetime">Lifetime Stats</a>
           <a class="item" data-tab="period">Period Stats</a>
-          <a class="active item" data-tab="retention">Retention</a>
+          <a class="item" data-tab="retention">Retention</a>
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@
 </div>
 
 <!-- Lifetime Statistics -->
-<div class="ui tab stats-section" id="lifetime-stats" data-tab="lifetime">
+<div class="ui tab stats-section active" id="lifetime-stats" data-tab="lifetime">
   <div class="ui grid stackable">
     <div class="two wide column">
 
@@ -156,7 +156,7 @@
 </div>
 
 <!-- Engagement -->
-<div class="ui tab stats-section active" id="retention" data-tab="retention">
+<div class="ui tab stats-section" id="retention" data-tab="retention">
   <div class="ui container">
       <div id="engagement" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
   </div>
