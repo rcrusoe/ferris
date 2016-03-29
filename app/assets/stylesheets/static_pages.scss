@@ -33,6 +33,76 @@ p{
 	margin-top: 5em;
 }
 
+/*
+*
+* join page
+*
+*/
+
+.join-hero{
+	background-image: url(/assets/mattandkim.jpg);
+	text-align: center;
+	height: 75vh;
+	h1, h2, h3{
+		color: white;
+	}
+	h1{
+		font-size: 3em;
+		margin-top: 6em;
+	}
+	h2{
+		font-size: 2em;
+		font-weight: 200;
+		margin-bottom: 1em;
+	}
+	h3{
+		margin-top: 1.5em;
+		font-weight: 200;
+		line-height: 1.5em;
+	}
+	.icon{
+		color: white;
+	}
+}
+
+.ribbon{
+	background-color: #E5665D;
+	text-align: center;
+	h2{
+		font-size: 2em;
+		font-weight: 200;
+		padding: 1.5em 0;
+		color: white;
+	}
+}
+
+#faq{
+	background-color: #F9F9F9;
+	.step{
+		text-align: center;
+		margin: 3em 0;
+		.value{
+			font-size: 1.5em;
+			margin-top: 1em;
+			border: 2px solid black;
+			border-radius: 50%;
+			width: 40px;
+			padding: .5em 0;
+			margin: auto;
+		}
+		.label{
+			font-size: 2em;
+			margin-top: 1em;
+		}
+		.description{
+			font-size: 1.5em;
+			margin-top: 1em;
+			letter-spacing: .2px;
+			line-height: 1.5em;
+		}
+	}
+}
+
 
 /*
 *
@@ -41,7 +111,7 @@ p{
 */
 
 .header{
-	margin: 2em 0;
+	margin: 1em 0;
 	.ui.action.input:not([class*="left action"]) > input{
 		font-size: 1em;
 	}
@@ -285,11 +355,13 @@ i.icon{
 	padding: 5em 0;
 }
 
+
 /*
 *
 * event card 
 *
 */
+
 
 .event-card{
 	margin-bottom: 5vh;
@@ -324,10 +396,6 @@ i.icon{
 	padding: 1.25em;
 }
 
-.ui.button{
-	border-radius: 0;
-}
-
 .header-image{
 	width: 60px;
 }
@@ -358,7 +426,7 @@ i.icon{
 
 /* Associated Events */
 .ui.items > .item > .content > .header:not(.ui){
-	font-size: 1em;
+	font-size: 1.6em;
 	font-weight: 200;
 	margin-top: 0.25em;
 }
