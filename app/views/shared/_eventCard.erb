@@ -4,49 +4,46 @@
 
       <!-- Use event's place image if event has no image -->
       <% if instance.event.image? %>
-        <%= link_to image_tag(instance.event.image.url(:banner), class: "index-image"), instance.event %>
+        <%= link_to image_tag(instance.event.image.url(:medium), class: "index-image"), instance.event %>
       <% elsif instance.event.place.image? %>
-        <%= link_to image_tag(instance.event.place.image.url(:banner), class: "index-image"), instance.event %>
+        <%= link_to image_tag(instance.event.place.image.url(:medium), class: "index-image"), instance.event %>
       <% end %>
 
       <div class="content">
         <!-- Title-->
         <div class="header"><%= link_to (instance.event.title), instance.event %></div>
+        <!-- Blurb
+        <div class="description">
+          <%= truncate(instance.event.short_blurb, length: 105, seperator: ' ', omission: '...') %>
+        </div>
+        -->
         <!-- Date -->
         <div class="meta">
           <% if instance.date.today? %>
-            Today, <%= instance.event.start_time.strftime("%l:%M%P") %>
-            <%= '- '+instance.event.end_time.strftime("%l:%M %P") unless instance.event.end_time.nil? %>
+            Today, <%= instance.event.start_time.strftime("%l%p") %>
+            <%= '- '+instance.event.end_time.strftime("%l%p") unless instance.event.end_time.nil? %>
           <% else %>
-            <%= instance.date.strftime("%a. %-m/%d") %>,
-            <%= instance.event.start_time.strftime("%l:%M%P") %>
-            <%= '- '+instance.event.end_time.strftime("%l:%M %P") unless instance.event.end_time.nil? %>
+            <%= instance.date.strftime("%A, %m/%d") %> at
+            <%= instance.event.start_time.strftime("%l%p") %>
           <% end %>
         </div>
-        <!-- Blurb -->
-        <div class="description">
-          <%= truncate(instance.event.short_blurb, length: 105, seperator: ' ', omission: '...') %>
+        <!-- Labels -->
+        <div class="meta">
+          <div class="ui label">
+            <% unless instance.event.place.nil? %>
+              <% if instance.event.place.neighborhood? %>
+                <%= instance.event.place.neighborhood %>
+              <% else %>
+                <%= instance.event.place.city if instance.event.place.city? %>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
 
       <!-- Footer -->
-      <div class="extra content">
-                <span class="right floated">
-                  <button class="ui mini basic labeled icon button copy-to-clipboard" data-clipboard-text="<%= instance.event.short_blurb %> More info here: www.joinferris.com/events/<%= instance.event_id %>">
-                    <i class="copy icon"></i>
-                    Copy
-                  </button>
-                </span>
-                <span>
-                  <% unless instance.event.place.nil? %>
-                    <i class="globe icon"></i>
-                    <% if instance.event.place.neighborhood? %>
-                      <%= instance.event.place.neighborhood %>
-                    <% else %>
-                      <%= instance.event.place.city if instance.event.place.city? %>
-                    <% end %>
-                  <% end %>
-                </span>
+      <div class="ui bottom attached button copy-to-clipboard" data-clipboard-text="<%= instance.event.short_blurb %> More info here: www.joinferris.com/events/<%= instance.event_id %>">
+        Share
       </div>
     </div>
   </div>
