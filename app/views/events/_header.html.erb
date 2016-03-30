@@ -1,7 +1,29 @@
 <div class="ui secondary fluid three item menu">
-  <a class="ui item" href="#" id="search-icon">
-    <i class="search icon"></i>
-  </a>
+  <div class="ui item 3 column grid">
+    <div class="row">
+      <select id="date_range" class="ui dropdown">
+        <option value="">Select Date Range</option>
+        <option value="1">Today</option>
+        <option value="2">Tomorrow</option>
+        <option value="3">This Week</option>
+        <option value="4">This Weekend</option>
+        <option value="5">Next Two Weeks</option>
+      </select>
+    </div>
+    <div class="row">
+      <select id="tag_select" class="ui search dropdown" multiple="">
+        <option value="">Tags</option>
+        <option value="AL">Alabama</option>
+        <option value="AK">Alaska</option>
+        <option value="AZ">Arizona</option>
+        <option value="AR">Arkansas</option>
+        <option value="CA">California</option>
+      </select>
+      <button id="tag_search" class="ui icon button right floated">
+        <i class="search icon"></i>
+      </button>
+    </div>
+  </div>
   <a class="ui item hidden" href="#" id="remove-icon">
     <i class="remove icon"></i>
   </a>
@@ -25,4 +47,6 @@
   </div>
 </div>
 
-
+<script>
+  $('select.dropdown').dropdown();
+</script>

@@ -1,6 +1,24 @@
 var EVENTS_URL;
 var EventsController = Paloma.controller('Events');
 
+EventsController.prototype.index = function() {
+  // ON PAGE LOAD
+  EVENTS_URL = this.params['URL'];
+  var range = this.params['range'];
+  $("#date_range").dropdown('set selected',range);
+
+
+  // if date range is selected, reload page
+  $( "#date_range" ).change(function() {
+    window.location = EVENTS_URL + '?date_range='+$(this).val();
+  });
+
+  $( "#tag_search" ).click(function() {
+    var tags = $("#tag_select").val();
+    alert(tags);
+  });
+}
+
 EventsController.prototype.new = function() {
   EVENTS_URL = this.params['URL'];
 

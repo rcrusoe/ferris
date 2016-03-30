@@ -6,14 +6,27 @@ class EventsController < ApplicationController
   def index
     authenticate
 
-    if params[:search]
-      events = Event.where(approved: true).includes(:occurrences, :place).search(params[:search])
-    else
-      events = Event.where(approved: true).includes(:occurrences, :place)
+    # default to This Weeks
+    period = 5
+    if params[:date_range]
+      period = params[:date_range].to_i
     end
 
-    # TODO: will this be efficient for 500+ events?
-    @event_instances = events.map { |e| e.occurrences }.flatten!.sort_by {|o| [o.date, o.event.start_time]}
+    case period
+      when 1 # Today
+        range = Date.current
+      when 2 # Tomorrow
+        range = Date.current.tomorrow
+      when 3 # This Week
+        range = Date.current..Date.current.at_end_of_week
+      when 4 # This Weekend
+        range = Date.current.at_end_of_week - 2.days..Date.current.at_end_of_week
+      when 5 # Next Two Weeks
+        range = Date.current..Date.current + 2.weeks
+    end
+
+    @event_instances = Occurrence.where(date: range).joins(:event).where('events.approved = true').order('date', 'events.start_time')
+    js :URL => request.original_url.split('?').first, :range => period
   end
 
   def import
