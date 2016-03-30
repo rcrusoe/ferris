@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get '/rec', to: 'pages#rec'
   get '/another', to: 'pages#another'
   get '/join', to: 'pages#join'
+  get '/test', to: 'pages#test'
 
   # ANALYTICS DASHBOARD
   get '/dashboard', to: 'dashboard#index', as: :dashboard

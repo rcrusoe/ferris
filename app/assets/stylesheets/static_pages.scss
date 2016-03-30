@@ -375,6 +375,10 @@ i.icon{
 	width: 60px;
 }
 
+.ui.cards > .card > .content > .header:not(.ui), .ui.card > .content > .header:not(.ui){
+	font-size: 1.125em;
+}
+
 /*
 *
 * place card 

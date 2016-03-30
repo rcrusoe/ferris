@@ -1,5 +1,6 @@
 <% provide(:title, ' | Events') %>
 <%= render 'header' %>
+
 <div class="ui padded grid stackable">
   <% @event_instances.each do |instance| %>
     <% if instance.date.today? || instance.date.future? %>
