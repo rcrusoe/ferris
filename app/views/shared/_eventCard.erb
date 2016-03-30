@@ -23,8 +23,7 @@
         <!-- Date -->
         <div class="meta">
           <% if instance.date.today? %>
-            Today, <%= instance.event.start_time.strftime("%l:%M%p") %>
-            <%= '- '+instance.event.end_time.strftime("%l:%M%p") unless instance.event.end_time.nil? %>
+            Today at <%= instance.event.start_time.strftime("%l:%M%p") %>
           <% else %>
             <%= instance.date.strftime("%A, %m/%d") %> at
             <%= instance.event.start_time.strftime("%l:%M%p") %>
