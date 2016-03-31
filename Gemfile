@@ -30,7 +30,6 @@ gem 'turbolinks',           '2.3.0'
 # gem 'jbuilder',             '2.2.3'
 
 gem 'semantic-ui-sass'
-# gem 'bootstrap-sass', '~> 3.2.0'
 # TODO: install lodash
 
 # page specific javascript execution

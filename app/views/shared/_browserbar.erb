@@ -37,7 +37,7 @@
   <div class="item">
     <div id="when-select" class="ui floating dropdown labeled icon button basic">
       <i class="calendar icon"></i>
-      <span class="text">When?</span>
+      <span class="text">Next Two Weeks</span>
       <div class="menu">
         <div class="item" data-value="1">
           Today
@@ -61,78 +61,47 @@
   <div class="item">
     <div id="where-select" class="ui floating dropdown search labeled icon button basic">
       <i class="marker icon"></i>
-      <span class="text">Where?</span>
-      <div id="where-select" class="menu">
-        <div class="item" data-value="0">
-          <i class="location arrow icon"></i>
-          Near Me
-        </div>
-        <div class="ui divider"></div>
-        <div class="item" data-value="1">
+      <span class="text">Everywhere</span>
+      <div class="menu">
+        <div class="item" data-value="-3">
           Boston
         </div>
-        <div class="item" data-value="2">
+        <div class="item" data-value="-2">
           Cambridge
         </div>
-        <div class="item" data-value="3">
+        <div class="item" data-value="-1">
           Somerville
         </div>
-        <div class="item" data-value="4">
-          Back Bay
-        </div>
-        <div class="item" data-value="5">
-          North End
-        </div>
-        <div class="item"data-value="6">
-          Downtown
-        </div>
+        <div class="divider"></div>
+        <% Place.all.order(:neighborhood).pluck(:neighborhood).uniq.each_with_index do |hood, i| %>
+          <% unless hood.blank? %>
+            <div class="item" data-value=<%= i %>>
+              <%= hood %>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
   <!-- CATEGORY SELECTION -->
   <div class="item">
-    <div id="tags-select" class="ui dropdown labeled icon button basic multiple search selection" style="max-width: 900px !important;">
+    <div id="categories-select" class="ui dropdown labeled icon button basic multiple search selection" style="max-width: 900px !important;">
       <i class="tags icon"></i>
-      <span class="text">What?</span>
+      <span class="text">All Categories</span>
       <div class="menu">
-        <div class="item" data-value="0">
-          <i class="music icon"></i>
-          Concerts
-        </div>
-        <div class="item" data-value="1">
-          <i class="road icon"></i>
-          Road Trip
-        </div>
-        <div class="item" data-value="2">
-          <i class="dive bar icon"></i>
-          Dive Bar
-        </div>
-        <div class="item" data-value="3">
-          <i class="cocktail icon"></i>
-          Drinks
-        </div>
-        <div class="item" data-value="4">
-          <i class="paint brush icon"></i>
-          Art
-        </div>
-        <div class="item" data-value="5">
-          <i class="lab icon"></i>
-          Science
-        </div>
-        <div class="item" data-value="6">
-          <i class="food icon"></i>
-          Food
-        </div>
-        <div class="item" data-value="7">
-          <i class="coffee icon"></i>
-          Coffee
-        </div>
-        <div class="item" data-value="8">
-          <i class="tree icon"></i>
-          Outdoors
-        </div>
+        <% Category.all.order(:name).uniq.each do |category| %>
+          <div class="item" data-value=<%= category.name %>>
+          <% if category.icon? %>
+              <i class="<%= category.icon %> icon"></i>
+              <%= category.name %>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
+  </div>
+  <div id="search-button" class="ui dropdown item">
+    FILTER
   </div>
 
   <!-- SEARCH BAR -->
@@ -150,27 +119,8 @@
 <div style="height:90px"></div>
 
 <script>
-  $("#when-select").dropdown({
-    onChange: function (val) {
-      alert(val);
-    }
-  });
-
-  $("#where-select").dropdown({
-    onChange: function (val) {
-      alert(val);
-    }
-  });
-
-  $("#tags-select").dropdown({
-    onChange: function (val) {
-      alert(val);
-    }
-  });
-
-  $("#main-menu").dropdown({
-    onChange: function (val) {
-      alert(val);
-    }
-  });
+  $("#when-select").dropdown();
+  $("#where-select").dropdown();
+  $("#categories-select").dropdown();
+  $("#main-menu").dropdown();
 </script>

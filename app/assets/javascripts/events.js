@@ -4,20 +4,36 @@ var EventsController = Paloma.controller('Events');
 EventsController.prototype.index = function() {
   // ON PAGE LOAD
   EVENTS_URL = this.params['URL'];
-  var range = this.params['range'];
-  $("#date_range").dropdown('set selected',range);
+  var date = this.params['when'];
+  var location = this.params['where'];
+  var categories = this.params['what'];
 
+  // if filter params exist, apply
+  $("#when-select").dropdown('set selected',date);
+  $("#where-select").dropdown('set selected',location);
+  $("#categories-select").dropdown('set selected',categories);
 
-  // if date range is selected, reload page
-  $( "#date_range" ).change(function() {
-    window.location = EVENTS_URL + '?date_range='+$(this).val() + '?tags='+$("#tag_select").val();
+  // RELOAD PAGE WITH NAV BAR FILTERS
+  $( "#search-button" ).click(function() {
+
+    // build URL PARAMS and check for nil values
+    var URL = EVENTS_URL + '?';
+    date = $("#when-select").dropdown('get value');
+    if (typeof date == "string") {
+      URL += 'when=' + date + '&'
+    }
+    location = $("#where-select").dropdown('get text');
+    if (typeof location == "string" && location != "Everywhere") {
+      URL += 'where=' + location + '&'
+    }
+    categories = $("#categories-select").dropdown('get value');
+    if (typeof categories == "string" && categories != "") {
+      URL += 'what=' + categories
+    }
+
+    window.location = URL;
   });
-
-  $( "#tag_search" ).click(function() {
-    var tags = $("#tag_select").val();
-    window.location = EVENTS_URL + '?date_range='+$("#date_range").val() + '?tags='+$(this).val();
-  });
-}
+};
 
 EventsController.prototype.new = function() {
   EVENTS_URL = this.params['URL'];

@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
   after_save :generate_recurrences
 
   has_many :occurrences, -> { order(date: :asc) }, dependent: :destroy
+  belongs_to :category
   belongs_to :place
 
   serialize :recurrence, Hash

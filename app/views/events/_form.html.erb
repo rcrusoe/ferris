@@ -56,6 +56,10 @@
       <% end %>
       <br/>
       <div class="field">
+        <%= f.label 'Category'%><br>
+        <%= f.association :category, label: false, collection: Category.order(:name), label_method: :name, value_method: :id, prompt: 'None' %>
+      </div>
+      <div class="field">
         <%= f.label :website %>
         <div class="ui labeled input">
           <div class="ui label">

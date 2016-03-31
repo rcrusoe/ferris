@@ -6,10 +6,12 @@ class EventsController < ApplicationController
   def index
     authenticate
 
-    # default to This Weeks
-    period = 5
-    if params[:date_range]
-      period = params[:date_range].to_i
+    # Parse Filters from Nav Bar
+
+    # DATE RANGE
+    period = 5 # default is next 2 weeks
+    if params[:when]
+      period = params[:when].to_i
     end
 
     case period
@@ -26,7 +28,25 @@ class EventsController < ApplicationController
     end
 
     @event_instances = Occurrence.where(date: range).joins(:event).where('events.approved = true').order('date', 'events.start_time')
-    js :URL => request.original_url.split('?').first, :range => period
+
+    # LOCATION
+    # if Boston, Cambridge, Somerville: all events with place.city == "Boston"
+    if params[:where]
+      location = params[:where]
+      if location == 'Boston' || location == 'Cambridge' || location == 'Somerville'
+        @event_instances = @event_instances.joins(event: :place).where('places.city = ?', location)
+      else
+        @event_instances = @event_instances.joins(event: :place).where('places.neighborhood = ?', location)
+      end
+    end
+
+    # CATEGORIES
+    if params[:what]
+      categories = params[:what].split(',')
+      @event_instances = @event_instances.joins(event: :category).where('categories.name in (?)', categories)
+    end
+
+    js :URL => request.original_url.split('?').first, :when => period, :where => location, :what => categories
   end
 
   def import
@@ -118,6 +138,6 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:title, :description, :place_id, :date, :start_time, :end_time, :address, :neighborhood, :website, :price, :purchase_url, :image, :short_blurb, :recurrence, :approved)
+    params.require(:event).permit(:title, :description, :place_id, :category_id, :date, :start_time, :end_time, :address, :neighborhood, :website, :price, :purchase_url, :image, :short_blurb, :recurrence, :approved)
   end
 end
