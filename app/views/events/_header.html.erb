@@ -12,12 +12,10 @@
     </div>
     <div class="row">
       <select id="tag_select" class="ui search dropdown" multiple="">
-        <option value="">Tags</option>
-        <option value="AL">Alabama</option>
-        <option value="AK">Alaska</option>
-        <option value="AZ">Arizona</option>
-        <option value="AR">Arkansas</option>
-        <option value="CA">California</option>
+        <option value="">Select Tags</option>
+        <% Tag.all.each_with_index do |t,i=1| %>
+          <%= options_for_select([[t.name.titleize, i]]) %>
+        <% end %>
       </select>
       <button id="tag_search" class="ui icon button right floated">
         <i class="search icon"></i>
@@ -48,5 +46,9 @@
 </div>
 
 <script>
-  $('select.dropdown').dropdown();
+//  $("#date_range").dropdown({
+//    onChange: function (val) {
+//      alert(val);
+//    }
+//  });
 </script>

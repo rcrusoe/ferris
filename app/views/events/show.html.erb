@@ -40,12 +40,12 @@
     <div class="extra content">
       <a href="<%= @event.website %>" target="_blank">
         <i class="linkify icon"></i>
-        Visit Website
+        Read More
       </a>
     </div>
     <div class="extra content">
       <a href="<%= @event.purchase_url %>" target="_blank">
-        <i class="dollar icon"></i>
+        <i class="ticket icon"></i>
         <% if @event.price == 0 || @event.price.nil? %>
           Free
         <% else %>

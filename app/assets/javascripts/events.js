@@ -10,12 +10,12 @@ EventsController.prototype.index = function() {
 
   // if date range is selected, reload page
   $( "#date_range" ).change(function() {
-    window.location = EVENTS_URL + '?date_range='+$(this).val();
+    window.location = EVENTS_URL + '?date_range='+$(this).val() + '?tags='+$("#tag_select").val();
   });
 
   $( "#tag_search" ).click(function() {
     var tags = $("#tag_select").val();
-    alert(tags);
+    window.location = EVENTS_URL + '?date_range='+$("#date_range").val() + '?tags='+$(this).val();
   });
 }
 
