@@ -5,7 +5,7 @@ namespace :bot do
   #============================================================================
   desc 'Named Entity Recognition'
   task :who => :environment do
-    puts 'When would you like to do something?'
+    ap ChatManager.hello
   end
 
   desc 'Date Recognition'

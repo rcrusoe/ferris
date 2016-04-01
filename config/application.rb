@@ -25,5 +25,7 @@ module Ferris
     config.active_record.raise_in_transactional_callbacks = true
 
     # config.quiet_assets = false
+
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
   end
 end
