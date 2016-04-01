@@ -4,29 +4,62 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    if Rails.env.production?
-      authenticate
+    authenticate
+
+    # Parse Filters from Nav Bar
+
+    # DATE RANGE
+    period = 5 # default is next 2 weeks
+    if params[:when]
+      period = params[:when].to_i
     end
 
-    if params[:search]
-      events = Event.where(approved: true).search(params[:search])
-    else
-      events = Event.where(approved: true)
+    case period
+      when 1 # Today
+        range = Date.current
+      when 2 # Tomorrow
+        range = Date.current.tomorrow
+      when 3 # This Week
+        range = Date.current..Date.current.at_end_of_week
+      when 4 # This Weekend
+        range = Date.current.at_end_of_week - 2.days..Date.current.at_end_of_week
+      when 5 # Next Two Weeks
+        range = Date.current..Date.current + 2.weeks
     end
 
-    # TODO: will this be efficient for 500+ events?
-    @event_instances = events.map { |e| e.occurrences }.flatten!.sort_by {|o| [o.date, o.event.start_time]}
+    @event_instances = Occurrence.where(date: range).joins(:event).where('events.approved = true').order('date', 'events.start_time')
+
+    # LOCATION
+    # if Boston, Cambridge, Somerville: all events with place.city == "Boston"
+    if params[:where]
+      location = params[:where]
+      if location == 'Boston' || location == 'Cambridge' || location == 'Somerville'
+        @event_instances = @event_instances.joins(event: :place).where('places.city = ?', location)
+      else
+        @event_instances = @event_instances.joins(event: :place).where('places.neighborhood = ?', location)
+      end
+    end
+
+    # CATEGORIES
+    if params[:what]
+      categories = params[:what].split(',')
+      @event_instances = @event_instances.joins(event: :category).where('categories.name in (?)', categories)
+    end
+
+    js :URL => request.original_url.split('?').first, :when => period, :where => location, :what => categories
   end
 
-  def unapproved
+  def import
+    authenticate
+
     if params[:search]
-      events = Event.where(approved: false).search(params[:search])
+      events = Event.where(approved: false).includes(:occurrences, :place).search(params[:search])
     else
-      events = Event.where(approved: false)
+      events = Event.where(approved: false).includes(:occurrences, :place).order(interested_count: :desc)
     end
 
     # TODO: will this be efficient for 500+ events?
-    @event_instances = events.map { |e| e.occurrences }.flatten!.sort_by {|o| [o.date, o.event.start_time]}
+    @event_instances = events.map { |e| e.occurrences }.flatten!#.sort_by {|o| [o.date, o.event.start_time]}
   end
 
   # GET /events/1
@@ -77,7 +110,13 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
+    # if the event was unapproved, add it to our import blacklist
+    unless @event.approved?
+      Blacklist.create(fb_id: @event.fb_id, name: @event.title)
+    end
+
     @event.destroy
+
     respond_to do |format|
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
@@ -99,6 +138,6 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:title, :description, :place_id, :date, :start_time, :end_time, :address, :neighborhood, :website, :price, :purchase_url, :image, :short_blurb, :recurrence)
+    params.require(:event).permit(:title, :description, :place_id, :category_id, :date, :start_time, :end_time, :address, :neighborhood, :website, :price, :purchase_url, :image, :short_blurb, :recurrence, :approved)
   end
 end

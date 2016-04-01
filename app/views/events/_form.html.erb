@@ -25,7 +25,7 @@
       </div>
       <div class="field">
         <%= f.label :short_blurb, required: false %><br>
-        <%= f.text_field :short_blurb, class: "ui input" %>
+        <%= f.text_area :short_blurb, class: "ui input" %>
       </div>
       <div class="field">
         <%= f.label :description, required: false %><br>
@@ -51,13 +51,13 @@
         <%= f.label 'Place'%><br>
         <%= f.association :place, label: false, collection: Place.order(:name), label_method: :name, value_method: :id, prompt: 'None' %>
       </div>
+      <% unless @event.place.nil? %>
+        <%= link_to @event.place.name, place_path(@event.place), class: "ui blue fluid button" %>
+      <% end %>
+      <br/>
       <div class="field">
-        <%= f.label :address, required: false %>
-        <%= f.text_field :address, class: "ui labeled input", :placeholder => "795 Massachusetts Ave, Cambridge, MA 02139" %>
-      </div>
-      <div class="field">
-        <%= f.label :neighborhood %>
-        <%= f.select(:neighborhood, ['Alewife', 'Allston', 'Assembly Square', 'Back Bay', 'Beacon Hill', 'Brighton', 'Brookline', 'Central Square', 'Charlestown', 'Chinatown/Leather District', 'Davis Square', 'Dorchester', 'East Boston', 'East Cambridge', 'Faneuil Hall', 'Fenway/Kenmore', 'Fort Point', 'Financial District', 'Harvard Square', 'Inman/Union Square', 'Kendall Square', 'Jamaica Plain', 'Malden', 'Mission Hill', 'North End', 'Porter Square', 'Roxbury', 'Seaport', 'South End', 'South Boston', 'West End', 'Out of the City - Car Required'], {}, { :class => 'ui fluid dropdown' }) %>
+        <%= f.label 'Category'%><br>
+        <%= f.association :category, label: false, collection: Category.order(:name), label_method: :name, value_method: :id, prompt: 'None' %>
       </div>
       <div class="field">
         <%= f.label :website %>
@@ -85,8 +85,20 @@
           <%= f.text_field :purchase_url, :placeholder => "(optional)" %>
         </div>
       </div>
-      <%= f.submit "Create new event", class: "ui blue fluid button", name: 'create' %><br>
-      <!--<%= f.submit "Create and add another date", class: "ui blue fluid button", name: 'addDate' %>-->
+      <div class="field">
+        <% unless @event.approved? %>
+          <%= f.input :approved, as: :boolean %>
+        <% end %>
+      </div>
+      <% if not @event.approved? %>
+        <%= f.submit 'Approve', class: "ui blue fluid button", name: 'approve' %>
+      <% else %>
+        <%= f.submit 'Create', class: "ui blue fluid button", name: 'create' %>
+      <% end %>
+      <br/>
+      <% unless @event.new_record? %>
+        <%= link_to 'Delete', event_path(@event), :method => :delete, class: "ui blue fluid button" %>
+      <% end %>
     <% end %>
   </div>
 </div>

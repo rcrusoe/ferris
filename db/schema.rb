@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322015855) do
+ActiveRecord::Schema.define(version: 20160330222802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blacklist", force: :cascade do |t|
+    t.string   "fb_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.text     "keywords"
+    t.string   "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "messages_count"
@@ -31,8 +46,6 @@ ActiveRecord::Schema.define(version: 20160322015855) do
     t.date     "date"
     t.time     "start_time"
     t.time     "end_time"
-    t.string   "address"
-    t.string   "neighborhood"
     t.string   "website"
     t.integer  "price"
     t.string   "purchase_url"
@@ -50,8 +63,10 @@ ActiveRecord::Schema.define(version: 20160322015855) do
     t.integer  "attending_count"
     t.integer  "maybe_count"
     t.integer  "interested_count"
+    t.integer  "category_id"
   end
 
+  add_index "events", ["category_id"], name: "index_events_on_category_id", using: :btree
   add_index "events", ["place_id"], name: "index_events_on_place_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
@@ -87,7 +102,6 @@ ActiveRecord::Schema.define(version: 20160322015855) do
   create_table "places", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "address"
     t.string   "neighborhood"
     t.string   "website"
     t.string   "phone_number"
@@ -105,6 +119,13 @@ ActiveRecord::Schema.define(version: 20160322015855) do
     t.text     "fb_link"
     t.string   "price_range"
     t.text     "about"
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
   end
 
   create_table "places_tags", id: false, force: :cascade do |t|
@@ -142,6 +163,7 @@ ActiveRecord::Schema.define(version: 20160322015855) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "conversations", "users"
+  add_foreign_key "events", "categories"
   add_foreign_key "events", "places"
   add_foreign_key "messages", "conversations"
   add_foreign_key "occurrences", "events"

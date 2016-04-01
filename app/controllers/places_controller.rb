@@ -4,7 +4,13 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.json
   def index
-    @places = Place.all
+    authenticate
+    @places = Place.where(approved: true)
+  end
+
+  def import
+    authenticate
+    @places = Place.where(approved: false)
   end
 
   # GET /places/1
@@ -58,7 +64,13 @@ class PlacesController < ApplicationController
   # DELETE /places/1
   # DELETE /places/1.json
   def destroy
+    # if the place was unapproved, add it to our import blacklist
+    unless @place.approved?
+      Blacklist.create(fb_id: @place.fb_id, name: @place.name)
+    end
+
     @place.destroy
+
     respond_to do |format|
       format.html { redirect_to places_url, notice: 'Place was successfully destroyed.' }
       format.json { head :no_content }
@@ -73,6 +85,6 @@ class PlacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:name, :description, :address, :neighborhood, :website, :phone_number, :image, open_times_attributes: [:id, :day, :open_time, :close_time, :_destroy])
+      params.require(:place).permit(:name, :description, :full_address, :website, :phone_number, :image, :approved, :neighborhood, open_times_attributes: [:id, :day, :open_time, :close_time, :_destroy])
     end
 end

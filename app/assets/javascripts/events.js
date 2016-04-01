@@ -1,6 +1,40 @@
 var EVENTS_URL;
 var EventsController = Paloma.controller('Events');
 
+EventsController.prototype.index = function() {
+  // ON PAGE LOAD
+  EVENTS_URL = this.params['URL'];
+  var date = this.params['when'];
+  var location = this.params['where'];
+  var categories = this.params['what'];
+
+  // if filter params exist, apply
+  $("#when-select").dropdown('set selected',date);
+  $("#where-select").dropdown('set selected',location);
+  $("#categories-select").dropdown('set selected',categories);
+
+  // RELOAD PAGE WITH NAV BAR FILTERS
+  $( "#search-button" ).click(function() {
+
+    // build URL PARAMS and check for nil values
+    var URL = EVENTS_URL + '?';
+    date = $("#when-select").dropdown('get value');
+    if (typeof date == "string") {
+      URL += 'when=' + date + '&'
+    }
+    location = $("#where-select").dropdown('get text');
+    if (typeof location == "string" && location != "Everywhere") {
+      URL += 'where=' + location + '&'
+    }
+    categories = $("#categories-select").dropdown('get value');
+    if (typeof categories == "string" && categories != "") {
+      URL += 'what=' + categories
+    }
+
+    window.location = URL;
+  });
+};
+
 EventsController.prototype.new = function() {
   EVENTS_URL = this.params['URL'];
 

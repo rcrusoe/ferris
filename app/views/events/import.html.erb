@@ -1,0 +1,41 @@
+<% provide(:title, ' | Events') %>
+<br/>
+<div class="three wide column">
+  <div class="ui statistic">
+    <div class="label">
+      Unapproved Events
+    </div>
+    <div id="events_left" class="value">
+      <%= Event.where(approved: false).count %>
+    </div>
+  </div>
+</div>
+
+<% if @event_instances.nil? %>
+  <div class="twelve wide column">
+    No Events in Queue
+  </div>
+<% end %>
+<div class="ui padded grid stackable">
+  <% @event_instances.to_a.each do |instance| %>
+    <% if instance.date.today? || instance.date.future? %>
+      <%= render(:partial => 'shared/importCard', :locals => {:instance => instance})%>
+    <% end %>
+  <% end %>
+</div>
+
+<script>
+  var clipboard = new Clipboard('.copy-to-clipboard');
+  clipboard.on('success', function(e) {
+    console.info('Action:', e.action);
+    console.info('Text:', e.text);
+    console.info('Trigger:', e.trigger);
+
+    e.clearSelection();
+  });
+
+  clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
+  });
+</script>

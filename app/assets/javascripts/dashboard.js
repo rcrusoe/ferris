@@ -7,6 +7,7 @@ DashboardController.prototype.index = function() {
   $('.menu .item').tab();
   $('.menu .item').click(function(){
     drawLifetimeGraph();
+    drawRetentionChart(metrics['retention']);
   });
 
   $('select.dropdown').dropdown();
@@ -40,6 +41,7 @@ DashboardController.prototype.index = function() {
         count2.start();
         count3.start();
         drawLifetimeGraph();
+        drawRetentionChart(metrics['retention']);
       }
     });
   };
@@ -128,5 +130,61 @@ DashboardController.prototype.index = function() {
       default:
         return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     }
+  };
+
+  // REPOPULATE GRAPH WITH DATA BASED ON TIME RANGE
+  function drawRetentionChart(data) {
+
+    $('#engagement').highcharts({
+
+      chart: {
+        type: 'heatmap',
+        marginTop: 80,
+        marginBottom: 80,
+        plotBorderWidth: 0
+      },
+
+
+      title: {
+        text: 'Retention By Week'
+      },
+
+      xAxis: {
+        opposite: true
+      },
+
+      yAxis: {
+        categories: data['weeks'],
+        reversed: true,
+        title: null
+      },
+
+      colorAxis: {
+        min: 0,
+        minColor: '#FFFFFF',
+        maxColor: Highcharts.getOptions().colors[0]
+      },
+
+      legend: {
+        enabled: false
+      },
+
+      tooltip: {
+        formatter: function () {
+          return '<b>' + this.point.value + '</b>%<br>';
+        }
+      },
+
+      series: [{
+        name: 'returning users per week',
+        borderWidth: 1,
+        data: data['data'],
+        dataLabels: {
+          enabled: true,
+          color: '#000000'
+        }
+      }]
+
+    });
   };
 };

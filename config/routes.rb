@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :categories
   # devise_for :users
   resources :places
   resources :events
-  get 'unapproved', to: 'events#unapproved', as: :unapproved
+  get 'import/events', to: 'events#import', as: :import_events
+  get 'import/places', to: 'places#import', as: :import_places
   match '/events/get_address_and_loc' => 'events#get_address_and_loc', :via => :post
 
 
@@ -15,9 +17,10 @@ Rails.application.routes.draw do
   get 'pages/dating'
   get 'pages/bundle_9786063511'
   get '/adventures', to: 'pages#adventures'
-  get '/join' => redirect('https://app.moonclerk.com/pay/j0cqdx8sij4')
   get '/rec', to: 'pages#rec'
   get '/another', to: 'pages#another'
+  get '/join', to: 'pages#join'
+  get '/test', to: 'pages#test'
 
   # ANALYTICS DASHBOARD
   get '/dashboard', to: 'dashboard#index', as: :dashboard

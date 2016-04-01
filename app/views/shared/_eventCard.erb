@@ -1,0 +1,70 @@
+<div class="four wide column">
+  <div class="ui cards preview-card">
+    <div class="card preview-card">
+
+      <!-- Use event's place image if event has no image -->
+      <div class="image-wrapper">
+        <% if instance.event.image? %>
+          <%= link_to image_tag(instance.event.image.url(:medium), class: "index-image"), instance.event %>
+        <% elsif instance.event.place.image? %>
+          <%= link_to image_tag(instance.event.place.image.url(:medium), class: "index-image"), instance.event %>
+        <% end %>
+      </div>
+
+      <div class="content">
+        <!-- Title-->
+        <button class="ui icon mini basic button right floated copy-to-clipboard" data-clipboard-text="<%= instance.event.short_blurb %> More info here: www.joinferris.com/events/<%= instance.event_id %>">
+          <i class="copy icon"></i>
+        </button>
+        <div class="header"><%= link_to (instance.event.title), instance.event %></div>
+
+        <!-- Blurb
+        <div class="description">
+          <%= truncate(instance.event.short_blurb, length: 105, seperator: ' ', omission: '...') %>
+        </div>
+        -->
+
+        <!-- Place -->
+        <div class="meta event-subtitle">
+          <% unless instance.event.place.nil? %>
+            <%= instance.event.place.name %> in
+            <% if instance.event.place.neighborhood? %>
+              <%= instance.event.place.neighborhood %>
+            <% else %>
+              <%= instance.event.place.city if instance.event.place.city? %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <!-- Labels -->
+        <div class="meta">
+          <!-- Date -->
+          <div class="ui label">
+            <% if instance.date.today? %>
+              Today at <%= instance.event.start_time.strftime("%l%p") %>
+            <% elsif instance.event.date < 1.week.from_now %>
+              <%= instance.date.strftime("%A") %> at
+              <%= instance.event.start_time.strftime("%l%p") %>
+            <% else %>
+              <%= instance.date.strftime("%b %d") %> at
+              <%= instance.event.start_time.strftime("%l%p") %>
+            <% end %>
+          </div>
+
+          <!-- TODO: add tags -->
+          <!-- Primary Tag
+          <div class="ui label">
+            Tag
+          </div>
+          -->
+
+          <!-- Secondary Tag
+          <div class="ui label">
+            18+
+          </div>
+          -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

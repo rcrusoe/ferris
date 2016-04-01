@@ -33,4 +33,46 @@ namespace :refactor do
     end
     puts "Done, #{i} places updated."
   end
+
+  desc 'take address fields off places and events, reverse_geocode and save'
+  task :location => :environment do
+    # for each place, take the address string and create location fields
+    places = Place.where(approved: true)
+    places.to_a.each do |p|
+      geo = Geocoder.search(p.address).first
+      puts 'querying...'
+      sleep(2)
+      p.street = geo.street_address
+      p.city = geo.city
+      p.state = geo.state_code
+      p.zip = geo.postal_code
+      p.country = geo.country
+      p.neighborhood = geo.neighborhood
+      p.lat = geo.coordinates[0]
+      p.lng = geo.coordinates[1]
+      p.save
+      ap p
+    end
+  end
+
+  desc 'tag events with categories based on facebook tags'
+  task :categorize => :environment do
+    # for each event, take the categories defined on the place
+    places = Place.where(approved: true)
+    places.to_a.each do |p|
+      geo = Geocoder.search(p.address).first
+      puts 'querying...'
+      sleep(2)
+      p.street = geo.street_address
+      p.city = geo.city
+      p.state = geo.state_code
+      p.zip = geo.postal_code
+      p.country = geo.country
+      p.neighborhood = geo.neighborhood
+      p.lat = geo.coordinates[0]
+      p.lng = geo.coordinates[1]
+      p.save
+      ap p
+    end
+  end
 end

@@ -30,7 +30,6 @@ gem 'turbolinks',           '2.3.0'
 # gem 'jbuilder',             '2.2.3'
 
 gem 'semantic-ui-sass'
-# gem 'bootstrap-sass', '~> 3.2.0'
 # TODO: install lodash
 
 # page specific javascript execution
@@ -65,6 +64,9 @@ gem 'cocoon'
 # one line charting
 # http://ankane.github.io/chartkick/
 
+# Location
+gem 'geocoder'
+
 # ============================================
 # Debug
 # ============================================
@@ -83,6 +85,7 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'ruby-prof'
   gem 'meta_request' # rails console in chrome
+  gem 'bullet'
 end
 
 group :production do

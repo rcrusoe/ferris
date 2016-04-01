@@ -70,6 +70,20 @@ namespace :bot do
     puts 'What would you like to do?'
   end
 
+  desc 'Price Extraction'
+  task :price => :environment do
+    SIZE = 100
+    prices = []
+    Event.all.limit(SIZE).each do |e|
+      price = e.description.scan(/\$\s*[\d.]+/)
+      prices << price.first
+      ap price.first.gsub!('$', '').gsub!('', '').to_i unless price.empty?
+    end
+
+    # ap prices
+    ap "#{prices.count} / #{SIZE}"
+  end
+
   #============================================================================
   # Advanced
   #============================================================================
