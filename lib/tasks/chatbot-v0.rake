@@ -5,7 +5,8 @@ namespace :bot do
   #============================================================================
   desc 'Named Entity Recognition'
   task :who => :environment do
-    ap ChatManager.hello
+    ARGV.each { |a| task a.to_sym do ; end }
+    ap str_to_range(ARGV[1])
   end
 
   desc 'Date Recognition'
@@ -32,7 +33,7 @@ namespace :bot do
       if parsed.nil?
         n = Nickel.parse s
         if n.occurrences.any?
-          parsed = n.occurrences[0].start_date.date
+          parsed = Date.parse(n.occurrences[0].start_date.date)
         end
       end
 
@@ -44,7 +45,7 @@ namespace :bot do
           if parsed.nil?
             n = Nickel.parse r['text']
             if n.occurrences.any?
-              parsed = n.occurrences[0].start_date.date
+              parsed = Date.parse(n.occurrences[0].start_date.date)
             end
           end
           break unless parsed.nil?
@@ -96,7 +97,40 @@ end
 
 private
 
-def extract_date_msg(conversation)
-  last_msg = nil
+def str_to_range(s)
+  AlchemyAPI.key = "f286fcd06ef13744899ce740524ef099560102e4"
+  s.gsub!('!', '')
+  s.gsub!('?', '') if s.chars.count > 1
+  s.gsub!('/', ' ')
+  # ap s
+  parsed = Chronic.parse(s, :guess => false)
 
+  if parsed.nil?
+    n = Nickel.parse s
+    if n.occurrences.any?
+      parsed = n.occurrences[0].start_date.date
+    end
+  end
+
+  # second fallback is on Alchemy API
+  if parsed.nil?
+    results = AlchemyAPI.search(:keyword_extraction, text: s)
+    results.each do |r|
+      parsed = Chronic.parse(r['text'], :guess => false)
+      if parsed.nil?
+        n = Nickel.parse r['text']
+        if n.occurrences.any?
+          parsed = n.occurrences[0].start_date.date
+        end
+      end
+      break unless parsed.nil?
+    end
+  end
+
+  # manually check for certain ones
+  if s.downcase == 'later' || s.downcase == 'both'
+    parsed = Date.today
+  end
+
+  parsed
 end
