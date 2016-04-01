@@ -42,11 +42,8 @@
           <div class="ui label">
             <% if instance.date.today? %>
               Today at <%= instance.event.start_time.strftime("%l%p") %>
-            <% elsif instance.event.date < 1.week.from_now %>
-              <%= instance.date.strftime("%A") %> at
-              <%= instance.event.start_time.strftime("%l%p") %>
             <% else %>
-              <%= instance.date.strftime("%b %d") %> at
+              <%= instance.date.strftime("%A, %b %d") %> at
               <%= instance.event.start_time.strftime("%l%p") %>
             <% end %>
           </div>
