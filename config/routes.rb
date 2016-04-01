@@ -28,4 +28,5 @@ Rails.application.routes.draw do
 
   # FRONT WEBHOOK
   match '/front/mirror' => 'front#mirror', :via => :post
+  match '/front/bot' => 'front#bot', :via => :post
 end
