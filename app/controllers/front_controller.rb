@@ -2,6 +2,7 @@ class FrontController < ApplicationController
   HOURS_BETWEEN_CONVO = 18
   API_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiY29tcGFueSIsImNvbXBhbnkiOiJmZXJyaXMifQ.0wDOV0pX-CG-SF7XjTZWPVUYeFCq_20FbAUg_9-m7qc'
   URL = 'https://api2.frontapp.com/conversations/{conversation_id}/messages'
+
   # Any time new message is sent from Front, webhook passes event data to this endpoint
   def mirror
     number = params['message']['conversation']['recipient']['handle']
@@ -35,6 +36,7 @@ class FrontController < ApplicationController
     render nothing: true, status: :ok
   end
 
+  # test webhook for automated conversation flow
   def bot
     number = params['message']['conversation']['recipient']['handle']
 
@@ -71,7 +73,7 @@ class FrontController < ApplicationController
     else
       if str_to_range(text)
         event = Event.where(date: str_to_range(text)).sample
-        send_text(event.short_blurb)
+        send_text(event.title + ' is happening on' + event.next.date.strftime("%A, %B #{event.next.date.day.ordinalize}"))
       else
         send_text('date not parsed')
       end

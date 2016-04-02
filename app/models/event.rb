@@ -77,4 +77,8 @@ class Event < ActiveRecord::Base
     end
   end
 
+  # get the next occurrence of an event
+  def next
+    self.occurrences.where('date >= ?', Date.current).first
+  end
 end
