@@ -14,9 +14,9 @@ module Reply
 # -----------------------------------------------------------------
   WHEN_NEW_USER = "When are you looking for something to do -- Tonight? Later this week?"
 
-  WHEN_REPEAT_USER_WITH_NAME = "Hola %{name}, when are you looking for something to do?"
+  HELLO_NAME = "Hola %{name}, when are you looking for something to do?"
 
-  WHEN_REPEAT_USER_NO_NAME = "Hello again, when are you looking for something to do?"
+  HELLO_NO_NAME = "Hello again, when are you looking for something to do?"
 
   WHEN_TRY_AGAIN = "Didn't quite catch that, what day of the week?"
 
