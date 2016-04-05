@@ -1,5 +1,4 @@
 class ChatManager
-  include Treat::Core::DSL
   include Reply
   include Rails.application.routes.url_helpers
 
