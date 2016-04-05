@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330222802) do
+ActiveRecord::Schema.define(version: 20160404171637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,8 +34,14 @@ ActiveRecord::Schema.define(version: 20160330222802) do
   create_table "conversations", force: :cascade do |t|
     t.integer  "messages_count"
     t.integer  "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.date     "pref_begin_time"
+    t.date     "pref_end_time"
+    t.text     "pref_location"
+    t.text     "pref_categories"
+    t.boolean  "needs_human",     default: false
+    t.integer  "state",           default: 0,     null: false
   end
 
   add_index "conversations", ["user_id"], name: "index_conversations_on_user_id", using: :btree
@@ -157,6 +163,7 @@ ActiveRecord::Schema.define(version: 20160330222802) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.string   "name"
   end
 
   add_index "users", ["phone_number"], name: "index_users_on_phone_number", unique: true, using: :btree

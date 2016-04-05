@@ -61,7 +61,7 @@ namespace :bot do
         dates << parsed
         ap parsed
       end
-      # ap s if parsed.nil?
+      ap 'FAILURE' if parsed.nil?
     end
     puts "#{dates.count} / #{strings.count}"
   end
@@ -93,44 +93,4 @@ namespace :bot do
   task :preferences => :environment do
     puts 'What kind of things do you like?'
   end
-end
-
-private
-
-def str_to_range(s)
-  AlchemyAPI.key = "f286fcd06ef13744899ce740524ef099560102e4"
-  s.gsub!('!', '')
-  s.gsub!('?', '') if s.chars.count > 1
-  s.gsub!('/', ' ')
-  # ap s
-  parsed = Chronic.parse(s, :guess => false)
-
-  if parsed.nil?
-    n = Nickel.parse s
-    if n.occurrences.any?
-      parsed = n.occurrences[0].start_date.date
-    end
-  end
-
-  # second fallback is on Alchemy API
-  if parsed.nil?
-    results = AlchemyAPI.search(:keyword_extraction, text: s)
-    results.each do |r|
-      parsed = Chronic.parse(r['text'], :guess => false)
-      if parsed.nil?
-        n = Nickel.parse r['text']
-        if n.occurrences.any?
-          parsed = n.occurrences[0].start_date.date
-        end
-      end
-      break unless parsed.nil?
-    end
-  end
-
-  # manually check for certain ones
-  if s.downcase == 'later' || s.downcase == 'both'
-    parsed = Date.today
-  end
-
-  parsed
 end

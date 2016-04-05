@@ -63,8 +63,11 @@ class Event < ActiveRecord::Base
   end
 
 	# index search properties
-	def self.search(search)
-	  where('title || description || date || neighborhood ILIKE ?', "%#{search}%")
+	def self.search(query)
+	  by_event = where('date >= ?', Date.current).where('title || description || date ILIKE ?', "%#{query}%").to_a
+    by_location = Place.where('neighborhood || city ILIKE ?', "%#{query}%").map {|place| place.future_events}.to_a
+    by_category = nil
+
 	end
 
 	def sanitize_urls

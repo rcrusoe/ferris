@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
   #        :recoverable, :rememberable, :trackable, :validatable
 
   has_many :conversations, -> { order(created_at: :asc) }, dependent: :destroy
+
+  def new?
+    conversations_count == 1
+  end
 end

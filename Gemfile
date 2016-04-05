@@ -38,6 +38,11 @@ gem 'paloma'
 # ============================================
 # AI
 # ============================================
+gem 'scalpel'
+gem 'rwordnet', '0.1.3'
+gem 'engtagger'
+gem 'birch', git: 'https://github.com/faustoct/birch.git'
+gem 'treat'
 gem 'chronic'
 gem 'nickel'
 gem 'alchemy-api-rb', :require => 'alchemy_api'
