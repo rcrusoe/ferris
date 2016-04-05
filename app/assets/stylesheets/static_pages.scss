@@ -5,6 +5,7 @@ body{
 	font-size: 10px;
 	line-height: 1.15em;
 	color: #404D57;
+	background-color: #f9f9f9;
 }
 
 h1, h2{
@@ -626,4 +627,65 @@ i.icon{
 
 .ui.labeled.icon.buttons .button, .ui.labeled.icon.button{
 	margin: 0 !important;
+}
+
+/*
+*
+* postcard
+*
+*/
+
+#postcard{
+	padding: 0 !important;
+	.section{
+		padding: 5em 0;
+	}
+}
+
+.blue-section{
+	background-color: #1D2A33;
+}
+
+.red-section{
+	background-color: #D05353;
+}
+
+.yellow-section{
+	background-color: #FEE749;
+}
+
+.white-section{
+	background-color: #f9f9f9;
+}
+
+.beige-section{
+	background-color: #EBEBEB;
+}
+
+.typewriter-dark{
+	color: #f9f9f9;
+	padding: 2em 0;
+	p{
+		font-family: 'Inconsolata', monospace;
+		margin: 1.5em 3em;
+		font-size: 1.75em;
+	}
+	a{
+		color: white !important;
+		text-decoration: underline !important;
+	}
+}
+
+.typewriter-light{
+	color: #1D2A33;
+	padding: 2em 0;
+	p{
+		font-family: 'Inconsolata', monospace;
+		margin: 1.5em 3em;
+		font-size: 1.75em;
+	}
+	a{
+		color: white !important;
+		text-decoration: underline !important;
+	}
 }
