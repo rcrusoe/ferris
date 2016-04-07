@@ -62,11 +62,36 @@ class Event < ActiveRecord::Base
     end
   end
 
-	# index search properties
-	def self.search(query)
-	  by_event = where('date >= ?', Date.current).where('title || description || date ILIKE ?', "%#{query}%").to_a
-    by_location = Place.where('neighborhood || city ILIKE ?', "%#{query}%").map {|place| place.future_events}.to_a
-    by_category = nil
+	# search for event by a user's preferences in a conversation
+	def self.recommend(convo)
+    ids = Occurrence.where(date: convo.pref_begin_time..convo.pref_end_time).map {|o| o.event.id}
+
+    if convo.pref_location?
+      events = Event.where(id: ids).joins(:place).where('places.neighborhood || places.city ILIKE ?', "%#{convo.pref_location}%")
+    else
+      events = Event.where(id: ids)
+    end
+
+    all_events = []
+    if convo.pref_categories?
+      tags = convo.pref_categories.split(',')
+      tags.each do |tag|
+        (all_events << events.joins(place: :tags).where('tags.name ILIKE ?', "%#{tag}%")).flatten!
+      end
+    end
+
+    return all_events unless all_events.empty?
+    return events unless events.empty?
+
+    #  now search descriptions
+    if convo.pref_categories?
+      tags = convo.pref_categories.split(',')
+      tags.each do |tag|
+        (all_events << events.where('description || short_blurb ILIKE ?', "%#{tag}%")).flatten!
+      end
+    end
+
+    return all_events
 
 	end
 

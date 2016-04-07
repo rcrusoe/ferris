@@ -84,13 +84,13 @@ class FrontController < ApplicationController
     account_sid = 'AC4483ffd246d56ac3e099e4ef55d01bfd'
     auth_token = '51ff1297e63e8e58ef5158876bc0b36c'
     client = Twilio::REST::Client.new account_sid, auth_token
-
     messages.each do |msg|
       client.account.messages.create(
           :from => '+16177588031',
           :to => number,
           :body => msg
       )
+      sleep 2
     end
   end
 

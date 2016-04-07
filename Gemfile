@@ -41,6 +41,7 @@ gem 'paloma'
 gem 'scalpel'
 gem 'rwordnet', '0.1.3'
 gem 'engtagger'
+gem 'ruby-stemmer', '>=0.8.3', :require => 'lingua/stemmer'
 # gem 'birch', git: 'https://github.com/faustoct/birch.git'
 # gem 'treat'
 gem 'chronic'
@@ -71,6 +72,7 @@ gem 'cocoon'
 
 # Location
 gem 'geocoder'
+gem 'foursquare2'
 
 # ============================================
 # Debug

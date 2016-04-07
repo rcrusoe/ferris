@@ -1,12 +1,38 @@
 namespace :bot do
+  include Tags
   # https://github.com/louismullie/treat
   #============================================================================
   # Basic
   #============================================================================
   desc 'Named Entity Recognition'
   task :who => :environment do
-    ARGV.each { |a| task a.to_sym do ; end }
-    ap str_to_range(ARGV[1])
+    AlchemyAPI.key = "f286fcd06ef13744899ce740524ef099560102e4"
+    tgr = EngTagger.new
+
+    strings = []
+    Conversation.all.order('created_at desc').each do |c|
+      c.messages.each_with_index do |msg, index|
+        # message before last includes date
+        if msg.body.include?("name") && c.messages[index+1].present? && c.messages[index+1].inbound?
+          strings << c.messages[index+1].body
+        end
+      end
+    end
+
+    count = 0
+    strings.each_with_index do |s, i|
+      ap s
+      tagged = tgr.add_tags(s)
+      name = tgr.get_proper_nouns(tagged)
+
+      unless name.nil?
+        count += 1
+        ap name
+      end
+      break if i > 98
+    end
+
+    ap count.to_s + ' / 100'
   end
 
   desc 'Date Recognition'
@@ -17,7 +43,7 @@ namespace :bot do
     Conversation.all.order('created_at desc').each do |c|
       c.messages.each_with_index do |msg, index|
         # message before last includes date
-        strings << c.messages[index-1].body if msg.body.include? "Sure! There's so many great options"
+        strings << c.messages[index+1].body if msg.body.include? "Sure! There's so many great options"
       end
     end
 
@@ -27,6 +53,8 @@ namespace :bot do
       s.gsub!('!', '')
       s.gsub!('?', '') if s.chars.count > 1
       s.gsub!('/', ' ')
+      s.gsub!('-', ' ')
+      s.gsub!('.', '')
       # ap s
       parsed = Chronic.parse(s, :guess => false)
 
@@ -41,7 +69,12 @@ namespace :bot do
       if parsed.nil?
         results = AlchemyAPI.search(:keyword_extraction, text: s)
         results.each do |r|
-          parsed = Chronic.parse(r['text'], :guess => false)
+          begin
+            parsed = Chronic.parse(r['text'], :guess => false)
+          rescue ArgumentError
+            ap 'ERROR CAUGHT!'
+            next
+          end
           if parsed.nil?
             n = Nickel.parse r['text']
             if n.occurrences.any?
@@ -59,7 +92,7 @@ namespace :bot do
 
       unless parsed.nil?
         dates << parsed
-        ap parsed
+        ap parsed.is_a? Chronic::Span
       end
       ap 'FAILURE' if parsed.nil?
     end
@@ -68,7 +101,54 @@ namespace :bot do
 
   desc 'Category Extraction'
   task :what => :environment do
-    puts 'What would you like to do?'
+    strings = []
+    Conversation.order('RANDOM()').limit(10).each do |c|
+      c.messages.each_with_index do |msg, index|
+        # message before last includes date
+        if (msg.body.include?("What sort of") || msg.body.include?("what type of")) && c.messages[index+1].present?
+          if c.messages[index+1].inbound?
+            strings << c.messages[index+1].body
+          end
+        end
+      end
+    end
+
+    all_nouns = Hash.new
+    all_adjectives = Hash.new
+    tgr = EngTagger.new
+    strings.each_with_index do |str, i|
+      # remove symbols
+      str = normalize(str)
+      ap str
+
+      tagged = tgr.add_tags(str.downcase)
+      nouns = tgr.get_nouns(tagged)
+      nouns.each do |k, v|
+        k = k.singularize
+        if all_nouns.key?(k)
+          all_nouns[k] += v
+        else
+          all_nouns[k] = v
+        end
+      end
+
+      adjectives = tgr.get_adjectives(tagged)
+      adjectives.each do |k, v|
+        if all_adjectives.key?(k)
+          all_adjectives[k] += v
+        else
+          all_adjectives[k] = v
+        end
+      end
+
+      # extract_categories(str)
+    end
+
+    ap 'Analyzed ' + strings.count.to_s + ' requests'
+    ap 'Nouns'
+    ap Hash[all_nouns.sort_by{|k, v| v}.reverse]
+    ap 'Adjectives'
+    ap Hash[all_adjectives.sort_by{|k, v| v}.reverse]
   end
 
   desc 'Price Extraction'
@@ -89,8 +169,57 @@ namespace :bot do
   # Advanced
   #============================================================================
 
-  desc 'Create a mapping of what users do and do not like, across every conversation'
-  task :preferences => :environment do
-    puts 'What kind of things do you like?'
+  desc 'Category Extraction'
+  task :pref => :environment do
+    strings = []
+    Conversation.order('RANDOM()').limit(30).each do |c|
+      c.messages.each_with_index do |msg, index|
+        # message before last includes date
+        if (msg.body.include?("What sort of") || msg.body.include?("what type of")) && c.messages[index+1].present?
+          if c.messages[index+1].inbound?
+            strings << c.messages[index+1].body
+          end
+        end
+      end
+    end
+
+    strings.each_with_index do |str, i|
+      ap str
+      extract_categories(str)
+    end
+  end
+
+  def extract_categories(str)
+    tgr = EngTagger.new
+    str = normalize(str)
+
+    tagged = tgr.add_tags(str.downcase)
+    nouns = tgr.get_nouns(tagged)
+    tags = []
+    nouns.keys.each do |word|
+      word = word.singularize
+      tags << word if Tags::keyword?(word)
+    end
+    ap tags
+  end
+
+  def alchemy_extract(msg)
+    AlchemyAPI.key = "f286fcd06ef13744899ce740524ef099560102e4"
+    results = AlchemyAPI.search(:entity_extraction, text: msg)
+    return nil if results.nil?
+    results.each do |tag|
+      if tag['type'] == 'Person'
+        return tag['text']
+      end
+    end
+  end
+
+  def normalize(s)
+    s.gsub!('!', '')
+    s.gsub!('?', '') if s.chars.count > 1
+    s.gsub!('/', ' ')
+    s.gsub!('-', ' ')
+    s.gsub!('.', '')
+    return s
   end
 end

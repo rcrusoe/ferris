@@ -9,4 +9,13 @@ class User < ActiveRecord::Base
   def new?
     conversations_count == 1
   end
+
+  # name or empty str
+  def name_str
+    if name?
+      name
+    else
+      ''
+    end
+  end
 end
