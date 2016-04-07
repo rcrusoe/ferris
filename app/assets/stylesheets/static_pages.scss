@@ -29,6 +29,10 @@ h3{
 	margin-top: 2.4em;
 }
 
+h4{
+	font-size: 1.6em;
+}
+
 p{
 	font-size: 1.2em;
 	margin-top: 5em;
@@ -86,7 +90,7 @@ p{
 */
 
 .homepage-header{
-	margin-top: 50px;
+	padding-top: 50px;
 }
 
 .homepage-description{
@@ -94,20 +98,40 @@ p{
 }
 
 .type{
-	font-family: 'Silom', serif;
+	font-family: 'Silom', 'American Typewriter', serif;
 	text-align: center;
 	color: white;
 	line-height: 1.5em;
 	margin-top: 1em !important;
+	a{
+		color: white !important;
+	}
 }
 
-p{
-	font-size: 1.2em;
-}
-
-.social-share{
-	margin-top: 100px;
+.homepage-footer{
+	margin-top: 50px;
 	text-align: center;
+}
+
+#about-link{
+	padding-top: 50px;
+}
+
+#about{
+	p{
+		font-size: 1.6em;
+		text-align: left;
+	}
+	.about-section-header{
+		text-decoration: underline;
+		margin-top: 2em !important;
+	}
+}
+
+.sms-butotn{
+	font-family: 'Silom', 'American Typewriter', serif;
+	color: white;
+	line-height: 1.5em;
 }
 
 /*

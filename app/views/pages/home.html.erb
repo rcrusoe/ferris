@@ -1,28 +1,66 @@
 <% provide(:title, ' | Your Personal Guide to Boston') %>
+
+<!-- Header Image -->
 <div class="homepage-header">
 	<%= image_tag("ferris-logo.png", :class => "ui centered image medium") %>
 </div>
-<div class="homepage-description">
+
+<!-- Description + CTA -->
+<div class="homepage-description" style="max-width: 540px; margin: auto">
 	<h3 class="type">
-		Ferris knows what's happening in Boston <br>
-		and keeps you in the loop.
+		Ferris knows what's happening in Boston and keeps you in the loop.
 	</h3>
-	<a href="sms:16176827760&body=Hello">
-		<h3 class="type">
+	<h3 class="type" style="border: 2px solid white; border-radius: 10px; padding: .5em; max-width: 250px; margin: auto">
+		<a href="sms:16176827760&body=Hello">
 			617.682.7760
-		</h3>
-	</a>
-	<div class="social-share">
-		<!--
-		<h4 class="type">
-			About
-		</h4>
-		-->
-		<button class="ui basic circular facebook icon button" onclick="location.href='https://www.facebook.com/sharer/sharer.php?u=www.joinferris.com';">
-		  <i class="facebook icon"></i>
-		</button>
-		<button class="ui basic circular twitter icon button" onclick="location.href='https://twitter.com/home?status=Ferris%20knows%20what is%20happening%20in%20Boston%20and%20keeps%20you%20in%20the%20loop.%20www.joinferris.com';">
-		  <i class="twitter icon"></i>
-		</button>
-	</div>
+		</a>
+	</h3>
 </div>
+
+<!-- About -->
+<div class="homepage-footer">
+	<h4 class="type">
+		<a id="about-link" style="cursor: pointer; text-decoration: underline">
+			About
+		</a>
+	</h4>
+</div>
+<div class="ui grid stackable hidden" id="about">
+	<div class="five wide column"></div>
+	<div class="six wide column">
+		<p class="type about-section-header">
+			About Me
+		</p>
+		<p class="type">
+			My name is Ferris, and I'm your new go-to guy for things happening in Boston. If you're on my list, I'll text you once per week with my latest rundown. Each rundown offers my top event picks for the week, new music, funny pictures of cats, and whatever else my little heart desires. I'll try to keep you on your toes.
+		</p>
+		<p class="type about-section-header">
+			I still don't get it.
+		</p>
+		<p class="type">
+			It's pretty simple. I keep up to date with what's happening in the city so that you don't have to. I'll text you once per week with events you shouldn't miss, and other cool stuff.
+		</p>
+		<p class="type about-section-header">
+			Wait, but why?
+		</p>
+		<p class="type">
+			I think we're in an age of a new American Dream. The house in the suburbs with a white picket fence and a tire swing in the front yard - that was our parents' dream. We all fantasize about quitting our jobs and traveling through Southeast Asia, getting out of our comfort zone and exploring a new culture until our bank accounts run dry. I want to help inspire that lifestyle and by leading you on an adventure in your own city. Stick with me, and you'll be sure to break from routine, try something new, and surround yourself with entirely rad people.
+		</p>
+		<p class="type about-section-header">
+			How do I join?
+		</p>
+		<p class="type">
+			Again, pretty simple. <a href="sms:16176827760&body=Hello">Text me</a>. If you seem cool, I'll add you to my list.
+		</p>
+	</div>
+	<div class="five wide column"></div>
+</div>
+
+<script>
+	$("#about-link").click(function() {
+	    $("#about").toggleClass("hidden");
+	    $('html, body').animate({
+	        scrollTop: $("#about-link").offset().top
+	    }, 500);
+	});
+</script>
