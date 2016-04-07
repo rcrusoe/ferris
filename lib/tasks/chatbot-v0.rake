@@ -1,5 +1,4 @@
 namespace :bot do
-  include Tags
   # https://github.com/louismullie/treat
   #============================================================================
   # Basic
