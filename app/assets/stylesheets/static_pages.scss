@@ -5,7 +5,7 @@ body{
 	font-size: 10px;
 	line-height: 1.15em;
 	color: #404D57;
-	background-color: #f9f9f9;
+	background-color: #FCB07E;
 }
 
 h1, h2{
@@ -85,211 +85,29 @@ p{
 *
 */
 
-.header{
-	margin: 1em 0;
-	.ui.action.input:not([class*="left action"]) > input{
-		font-size: 1em;
-	}
+.homepage-header{
+	margin-top: 50px;
 }
 
-.section{
-	padding: 10em 0;
+.homepage-description{
+	margin-top: 40px;
 }
 
-.section-header{
+.type{
+	font-family: 'Silom', serif;
 	text-align: center;
-	margin-bottom: 1em;
-}
-
-.plan-description{
-	font-size: 1.5em;
-	text-align: center;
+	color: white;
 	line-height: 1.5em;
+	margin-top: 1em !important;
 }
 
-.not-included{
-	opacity: 0.3;
+p{
+	font-size: 1.2em;
 }
 
-.section .ui.card > .extra, .section .ui.cards > .card > .extra{
-	font-size: 1.5em;
-	color: #8798a4;
-}
-
-.section .ui.card > .content > .header:not(.ui), .section .ui.cards > .card > .content > .header:not(.ui){
+.social-share{
+	margin-top: 100px;
 	text-align: center;
-	font-size: 2em;
-}
-
-.ui.button{
-	padding: 1.25em;
-}
-
-.hero{
-	background: #E5665D;
-	text-align: center;
-	padding: 8em 0;
-	h1, h2, h3{
-		color: white;
-	}
-	h2{
-		font-size: 2em;
-		font-weight: 800;
-		margin-bottom: 1em;
-	}
-	h1{
-		font-size: 3em;
-		margin-bottom: 1em;
-	}
-	h3{
-		margin-top: 1.5em;
-		font-weight: 200;
-		line-height: 1.5em;
-	}
-	.icon{
-		color: white;
-	}
-}
-
-#how-it-works{
-	.step{
-		text-align: center;
-		margin: 3em 0;
-		.value{
-			font-size: 1.5em;
-			margin-top: 1em;
-			border: 2px solid black;
-			border-radius: 50%;
-			width: 40px;
-			padding: .5em 0;
-			margin: auto;
-		}
-		.label{
-			font-size: 2em;
-			margin-top: 1em;
-		}
-		.description{
-			font-size: 1.5em;
-			color: #5f666e;
-			margin-top: 1em;
-			letter-spacing: .2px;
-			line-height: 1.5em;
-		}
-	}
-	.messages{
-		margin-top: 4em;
-		.ferris, .user{
-			font-size: 1.5em;
-			padding: 1em;
-			border-radius: 1em;
-			display: block;
-			margin-top: 1em;
-			width: 80%;
-		}
-		.ferris{
-			background-color: #E6E5EB;
-			margin-right: 20%;
-		}
-		.user{
-			background-color: #21CF4F;
-			color: white;
-			margin-left: 20%;
-		}
-	}
-}
-
-#reviews{
-	background: #f9f9f9;
-	.review{
-		font-size: 1.5em;
-		color: #5f666e;
-		margin-top: 1em;
-		letter-spacing: .2px;
-		line-height: 1.5em;
-		text-align: center;
-	}
-	.review-name{
-		font-size: 1.75em;
-		margin-top: 2em;
-		text-align: center;		
-	}
-}
-
-.secondary-cta{
-	background: #D5DFE5;
-	padding: 4em 0;
-	.ui.button{
-		margin: 0 auto !important;
-		display: block !important;
-	}
-	h2, h4, p, a{
-		text-align: center;
-		margin: 2em auto;
-	}
-	h4{
-		margin-top: 30px;
-	}
-	p{
-		margin: 20px 0;
-		font-size: 1.5em;
-	}
-	a{
-		text-decoration: underline;
-	}
-	.tagline{
-		font-size: 1.5em;
-		margin-top: 1em;
-	}
-	.ui.statistics > .statistic{
-		margin: auto;
-	}
-}
-
-.newsletter-block{
-	.footer-nav{
-		margin-bottom: 3em;
-	}
-	p{
-		margin-top: 10px;
-		text-align: center;
-	}
-	h3{
-		font-size: 2em;
-	}
-	h4{
-		font-size: 1.5em;
-		margin: 0.5em 0;
-		font-weight: 200;
-		a{
-			color: #404D57;
-		}
-		a:hover{
-			color: #E5665D;
-		}
-	}
-	form{
-		margin: auto;
-	}
-	.description{
-		margin-top: 40px;
-	}
-}
-
-i.icon{
-	margin: 0;
-}
-
-.description{
-	text-align: center;
-	margin-top: 15vh;
-}
-
-.ui.action.input:not([class*="left action"]) > input{
-	font-size: 1.4em;
-}
-
-.secure{
-	margin-top: 3em;
 }
 
 /*
