@@ -1,0 +1,163 @@
+body{
+	font-family: "Roboto", sans-serif;
+	font-size: 10px;
+	line-height: 1.15em;
+	color: #404D57;
+	background-color: #FCB07E;
+}
+
+h1, h2{
+	font-weight: 800;
+}
+
+p, h3{
+	font-weight: 200;
+}
+
+h1{
+	font-size: 5em;
+}
+
+h2{
+	font-size: 3.6em;
+}
+
+h3{
+	font-size: 2.4em;
+	margin-top: 2.4em;
+}
+
+h4{
+	font-size: 1.6em;
+}
+
+p{
+	font-size: 1.2em;
+	margin-top: 5em;
+}
+
+/*
+*
+* homepage
+*
+*/
+
+.homepage-header{
+	padding-top: 50px;
+}
+
+.homepage-description{
+	margin-top: 40px;
+}
+
+.type{
+	font-family: 'Inconsolata', monospace;
+	text-align: center;
+	color: white;
+	line-height: 1.5em;
+	margin-top: 1em !important;
+	a{
+		color: white !important;
+	}
+}
+
+.homepage-footer{
+	margin-top: 50px;
+	text-align: center;
+}
+
+#about-link{
+	padding-top: 50px;
+}
+
+#about{
+	p{
+		font-size: 1.6em;
+		text-align: left;
+	}
+	.about-section-header{
+		text-decoration: underline;
+		margin-top: 2em !important;
+	}
+}
+
+.sms-butotn{
+	font-family: 'Silom', 'American Typewriter', serif;
+	color: white;
+	line-height: 1.5em;
+}
+
+/*
+*
+* dashboard
+*
+*/
+
+.ui.statistic{
+	display: inherit;
+}
+
+.stats-section{
+	padding: 5em 0;
+}
+
+/*
+*
+* postcard
+*
+*/
+
+#postcard{
+	padding: 0 !important;
+	.section{
+		padding: 5em 0;
+	}
+}
+
+.blue-section{
+	background-color: #1D2A33;
+}
+
+.red-section{
+	background-color: #D05353;
+}
+
+.yellow-section{
+	background-color: #FEE749;
+}
+
+.white-section{
+	background-color: #f9f9f9;
+}
+
+.beige-section{
+	background-color: #EBEBEB;
+}
+
+.typewriter-dark{
+	color: #f9f9f9;
+	padding: 2em 0;
+	p{
+		font-family: 'Inconsolata', monospace;
+		margin: 1.5em 3em;
+		font-size: 1.75em;
+	}
+	a{
+		color: white !important;
+		text-decoration: underline !important;
+	}
+}
+
+.typewriter-light{
+	color: #1D2A33;
+	padding: 2em 0;
+	p{
+		font-family: 'Inconsolata', monospace;
+		margin: 1.5em 3em;
+		font-size: 1.75em;
+	}
+	a{
+		color: white !important;
+		text-decoration: underline !important;
+	}
+}

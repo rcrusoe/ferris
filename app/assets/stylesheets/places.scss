@@ -1,3 +1,198 @@
-// Place all the styles related to the Places controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+body{
+	background: white;
+}
+
+/*
+*
+* place index
+*
+*/
+
+.gutter{
+	margin: auto;
+	width: 100%;
+}
+
+.preview-card{
+	font-size: 16px;
+}
+
+.ui.cards > .card{
+	width: 338px;
+	margin: 1em auto;
+}
+
+.ui.card > .content > .header:not(.ui), .ui.cards > .card > .content > .header:not(.ui){
+	margin: 0;
+}
+
+.ui.card > .content > .header + .description, .ui.card > .content > .meta + .description, .ui.cards > .card > .content > .header + .description, .ui.cards > .card > .content > .meta + .description{
+	margin-top: 1em;
+}
+
+#search{
+	margin-left: 30px;
+}
+
+.ui.cards > .card > .content a:not(.ui), .ui.card > .content a:not(.ui){
+	color: black;
+}
+
+.hidden{
+	display: none !important;
+}
+
+.invisible{
+	visibility: hidden;
+}
+
+.ui.labeled.icon.buttons .button, .ui.labeled.icon.button{
+	margin: 0 !important;
+}
+
+/*
+*
+* place card 
+*
+*/
+
+.place-card{
+	margin-bottom: 5vh;
+	font-size: 16px;
+}
+
+.ui.table{
+	margin-top: 0 !important;
+}
+
+.ui.accordion .title:not(.ui){
+	padding: 0 !important;
+}
+
+.ui.card{
+	margin: auto;
+	width: 380px;
+}
+
+.ui.card>.content>.header+.description, .ui.card>.content>.meta+.description, .ui.cards>.card>.content>.header+.description, .ui.cards>.card>.content>.meta+.description{
+	text-align: left;
+	line-height: 1.5em;
+}
+
+.ui.card>.extra, .ui.cards>.card>.extra{
+	padding: 1.25em 1em 1em 1em;
+	line-height: 1.25em;
+}
+
+.headline{
+	text-align: center;
+	margin-top: 1em;
+}
+
+p, ol, ul, td{
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 13px;
+	line-height: 18px;
+}
+
+/* Hours */
+.ui.accordion .title .dropdown.icon, .ui.accordion .accordion .title .dropdown.icon{
+	margin: 0 !important;
+}
+
+/* Associated Events */
+.ui.items > .item > .content > .header:not(.ui){
+	font-size: 1.6em;
+	font-weight: 200;
+	margin-top: 0.25em;
+}
+
+.ui.items > .item > .content p:last-child{
+	font-size: .875em;
+	color: rgba(0, 0, 0, 0.68);
+}
+
+#place-events{
+	.ui.statistics > .statistic{
+		background-color: #D5DFE5; 
+		width: 80px; 
+		padding: .375em 0; 
+		margin: 0 1em 0 1.5em;
+	}
+	.header{
+		font-size: 1.125em;
+		margin: 0.25em 0 0.375em 0;
+		max-width: 250px;
+	}
+	.event-subtitle{
+		color: rgba(0,0,0,0.4);
+	}
+	.ui.statistics .statistic > .value, .ui.statistic > .value, .ui.statistics .statistic > .label, .ui.statistic > .label{
+		color: #fff;
+	}
+}
+
+/*
+*
+* new place form
+*
+*/
+
+#new-place-form .ui.form{
+	max-width: 320px;
+	margin: auto;
+	margin-top: 5vh;
+}
+
+#place_monday_open_time_4i, #place_monday_open_time_5i, 
+#place_tuesday_open_time_4i, #place_tuesday_open_time_5i, 
+#place_wednesday_open_time_4i, #place_wednesday_open_time_5i, 
+#place_thursday_open_time_4i, #place_thursday_open_time_5i, 
+#place_friday_open_time_4i, #place_friday_open_time_5i, 
+#place_saturday_open_time_4i, #place_saturday_open_time_5i, 
+#place_sunday_open_time_4i, #place_sunday_open_time_5i,
+#place_monday_close_time_4i, #place_monday_close_time_5i, 
+#place_tuesday_close_time_4i, #place_tuesday_close_time_5i, 
+#place_wednesday_close_time_4i, #place_wednesday_close_time_5i, 
+#place_thursday_close_time_4i, #place_thursday_close_time_5i, 
+#place_friday_close_time_4i, #place_friday_close_time_5i, 
+#place_saturday_close_time_4i, #place_saturday_close_time_5i, 
+#place_sunday_close_time_4i, #place_sunday_close_time_5i {
+	width: 48%;
+	margin-right: 1%;
+	margin-bottom: 1em;
+}
+
+#place_monday_open_time_4i, 
+#place_tuesday_open_time_4i, 
+#place_wednesday_open_time_4i, 
+#place_thursday_open_time_4i, 
+#place_friday_open_time_4i, 
+#place_saturday_open_time_4i, 
+#place_sunday_open_time_4i,
+#place_monday_close_time_4i, 
+#place_tuesday_close_time_4i, 
+#place_wednesday_close_time_4i, 
+#place_thursday_close_time_4i, 
+#place_friday_close_time_4i, 
+#place_saturday_close_time_4i, 
+#place_sunday_close_time_4i {
+	float: left;
+}
+
+#place_monday_open_time_5i, 
+#place_tuesday_open_time_5i, 
+#place_wednesday_open_time_5i, 
+#place_thursday_open_time_5i, 
+#place_friday_open_time_5i, 
+#place_saturday_open_time_5i, 
+#place_sunday_open_time_5i 
+#place_monday_close_time_5i, 
+#place_tuesday_close_time_5i, 
+#place_wednesday_close_time_5i, 
+#place_thursday_close_time_5i, 
+#place_friday_close_time_5i, 
+#place_saturday_close_time_5i, 
+#place_sunday_close_time_5i {
+	float: right;
+}

@@ -19,7 +19,6 @@
 //= require cocoon
 //= require paloma
 //= require recurring_select
-//= require_tree .
 
 $(document).ready(function(){
     $("#search-icon").click(function(){

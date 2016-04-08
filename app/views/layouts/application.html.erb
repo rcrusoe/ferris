@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>Ferris<%= yield(:title) %></title>
-	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= stylesheet_link_tag "application", params[:controller], :media => "all", 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag "application", params[:controller], 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
 	<%= semantic_flash %>
 	<meta name="google-site-verification" content="Y4grPIL4-gppQ48xXWENekNO2Rn6NQdlphrVF5M5oiQ" />

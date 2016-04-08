@@ -1,0 +1,172 @@
+body{
+	background: white;
+}
+
+/*
+*
+* event index
+*
+*/
+
+.gutter{
+	margin: auto;
+	width: 100%;
+}
+
+.preview-card{
+	font-size: 16px;
+}
+
+.ui.cards > .card{
+	width: 338px;
+	margin: 1em auto;
+}
+
+.ui.card > .content > .header:not(.ui), .ui.cards > .card > .content > .header:not(.ui){
+	margin: 0;
+}
+
+.ui.card > .content > .header + .description, .ui.card > .content > .meta + .description, .ui.cards > .card > .content > .header + .description, .ui.cards > .card > .content > .meta + .description{
+	margin-top: 1em;
+}
+
+#search{
+	margin-left: 30px;
+}
+
+.ui.cards > .card > .content a:not(.ui), .ui.card > .content a:not(.ui){
+	color: black;
+}
+
+.hidden{
+	display: none !important;
+}
+
+.invisible{
+	visibility: hidden;
+}
+
+.ui.labeled.icon.buttons .button, .ui.labeled.icon.button{
+	margin: 0 !important;
+}
+
+/*
+*
+* event card 
+*
+*/
+
+.event-card{
+	margin-bottom: 5vh;
+	font-size: 16px;
+}
+
+.ui.card{
+	margin: auto;
+	width: 380px;
+}
+
+.ui.card .meta :last-child, .ui.cards>.card .meta :last-child{
+	margin-top: 0.75em;
+}
+
+.ui.card>.content>.header+.description, .ui.card>.content>.meta+.description, .ui.cards>.card>.content>.header+.description, .ui.cards>.card>.content>.meta+.description{
+	text-align: left;
+	line-height: 1.5em;
+}
+
+.ui.card>.extra, .ui.cards>.card>.extra{
+	padding: 1.25em 1em 1em 1em;
+	line-height: 1.25em;
+}
+
+.ui.blue.button{
+	padding: 1.25em;
+}
+
+.header-image{
+	width: 60px;
+}
+
+.ui.cards > .card > .content > .header:not(.ui), .ui.card > .content > .header:not(.ui){
+	font-size: 1.125em;
+}
+
+.event-subtitle{
+	margin: 0.25em 0 0 0;
+	line-height: 1.25em;
+}
+
+/*
+*
+* new event form
+*
+*/
+
+#new-event-form .ui.form{
+	max-width: 320px;
+	margin: auto;
+	margin-top: 5vh;
+}
+
+.error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+    line-height: 1.5em;
+  }
+}
+
+.search-error{
+	text-align: center;
+	color: #000;
+	font-size: 1.6em;
+}
+
+.ui.items > .item > .content p:last-child{
+	text-align: left;
+	color: #000;
+}
+
+.index-image{
+	width: 100%;
+}
+
+.ui.items > .item > .content a:not(.ui){
+	margin-top: 0.5em;
+}
+
+.ui.items > .item .meta :last-child{
+	font-size: 1.25em;
+}
+
+#event_date_1i, #event_date_2i, #event_date_3i{
+	width: 30%;
+	float: left;
+	margin-right: 3%;
+	margin-bottom: 1em;
+}
+
+#event_start_time_4i, #event_start_time_5i, #event_end_time_4i, #event_end_time_5i{
+	width: 48%;
+	margin-right: 1%;
+	margin-bottom: 1em;
+}
+
+#event_start_time_4i, #event_end_time_4i{
+	float: left;
+}
+
+#event_start_time_5i, #event_end_time_5i{
+	float: right;
+}
+
+.headline{
+	text-align: center;
+	margin-top: 1em;
+}
+
+.ui.label > a{
+	opacity: 1.0 !important;
+}
