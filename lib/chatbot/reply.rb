@@ -2,13 +2,14 @@ module Reply
 # -----------------------------------------------------------------
 #  STATE 0 -- ONBOARDING
 # -----------------------------------------------------------------
-  HELLO_NEW = "Hey there, looks like you're new here - I'm Ferris. What's your name?"
+  HELLO_NEW = "Hi there, looks like you’re new here - I'm Ferris. What’s your name?"
 
-  LOCAL_OR_TRAVELER = "Nice to meet you%{name}. Are you a local or just visiting?"
+  LOCAL_OR_TRAVELER = "Hey%{name}, good to meet you. Are you local to Boston, or visiting?"
 
-  HOW_IT_WORKS = "Cool cool. Here's how this works - I hunt around the city for rad new experiences and keep you in the loop via a weekly text"\
-  "You can also text me any time to see what's happening around the city.\n\nWhen are you looking for something to do -- Tonight? Later this week?"
+  HOW_IT_WORKS = "Sweet. Well here’s how things work - I hunt in/around the city for rad new experiences, and keep you in the loop via text.\n\n"\
+  "You can also text me any time to get the low down on things happening in the city. Just toss out a day..."
 
+  HOW_IT_WORKS_TOURIST = "Welcome to Boston. Can I help you find an event, tourist attraction, or restaurant?"
 # -----------------------------------------------------------------
 #  STATE 1 -- WHEN
 # -----------------------------------------------------------------
@@ -20,7 +21,7 @@ module Reply
 #  STATE 2 -- WHAT
 # -----------------------------------------------------------------
 #   TODO: generate appended categories based on user interest graph
-  WHAT = "Word. What are you in the mood for -- Art? Comedy? Live Music? Bars?"
+  WHAT = "Sure! What sort of scene are you looking for? Live music, comedy, something else entirely?"
 
   MORE_DETAIL = "Adjectives are a good start, but give me some nouns to work with here. Art? Jazz? Bars? Hiking? Comedy? What are you in the mood for?"
 

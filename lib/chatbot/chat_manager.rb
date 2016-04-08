@@ -13,6 +13,7 @@ class ChatManager
     # -----------------------------------------------------------------
     # PASSIVE EXTRACTION - (Timespan, Location, Categories)
     # -----------------------------------------------------------------
+    extract_commands(msg)
     extract_location(msg)
     extract_timeSpan(msg)
     extract_categories(msg)
@@ -31,13 +32,18 @@ class ChatManager
 
     elsif @convo.get_name?
       extract_name(msg)
-      response << Reply::LOCAL_OR_TRAVELER % {name: ' '+@user.name_str}
+      response << Reply::LOCAL_OR_TRAVELER % {name: @user.name_str}
       @convo.update(state: 'local_or_visitor')
 
     elsif @convo.local_or_visitor?
-      # TODO: record local or visitor, change convo flow based on answer
-      @convo.update(state: 'when')
-      response << Reply::HOW_IT_WORKS
+      extract_local(msg)
+      if @user.local?
+        @convo.update(state: 'when')
+        response << Reply::HOW_IT_WORKS
+      else
+        @convo.update(state: 'what')
+        response << Reply::HOW_IT_WORKS_TOURIST
+      end
 
     # -----------------------------------------------------------------
     #  STATE 1 -- WHEN
@@ -54,7 +60,7 @@ class ChatManager
     #  STATE 2 -- WHAT - categories & keywords
     # -----------------------------------------------------------------
     elsif @convo.what?
-      if @convo.pref_categories? || msg.includes?('any')
+      # if @convo.pref_categories? || msg.includes?('any')
         # if categories is set, return 3 events sorted by interested_count
 
         events = Event.recommend(@convo)
@@ -70,20 +76,30 @@ class ChatManager
         end
 
         # @convo.update(state: 'confirmation')
-      else
-        response << Reply::HELP % {name: ' '+@user.name_str}
-      end
+      # else
+      #   response << Reply::HELP % {name: ' '+@user.name_str}
+      # end
     elsif @convo.confirmation?
       # look for sentiment analysis positive / negative
       # look for 'more' keyword
+    elsif @convo.reset?
+      response << "Goodbye #{@user.name}. Reseting..."
+      @user.destroy
     else
-      response << "There was an error, I'm still learning..."
+        response << "There was an error, I'm still learning..."
     end
 
     response
   end
 
   private
+
+  # extract a generic list of commands on every input
+  def extract_commands(cmd)
+    if cmd.downcase == 'reset'
+      @convo.update(state: 'reset')
+    end
+  end
 
   def extract_categories(str)
     tgr = EngTagger.new
@@ -172,6 +188,19 @@ class ChatManager
       if tag['type'] == 'Person'
         @user.update(name: tag['text'].titleize)
       end
+    end
+  end
+
+  # is the user a local or visitor? default to true if can't parse msg
+  def extract_local(msg)
+    local_words = ['local', 'live here']
+    visitor_words = ['visit', 'vacation', 'travel', 'tour']
+    if local_words.any? { |word| msg.include?(word) }
+      @user.update(local: true)
+    elsif visitor_words.any? { |word| msg.include?(word) }
+      @user.update(local: false)
+    else
+      @user.update(local: true)
     end
   end
 
