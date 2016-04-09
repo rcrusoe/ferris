@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    authenticate
+    # authenticate
 
     # Parse Filters from Nav Bar
 
