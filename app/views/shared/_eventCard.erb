@@ -1,67 +1,42 @@
 <div class="four wide column">
-  <div class="ui cards preview-card">
-    <div class="card preview-card">
+  <%= link_to event_path(instance.event) do %>
 
-      <!-- Use event's place image if event has no image -->
-      <div class="image-wrapper">
-        <% if instance.event.image? %>
-          <%= link_to image_tag(instance.event.image.url(:medium), class: "index-image"), instance.event %>
-        <% elsif instance.event.place.image? %>
-          <%= link_to image_tag(instance.event.place.image.url(:medium), class: "index-image"), instance.event %>
-        <% end %>
-      </div>
+    <!-- event image -->
+    <div class="event-preview" style="background: url(<%= instance.event.image.url(:medium) %>);">
 
-      <div class="content">
-        <!-- Title-->
-        <button class="ui icon mini basic button right floated copy-to-clipboard" data-clipboard-text="<%= instance.event.short_blurb %> More info here: www.joinferris.com/events/<%= instance.event_id %>">
-          <i class="copy icon"></i>
-        </button>
-        <div class="header"><%= link_to (instance.event.title), instance.event %></div>
+      <!-- container for color overlay -->
+      <div class="event-preview-inside">
 
-        <!-- Blurb
-        <div class="description">
-          <%= truncate(instance.event.short_blurb, length: 105, seperator: ' ', omission: '...') %>
-        </div>
-        -->
+        <!-- event date -->
+        <p class="event-preview-date">
+          <span><%= instance.date.strftime("%a") %></span>
+          <br>
+          <%= instance.date.strftime("%b %d") %>
+        </p>
 
-        <!-- Place -->
-        <div class="meta event-subtitle">
-          <% unless instance.event.place.nil? %>
-            <%= instance.event.place.name %> in
-            <% if instance.event.place.neighborhood? %>
-              <%= instance.event.place.neighborhood %>
-            <% else %>
-              <%= instance.event.place.city if instance.event.place.city? %>
+        <!-- event header -->
+        <div class="event-preview-text">
+          <h4>
+            <%= instance.event.title %>
+          </h4>
+          <p class="event-preview-meta">
+            <% unless instance.event.place.nil? %>
+              <% if instance.event.place.neighborhood? %>
+                <%= instance.event.place.neighborhood %>
+              <% else %>
+                <%= instance.event.place.city if instance.event.place.city? %>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
-
-        <!-- Labels -->
-        <div class="meta">
-          <!-- Date -->
-          <div class="ui label">
-            <% if instance.date.today? %>
-              Today at <%= instance.event.start_time.strftime("%l%p") %>
+            ·
+            <% if instance.event.price == 0 || instance.event.price.nil? %>
+              Free
             <% else %>
-              <%= instance.date.strftime("%A, %b %d") %> at
-              <%= instance.event.start_time.strftime("%l%p") %>
+              $<%= instance.event.price %>.00
             <% end %>
-          </div>
-
-          <!-- TODO: add tags -->
-          <!-- Primary Tag
-          <div class="ui label">
-            Tag
-          </div>
-          -->
-
-          <!-- Secondary Tag
-          <div class="ui label">
-            18+
-          </div>
-          -->
+          </p>
         </div>
+
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
