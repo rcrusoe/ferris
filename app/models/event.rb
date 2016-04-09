@@ -87,7 +87,7 @@ class Event < ActiveRecord::Base
     if convo.pref_categories?
       tags = convo.pref_categories.split(',')
       tags.each do |tag|
-        (all_events << events.where('description || short_blurb ILIKE ?', "%#{tag}%")).flatten!
+        (all_events << events.where('events.description || events.short_blurb ILIKE ?', "%#{tag}%")).flatten!
       end
     end
 
