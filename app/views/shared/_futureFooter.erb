@@ -42,6 +42,23 @@
       <% end %>
     </div>
   </div>
+  <!--
+  <div class="ui scrolling upward dropdown link item" id="categories-select">
+    <span class="text">
+      <i class="large tag icon"></i> Categories
+    </span>
+    <div class="menu">
+      <% Category.all.order(:name).uniq.each do |category| %>
+        <div class="item" data-value=<%= category.name %>>
+        <% if category.icon? %>
+            <i class="<%= category.icon %> icon"></i>
+            <%= category.name %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  -->
   <a class="item" id="search-button">
     Filter
   </a>
