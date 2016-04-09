@@ -1,20 +1,24 @@
 <div class="four wide column">
-  <%= link_to event_path(instance.event) do %>
 
-    <!-- event image -->
-    <div class="event-preview" style="background: url(<%= instance.event.image.url(:medium) %>);">
+  <!-- event image -->
+  <div class="event-preview" style="background: url(<%= instance.event.image.url(:medium) %>);">
+ 
+    <!-- container for color overlay -->
+    <div class="event-preview-inside">
 
-      <!-- container for color overlay -->
-      <div class="event-preview-inside">
+      <!-- event date -->
+      <p class="event-preview-date">
+        <span><%= instance.date.strftime("%a") %></span>
+        <br>
+        <%= instance.date.strftime("%b %d") %>
+      </p>
 
-        <!-- event date -->
-        <p class="event-preview-date">
-          <span><%= instance.date.strftime("%a") %></span>
-          <br>
-          <%= instance.date.strftime("%b %d") %>
-        </p>
+      <button class="ui icon mini button right floated copy-to-clipboard" data-clipboard-text="<%= instance.event.short_blurb %> More info here: www.joinferris.com/events/<%= instance.event_id %>">
+        <i class="copy icon"></i>
+      </button>
 
-        <!-- event header -->
+      <!-- event header -->
+      <%= link_to event_path(instance.event) do %>
         <div class="event-preview-text">
           <h4>
             <%= instance.event.title %>
@@ -35,8 +39,23 @@
             <% end %>
           </p>
         </div>
-
-      </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
+
+<script>
+  var clipboard = new Clipboard('.copy-to-clipboard');
+  clipboard.on('success', function(e) {
+    console.info('Action:', e.action);
+    console.info('Text:', e.text);
+    console.info('Trigger:', e.trigger);
+
+    e.clearSelection();
+  });
+
+  clipboard.on('error', function(e) {
+      console.error('Action:', e.action);
+      console.error('Trigger:', e.trigger);
+  });
+</script>

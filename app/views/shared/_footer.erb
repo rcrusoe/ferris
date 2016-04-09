@@ -1,14 +1,68 @@
-<div class="ui three item menu" id="footer">
-  <a class="item">
+<div class="ui four item menu" id="footer">
+  <div class="ui upward dropdown link item" id="when-select">
     <i class="large calendar icon"></i>
-    Date
-  </a>
-  <a class="item">
+    <span class="text">Date</span>
+    <div class="menu">
+        <div class="item" data-value="1">
+          Today
+        </div>
+        <div class="item" data-value="2">
+          Tomorrow
+        </div>
+        <div class="item" data-value="3">
+          This Week
+        </div>
+        <div class="item" data-value="4">
+          This Weekend
+        </div>
+    </div>
+  </div>
+  <div class="ui scrolling upward dropdown link item" id="where-select">
     <i class="large map icon"></i>
-    Location
-  </a>
-  <a class="item">
+    <span class="text">Location</span>
+    <div class="menu">
+      <div class="item" data-value="-3">
+        Boston
+      </div>
+      <div class="item" data-value="-2">
+        Cambridge
+      </div>
+      <div class="item" data-value="-1">
+        Somerville
+      </div>
+      <div class="divider"></div>
+      <% Place.all.order(:neighborhood).pluck(:neighborhood).uniq.each_with_index do |hood, i| %>
+        <% unless hood.blank? %>
+          <div class="item" data-value=<%= i %>>
+            <%= hood %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="ui scrolling upward dropdown link item" id="categories-select">
     <i class="large tag icon"></i>
-    Category
+    <span class="text">Categories</span>
+    <div class="menu">
+      <% Category.all.order(:name).uniq.each do |category| %>
+        <div class="item" data-value=<%= category.name %>>
+        <% if category.icon? %>
+            <i class="<%= category.icon %> icon"></i>
+            <%= category.name %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <a class="item" id="search-button">
+    Filter
   </a>
 </div>
+
+<script>
+  $('.dropdown')
+    .dropdown({
+      direction: 'upward'
+    })
+  ;
+</script>
