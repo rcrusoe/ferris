@@ -193,7 +193,7 @@ class ChatManager
 
   # is the user a local or visitor? default to true if can't parse msg
   def extract_local(msg)
-    local_words = ['local', 'live here']
+    local_words = ['local', 'live here', 'from here']
     visitor_words = ['visit', 'vacation', 'travel', 'tour']
     if local_words.any? { |word| msg.include?(word) }
       @user.update(local: true)
