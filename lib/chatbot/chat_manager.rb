@@ -27,7 +27,7 @@ class ChatManager
         response << Reply::HELLO_NEW
       else
         @convo.update(state: 'when')
-        response << Reply::HELLO_NAME % {name: ' '+@user.name_str}
+        response << Reply::HELLO_NAME % {name: @user.name_str}
       end
 
     elsif @convo.get_name?
@@ -83,7 +83,7 @@ class ChatManager
       # look for sentiment analysis positive / negative
       # look for 'more' keyword
     elsif @convo.reset?
-      response << "Goodbye #{@user.name}. Reseting..."
+      response << "Goodbye#{@user.name_str}. Reseting..."
       @user.destroy
     else
         response << "There was an error, I'm still learning..."

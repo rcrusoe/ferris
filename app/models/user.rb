@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   # name or empty str
   def name_str
     if name?
-      name
+      ' '+name
     else
       ''
     end
