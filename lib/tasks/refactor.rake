@@ -55,24 +55,28 @@ namespace :refactor do
     end
   end
 
-  desc 'tag events with categories based on facebook tags'
+  desc 'retag music venues with foursquare categories'
   task :categorize => :environment do
-    # for each event, take the categories defined on the place
-    places = Place.where(approved: true)
-    places.to_a.each do |p|
-      geo = Geocoder.search(p.address).first
-      puts 'querying...'
-      sleep(2)
-      p.street = geo.street_address
-      p.city = geo.city
-      p.state = geo.state_code
-      p.zip = geo.postal_code
-      p.country = geo.country
-      p.neighborhood = geo.neighborhood
-      p.lat = geo.coordinates[0]
-      p.lng = geo.coordinates[1]
-      p.save
-      ap p
+    # get all venue info
+    # extract phone number, stats, url, rating, description, listed? (for lists that contain the venue), tips
+    # tags, photos, phrases, attributes
+
+    music_venues = Place.joins(:tags).where('tags.name ILIKE ?', '%concert%').uniq
+
+    music_venues.each_with_index do |place, i|
+      unless place.lat.nil?
+        ap place.name + ' located in ' + place.lat.to_s + ', ' + place.lng.to_s
+
+        # for each place, query foursquare with lat/lng + name
+        results = client.search_venues({ll:"#{place.lat}, #{place.lng}", query: place.name, limit:'1'})
+
+        unless results['venues'].empty?
+          venue = client.venue(results['venues'].first['id'])
+
+          ap venue['name']
+          ap results['venues'].first['categories'].map {|c| [c['name'], c['primary']] }
+        end
+      end
     end
   end
 end

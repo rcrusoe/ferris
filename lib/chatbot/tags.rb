@@ -1,11 +1,10 @@
 module Tags
-  CATEGORIES = ['Music', 'Comedy', 'Art', 'Theater', 'Museum', 'Nightlife', 'Food', 'Film',
+  CATEGORIES = ['Music', 'Museum', 'Comedy', 'Art', 'Theater', 'Nightlife', 'Food', 'Film',
                 'Culture', 'Sport', 'Tech', 'Outdoor']
 
   CATEGORIZED_KEYWORDS = {
       music: ['concert', 'show', 'venue', 'music', 'entertainment', 'band', 'festival',
-              'jazz', 'hip hop', 'electronic', 'EDM', 'rock', 'alternative', 'punk', 'dance', 'guitar', 'dj',
-              'musician', 'karaoke'],
+              'jazz', 'hip hop', 'electronic', 'EDM', 'rock', 'alternative', 'punk', 'dance', 'guitar', 'dj', 'karaoke'],
       nightlife: ['nightlife', 'wine', 'beer', 'alcohol', 'drink', 'liquor', 'bar', 'pub', 'club', 'party', 'dance', 'cocktail',
                   'margarita', 'whiskey', 'speakeasy', 'rooftop', 'brewery', 'lounge'],
       art: ['gallery', 'art', 'exhibition', 'photography', 'design'],
@@ -27,6 +26,7 @@ module Tags
                         'casual', 'chill', 'low key', 'mellow', 'laid back', 'relaxed', 'quiet',
                         'adventurous', 'unique', 'unordinary', 'unusual',
                         'social', 'romantic', 'fancy',
+                        'social', 'romantic', 'fancy',
                         'inside', 'outside',
                         'free', 'cheap', 'inexpensive', 'not expensive',
                         'nerdy']
@@ -41,4 +41,12 @@ module Tags
     list = CATEGORIZED_KEYWORDS.values.flatten!
     list.any? { |s| s.include?(word) }
   end
+
+#--------------------------------------------------------------------------------------------------
+#   LIVE MUSIC
+#--------------------------------------------------------------------------------------------------
+  MUSIC_TAGS = ['Music Venue', 'Concert Hall', 'Jazz Club', 'Rock Club', 'Piano Bar']
+  PERFORMING_ARTS_TAGS = ['Dance Studio', 'Indie Theater', 'Opera House', 'Rock Club', 'Theater', 'Salsa Club']
+  MUSEUM_TAGS = ['Art Museum', 'History Museum', 'Science Museum', 'Planetarium']
+  NIGHTLIFE_TAGS = ['Bar', 'Pub', 'Brewery', 'Lounge', 'Nightclub', 'Speakeasy']
 end

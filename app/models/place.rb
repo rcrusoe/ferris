@@ -10,7 +10,7 @@ class Place < ActiveRecord::Base
   attr_accessor :full_address
 
   # takes an address string and returns all location fields
-  geocoded_by :full_address do |obj, result|
+  geocoded_by :full_address, :latitude  => :lat, :longitude => :lng do |obj, result|
     if result.first
       geo = result.first
       obj.street = geo.street_address

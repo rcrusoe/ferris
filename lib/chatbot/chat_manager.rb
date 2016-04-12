@@ -63,17 +63,19 @@ class ChatManager
       # if @convo.pref_categories? || msg.includes?('any')
         # if categories is set, return 3 events sorted by interested_count
 
-        events = Event.recommend(@convo)
-        events.each_with_index do |event, i|
-          unless event.place.nil?
-            response << Reply::EVENT_DETAILS % {title: event.title,
-                                                date: stringify_date(event),
-                                                time: event.start_time.strftime('%l%P'),
-                                                location: event.place.neighborhood,
-                                                url: event_url(event, host: 'joinferris.com')}
-          end
-          break if i > 1
-        end
+      results = client.explore_venues({near:@convo.pref_location+', MA', section: 'drinks', limit:'10'})
+      ap results
+        # events = Event.recommend(@convo)
+        # events.each_with_index do |event, i|
+        #   unless event.place.nil?
+        #     response << Reply::EVENT_DETAILS % {title: event.title,
+        #                                         date: stringify_date(event),
+        #                                         time: event.start_time.strftime('%l%P'),
+        #                                         location: event.place.neighborhood,
+        #                                         url: event_url(event, host: 'joinferris.com')}
+        #   end
+        #   break if i > 1
+        # end
 
         # @convo.update(state: 'confirmation')
       # else
@@ -231,5 +233,11 @@ class ChatManager
     s.gsub!('-', ' ')
     s.gsub!('.', '')
     return s
+  end
+
+  def client
+    Foursquare2::Client.new(:client_id => 'TJRRETTNS1GOAYUAM2J3UWPANIOGJHALV4AAWGNWCAMIQYVV',
+                            :client_secret => '2RPAZSAJZ3QVSF3QX224FIVW5AW2FDFWSSAV1IS5PWBDVA0H',
+                            :api_version => '20150806')
   end
 end
