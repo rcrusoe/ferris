@@ -3,8 +3,8 @@ module Tags
                 'Culture', 'Sport', 'Tech', 'Outdoor']
 
   CATEGORIZED_KEYWORDS = {
-      music: ['concert', 'show', 'venue', 'music', 'entertainment', 'band', 'festival',
-              'jazz', 'hip hop', 'electronic', 'EDM', 'rock', 'alternative', 'punk', 'dance', 'guitar', 'dj', 'karaoke'],
+      music: ['concert', 'show', 'venue', 'music', 'entertainment', 'band', 'festival'],
+              # 'jazz', 'hip hop', 'electronic', 'EDM', 'rock', 'alternative', 'punk', 'dance', 'guitar', 'dj', 'karaoke'],
       nightlife: ['nightlife', 'wine', 'beer', 'alcohol', 'drink', 'liquor', 'bar', 'pub', 'club', 'party', 'dance', 'cocktail',
                   'margarita', 'whiskey', 'speakeasy', 'rooftop', 'brewery', 'lounge'],
       art: ['gallery', 'art', 'exhibition', 'photography', 'design'],
