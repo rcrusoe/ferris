@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   MAX_CONVERSATIONS = 10
 
   def index
-    authenticate
+    # authenticate
 
     @total_conversations = Conversation.count
     @total_users = User.count

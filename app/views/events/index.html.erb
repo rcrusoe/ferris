@@ -3,9 +3,7 @@
 
 <div class="ui stackable grid" style="margin-top: 20px">
   <% @event_instances.each do |instance| %>
-    <% if instance.date.today? || instance.date.future? %>
       <%= render(:partial => 'shared/eventCard', :locals => {:instance => instance})%>
-    <% end %>
   <% end %>
 </div>
 

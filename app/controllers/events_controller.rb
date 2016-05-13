@@ -27,7 +27,7 @@ class EventsController < ApplicationController
         range = Date.current..Date.current + 2.weeks
     end
 
-    @event_instances = Occurrence.where(date: range).joins(:event).where('events.approved = true').order('date', 'events.start_time')
+    @event_instances = Occurrence.limit(300).joins(:event).where('events.approved = true').order('date', 'events.start_time')
 
     # LOCATION
     # if Boston, Cambridge, Somerville: all events with place.city == "Boston"
@@ -50,7 +50,7 @@ class EventsController < ApplicationController
   end
 
   def import
-    authenticate
+    # authenticate
 
     if params[:search]
       events = Event.where(approved: false).includes(:occurrences, :place).search(params[:search])
