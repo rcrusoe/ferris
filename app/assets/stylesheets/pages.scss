@@ -43,7 +43,7 @@ p{
 */
 
 .homepage-header{
-	padding-top: 50px;
+	padding-top: 25px;
 }
 
 .homepage-description{
@@ -78,6 +78,13 @@ p{
 	.about-section-header{
 		text-decoration: underline;
 		margin-top: 2em !important;
+	}
+}
+
+.homepage-description{
+	p{
+		font-size: 1.6em;
+		text-align: left;
 	}
 }
 
